@@ -267,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-install-fcitx-on-ubuntu.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2015-01-15-enable-gzip-of-nginx.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -292,8 +292,323 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-08-09-install-fcitx-on-ubuntu.html" itemprop="url">
-                  Ubuntu 安装Fcitx输入法,并设置支持Sublime Text2
+                <a class="post-title-link" href="/blog/2015-01-15-enable-gzip-of-nginx.html" itemprop="url">
+                  开启nginx的Gzip
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2015-01-15-enable-gzip-of-nginx.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-01-15-enable-gzip-of-nginx.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文系转载<br>出处：<a href="http://www.php100.com/html/program/nginx/2013/0905/5526.html" target="_blank" rel="external">http://www.php100.com/html/program/nginx/2013/0905/5526.html</a>  </p>
+<p>默认情况下，Nginx的gzip压缩是关闭的， gzip压缩功能就是可以让你节省不少带宽，但是会增加服务器CPU的开销哦，Nginx默认只对text/html进行压缩 ，如果要对html之外的内容进行压缩传输，我们需要手动来调.<br>开启gzip的指令如下：  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gzip on;</div><div class="line">gzip_http_version 1.0;</div><div class="line">gzip_disable <span class="string">"MSIE [1-6]."</span>;</div><div class="line">gzip_types text/plain application/x-javascript text/css text/javascript;</div></pre></td></tr></table></figure>
+<p>关于<em>gzip_types</em>，如果你想让图片也开启gzip压缩，那么用以下这段吧:  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gzip_types text/plain application/x-javascript text/css text/javascript application/x-httpd-php image/jpeg image/gif image/png;</div></pre></td></tr></table></figure>
+<p>网站开启gzip压缩，不仅能够节省带宽，也能够快速响应用户的访问，在nginx中，开启gzip压缩的方法为:  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gzip on;      <span class="comment">#（启用 gzip 压缩功能）  </span></div><div class="line">gzip_proxied any;  <span class="comment">#（nginx做前端代理时启用该选项，表示无论后端服务器的headers头返回什么信息，都无条件启用压缩）</span></div><div class="line">gzip_min_length  1024; <span class="comment">#（最小压缩的页面，如果页面过于小，可能会越压越大，这里规定大于1K的页面才启用压缩）</span></div><div class="line">gzip_buffers     4 8k; <span class="comment">#（设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流）</span></div><div class="line">gzip_comp_level 3; <span class="comment">#（压缩级别，1压缩比最小处理速度最快，9压缩比最大但处理最慢，同时也最消耗CPU,一般设置为3就可以了）</span></div><div class="line">gzip_types       text/plain text/css application/x-javascript application/javascript application/xml; <span class="comment">#（什么类型的页面或文档启用压缩）</span></div></pre></td></tr></table></figure>
+<p>注意：  </p>
+<ol>
+<li>其中的<em>gzip_http_version</em>的设置<br>它的默认值是1.1，就是说对HTTP/1.1协议的请求才会进行gzip压缩<br>如果我们使用了proxy_pass进行反向代理，那么nginx和后端的upstream server之间是用HTTP/1.0协议通信的<br>This module makes it possible to transfer requests to another server.<br>It is an HTTP/1.0 proxy without the ability for keep-alive requests yet. (As a result, backend connections are created and destroyed on every request.) Nginx talks HTTP/1.1 to the browser and HTTP/1.0 to the backend server. As such it handles keep-alive to the browser.<br>如果我们使用nginx通过反向代理做Cache Server，而且前端的nginx没有开启gzip<br>同时，我们后端的nginx上没有设置<em>gzip_http_version</em>为1.0，那么Cache的url将不会进行gzip压缩  </li>
+<li>gzip_disable的设置是禁用IE6的gzip压缩，又是因为杯具的IE6<br>IE6的某些版本对gzip的压缩支持很不好，会造成页面的假死，今天产品的同学就测试出了这个问题<br>后来调试后，发现是对img进行gzip后造成IE6的假死，把对img的gzip压缩去掉后就正常了<br>为了确保其它的IE6版本不出问题，所以就加上了gzip_disable的设置</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2015-07-27-personal-intellij-idea-plugin.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2015-07-27-personal-intellij-idea-plugin.html" itemprop="url">
+                  自用Intellij Idea插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2015-07-27-personal-intellij-idea-plugin.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-07-27-personal-intellij-idea-plugin.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="1-有道翻译插件下载"><a href="#1-有道翻译插件下载" class="headerlink" title="1. 有道翻译插件下载"></a>1. 有道翻译插件<a href="/assets/images/idea-translate-plugin.zip">下载</a></h4><p>自已开发的小工具</p>
+<h4 id="2-鼠标手势支持官网"><a href="#2-鼠标手势支持官网" class="headerlink" title="2. 鼠标手势支持官网"></a>2. 鼠标手势支持<a href="http://www.smardec.com/products/idea.html" target="_blank" rel="external">官网</a></h4><p>超赞的手势支持,存在右键菜单冲突,解决办法暂时用快捷键调右键菜单</p>
+<h4 id="3-GrepCode搜索官网"><a href="#3-GrepCode搜索官网" class="headerlink" title="3. GrepCode搜索官网"></a>3. GrepCode搜索<a href="http://grepcode.com/intellij" target="_blank" rel="external">官网</a></h4><h4 id="4-Go开发插件官网"><a href="#4-Go开发插件官网" class="headerlink" title="4. Go开发插件官网"></a>4. Go开发插件<a href="https://github.com/go-lang-plugin-org" target="_blank" rel="external">官网</a></h4><p>一直在更新,希望越来越好用</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-blog-with-github-and-jekyll.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-09-blog-with-github-and-jekyll.html" itemprop="url">
+                  Github+Jekyll构建个人博客
                 </a>
               
             
@@ -350,8 +665,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-09-install-fcitx-on-ubuntu.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-09-install-fcitx-on-ubuntu.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-08-09-blog-with-github-and-jekyll.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-09-blog-with-github-and-jekyll.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,31 +694,23 @@
       
         
           
-            <p>安装输入法教程源自<a href="http://www.linuxidc.com/Linux/2013-07/87062.htm" target="_blank" rel="external">这里</a>,这里仅仅是排个好版看着舒服  </p>
-<hr>
-<h3 id="首先卸载ibus输入法"><a href="#首先卸载ibus输入法" class="headerlink" title="首先卸载ibus输入法"></a>首先卸载ibus输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get remove ibus</div></pre></td></tr></table></figure>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo add-apt-repository ppa:fcitx-team/nightly  </div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo sudo gedit /etc/apt/sources.list</div></pre></td></tr></table></figure>
-<p>在打开的文件中添加下面两行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">deb http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main  </div><div class="line">deb-src http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main</div></pre></td></tr></table></figure>
-<p>终端执行  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<hr>
-<h3 id="让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里"><a href="#让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里" class="headerlink" title="让输入法支持Sublime Text 2, Sublime Text2的安装教程请点击这里"></a>让输入法支持Sublime Text 2, Sublime Text2的安装教程请<a href="http://www.cnblogs.com/fanyong/p/3462023.html" target="_blank" rel="external">点击这里</a></h3><h4 id="1-保存下述代码为-sublime-imfix-c-文件"><a href="#1-保存下述代码为-sublime-imfix-c-文件" class="headerlink" title="1. 保存下述代码为 sublime-imfix.c 文件"></a>1. 保存下述代码为 sublime-imfix.c 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sublime-imfix.c</div><div class="line">Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.</div><div class="line">By Cjacker Huang &lt;jianzhong.huang at i-soft.com.cn&gt;</div><div class="line"> </div><div class="line">gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC</div><div class="line">LD_PRELOAD=./libsublime-imfix.so sublime_text</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gtk/gtk.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gdk/gdkx.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> GdkSegment GdkRegionBox;</div><div class="line"> </div><div class="line"><span class="keyword">struct</span> _GdkRegion</div><div class="line">&#123;</div><div class="line">  <span class="keyword">long</span> size;</div><div class="line">  <span class="keyword">long</span> numRects;</div><div class="line">  GdkRegionBox *rects;</div><div class="line">  GdkRegionBox extents;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">GtkIMContext *local_context;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span></span></div><div class="line"><span class="title">gdk_region_get_clipbox</span> <span class="params">(<span class="keyword">const</span> GdkRegion *region,</span></div><div class="line">            GdkRectangle    *rectangle)</div><div class="line">&#123;</div><div class="line">  g_return_if_fail (region != <span class="literal">NULL</span>);</div><div class="line">  g_return_if_fail (rectangle != <span class="literal">NULL</span>);</div><div class="line"> </div><div class="line">  rectangle-&gt;x = region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;y = region-&gt;extents.y1;</div><div class="line">  rectangle-&gt;width = region-&gt;extents.x2 - region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;height = region-&gt;extents.y2 - region-&gt;extents.y1;</div><div class="line">  GdkRectangle rect;</div><div class="line">  rect.x = rectangle-&gt;x;</div><div class="line">  rect.y = rectangle-&gt;y;</div><div class="line">  rect.width = <span class="number">0</span>;</div><div class="line">  rect.height = rectangle-&gt;height;</div><div class="line">  <span class="comment">//The caret width is 2;</span></div><div class="line">  <span class="comment">//Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.</span></div><div class="line">  <span class="keyword">if</span>(rectangle-&gt;width == <span class="number">2</span> &amp;&amp; GTK_IS_IM_CONTEXT(local_context)) &#123;</div><div class="line">        gtk_im_context_set_cursor_location(local_context, rectangle);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//this is needed, for example, if you input something in file dialog and return back the edit area</span></div><div class="line"><span class="comment">//context will lost, so here we set it again.</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">static</span> GdkFilterReturn <span class="title">event_filter</span> <span class="params">(GdkXEvent *xevent, GdkEvent *event, gpointer im_context)</span></span></div><div class="line">&#123;</div><div class="line">    XEvent *xev = (XEvent *)xevent;</div><div class="line">    <span class="keyword">if</span>(xev-&gt;type == KeyRelease &amp;&amp; GTK_IS_IM_CONTEXT(im_context)) &#123;</div><div class="line">       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),<span class="string">"window"</span>);</div><div class="line">       <span class="keyword">if</span>(GDK_IS_WINDOW(win))</div><div class="line">         gtk_im_context_set_client_window(im_context, win);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> GDK_FILTER_CONTINUE;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gtk_im_context_set_client_window</span> <span class="params">(GtkIMContext *context,</span></span></div><div class="line">          GdkWindow    *window)</div><div class="line">&#123;</div><div class="line">  GtkIMContextClass *klass;</div><div class="line">  g_return_if_fail (GTK_IS_IM_CONTEXT (context));</div><div class="line">  klass = GTK_IM_CONTEXT_GET_CLASS (context);</div><div class="line">  <span class="keyword">if</span> (klass-&gt;set_client_window)</div><div class="line">    klass-&gt;set_client_window (context, window);</div><div class="line"> </div><div class="line">  <span class="keyword">if</span>(!GDK_IS_WINDOW (window))</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  g_object_set_data(G_OBJECT(context),<span class="string">"window"</span>,window);</div><div class="line">  <span class="keyword">int</span> width = gdk_window_get_width(window);</div><div class="line">  <span class="keyword">int</span> height = gdk_window_get_height(window);</div><div class="line">  <span class="keyword">if</span>(width != <span class="number">0</span> &amp;&amp; height !=<span class="number">0</span>) &#123;</div><div class="line">    gtk_im_context_focus_in(context);</div><div class="line">    local_context = context;</div><div class="line">  &#125;</div><div class="line">  gdk_window_add_filter (window, event_filter, context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2-安装C-C-的编译环境和gtk-libgtk2-0-dev"><a href="#2-安装C-C-的编译环境和gtk-libgtk2-0-dev" class="headerlink" title="2. 安装C/C++的编译环境和gtk libgtk2.0-dev"></a>2. 安装C/C++的编译环境和gtk libgtk2.0-dev</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install build-essential</div><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
-<h4 id="3-编译共享内库"><a href="#3-编译共享内库" class="headerlink" title="3. 编译共享内库"></a>3. 编译共享内库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` <span class="_">-f</span>PIC</div></pre></td></tr></table></figure>
-<h4 id="4-启动-Sublime-Text-2"><a href="#4-启动-Sublime-Text-2" class="headerlink" title="4. 启动 Sublime Text 2"></a>4. 启动 Sublime Text 2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ LD_PRELOAD=./libsublime-imfix.so sublime_text</div></pre></td></tr></table></figure>
-<p>我没有在桌面放图标的需求,有需求的看原文<a href="http://my.oschina.net/wugaoxing/blog/121281" target="_blank" rel="external">这里</a><br>我倒是需要在终端启动,所以做了个sh脚本并加到/usr/bin目录里面<br>先是链接到bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /usr/lib/Sublime\ Text\ 2/sublime_text /usr/bin/sb</div></pre></td></tr></table></figure>
-<p>然后写脚本sb.sh  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment"># Android Studio offline inspection script.</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment">#</span></div><div class="line">LD_PRELOAD=/usr/lib/libsublime-imfix.so sb</div></pre></td></tr></table></figure>
-<p>然后再添加到PATH  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> ~/sb.sh /usr/bin/sb2</div></pre></td></tr></table></figure>
-<blockquote>
-<p>转的和参考的博文我努力都附上链接地址,如果不幸侵了你的权,你过来打我啊.</p>
-</blockquote>
+            <p>本文将简要介绍如何在Github上建立个人博客。英文教程<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html" target="_blank" rel="external">在这里</a>.</p>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>1. 首先，需要的是Github帐号，如果没有的话<a href="https://github.com/plans" target="_blank" rel="external">在这里注册</a>。<br>2. 在自己的机器上配置Git，教程见<a href="http://help.github.com/linux-set-up-git/" target="_blank" rel="external">这里</a>。<br>完成以上两步后，就可以用Jekyll来构建写作环境了。</p>
+<h2 id="Jekyll"><a href="#Jekyll" class="headerlink" title="Jekyll"></a>Jekyll</h2><p>Jekyll是一个静态网站生成工具。它允许用户使用HTML、Markdown或Textile来建立静态页面，然后通过模板引擎Liquid（<a href="http://liquidmarkup.org" target="_blank" rel="external">Liquid Templating Engine</a>）来运行。  </p>
+<h3 id="1-安装Jekyll"><a href="#1-安装Jekyll" class="headerlink" title="1. 安装Jekyll"></a>1. 安装Jekyll</h3><p>通过RubyGems安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gem install jekyll</div></pre></td></tr></table></figure>
+<p>编译插件需要ruby1.9.1-dev</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install ruby1.9.1-dev</div></pre></td></tr></table></figure>
+<h3 id="2-创建Repo"><a href="#2-创建Repo" class="headerlink" title="2. 创建Repo"></a>2. 创建Repo</h3><p>在Github Dashboard中创建一个新的名为USERNAME.github.com的Repo。</p>
+<h3 id="3-安装Jekyll-Bootstrap"><a href="#3-安装Jekyll-Bootstrap" class="headerlink" title="3. 安装Jekyll-Bootstrap"></a>3. 安装Jekyll-Bootstrap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com</div><div class="line">$ <span class="built_in">cd</span> USERNAME.github.com</div><div class="line">$ git remote add origin git@github.com:USERNAME/USERNAME.github.com.git</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<h3 id="4-安装rake"><a href="#4-安装rake" class="headerlink" title="4. 安装rake"></a>4. 安装rake</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gem install rake</div></pre></td></tr></table></figure>
+<h3 id="5-配置-config-yml"><a href="#5-配置-config-yml" class="headerlink" title="5. 配置_config.yml"></a>5. 配置_config.yml</h3><p>在_config.yml中除了可以设置博客的常规信息之外，还默认自带了一些常用功能，如评论（disqus）、Analytics跟踪（Google Analytics）等等。详细教程见<a href="http://jekyllbootstrap.com/usage/blog-configuration.html" target="_blank" rel="external">这里</a>。</p>
+<h3 id="6-本地运行"><a href="#6-本地运行" class="headerlink" title="6.本地运行"></a>6.本地运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">cd</span> USERNAME.github.com</div><div class="line">$ jekyll serve</div></pre></td></tr></table></figure>
+<p>在浏览器打开: <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>  </p>
+<h3 id="7-修改模板简述"><a href="#7-修改模板简述" class="headerlink" title="7.修改模板简述"></a>7.修改模板简述</h3><p>模板文件存在两个地方  <strong>/assets/themes/TEMPLATE_NAME</strong> 和 <strong>/_includes/themes/TEMPLATE_NAME</strong><br>具体怎么修改可以参考<a href="http://www.jekyllbootstrap.com/usage/jekyll-theming.html#toc_5" target="_blank" rel="external">这里</a>  </p>
+<p>以上配置完成之后可以很容易的通过  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ rake post title=<span class="string">"Hello World"</span></div><div class="line">$ rake page name=<span class="string">"about.markdown"</span></div></pre></td></tr></table></figure>
+<p>分别来创建博文和页面。</p>
 
           
         
@@ -442,7 +749,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-10-07-minifying-javascript-with-jetbrains-intellij-idea.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-30-package-a-c-program-for-openwrt.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -467,153 +774,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-10-07-minifying-javascript-with-jetbrains-intellij-idea.html" itemprop="url">
-                  IntelliJ IDEA自动压缩js,css等文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014-10-07-minifying-javascript-with-jetbrains-intellij-idea.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-10-07-minifying-javascript-with-jetbrains-intellij-idea.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>IntelliJ IDEA</code>可以自动压缩js,css等源文件到一个新的文件.<br>如果希望使用此功能,要满足以下两个条件</p>
-<ol>
-<li>本机已经安装了<code>NodeJS</code>以及<code>npm</code></li>
-<li><code>IntelliJ IDEA</code>安装<code>NodeJS</code>和<code>File Watchers</code>插件</li>
-</ol>
-<p>满足以上条件后,下面就很简单了,以压缩<em>javascript</em>为例子  </p>
-<h4 id="一-安装javascript压缩工具"><a href="#一-安装javascript压缩工具" class="headerlink" title="一. 安装javascript压缩工具"></a>一. 安装<em>javascript</em>压缩工具</h4><p>目前<em>IDEA</em>支持的工具列表</p>
-<ol>
-<li>YUI Compressor</li>
-<li>UglifyJS</li>
-<li>Closure Compiler</li>
-</ol>
-<p>这里我安装的是<em>YUI Compressor</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i yuicompressor -g</div></pre></td></tr></table></figure>
-<p>我的装完之后出现了一个问题,直接执行<em>yuicompressor</em>提示<em>/usr/bin/env: node: 没有那个文件或目录</em>,解决方法如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo vi /usr/<span class="built_in">local</span>/bin/yuicompressor</div><div class="line"><span class="comment">#将第一行的</span></div><div class="line"><span class="comment">#!/usr/bin/env node</span></div><div class="line"><span class="comment">#改为</span></div><div class="line"><span class="comment">#!/usr/bin/env nodejs</span></div></pre></td></tr></table></figure>
-<h4 id="二-新建一个FileWatcher即可-如图-保存的时候就会自动生成-min-js文件"><a href="#二-新建一个FileWatcher即可-如图-保存的时候就会自动生成-min-js文件" class="headerlink" title="二. 新建一个FileWatcher即可,如图,保存的时候就会自动生成.min.js文件"></a>二. 新建一个<em>FileWatcher</em>即可,如图,保存的时候就会自动生成<em>.min.js</em>文件</h4><p><img src="/assets/images/idea1.png" style="margin-left:0px"><br><img src="/assets/images/idea2.png" style="margin-left:0px"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-install-git-on-openwrt.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014-08-09-install-git-on-openwrt.html" itemprop="url">
-                  在Openwrt上安装GIT
+                <a class="post-title-link" href="/blog/2014-08-30-package-a-c-program-for-openwrt.html" itemprop="url">
+                  为openwrt打包一个ipk程序
                 </a>
               
             
@@ -652,8 +814,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/原创文章/" itemprop="url" rel="index">
-                    <span itemprop="name">原创文章</span>
+                  <a href="/categories/openwrt/" itemprop="url" rel="index">
+                    <span itemprop="name">openwrt</span>
                   </a>
                 </span>
 
@@ -670,8 +832,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-09-install-git-on-openwrt.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-09-install-git-on-openwrt.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-08-30-package-a-c-program-for-openwrt.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-30-package-a-c-program-for-openwrt.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -699,156 +861,21 @@
       
         
           
-            <p>本文系原创<br>作者：Shmiluyu<br>出处：<a href="http://aboutchen.org/blog/install-git-on-openwrt/" target="_blank" rel="external">http://aboutchen.org/blog/install-git-on-openwrt/</a><br>声明：本文采用以下协议进行授权： <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
-<p>迷上了git这个神器,自家的路由器上装的有svn,感觉svn弱爆了,于是乎想给路由器装上git<br>baidu和google走起,搜了一天,没搜到教程.只能自己来了.过程很坎坷,但是装好之后happy了  </p>
-<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><p>这个直接有包,直接按照就行,请安装到u盘里面,flash太小了.挂u盘教程<a href="http://blog.csdn.net/jk110333/article/details/11920163" target="_blank" rel="external">点击这里</a>  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install git --dest usb</div></pre></td></tr></table></figure>
-<p>下面把U盘里面的git相关都软链接到<strong>/user/bin</strong>,要使用绝对路径  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-pack /usr/bin/git-upload-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-archive /usr/bin/git-upload-archive</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git-receive-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git</div></pre></td></tr></table></figure>
-<h3 id="2-灰常暴力的创建用户git"><a href="#2-灰常暴力的创建用户git" class="headerlink" title="2. 灰常暴力的创建用户git"></a>2. 灰常暴力的创建用户git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:1000:git:/home/git:/bin/ash'</span> vi &gt;&gt;/etc/passwd</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:15020:0:99999:7:::'</span> &gt;&gt;/etc/shadow</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:'</span> &gt;&gt;/etc/group</div></pre></td></tr></table></figure>
-<h3 id="3-创建git用户目录并授权"><a href="#3-创建git用户目录并授权" class="headerlink" title="3. 创建git用户目录并授权"></a>3. 创建git用户目录并授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /home</div><div class="line">$ mkdir /home/git</div><div class="line">$ midir /home/git/.ssh</div><div class="line">$ chown -R git:git /home/git</div></pre></td></tr></table></figure>
-<p>在刚才创建的.ssh目录下面创建一个文件 <strong>authorized_keys</strong>  </p>
-<h3 id="4-电脑上创建SSH-Key"><a href="#4-电脑上创建SSH-Key" class="headerlink" title="4. 电脑上创建SSH Key"></a>4. 电脑上创建SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></div><div class="line">$ 其他操作系统自行百度</div></pre></td></tr></table></figure>
-<p>操作没问题的话,在用户主目录找到.ssh目录,里面有两个文件,<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,一个私钥,一个公钥.<br>把公钥里面的内容拷贝到第3步创建的<strong>authorized_keys</strong>里面<br>以后想添加一台电脑就是第4步,不断的往<strong>authorized_keys</strong>添加就是了  </p>
-<h3 id="5-git操作"><a href="#5-git操作" class="headerlink" title="5. git操作"></a>5. git操作</h3><p>路由器上随便创建一个目录,我是创建到移动硬盘里面了  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda3/gitrep/demo.git</div><div class="line">$ git init --bare demo.git</div><div class="line">$ chown -R git:git demo.git</div><div class="line">$ 上面这句一定是要在git初始化之后执行.在前面执行无效果</div></pre></td></tr></table></figure>
-<h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
-<p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
-<p>本文系原创,如有转载,麻烦请注明出处.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-12-18-use-port-80-with-ngrok.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014-12-18-use-port-80-with-ngrok.html" itemprop="url">
-                  使用ngrok映射本机端口到公网80
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014-12-18-use-port-80-with-ngrok.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-12-18-use-port-80-with-ngrok.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口<br>于是搜到这个工具  </p>
-<h4 id="下载ngrok"><a href="#下载ngrok" class="headerlink" title="下载ngrok"></a>下载ngrok</h4><p>网址:<a href="https://ngrok.com/download" target="_blank" rel="external">https://ngrok.com/</a>,选择你的系统版本<br><img src="/assets/images/ngrox-1.png" style="margin-left:0px"></p>
-<h4 id="解压运行"><a href="#解压运行" class="headerlink" title="解压运行"></a>解压运行</h4><p>直接运行即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ngrok 8090</div></pre></td></tr></table></figure>
-<p>如下图所示: 通过访问<em><a href="http://6844e42d.ngrok.com" target="_blank" rel="external">http://6844e42d.ngrok.com</a></em>就可以转发到本机的8090端口了,对于微信公众号来说,还是80端口<br><img src="/assets/images/ngrok-2.png" style="margin-left:0px"></p>
-
+            <p>前面一篇说了如何编译一个可以在<code>openwrt</code>上面运行的C程序<br>这篇文章是说明如何打包成ipk  </p>
+<h3 id="1-获取Openwrt-SDK"><a href="#1-获取Openwrt-SDK" class="headerlink" title="1. 获取Openwrt SDK"></a>1. 获取<code>Openwrt SDK</code></h3><p>这里有两种方法  </p>
+<ul>
+<li>直接下载编译好的<a href="http://downloads.openwrt.org/" target="_blank" rel="external">http://downloads.openwrt.org/</a></li>
+<li>自己编译,<code>make menuconfig</code>,选中<code>Build the Openwrt SDK</code>,生成的SDK包在<code>bin/ar71xx</code>目录下面</li>
+</ul>
+<h3 id="2-将SDK包解压到任意路径"><a href="#2-将SDK包解压到任意路径" class="headerlink" title="2. 将SDK包解压到任意路径."></a>2. 将<code>SDK</code>包解压到任意路径.</h3><h3 id="3-在SDK-package目录下面-创建一个helloop目录"><a href="#3-在SDK-package目录下面-创建一个helloop目录" class="headerlink" title="3. 在SDK/package目录下面 创建一个helloop目录"></a>3. 在<code>SDK/package</code>目录下面 创建一个<code>helloop</code>目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$mkdir</span> openwrt-sdk/package/helloop</div></pre></td></tr></table></figure>
+<h3 id="4-编写helloop-c-保存到SDK-package-helloop-src目录"><a href="#4-编写helloop-c-保存到SDK-package-helloop-src目录" class="headerlink" title="4. 编写helloop.c,保存到SDK/package/helloop/src目录"></a>4. 编写<code>helloop.c</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"hello openwrt!\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录"><a href="#5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录" class="headerlink" title="5. 编写GNU Makefile文件Makefile,保存到SDK/package/helloop/src目录"></a>5. 编写GNU Makefile文件<code>Makefile</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># build helloworld executable when user executes &quot;make&quot;</div><div class="line">helloop: helloop.o</div><div class="line">	$(CC) $(LDFLAGS) helloop.o -o helloop</div><div class="line">helloop.o: helloop.c</div><div class="line">	$(CC) $(CFLAGS) -c helloop.c</div><div class="line"></div><div class="line"># remove object files and executable when user executes &quot;make clean&quot;</div><div class="line">clean:</div><div class="line">	rm *.o helloop</div></pre></td></tr></table></figure>
+<h3 id="6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录"><a href="#6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录" class="headerlink" title="6. 编写OpenWRT BuildPackage Makefile文件Makefile,保存到SDK/package/helloop目录"></a>6. 编写<code>OpenWRT BuildPackage Makefile</code>文件<code>Makefile</code>,保存到<code>SDK/package/helloop</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">##############################################</div><div class="line"># OpenWrt Makefile for helloop program</div><div class="line">#</div><div class="line">#</div><div class="line"># Most of the variables used here are defined in</div><div class="line"># the include directives below. We just need to </div><div class="line"># specify a basic description of the package, </div><div class="line"># where to build our program, where to find </div><div class="line"># the source files, and where to install the </div><div class="line"># compiled program on the router. </div><div class="line"># </div><div class="line"># Be very careful of spacing in this file.</div><div class="line"># Indents should be tabs, not spaces, and </div><div class="line"># there should be no trailing whitespace in</div><div class="line"># lines that are not commented.</div><div class="line"># </div><div class="line">##############################################</div><div class="line"></div><div class="line">include $(TOPDIR)/rules.mk</div><div class="line"></div><div class="line"># Name and release number of this package</div><div class="line">PKG_NAME:=helloop</div><div class="line">PKG_RELEASE:=1</div><div class="line"></div><div class="line"></div><div class="line"># This specifies the directory where we&apos;re going to build the program.  </div><div class="line"># The root build directory, $(BUILD_DIR), is by default the build_mipsel </div><div class="line"># directory in your OpenWrt SDK directory</div><div class="line">PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)</div><div class="line"></div><div class="line"></div><div class="line">include $(INCLUDE_DIR)/package.mk</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># Specify package information for this program. </div><div class="line"># The variables defined here should be self explanatory.</div><div class="line">define Package/helloop</div><div class="line">	SECTION:=utils</div><div class="line">	CATEGORY:=Utilities</div><div class="line">	TITLE:=helloop -- prints a snarky message</div><div class="line">	DEPENDS:=+libstdcpp +libc</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># Specify what needs to be done to prepare for building the package.</div><div class="line"># In our case, we need to copy the source files to the build directory.</div><div class="line"># This is NOT the default.  The default uses the PKG_SOURCE_URL and the</div><div class="line"># PKG_SOURCE which is not defined here to download the source from the web.</div><div class="line"># In order to just build a simple program that we have just written, it is</div><div class="line"># much easier to do it this way.</div><div class="line">define Build/Prepare</div><div class="line">	mkdir -p $(PKG_BUILD_DIR)</div><div class="line">	$(CP) ./src/* $(PKG_BUILD_DIR)/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># We do not need to define Build/Configure or Build/Compile directives</div><div class="line"># The defaults are appropriate for compiling a simple program such as this one</div><div class="line"></div><div class="line"></div><div class="line"># Specify where and how to install the program. Since we only have one file, </div><div class="line"># the helloop executable, install it by copying it to the /bin directory on</div><div class="line"># the router. The $(1) variable represents the root directory on the router running </div><div class="line"># OpenWrt. The $(INSTALL_DIR) variable contains a command to prepare the install </div><div class="line"># directory if it does not already exist.  Likewise $(INSTALL_BIN) contains the </div><div class="line"># command to copy the binary file from its current location (in our case the build</div><div class="line"># directory) to the install directory.</div><div class="line">define Package/helloop/install</div><div class="line">	$(INSTALL_DIR) $(1)/bin</div><div class="line">	$(INSTALL_BIN) $(PKG_BUILD_DIR)/helloop $(1)/bin/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># This line executes the necessary commands to compile our program.</div><div class="line"># The above define directives specify all the information needed, but this</div><div class="line"># line calls BuildPackage which in turn actually uses this information to</div><div class="line"># build a package.</div><div class="line">$(eval $(call BuildPackage,helloop))</div></pre></td></tr></table></figure>
+<h3 id="7-编译"><a href="#7-编译" class="headerlink" title="7. 编译"></a>7. 编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在SDK目录执行</span></div><div class="line">$ make V=99</div></pre></td></tr></table></figure>
+<p>生成的IPK文件在<code>bin/ar71xx/packages/base</code>目录里面</p>
+<h3 id="8-拷贝到路由器"><a href="#8-拷贝到路由器" class="headerlink" title="8. 拷贝到路由器"></a>8. 拷贝到路由器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp helloop_1_ar71xx.ipk root@home:/mnt/sda1</div></pre></td></tr></table></figure>
+<h3 id="9-在路由器执行安装-这里我安装到了U盘上面"><a href="#9-在路由器执行安装-这里我安装到了U盘上面" class="headerlink" title="9. 在路由器执行安装,这里我安装到了U盘上面"></a>9. 在路由器执行安装,这里我安装到了U盘上面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1<span class="comment"># opkg install helloop_1_ar71xx.ipk --dest usb</span></div></pre></td></tr></table></figure>
+<h3 id="10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接"><a href="#10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接" class="headerlink" title="10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接"></a>10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1/packages/bin<span class="comment"># ./helloop </span></div><div class="line">hello openwrt!</div></pre></td></tr></table></figure>
           
         
       

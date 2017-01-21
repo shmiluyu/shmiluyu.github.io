@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.aboutchen.org/"/>
-  <updated>2017-01-21T07:39:46.000Z</updated>
+  <updated>2017-01-21T08:32:54.000Z</updated>
   <id>http://www.aboutchen.org/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Java volatile 实现原理</title>
+    <title>Java volatile 实现原理1</title>
     <link href="http://www.aboutchen.org//blog/2016-05-01-how-java-volitale-works.html"/>
     <id>http://www.aboutchen.org//blog/2016-05-01-how-java-volitale-works.html</id>
     <published>2016-05-01T09:56:02.000Z</published>
-    <updated>2017-01-21T07:39:46.000Z</updated>
+    <updated>2017-01-21T08:32:54.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p>首先我们先看几张图</p>
 <blockquote>
@@ -234,36 +234,6 @@
   </entry>
   
   <entry>
-    <title>Jekyll 备忘</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;持续更新  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
-    
-    </summary>
-    
-    
-      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Openwrt配置汇总</title>
     <link href="http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html</id>
@@ -299,6 +269,36 @@
     
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jekyll 备忘</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>持续更新  </p>
+</blockquote>
+<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;持续更新  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
+    
+    </summary>
+    
+    
+      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
     
   </entry>
   
@@ -700,6 +700,31 @@
   </entry>
   
   <entry>
+    <title>Android使用MxPlayer打开优酷视频</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
+    
+    </summary>
+    
+      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
+    
+    
+      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编译一个可以运行在openwrt上的c程序</title>
     <link href="http://www.aboutchen.org//blog/2014-08-30-compile-c-code-for-openwrt.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-30-compile-c-code-for-openwrt.html</id>
@@ -751,123 +776,55 @@
   </entry>
   
   <entry>
-    <title>Android使用MxPlayer打开优酷视频</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html</id>
+    <title>Ubuntu 安装Fcitx输入法,并设置支持Sublime Text2</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html</id>
     <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:09.000Z</updated>
+    <updated>2017-01-21T06:53:19.000Z</updated>
     
-    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
-<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
-<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Github+Jekyll构建个人博客</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-09-blog-with-github-and-jekyll.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-09-blog-with-github-and-jekyll.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文将简要介绍如何在Github上建立个人博客。英文教程<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html" target="_blank" rel="external">在这里</a>.</p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>1. 首先，需要的是Github帐号，如果没有的话<a href="https://github.com/plans" target="_blank" rel="external">在这里注册</a>。<br>2. 在自己的机器上配置Git，教程见<a href="http://help.github.com/linux-set-up-git/" target="_blank" rel="external">这里</a>。<br>完成以上两步后，就可以用Jekyll来构建写作环境了。</p>
-<h2 id="Jekyll"><a href="#Jekyll" class="headerlink" title="Jekyll"></a>Jekyll</h2><p>Jekyll是一个静态网站生成工具。它允许用户使用HTML、Markdown或Textile来建立静态页面，然后通过模板引擎Liquid（<a href="http://liquidmarkup.org" target="_blank" rel="external">Liquid Templating Engine</a>）来运行。  </p>
-<h3 id="1-安装Jekyll"><a href="#1-安装Jekyll" class="headerlink" title="1. 安装Jekyll"></a>1. 安装Jekyll</h3><p>通过RubyGems安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gem install jekyll</div></pre></td></tr></table></figure>
-<p>编译插件需要ruby1.9.1-dev</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install ruby1.9.1-dev</div></pre></td></tr></table></figure>
-<h3 id="2-创建Repo"><a href="#2-创建Repo" class="headerlink" title="2. 创建Repo"></a>2. 创建Repo</h3><p>在Github Dashboard中创建一个新的名为USERNAME.github.com的Repo。</p>
-<h3 id="3-安装Jekyll-Bootstrap"><a href="#3-安装Jekyll-Bootstrap" class="headerlink" title="3. 安装Jekyll-Bootstrap"></a>3. 安装Jekyll-Bootstrap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com</div><div class="line">$ <span class="built_in">cd</span> USERNAME.github.com</div><div class="line">$ git remote add origin git@github.com:USERNAME/USERNAME.github.com.git</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
-<h3 id="4-安装rake"><a href="#4-安装rake" class="headerlink" title="4. 安装rake"></a>4. 安装rake</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gem install rake</div></pre></td></tr></table></figure>
-<h3 id="5-配置-config-yml"><a href="#5-配置-config-yml" class="headerlink" title="5. 配置_config.yml"></a>5. 配置_config.yml</h3><p>在_config.yml中除了可以设置博客的常规信息之外，还默认自带了一些常用功能，如评论（disqus）、Analytics跟踪（Google Analytics）等等。详细教程见<a href="http://jekyllbootstrap.com/usage/blog-configuration.html" target="_blank" rel="external">这里</a>。</p>
-<h3 id="6-本地运行"><a href="#6-本地运行" class="headerlink" title="6.本地运行"></a>6.本地运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">cd</span> USERNAME.github.com</div><div class="line">$ jekyll serve</div></pre></td></tr></table></figure>
-<p>在浏览器打开: <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>  </p>
-<h3 id="7-修改模板简述"><a href="#7-修改模板简述" class="headerlink" title="7.修改模板简述"></a>7.修改模板简述</h3><p>模板文件存在两个地方  <strong>/assets/themes/TEMPLATE_NAME</strong> 和 <strong>/_includes/themes/TEMPLATE_NAME</strong><br>具体怎么修改可以参考<a href="http://www.jekyllbootstrap.com/usage/jekyll-theming.html#toc_5" target="_blank" rel="external">这里</a>  </p>
-<p>以上配置完成之后可以很容易的通过  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ rake post title=<span class="string">"Hello World"</span></div><div class="line">$ rake page name=<span class="string">"about.markdown"</span></div></pre></td></tr></table></figure>
-<p>分别来创建博文和页面。</p>
+    <content type="html"><![CDATA[<p>安装输入法教程源自<a href="http://www.linuxidc.com/Linux/2013-07/87062.htm" target="_blank" rel="external">这里</a>,这里仅仅是排个好版看着舒服  </p>
+<hr>
+<h3 id="首先卸载ibus输入法"><a href="#首先卸载ibus输入法" class="headerlink" title="首先卸载ibus输入法"></a>首先卸载ibus输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get remove ibus</div></pre></td></tr></table></figure>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo add-apt-repository ppa:fcitx-team/nightly  </div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
+<p>注销或者重启即可  </p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo sudo gedit /etc/apt/sources.list</div></pre></td></tr></table></figure>
+<p>在打开的文件中添加下面两行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">deb http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main  </div><div class="line">deb-src http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main</div></pre></td></tr></table></figure>
+<p>终端执行  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
+<p>注销或者重启即可  </p>
+<hr>
+<h3 id="让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里"><a href="#让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里" class="headerlink" title="让输入法支持Sublime Text 2, Sublime Text2的安装教程请点击这里"></a>让输入法支持Sublime Text 2, Sublime Text2的安装教程请<a href="http://www.cnblogs.com/fanyong/p/3462023.html" target="_blank" rel="external">点击这里</a></h3><h4 id="1-保存下述代码为-sublime-imfix-c-文件"><a href="#1-保存下述代码为-sublime-imfix-c-文件" class="headerlink" title="1. 保存下述代码为 sublime-imfix.c 文件"></a>1. 保存下述代码为 sublime-imfix.c 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sublime-imfix.c</div><div class="line">Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.</div><div class="line">By Cjacker Huang &lt;jianzhong.huang at i-soft.com.cn&gt;</div><div class="line"> </div><div class="line">gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC</div><div class="line">LD_PRELOAD=./libsublime-imfix.so sublime_text</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gtk/gtk.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gdk/gdkx.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> GdkSegment GdkRegionBox;</div><div class="line"> </div><div class="line"><span class="keyword">struct</span> _GdkRegion</div><div class="line">&#123;</div><div class="line">  <span class="keyword">long</span> size;</div><div class="line">  <span class="keyword">long</span> numRects;</div><div class="line">  GdkRegionBox *rects;</div><div class="line">  GdkRegionBox extents;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">GtkIMContext *local_context;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span></span></div><div class="line"><span class="title">gdk_region_get_clipbox</span> <span class="params">(<span class="keyword">const</span> GdkRegion *region,</span></div><div class="line">            GdkRectangle    *rectangle)</div><div class="line">&#123;</div><div class="line">  g_return_if_fail (region != <span class="literal">NULL</span>);</div><div class="line">  g_return_if_fail (rectangle != <span class="literal">NULL</span>);</div><div class="line"> </div><div class="line">  rectangle-&gt;x = region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;y = region-&gt;extents.y1;</div><div class="line">  rectangle-&gt;width = region-&gt;extents.x2 - region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;height = region-&gt;extents.y2 - region-&gt;extents.y1;</div><div class="line">  GdkRectangle rect;</div><div class="line">  rect.x = rectangle-&gt;x;</div><div class="line">  rect.y = rectangle-&gt;y;</div><div class="line">  rect.width = <span class="number">0</span>;</div><div class="line">  rect.height = rectangle-&gt;height;</div><div class="line">  <span class="comment">//The caret width is 2;</span></div><div class="line">  <span class="comment">//Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.</span></div><div class="line">  <span class="keyword">if</span>(rectangle-&gt;width == <span class="number">2</span> &amp;&amp; GTK_IS_IM_CONTEXT(local_context)) &#123;</div><div class="line">        gtk_im_context_set_cursor_location(local_context, rectangle);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//this is needed, for example, if you input something in file dialog and return back the edit area</span></div><div class="line"><span class="comment">//context will lost, so here we set it again.</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">static</span> GdkFilterReturn <span class="title">event_filter</span> <span class="params">(GdkXEvent *xevent, GdkEvent *event, gpointer im_context)</span></span></div><div class="line">&#123;</div><div class="line">    XEvent *xev = (XEvent *)xevent;</div><div class="line">    <span class="keyword">if</span>(xev-&gt;type == KeyRelease &amp;&amp; GTK_IS_IM_CONTEXT(im_context)) &#123;</div><div class="line">       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),<span class="string">"window"</span>);</div><div class="line">       <span class="keyword">if</span>(GDK_IS_WINDOW(win))</div><div class="line">         gtk_im_context_set_client_window(im_context, win);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> GDK_FILTER_CONTINUE;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gtk_im_context_set_client_window</span> <span class="params">(GtkIMContext *context,</span></span></div><div class="line">          GdkWindow    *window)</div><div class="line">&#123;</div><div class="line">  GtkIMContextClass *klass;</div><div class="line">  g_return_if_fail (GTK_IS_IM_CONTEXT (context));</div><div class="line">  klass = GTK_IM_CONTEXT_GET_CLASS (context);</div><div class="line">  <span class="keyword">if</span> (klass-&gt;set_client_window)</div><div class="line">    klass-&gt;set_client_window (context, window);</div><div class="line"> </div><div class="line">  <span class="keyword">if</span>(!GDK_IS_WINDOW (window))</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  g_object_set_data(G_OBJECT(context),<span class="string">"window"</span>,window);</div><div class="line">  <span class="keyword">int</span> width = gdk_window_get_width(window);</div><div class="line">  <span class="keyword">int</span> height = gdk_window_get_height(window);</div><div class="line">  <span class="keyword">if</span>(width != <span class="number">0</span> &amp;&amp; height !=<span class="number">0</span>) &#123;</div><div class="line">    gtk_im_context_focus_in(context);</div><div class="line">    local_context = context;</div><div class="line">  &#125;</div><div class="line">  gdk_window_add_filter (window, event_filter, context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-安装C-C-的编译环境和gtk-libgtk2-0-dev"><a href="#2-安装C-C-的编译环境和gtk-libgtk2-0-dev" class="headerlink" title="2. 安装C/C++的编译环境和gtk libgtk2.0-dev"></a>2. 安装C/C++的编译环境和gtk libgtk2.0-dev</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install build-essential</div><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
+<h4 id="3-编译共享内库"><a href="#3-编译共享内库" class="headerlink" title="3. 编译共享内库"></a>3. 编译共享内库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` <span class="_">-f</span>PIC</div></pre></td></tr></table></figure>
+<h4 id="4-启动-Sublime-Text-2"><a href="#4-启动-Sublime-Text-2" class="headerlink" title="4. 启动 Sublime Text 2"></a>4. 启动 Sublime Text 2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ LD_PRELOAD=./libsublime-imfix.so sublime_text</div></pre></td></tr></table></figure>
+<p>我没有在桌面放图标的需求,有需求的看原文<a href="http://my.oschina.net/wugaoxing/blog/121281" target="_blank" rel="external">这里</a><br>我倒是需要在终端启动,所以做了个sh脚本并加到/usr/bin目录里面<br>先是链接到bin  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /usr/lib/Sublime\ Text\ 2/sublime_text /usr/bin/sb</div></pre></td></tr></table></figure>
+<p>然后写脚本sb.sh  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment"># Android Studio offline inspection script.</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment">#</span></div><div class="line">LD_PRELOAD=/usr/lib/libsublime-imfix.so sb</div></pre></td></tr></table></figure>
+<p>然后再添加到PATH  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> ~/sb.sh /usr/bin/sb2</div></pre></td></tr></table></figure>
+<blockquote>
+<p>转的和参考的博文我努力都附上链接地址,如果不幸侵了你的权,你过来打我啊.</p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;本文将简要介绍如何在Github上建立个人博客。英文教程&lt;a href=&quot;http://jekyllbootstrap.com/usage/jekyll-quick-start.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在这里&lt;/a&gt;.&lt;/p
+      &lt;p&gt;安装输入法教程源自&lt;a href=&quot;http://www.linuxidc.com/Linux/2013-07/87062.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;,这里仅仅是排个好版看着舒服  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=
     
     </summary>
     
       <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
     
     
-      <category term="Github" scheme="http://www.aboutchen.org/tags/Github/"/>
+      <category term="ubuntu" scheme="http://www.aboutchen.org/tags/ubuntu/"/>
     
-      <category term="Jekyll" scheme="http://www.aboutchen.org/tags/Jekyll/"/>
+      <category term="fcitx" scheme="http://www.aboutchen.org/tags/fcitx/"/>
     
-  </entry>
-  
-  <entry>
-    <title>用String来创建Spring的ApplicationContext</title>
-    <link href="http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html"/>
-    <id>http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Google来的,做个备忘</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String contextXML = <span class="string">"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n"</span> +</div><div class="line">        <span class="string">"&lt;beans xmlns=\"http://www.springframework.org/schema/beans\"\n"</span> +</div><div class="line">        <span class="string">"       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"</span> +</div><div class="line">        <span class="string">"       xsi:schemaLocation=\"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd\"&gt;\n"</span> +</div><div class="line">        <span class="string">"\n"</span> +</div><div class="line">        <span class="string">"&lt;/beans&gt;"</span>;</div><div class="line">Resource resource = <span class="keyword">new</span> ByteArrayResource(contextXML.getBytes());</div><div class="line">springContext = <span class="keyword">new</span> GenericXmlApplicationContext();</div><div class="line">springContext.load(resource);</div></pre></td></tr></table></figure>
-<p>以及代码创建bean</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) springContext.getBeanFactory();</div><div class="line">ClassPathScanningCandidateComponentProvider scanner =</div><div class="line">        <span class="keyword">new</span> ClassPathScanningCandidateComponentProvider(<span class="keyword">false</span>);</div><div class="line">scanner.addIncludeFilter(<span class="keyword">new</span> AnnotationTypeFilter(SpringService.class));</div><div class="line"><span class="keyword">for</span> (BeanDefinition beanDefinition : scanner.findCandidateComponents(ConstantsKit.DEFAULT_PACKAGE)) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        SpringService anno = Class.forName(beanDefinition.getBeanClassName()).getAnnotation(SpringService.class);</div><div class="line">        beanDefinition.setScope(anno.value().name());</div><div class="line">        beanFactory.registerBeanDefinition(beanDefinition.getBeanClassName(),beanDefinition);</div><div class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Google来的,做个备忘&lt;/p&gt;
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;di
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何使用Maven部署程序到Tomcat7</title>
-    <link href="http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html"/>
-    <id>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html" target="_blank" rel="external">原文地址</a><br>首先需要保证的是已经安装了Tomcat的<em>manager</em>,默认下载的Tomcat7,解压后就有.除非你手动删除了</p>
-<h3 id="1-编辑conf-tomcat-users-xml"><a href="#1-编辑conf-tomcat-users-xml" class="headerlink" title="1. 编辑conf/tomcat-users.xml"></a>1. 编辑<code>conf/tomcat-users.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version='1.0' encoding='utf-8'?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-script"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-jmx"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-status"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-script"</span>/&gt;</span></div><div class="line"> </div><div class="line"> <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"tomcat"</span> <span class="attr">password</span>=<span class="string">"password"</span>  <span class="attr">roles</span>=<span class="string">"manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="2-修改-m2-settings-xml-添加tomcat访问凭证"><a href="#2-修改-m2-settings-xml-添加tomcat访问凭证" class="headerlink" title="2. 修改~/.m2/settings.xml,添加tomcat访问凭证"></a>2. 修改<em>~/.m2/settings.xml</em>,添加tomcat访问凭证</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">username</span>&gt;</span>tomcat<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="3-修改POM文件-添加maven-tomcat-plugin"><a href="#3-修改POM文件-添加maven-tomcat-plugin" class="headerlink" title="3. 修改POM文件,添加maven tomcat plugin"></a>3. 修改<em>POM</em>文件,添加<a href="http://tomcat.apache.org/maven-plugin.html" target="_blank" rel="external">maven tomcat plugin</a></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</div><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">...</div><div class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Tomcat 7 has a different manager path - text - than other versions --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://REMOTE_SERVER_NAME_GOES_HERE:8080/manager/text<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Refer to the server settings in your ~/.m2/settings.xml --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">server</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">path</span>&gt;</span>/app1<span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>现在,使用<code>mvn tomcat7:redeploy</code>就可以部署到Tomcat7了</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址&lt;/a&gt;&lt;br&gt;首先需要保证的是已经
-    
-    </summary>
-    
-      <category term="译文" scheme="http://www.aboutchen.org/categories/%E8%AF%91%E6%96%87/"/>
-    
-    
-      <category term="tomcat" scheme="http://www.aboutchen.org/tags/tomcat/"/>
-    
-      <category term="maven" scheme="http://www.aboutchen.org/tags/maven/"/>
+      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
     
   </entry>
   
@@ -924,6 +881,32 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>用String来创建Spring的ApplicationContext</title>
+    <link href="http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html"/>
+    <id>http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Google来的,做个备忘</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String contextXML = <span class="string">"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n"</span> +</div><div class="line">        <span class="string">"&lt;beans xmlns=\"http://www.springframework.org/schema/beans\"\n"</span> +</div><div class="line">        <span class="string">"       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"</span> +</div><div class="line">        <span class="string">"       xsi:schemaLocation=\"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd\"&gt;\n"</span> +</div><div class="line">        <span class="string">"\n"</span> +</div><div class="line">        <span class="string">"&lt;/beans&gt;"</span>;</div><div class="line">Resource resource = <span class="keyword">new</span> ByteArrayResource(contextXML.getBytes());</div><div class="line">springContext = <span class="keyword">new</span> GenericXmlApplicationContext();</div><div class="line">springContext.load(resource);</div></pre></td></tr></table></figure>
+<p>以及代码创建bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) springContext.getBeanFactory();</div><div class="line">ClassPathScanningCandidateComponentProvider scanner =</div><div class="line">        <span class="keyword">new</span> ClassPathScanningCandidateComponentProvider(<span class="keyword">false</span>);</div><div class="line">scanner.addIncludeFilter(<span class="keyword">new</span> AnnotationTypeFilter(SpringService.class));</div><div class="line"><span class="keyword">for</span> (BeanDefinition beanDefinition : scanner.findCandidateComponents(ConstantsKit.DEFAULT_PACKAGE)) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        SpringService anno = Class.forName(beanDefinition.getBeanClassName()).getAnnotation(SpringService.class);</div><div class="line">        beanDefinition.setScope(anno.value().name());</div><div class="line">        beanFactory.registerBeanDefinition(beanDefinition.getBeanClassName(),beanDefinition);</div><div class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Google来的,做个备忘&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;di
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
+    
+      <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
     
   </entry>
   
@@ -992,6 +975,35 @@
     
     
       <category term="ngrok" scheme="http://www.aboutchen.org/tags/ngrok/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何使用Maven部署程序到Tomcat7</title>
+    <link href="http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html"/>
+    <id>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html" target="_blank" rel="external">原文地址</a><br>首先需要保证的是已经安装了Tomcat的<em>manager</em>,默认下载的Tomcat7,解压后就有.除非你手动删除了</p>
+<h3 id="1-编辑conf-tomcat-users-xml"><a href="#1-编辑conf-tomcat-users-xml" class="headerlink" title="1. 编辑conf/tomcat-users.xml"></a>1. 编辑<code>conf/tomcat-users.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version='1.0' encoding='utf-8'?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-script"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-jmx"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-status"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-script"</span>/&gt;</span></div><div class="line"> </div><div class="line"> <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"tomcat"</span> <span class="attr">password</span>=<span class="string">"password"</span>  <span class="attr">roles</span>=<span class="string">"manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-修改-m2-settings-xml-添加tomcat访问凭证"><a href="#2-修改-m2-settings-xml-添加tomcat访问凭证" class="headerlink" title="2. 修改~/.m2/settings.xml,添加tomcat访问凭证"></a>2. 修改<em>~/.m2/settings.xml</em>,添加tomcat访问凭证</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">username</span>&gt;</span>tomcat<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="3-修改POM文件-添加maven-tomcat-plugin"><a href="#3-修改POM文件-添加maven-tomcat-plugin" class="headerlink" title="3. 修改POM文件,添加maven tomcat plugin"></a>3. 修改<em>POM</em>文件,添加<a href="http://tomcat.apache.org/maven-plugin.html" target="_blank" rel="external">maven tomcat plugin</a></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</div><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">...</div><div class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Tomcat 7 has a different manager path - text - than other versions --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://REMOTE_SERVER_NAME_GOES_HERE:8080/manager/text<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Refer to the server settings in your ~/.m2/settings.xml --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">server</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">path</span>&gt;</span>/app1<span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>现在,使用<code>mvn tomcat7:redeploy</code>就可以部署到Tomcat7了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址&lt;/a&gt;&lt;br&gt;首先需要保证的是已经
+    
+    </summary>
+    
+      <category term="译文" scheme="http://www.aboutchen.org/categories/%E8%AF%91%E6%96%87/"/>
+    
+    
+      <category term="tomcat" scheme="http://www.aboutchen.org/tags/tomcat/"/>
+    
+      <category term="maven" scheme="http://www.aboutchen.org/tags/maven/"/>
     
   </entry>
   

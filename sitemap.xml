@@ -2,9 +2,184 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2017/01/21/hello-world/</loc>
+    <loc>http://www.aboutchen.org//blog/2016-05-01-how-java-volitale-works.html</loc>
     
-    <lastmod>2017-01-21T05:44:46.000Z</lastmod>
+    <lastmod>2017-01-21T06:54:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-09-blog-with-github-and-jekyll.html</loc>
+    
+    <lastmod>2017-01-21T06:53:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html</loc>
+    
+    <lastmod>2017-01-21T06:53:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-09-install-git-on-openwrt.html</loc>
+    
+    <lastmod>2017-01-21T06:53:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-10-git-summary.html</loc>
+    
+    <lastmod>2017-01-21T06:53:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</loc>
+    
+    <lastmod>2017-01-21T06:53:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html</loc>
+    
+    <lastmod>2017-01-21T06:53:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html</loc>
+    
+    <lastmod>2017-01-21T06:53:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-11-personal-ubuntu-configuration-summary.html</loc>
+    
+    <lastmod>2017-01-21T06:53:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-17-google-java-style.html</loc>
+    
+    <lastmod>2017-01-21T06:53:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-24-push-lixian-task-to-aria2-on-android.html</loc>
+    
+    <lastmod>2017-01-21T06:53:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html</loc>
+    
+    <lastmod>2017-01-21T06:53:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-30-compile-c-code-for-openwrt.html</loc>
+    
+    <lastmod>2017-01-21T06:53:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-08-30-package-a-c-program-for-openwrt.html</loc>
+    
+    <lastmod>2017-01-21T06:53:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-09-23-java-apt-simple-tutorial.html</loc>
+    
+    <lastmod>2017-01-21T06:53:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-10-05-compress-folder-with-java.html</loc>
+    
+    <lastmod>2017-01-21T06:53:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html</loc>
+    
+    <lastmod>2017-01-21T06:53:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-10-07-minifying-javascript-with-jetbrains-intellij-idea.html</loc>
+    
+    <lastmod>2017-01-21T06:53:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</loc>
+    
+    <lastmod>2017-01-21T06:53:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</loc>
+    
+    <lastmod>2017-01-21T06:53:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2014-12-25-use-usb-of-virtualbox-on-linux.html</loc>
+    
+    <lastmod>2017-01-21T06:53:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2015-01-15-enable-gzip-of-nginx.html</loc>
+    
+    <lastmod>2017-01-21T06:53:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2015-07-27-personal-intellij-idea-plugin.html</loc>
+    
+    <lastmod>2017-01-21T06:52:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/2016-04-30-how-jvm-performs-thread-synchronization.html</loc>
+    
+    <lastmod>2017-01-21T06:52:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org/categories/index.html</loc>
+    
+    <lastmod>2017-01-21T05:55:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org/tags/index.html</loc>
+    
+    <lastmod>2017-01-21T05:55:07.000Z</lastmod>
     
   </url>
   

@@ -2,168 +2,448 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2016-05-01-how-java-volitale-works.html</loc>
+    <loc>http://www.aboutchen.org//blog/hello-world-39.html</loc>
+    
+    <lastmod>2017-01-21T09:12:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-38.html</loc>
+    
+    <lastmod>2017-01-21T09:11:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-37.html</loc>
+    
+    <lastmod>2017-01-21T09:10:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-36.html</loc>
+    
+    <lastmod>2017-01-21T09:10:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-35.html</loc>
+    
+    <lastmod>2017-01-21T09:09:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-34.html</loc>
+    
+    <lastmod>2017-01-21T09:09:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-33.html</loc>
+    
+    <lastmod>2017-01-21T09:08:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-32.html</loc>
+    
+    <lastmod>2017-01-21T09:08:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-31.html</loc>
+    
+    <lastmod>2017-01-21T09:08:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-30.html</loc>
+    
+    <lastmod>2017-01-21T09:07:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-29.html</loc>
+    
+    <lastmod>2017-01-21T09:07:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-28.html</loc>
+    
+    <lastmod>2017-01-21T09:06:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-27.html</loc>
+    
+    <lastmod>2017-01-21T09:06:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-26.html</loc>
+    
+    <lastmod>2017-01-21T09:05:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-25.html</loc>
+    
+    <lastmod>2017-01-21T09:02:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-24.html</loc>
+    
+    <lastmod>2017-01-21T09:02:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-23.html</loc>
+    
+    <lastmod>2017-01-21T08:59:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-22.html</loc>
+    
+    <lastmod>2017-01-21T08:59:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-21.html</loc>
+    
+    <lastmod>2017-01-21T08:58:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-20.html</loc>
+    
+    <lastmod>2017-01-21T08:56:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-19.html</loc>
+    
+    <lastmod>2017-01-21T08:56:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-18.html</loc>
+    
+    <lastmod>2017-01-21T08:55:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-17.html</loc>
+    
+    <lastmod>2017-01-21T08:55:32.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-16.html</loc>
+    
+    <lastmod>2017-01-21T08:55:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-15.html</loc>
+    
+    <lastmod>2017-01-21T08:53:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-14.html</loc>
+    
+    <lastmod>2017-01-21T08:52:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-13.html</loc>
+    
+    <lastmod>2017-01-21T08:52:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-12.html</loc>
+    
+    <lastmod>2017-01-21T08:52:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-11.html</loc>
+    
+    <lastmod>2017-01-21T08:52:08.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-10.html</loc>
+    
+    <lastmod>2017-01-21T08:50:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-9.html</loc>
+    
+    <lastmod>2017-01-21T08:50:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-8.html</loc>
+    
+    <lastmod>2017-01-21T08:49:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-7.html</loc>
+    
+    <lastmod>2017-01-21T08:49:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-6.html</loc>
+    
+    <lastmod>2017-01-21T08:48:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-5.html</loc>
+    
+    <lastmod>2017-01-21T08:48:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-4.html</loc>
+    
+    <lastmod>2017-01-21T08:47:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-3.html</loc>
+    
+    <lastmod>2017-01-21T08:46:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-2.html</loc>
+    
+    <lastmod>2017-01-21T08:46:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world-1.html</loc>
+    
+    <lastmod>2017-01-21T08:43:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/hello-world.html</loc>
+    
+    <lastmod>2017-01-21T08:43:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/how-java-volitale-works.html</loc>
     
     <lastmod>2017-01-21T08:35:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-24-push-lixian-task-to-aria2-on-android.html</loc>
+    <loc>http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html</loc>
     
     <lastmod>2017-01-21T07:36:39.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-09-blog-with-github-and-jekyll.html</loc>
+    <loc>http://www.aboutchen.org//blog/blog-with-github-and-jekyll.html</loc>
     
     <lastmod>2017-01-21T06:53:20.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html</loc>
+    <loc>http://www.aboutchen.org//blog/install-fcitx-on-ubuntu.html</loc>
     
     <lastmod>2017-01-21T06:53:19.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-09-install-git-on-openwrt.html</loc>
+    <loc>http://www.aboutchen.org//blog/install-git-on-openwrt.html</loc>
     
     <lastmod>2017-01-21T06:53:18.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-10-git-summary.html</loc>
+    <loc>http://www.aboutchen.org//blog/git-summary.html</loc>
     
     <lastmod>2017-01-21T06:53:17.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</loc>
+    <loc>http://www.aboutchen.org//blog/jekyll-summary.html</loc>
     
     <lastmod>2017-01-21T06:53:16.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html</loc>
+    <loc>http://www.aboutchen.org//blog/openwrt-summary.html</loc>
     
     <lastmod>2017-01-21T06:53:15.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html</loc>
+    <loc>http://www.aboutchen.org//blog/sublime-text-plugin-summary.html</loc>
     
     <lastmod>2017-01-21T06:53:14.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-11-personal-ubuntu-configuration-summary.html</loc>
+    <loc>http://www.aboutchen.org//blog/personal-ubuntu-configuration-summary.html</loc>
     
     <lastmod>2017-01-21T06:53:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-17-google-java-style.html</loc>
+    <loc>http://www.aboutchen.org//blog/google-java-style.html</loc>
     
     <lastmod>2017-01-21T06:53:11.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html</loc>
+    <loc>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</loc>
     
     <lastmod>2017-01-21T06:53:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-30-compile-c-code-for-openwrt.html</loc>
+    <loc>http://www.aboutchen.org//blog/compile-c-code-for-openwrt.html</loc>
     
     <lastmod>2017-01-21T06:53:08.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-08-30-package-a-c-program-for-openwrt.html</loc>
+    <loc>http://www.aboutchen.org//blog/package-a-c-program-for-openwrt.html</loc>
     
     <lastmod>2017-01-21T06:53:07.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-09-23-java-apt-simple-tutorial.html</loc>
+    <loc>http://www.aboutchen.org//blog/java-apt-simple-tutorial.html</loc>
     
     <lastmod>2017-01-21T06:53:06.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-10-05-compress-folder-with-java.html</loc>
+    <loc>http://www.aboutchen.org//blog/compress-folder-with-java.html</loc>
     
     <lastmod>2017-01-21T06:53:05.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html</loc>
+    <loc>http://www.aboutchen.org//blog/create-spring-application-context-with-string.html</loc>
     
     <lastmod>2017-01-21T06:53:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-10-07-minifying-javascript-with-jetbrains-intellij-idea.html</loc>
+    <loc>http://www.aboutchen.org//blog/minifying-javascript-with-jetbrains-intellij-idea.html</loc>
     
     <lastmod>2017-01-21T06:53:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</loc>
+    <loc>http://www.aboutchen.org//blog/deploy-to-tomcat-7-with-maven.html</loc>
     
     <lastmod>2017-01-21T06:53:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</loc>
+    <loc>http://www.aboutchen.org//blog/use-port-80-with-ngrok.html</loc>
     
     <lastmod>2017-01-21T06:53:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2014-12-25-use-usb-of-virtualbox-on-linux.html</loc>
+    <loc>http://www.aboutchen.org//blog/use-usb-of-virtualbox-on-linux.html</loc>
     
     <lastmod>2017-01-21T06:53:01.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2015-01-15-enable-gzip-of-nginx.html</loc>
+    <loc>http://www.aboutchen.org//blog/enable-gzip-of-nginx.html</loc>
     
     <lastmod>2017-01-21T06:53:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2015-07-27-personal-intellij-idea-plugin.html</loc>
+    <loc>http://www.aboutchen.org//blog/personal-intellij-idea-plugin.html</loc>
     
     <lastmod>2017-01-21T06:52:59.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/2016-04-30-how-jvm-performs-thread-synchronization.html</loc>
+    <loc>http://www.aboutchen.org//blog/how-jvm-performs-thread-synchronization.html</loc>
     
     <lastmod>2017-01-21T06:52:58.000Z</lastmod>
     

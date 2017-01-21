@@ -198,36 +198,6 @@
   </entry>
   
   <entry>
-    <title>Jekyll 备忘</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;持续更新  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
-    
-    </summary>
-    
-    
-      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Git问题汇总</title>
     <link href="http://www.aboutchen.org//blog/2014-08-10-git-summary.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-10-git-summary.html</id>
@@ -260,6 +230,36 @@
     
     
       <category term="git" scheme="http://www.aboutchen.org/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jekyll 备忘</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>持续更新  </p>
+</blockquote>
+<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;持续更新  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
+    
+    </summary>
+    
+    
+      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
     
   </entry>
   
@@ -303,6 +303,33 @@
   </entry>
   
   <entry>
+    <title>Sublime Text 常用插件汇总</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
+<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
+    
+    </summary>
+    
+      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
+    
+    
+      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu个人配置汇总</title>
     <link href="http://www.aboutchen.org//blog/2014-08-11-personal-ubuntu-configuration-summary.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-11-personal-ubuntu-configuration-summary.html</id>
@@ -338,33 +365,6 @@
     
     
       <category term="ubuntu" scheme="http://www.aboutchen.org/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sublime Text 常用插件汇总</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
-    
-    </summary>
-    
-      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
-    
-    
-      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
     
   </entry>
   
@@ -829,68 +829,34 @@
   </entry>
   
   <entry>
-    <title>为openwrt打包一个ipk程序</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-30-package-a-c-program-for-openwrt.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-30-package-a-c-program-for-openwrt.html</id>
+    <title>Java APT简易教程</title>
+    <link href="http://www.aboutchen.org//blog/2014-09-23-java-apt-simple-tutorial.html"/>
+    <id>http://www.aboutchen.org//blog/2014-09-23-java-apt-simple-tutorial.html</id>
     <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:07.000Z</updated>
+    <updated>2017-01-21T06:53:06.000Z</updated>
     
-    <content type="html"><![CDATA[<p>前面一篇说了如何编译一个可以在<code>openwrt</code>上面运行的C程序<br>这篇文章是说明如何打包成ipk  </p>
-<h3 id="1-获取Openwrt-SDK"><a href="#1-获取Openwrt-SDK" class="headerlink" title="1. 获取Openwrt SDK"></a>1. 获取<code>Openwrt SDK</code></h3><p>这里有两种方法  </p>
-<ul>
-<li>直接下载编译好的<a href="http://downloads.openwrt.org/" target="_blank" rel="external">http://downloads.openwrt.org/</a></li>
-<li>自己编译,<code>make menuconfig</code>,选中<code>Build the Openwrt SDK</code>,生成的SDK包在<code>bin/ar71xx</code>目录下面</li>
-</ul>
-<h3 id="2-将SDK包解压到任意路径"><a href="#2-将SDK包解压到任意路径" class="headerlink" title="2. 将SDK包解压到任意路径."></a>2. 将<code>SDK</code>包解压到任意路径.</h3><h3 id="3-在SDK-package目录下面-创建一个helloop目录"><a href="#3-在SDK-package目录下面-创建一个helloop目录" class="headerlink" title="3. 在SDK/package目录下面 创建一个helloop目录"></a>3. 在<code>SDK/package</code>目录下面 创建一个<code>helloop</code>目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$mkdir</span> openwrt-sdk/package/helloop</div></pre></td></tr></table></figure>
-<h3 id="4-编写helloop-c-保存到SDK-package-helloop-src目录"><a href="#4-编写helloop-c-保存到SDK-package-helloop-src目录" class="headerlink" title="4. 编写helloop.c,保存到SDK/package/helloop/src目录"></a>4. 编写<code>helloop.c</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"hello openwrt!\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录"><a href="#5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录" class="headerlink" title="5. 编写GNU Makefile文件Makefile,保存到SDK/package/helloop/src目录"></a>5. 编写GNU Makefile文件<code>Makefile</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># build helloworld executable when user executes &quot;make&quot;</div><div class="line">helloop: helloop.o</div><div class="line">	$(CC) $(LDFLAGS) helloop.o -o helloop</div><div class="line">helloop.o: helloop.c</div><div class="line">	$(CC) $(CFLAGS) -c helloop.c</div><div class="line"></div><div class="line"># remove object files and executable when user executes &quot;make clean&quot;</div><div class="line">clean:</div><div class="line">	rm *.o helloop</div></pre></td></tr></table></figure>
-<h3 id="6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录"><a href="#6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录" class="headerlink" title="6. 编写OpenWRT BuildPackage Makefile文件Makefile,保存到SDK/package/helloop目录"></a>6. 编写<code>OpenWRT BuildPackage Makefile</code>文件<code>Makefile</code>,保存到<code>SDK/package/helloop</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">##############################################</div><div class="line"># OpenWrt Makefile for helloop program</div><div class="line">#</div><div class="line">#</div><div class="line"># Most of the variables used here are defined in</div><div class="line"># the include directives below. We just need to </div><div class="line"># specify a basic description of the package, </div><div class="line"># where to build our program, where to find </div><div class="line"># the source files, and where to install the </div><div class="line"># compiled program on the router. </div><div class="line"># </div><div class="line"># Be very careful of spacing in this file.</div><div class="line"># Indents should be tabs, not spaces, and </div><div class="line"># there should be no trailing whitespace in</div><div class="line"># lines that are not commented.</div><div class="line"># </div><div class="line">##############################################</div><div class="line"></div><div class="line">include $(TOPDIR)/rules.mk</div><div class="line"></div><div class="line"># Name and release number of this package</div><div class="line">PKG_NAME:=helloop</div><div class="line">PKG_RELEASE:=1</div><div class="line"></div><div class="line"></div><div class="line"># This specifies the directory where we&apos;re going to build the program.  </div><div class="line"># The root build directory, $(BUILD_DIR), is by default the build_mipsel </div><div class="line"># directory in your OpenWrt SDK directory</div><div class="line">PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)</div><div class="line"></div><div class="line"></div><div class="line">include $(INCLUDE_DIR)/package.mk</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># Specify package information for this program. </div><div class="line"># The variables defined here should be self explanatory.</div><div class="line">define Package/helloop</div><div class="line">	SECTION:=utils</div><div class="line">	CATEGORY:=Utilities</div><div class="line">	TITLE:=helloop -- prints a snarky message</div><div class="line">	DEPENDS:=+libstdcpp +libc</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># Specify what needs to be done to prepare for building the package.</div><div class="line"># In our case, we need to copy the source files to the build directory.</div><div class="line"># This is NOT the default.  The default uses the PKG_SOURCE_URL and the</div><div class="line"># PKG_SOURCE which is not defined here to download the source from the web.</div><div class="line"># In order to just build a simple program that we have just written, it is</div><div class="line"># much easier to do it this way.</div><div class="line">define Build/Prepare</div><div class="line">	mkdir -p $(PKG_BUILD_DIR)</div><div class="line">	$(CP) ./src/* $(PKG_BUILD_DIR)/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># We do not need to define Build/Configure or Build/Compile directives</div><div class="line"># The defaults are appropriate for compiling a simple program such as this one</div><div class="line"></div><div class="line"></div><div class="line"># Specify where and how to install the program. Since we only have one file, </div><div class="line"># the helloop executable, install it by copying it to the /bin directory on</div><div class="line"># the router. The $(1) variable represents the root directory on the router running </div><div class="line"># OpenWrt. The $(INSTALL_DIR) variable contains a command to prepare the install </div><div class="line"># directory if it does not already exist.  Likewise $(INSTALL_BIN) contains the </div><div class="line"># command to copy the binary file from its current location (in our case the build</div><div class="line"># directory) to the install directory.</div><div class="line">define Package/helloop/install</div><div class="line">	$(INSTALL_DIR) $(1)/bin</div><div class="line">	$(INSTALL_BIN) $(PKG_BUILD_DIR)/helloop $(1)/bin/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># This line executes the necessary commands to compile our program.</div><div class="line"># The above define directives specify all the information needed, but this</div><div class="line"># line calls BuildPackage which in turn actually uses this information to</div><div class="line"># build a package.</div><div class="line">$(eval $(call BuildPackage,helloop))</div></pre></td></tr></table></figure>
-<h3 id="7-编译"><a href="#7-编译" class="headerlink" title="7. 编译"></a>7. 编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在SDK目录执行</span></div><div class="line">$ make V=99</div></pre></td></tr></table></figure>
-<p>生成的IPK文件在<code>bin/ar71xx/packages/base</code>目录里面</p>
-<h3 id="8-拷贝到路由器"><a href="#8-拷贝到路由器" class="headerlink" title="8. 拷贝到路由器"></a>8. 拷贝到路由器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp helloop_1_ar71xx.ipk root@home:/mnt/sda1</div></pre></td></tr></table></figure>
-<h3 id="9-在路由器执行安装-这里我安装到了U盘上面"><a href="#9-在路由器执行安装-这里我安装到了U盘上面" class="headerlink" title="9. 在路由器执行安装,这里我安装到了U盘上面"></a>9. 在路由器执行安装,这里我安装到了U盘上面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1<span class="comment"># opkg install helloop_1_ar71xx.ipk --dest usb</span></div></pre></td></tr></table></figure>
-<h3 id="10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接"><a href="#10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接" class="headerlink" title="10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接"></a>10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1/packages/bin<span class="comment"># ./helloop </span></div><div class="line">hello openwrt!</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前面一篇说了如何编译一个可以在&lt;code&gt;openwrt&lt;/code&gt;上面运行的C程序&lt;br&gt;这篇文章是说明如何打包成ipk  &lt;/p&gt;
-&lt;h3 id=&quot;1-获取Openwrt-SDK&quot;&gt;&lt;a href=&quot;#1-获取Openwrt-SDK&quot; class=&quot;headerlin
-    
-    </summary>
-    
-      <category term="openwrt" scheme="http://www.aboutchen.org/categories/openwrt/"/>
-    
-    
-      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何使用Maven部署程序到Tomcat7</title>
-    <link href="http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html"/>
-    <id>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html" target="_blank" rel="external">原文地址</a><br>首先需要保证的是已经安装了Tomcat的<em>manager</em>,默认下载的Tomcat7,解压后就有.除非你手动删除了</p>
-<h3 id="1-编辑conf-tomcat-users-xml"><a href="#1-编辑conf-tomcat-users-xml" class="headerlink" title="1. 编辑conf/tomcat-users.xml"></a>1. 编辑<code>conf/tomcat-users.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version='1.0' encoding='utf-8'?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-script"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-jmx"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-status"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-script"</span>/&gt;</span></div><div class="line"> </div><div class="line"> <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"tomcat"</span> <span class="attr">password</span>=<span class="string">"password"</span>  <span class="attr">roles</span>=<span class="string">"manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="2-修改-m2-settings-xml-添加tomcat访问凭证"><a href="#2-修改-m2-settings-xml-添加tomcat访问凭证" class="headerlink" title="2. 修改~/.m2/settings.xml,添加tomcat访问凭证"></a>2. 修改<em>~/.m2/settings.xml</em>,添加tomcat访问凭证</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">username</span>&gt;</span>tomcat<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="3-修改POM文件-添加maven-tomcat-plugin"><a href="#3-修改POM文件-添加maven-tomcat-plugin" class="headerlink" title="3. 修改POM文件,添加maven tomcat plugin"></a>3. 修改<em>POM</em>文件,添加<a href="http://tomcat.apache.org/maven-plugin.html" target="_blank" rel="external">maven tomcat plugin</a></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</div><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">...</div><div class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Tomcat 7 has a different manager path - text - than other versions --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://REMOTE_SERVER_NAME_GOES_HERE:8080/manager/text<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Refer to the server settings in your ~/.m2/settings.xml --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">server</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">path</span>&gt;</span>/app1<span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>现在,使用<code>mvn tomcat7:redeploy</code>就可以部署到Tomcat7了</p>
+    <content type="html"><![CDATA[<h3 id="1-编写一个Processor"><a href="#1-编写一个Processor" class="headerlink" title="1. 编写一个Processor"></a>1. 编写一个Processor</h3><p>自<code>JDK1.6</code>之后,官方统一使用<code>javax.annotation.processing.Processor</code><br>只需要集成<code>AbstractProcessor</code>即可  </p>
+<p>首先写一个简单的注解  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> demo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Print &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编写Processor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@SupportedAnnotationTypes</span>(&#123;<span class="string">"demo.Print"</span>&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceAnnotationProcessor</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv)</span> </span>&#123;</div><div class="line">		<span class="comment">//在这里处理注解</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还需要在META-INF中导出服务<br>创建一个文件<code>META-INF.services.javax.annotation.processing.Processor</code><br>文件内容就是你要导出的<code>Processor</code>类名</p>
+<h3 id="2-重点说调试部分"><a href="#2-重点说调试部分" class="headerlink" title="2. 重点说调试部分"></a>2. 重点说调试部分</h3><p>需要把javac设置为debug模式,在<code>IntelliJ IDEA 13</code>里面设置步骤为<br><code>File</code>—-<code>Settings</code>—-<code>Compiler</code>—-<code>Additional build process VM options</code><br>添加<code>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5003</code>  </p>
+<p>然后建一个远程调试就行了.</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址&lt;/a&gt;&lt;br&gt;首先需要保证的是已经
+      &lt;h3 id=&quot;1-编写一个Processor&quot;&gt;&lt;a href=&quot;#1-编写一个Processor&quot; class=&quot;headerlink&quot; title=&quot;1. 编写一个Processor&quot;&gt;&lt;/a&gt;1. 编写一个Processor&lt;/h3&gt;&lt;p&gt;自&lt;code&gt;JDK1.6&lt;/c
     
     </summary>
     
-      <category term="译文" scheme="http://www.aboutchen.org/categories/%E8%AF%91%E6%96%87/"/>
+      <category term="java" scheme="http://www.aboutchen.org/categories/java/"/>
     
     
-      <category term="tomcat" scheme="http://www.aboutchen.org/tags/tomcat/"/>
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
-      <category term="maven" scheme="http://www.aboutchen.org/tags/maven/"/>
+      <category term="apt" scheme="http://www.aboutchen.org/tags/apt/"/>
     
   </entry>
   
@@ -987,6 +953,35 @@
   </entry>
   
   <entry>
+    <title>如何使用Maven部署程序到Tomcat7</title>
+    <link href="http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html"/>
+    <id>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html" target="_blank" rel="external">原文地址</a><br>首先需要保证的是已经安装了Tomcat的<em>manager</em>,默认下载的Tomcat7,解压后就有.除非你手动删除了</p>
+<h3 id="1-编辑conf-tomcat-users-xml"><a href="#1-编辑conf-tomcat-users-xml" class="headerlink" title="1. 编辑conf/tomcat-users.xml"></a>1. 编辑<code>conf/tomcat-users.xml</code></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version='1.0' encoding='utf-8'?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">tomcat-users</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-script"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-jmx"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"manager-status"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-gui"</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">role</span> <span class="attr">rolename</span>=<span class="string">"admin-script"</span>/&gt;</span></div><div class="line"> </div><div class="line"> <span class="tag">&lt;<span class="name">user</span> <span class="attr">username</span>=<span class="string">"tomcat"</span> <span class="attr">password</span>=<span class="string">"password"</span>  <span class="attr">roles</span>=<span class="string">"manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tomcat-users</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-修改-m2-settings-xml-添加tomcat访问凭证"><a href="#2-修改-m2-settings-xml-添加tomcat访问凭证" class="headerlink" title="2. 修改~/.m2/settings.xml,添加tomcat访问凭证"></a>2. 修改<em>~/.m2/settings.xml</em>,添加tomcat访问凭证</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">server</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">id</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">username</span>&gt;</span>tomcat<span class="tag">&lt;/<span class="name">username</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="3-修改POM文件-添加maven-tomcat-plugin"><a href="#3-修改POM文件-添加maven-tomcat-plugin" class="headerlink" title="3. 修改POM文件,添加maven tomcat plugin"></a>3. 修改<em>POM</em>文件,添加<a href="http://tomcat.apache.org/maven-plugin.html" target="_blank" rel="external">maven tomcat plugin</a></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</div><div class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></div><div class="line">...</div><div class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Tomcat 7 has a different manager path - text - than other versions --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://REMOTE_SERVER_NAME_GOES_HERE:8080/manager/text<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">                    <span class="comment">&lt;!-- Refer to the server settings in your ~/.m2/settings.xml --&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">server</span>&gt;</span>dev-tomcat<span class="tag">&lt;/<span class="name">server</span>&gt;</span></div><div class="line">                    <span class="tag">&lt;<span class="name">path</span>&gt;</span>/app1<span class="tag">&lt;/<span class="name">path</span>&gt;</span></div><div class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>现在,使用<code>mvn tomcat7:redeploy</code>就可以部署到Tomcat7了</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.javathinking.com/2013/05/deploying-to-tomcat-7-with-maven.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文地址&lt;/a&gt;&lt;br&gt;首先需要保证的是已经
+    
+    </summary>
+    
+      <category term="译文" scheme="http://www.aboutchen.org/categories/%E8%AF%91%E6%96%87/"/>
+    
+    
+      <category term="tomcat" scheme="http://www.aboutchen.org/tags/tomcat/"/>
+    
+      <category term="maven" scheme="http://www.aboutchen.org/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用ngrok映射本机端口到公网80</title>
     <link href="http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html"/>
     <id>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</id>
@@ -1013,36 +1008,32 @@
   </entry>
   
   <entry>
-    <title>开启nginx的Gzip</title>
-    <link href="http://www.aboutchen.org//blog/2015-01-15-enable-gzip-of-nginx.html"/>
-    <id>http://www.aboutchen.org//blog/2015-01-15-enable-gzip-of-nginx.html</id>
+    <title>Linux下VirtualBox虚拟机中使用USB</title>
+    <link href="http://www.aboutchen.org//blog/2014-12-25-use-usb-of-virtualbox-on-linux.html"/>
+    <id>http://www.aboutchen.org//blog/2014-12-25-use-usb-of-virtualbox-on-linux.html</id>
     <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:00.000Z</updated>
+    <updated>2017-01-21T06:53:01.000Z</updated>
     
-    <content type="html"><![CDATA[<p>本文系转载<br>出处：<a href="http://www.php100.com/html/program/nginx/2013/0905/5526.html" target="_blank" rel="external">http://www.php100.com/html/program/nginx/2013/0905/5526.html</a>  </p>
-<p>默认情况下，Nginx的gzip压缩是关闭的， gzip压缩功能就是可以让你节省不少带宽，但是会增加服务器CPU的开销哦，Nginx默认只对text/html进行压缩 ，如果要对html之外的内容进行压缩传输，我们需要手动来调.<br>开启gzip的指令如下：  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gzip on;</div><div class="line">gzip_http_version 1.0;</div><div class="line">gzip_disable <span class="string">"MSIE [1-6]."</span>;</div><div class="line">gzip_types text/plain application/x-javascript text/css text/javascript;</div></pre></td></tr></table></figure>
-<p>关于<em>gzip_types</em>，如果你想让图片也开启gzip压缩，那么用以下这段吧:  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gzip_types text/plain application/x-javascript text/css text/javascript application/x-httpd-php image/jpeg image/gif image/png;</div></pre></td></tr></table></figure>
-<p>网站开启gzip压缩，不仅能够节省带宽，也能够快速响应用户的访问，在nginx中，开启gzip压缩的方法为:  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gzip on;      <span class="comment">#（启用 gzip 压缩功能）  </span></div><div class="line">gzip_proxied any;  <span class="comment">#（nginx做前端代理时启用该选项，表示无论后端服务器的headers头返回什么信息，都无条件启用压缩）</span></div><div class="line">gzip_min_length  1024; <span class="comment">#（最小压缩的页面，如果页面过于小，可能会越压越大，这里规定大于1K的页面才启用压缩）</span></div><div class="line">gzip_buffers     4 8k; <span class="comment">#（设置系统获取几个单位的缓存用于存储gzip的压缩结果数据流）</span></div><div class="line">gzip_comp_level 3; <span class="comment">#（压缩级别，1压缩比最小处理速度最快，9压缩比最大但处理最慢，同时也最消耗CPU,一般设置为3就可以了）</span></div><div class="line">gzip_types       text/plain text/css application/x-javascript application/javascript application/xml; <span class="comment">#（什么类型的页面或文档启用压缩）</span></div></pre></td></tr></table></figure>
-<p>注意：  </p>
-<ol>
-<li>其中的<em>gzip_http_version</em>的设置<br>它的默认值是1.1，就是说对HTTP/1.1协议的请求才会进行gzip压缩<br>如果我们使用了proxy_pass进行反向代理，那么nginx和后端的upstream server之间是用HTTP/1.0协议通信的<br>This module makes it possible to transfer requests to another server.<br>It is an HTTP/1.0 proxy without the ability for keep-alive requests yet. (As a result, backend connections are created and destroyed on every request.) Nginx talks HTTP/1.1 to the browser and HTTP/1.0 to the backend server. As such it handles keep-alive to the browser.<br>如果我们使用nginx通过反向代理做Cache Server，而且前端的nginx没有开启gzip<br>同时，我们后端的nginx上没有设置<em>gzip_http_version</em>为1.0，那么Cache的url将不会进行gzip压缩  </li>
-<li>gzip_disable的设置是禁用IE6的gzip压缩，又是因为杯具的IE6<br>IE6的某些版本对gzip的压缩支持很不好，会造成页面的假死，今天产品的同学就测试出了这个问题<br>后来调试后，发现是对img进行gzip后造成IE6的假死，把对img的gzip压缩去掉后就正常了<br>为了确保其它的IE6版本不出问题，所以就加上了gzip_disable的设置</li>
-</ol>
+    <content type="html"><![CDATA[<p>在Linux中，对USB设备的权限管理还挺严的，普通用户启动virtualbox的话，USB设备是灰色的，不可用。  </p>
+<p>解决办法如下：  </p>
+<h4 id="1-获取vboxusers的组ID-此处是501"><a href="#1-获取vboxusers的组ID-此处是501" class="headerlink" title="1.获取vboxusers的组ID(此处是501)"></a>1.获取vboxusers的组ID(此处是501)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cat /etc/group | grep vbox</div><div class="line">vboxusers:x:501:</div></pre></td></tr></table></figure>
+<h4 id="2-将平时使用的普通用户，添加到这个组里。"><a href="#2-将平时使用的普通用户，添加到这个组里。" class="headerlink" title="2.将平时使用的普通用户，添加到这个组里。"></a>2.将平时使用的普通用户，添加到这个组里。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usermod <span class="_">-a</span> -G vboxusers huabo</div></pre></td></tr></table></figure>
+<h4 id="3-在-etc-fstab里添加如下内容。"><a href="#3-在-etc-fstab里添加如下内容。" class="headerlink" title="3.在/etc/fstab里添加如下内容。"></a>3.在/etc/fstab里添加如下内容。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">none            /sys/bus/usb/drivers    usbfs     devgid=501,devmode=664 0 0</div></pre></td></tr></table></figure>
+<p>重启后，就可在VBOX里正常使用USB设备了。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;本文系转载&lt;br&gt;出处：&lt;a href=&quot;http://www.php100.com/html/program/nginx/2013/0905/5526.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.php100.com/h
+      &lt;p&gt;在Linux中，对USB设备的权限管理还挺严的，普通用户启动virtualbox的话，USB设备是灰色的，不可用。  &lt;/p&gt;
+&lt;p&gt;解决办法如下：  &lt;/p&gt;
+&lt;h4 id=&quot;1-获取vboxusers的组ID-此处是501&quot;&gt;&lt;a href=&quot;#1-获取vboxuser
     
     </summary>
     
-      <category term="转载" scheme="http://www.aboutchen.org/categories/%E8%BD%AC%E8%BD%BD/"/>
     
+      <category term="linux" scheme="http://www.aboutchen.org/tags/linux/"/>
     
-      <category term="nginx" scheme="http://www.aboutchen.org/tags/nginx/"/>
+      <category term="virtualbox" scheme="http://www.aboutchen.org/tags/virtualbox/"/>
     
   </entry>
   

@@ -293,7 +293,7 @@
               
                 
                 <a class="post-title-link" href="/blog/2016-05-01-how-java-volitale-works.html" itemprop="url">
-                  Java volatile 实现原理1
+                  Java volatile 实现原理
                 </a>
               
             
@@ -616,7 +616,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-install-fcitx-on-ubuntu.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-install-git-on-openwrt.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -641,8 +641,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-08-09-install-fcitx-on-ubuntu.html" itemprop="url">
-                  Ubuntu 安装Fcitx输入法,并设置支持Sublime Text2
+                <a class="post-title-link" href="/blog/2014-08-09-install-git-on-openwrt.html" itemprop="url">
+                  在Openwrt上安装GIT
                 </a>
               
             
@@ -681,8 +681,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
+                  <a href="/categories/原创文章/" itemprop="url" rel="index">
+                    <span itemprop="name">原创文章</span>
                   </a>
                 </span>
 
@@ -699,8 +699,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-09-install-fcitx-on-ubuntu.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-09-install-fcitx-on-ubuntu.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-08-09-install-git-on-openwrt.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-09-install-git-on-openwrt.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -728,31 +728,22 @@
       
         
           
-            <p>安装输入法教程源自<a href="http://www.linuxidc.com/Linux/2013-07/87062.htm" target="_blank" rel="external">这里</a>,这里仅仅是排个好版看着舒服  </p>
-<hr>
-<h3 id="首先卸载ibus输入法"><a href="#首先卸载ibus输入法" class="headerlink" title="首先卸载ibus输入法"></a>首先卸载ibus输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get remove ibus</div></pre></td></tr></table></figure>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo add-apt-repository ppa:fcitx-team/nightly  </div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo sudo gedit /etc/apt/sources.list</div></pre></td></tr></table></figure>
-<p>在打开的文件中添加下面两行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">deb http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main  </div><div class="line">deb-src http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main</div></pre></td></tr></table></figure>
-<p>终端执行  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<hr>
-<h3 id="让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里"><a href="#让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里" class="headerlink" title="让输入法支持Sublime Text 2, Sublime Text2的安装教程请点击这里"></a>让输入法支持Sublime Text 2, Sublime Text2的安装教程请<a href="http://www.cnblogs.com/fanyong/p/3462023.html" target="_blank" rel="external">点击这里</a></h3><h4 id="1-保存下述代码为-sublime-imfix-c-文件"><a href="#1-保存下述代码为-sublime-imfix-c-文件" class="headerlink" title="1. 保存下述代码为 sublime-imfix.c 文件"></a>1. 保存下述代码为 sublime-imfix.c 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sublime-imfix.c</div><div class="line">Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.</div><div class="line">By Cjacker Huang &lt;jianzhong.huang at i-soft.com.cn&gt;</div><div class="line"> </div><div class="line">gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC</div><div class="line">LD_PRELOAD=./libsublime-imfix.so sublime_text</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gtk/gtk.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gdk/gdkx.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> GdkSegment GdkRegionBox;</div><div class="line"> </div><div class="line"><span class="keyword">struct</span> _GdkRegion</div><div class="line">&#123;</div><div class="line">  <span class="keyword">long</span> size;</div><div class="line">  <span class="keyword">long</span> numRects;</div><div class="line">  GdkRegionBox *rects;</div><div class="line">  GdkRegionBox extents;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">GtkIMContext *local_context;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span></span></div><div class="line"><span class="title">gdk_region_get_clipbox</span> <span class="params">(<span class="keyword">const</span> GdkRegion *region,</span></div><div class="line">            GdkRectangle    *rectangle)</div><div class="line">&#123;</div><div class="line">  g_return_if_fail (region != <span class="literal">NULL</span>);</div><div class="line">  g_return_if_fail (rectangle != <span class="literal">NULL</span>);</div><div class="line"> </div><div class="line">  rectangle-&gt;x = region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;y = region-&gt;extents.y1;</div><div class="line">  rectangle-&gt;width = region-&gt;extents.x2 - region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;height = region-&gt;extents.y2 - region-&gt;extents.y1;</div><div class="line">  GdkRectangle rect;</div><div class="line">  rect.x = rectangle-&gt;x;</div><div class="line">  rect.y = rectangle-&gt;y;</div><div class="line">  rect.width = <span class="number">0</span>;</div><div class="line">  rect.height = rectangle-&gt;height;</div><div class="line">  <span class="comment">//The caret width is 2;</span></div><div class="line">  <span class="comment">//Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.</span></div><div class="line">  <span class="keyword">if</span>(rectangle-&gt;width == <span class="number">2</span> &amp;&amp; GTK_IS_IM_CONTEXT(local_context)) &#123;</div><div class="line">        gtk_im_context_set_cursor_location(local_context, rectangle);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//this is needed, for example, if you input something in file dialog and return back the edit area</span></div><div class="line"><span class="comment">//context will lost, so here we set it again.</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">static</span> GdkFilterReturn <span class="title">event_filter</span> <span class="params">(GdkXEvent *xevent, GdkEvent *event, gpointer im_context)</span></span></div><div class="line">&#123;</div><div class="line">    XEvent *xev = (XEvent *)xevent;</div><div class="line">    <span class="keyword">if</span>(xev-&gt;type == KeyRelease &amp;&amp; GTK_IS_IM_CONTEXT(im_context)) &#123;</div><div class="line">       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),<span class="string">"window"</span>);</div><div class="line">       <span class="keyword">if</span>(GDK_IS_WINDOW(win))</div><div class="line">         gtk_im_context_set_client_window(im_context, win);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> GDK_FILTER_CONTINUE;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gtk_im_context_set_client_window</span> <span class="params">(GtkIMContext *context,</span></span></div><div class="line">          GdkWindow    *window)</div><div class="line">&#123;</div><div class="line">  GtkIMContextClass *klass;</div><div class="line">  g_return_if_fail (GTK_IS_IM_CONTEXT (context));</div><div class="line">  klass = GTK_IM_CONTEXT_GET_CLASS (context);</div><div class="line">  <span class="keyword">if</span> (klass-&gt;set_client_window)</div><div class="line">    klass-&gt;set_client_window (context, window);</div><div class="line"> </div><div class="line">  <span class="keyword">if</span>(!GDK_IS_WINDOW (window))</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  g_object_set_data(G_OBJECT(context),<span class="string">"window"</span>,window);</div><div class="line">  <span class="keyword">int</span> width = gdk_window_get_width(window);</div><div class="line">  <span class="keyword">int</span> height = gdk_window_get_height(window);</div><div class="line">  <span class="keyword">if</span>(width != <span class="number">0</span> &amp;&amp; height !=<span class="number">0</span>) &#123;</div><div class="line">    gtk_im_context_focus_in(context);</div><div class="line">    local_context = context;</div><div class="line">  &#125;</div><div class="line">  gdk_window_add_filter (window, event_filter, context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2-安装C-C-的编译环境和gtk-libgtk2-0-dev"><a href="#2-安装C-C-的编译环境和gtk-libgtk2-0-dev" class="headerlink" title="2. 安装C/C++的编译环境和gtk libgtk2.0-dev"></a>2. 安装C/C++的编译环境和gtk libgtk2.0-dev</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install build-essential</div><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
-<h4 id="3-编译共享内库"><a href="#3-编译共享内库" class="headerlink" title="3. 编译共享内库"></a>3. 编译共享内库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` <span class="_">-f</span>PIC</div></pre></td></tr></table></figure>
-<h4 id="4-启动-Sublime-Text-2"><a href="#4-启动-Sublime-Text-2" class="headerlink" title="4. 启动 Sublime Text 2"></a>4. 启动 Sublime Text 2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ LD_PRELOAD=./libsublime-imfix.so sublime_text</div></pre></td></tr></table></figure>
-<p>我没有在桌面放图标的需求,有需求的看原文<a href="http://my.oschina.net/wugaoxing/blog/121281" target="_blank" rel="external">这里</a><br>我倒是需要在终端启动,所以做了个sh脚本并加到/usr/bin目录里面<br>先是链接到bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /usr/lib/Sublime\ Text\ 2/sublime_text /usr/bin/sb</div></pre></td></tr></table></figure>
-<p>然后写脚本sb.sh  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment"># Android Studio offline inspection script.</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment">#</span></div><div class="line">LD_PRELOAD=/usr/lib/libsublime-imfix.so sb</div></pre></td></tr></table></figure>
-<p>然后再添加到PATH  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> ~/sb.sh /usr/bin/sb2</div></pre></td></tr></table></figure>
-<blockquote>
-<p>转的和参考的博文我努力都附上链接地址,如果不幸侵了你的权,你过来打我啊.</p>
-</blockquote>
+            <p>本文系原创<br>作者：Shmiluyu<br>出处：<a href="http://aboutchen.org/blog/install-git-on-openwrt/" target="_blank" rel="external">http://aboutchen.org/blog/install-git-on-openwrt/</a><br>声明：本文采用以下协议进行授权： <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
+<p>迷上了git这个神器,自家的路由器上装的有svn,感觉svn弱爆了,于是乎想给路由器装上git<br>baidu和google走起,搜了一天,没搜到教程.只能自己来了.过程很坎坷,但是装好之后happy了  </p>
+<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><p>这个直接有包,直接按照就行,请安装到u盘里面,flash太小了.挂u盘教程<a href="http://blog.csdn.net/jk110333/article/details/11920163" target="_blank" rel="external">点击这里</a>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install git --dest usb</div></pre></td></tr></table></figure>
+<p>下面把U盘里面的git相关都软链接到<strong>/user/bin</strong>,要使用绝对路径  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-pack /usr/bin/git-upload-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-archive /usr/bin/git-upload-archive</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git-receive-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git</div></pre></td></tr></table></figure>
+<h3 id="2-灰常暴力的创建用户git"><a href="#2-灰常暴力的创建用户git" class="headerlink" title="2. 灰常暴力的创建用户git"></a>2. 灰常暴力的创建用户git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:1000:git:/home/git:/bin/ash'</span> vi &gt;&gt;/etc/passwd</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:15020:0:99999:7:::'</span> &gt;&gt;/etc/shadow</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:'</span> &gt;&gt;/etc/group</div></pre></td></tr></table></figure>
+<h3 id="3-创建git用户目录并授权"><a href="#3-创建git用户目录并授权" class="headerlink" title="3. 创建git用户目录并授权"></a>3. 创建git用户目录并授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /home</div><div class="line">$ mkdir /home/git</div><div class="line">$ midir /home/git/.ssh</div><div class="line">$ chown -R git:git /home/git</div></pre></td></tr></table></figure>
+<p>在刚才创建的.ssh目录下面创建一个文件 <strong>authorized_keys</strong>  </p>
+<h3 id="4-电脑上创建SSH-Key"><a href="#4-电脑上创建SSH-Key" class="headerlink" title="4. 电脑上创建SSH Key"></a>4. 电脑上创建SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></div><div class="line">$ 其他操作系统自行百度</div></pre></td></tr></table></figure>
+<p>操作没问题的话,在用户主目录找到.ssh目录,里面有两个文件,<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,一个私钥,一个公钥.<br>把公钥里面的内容拷贝到第3步创建的<strong>authorized_keys</strong>里面<br>以后想添加一台电脑就是第4步,不断的往<strong>authorized_keys</strong>添加就是了  </p>
+<h3 id="5-git操作"><a href="#5-git操作" class="headerlink" title="5. git操作"></a>5. git操作</h3><p>路由器上随便创建一个目录,我是创建到移动硬盘里面了  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda3/gitrep/demo.git</div><div class="line">$ git init --bare demo.git</div><div class="line">$ chown -R git:git demo.git</div><div class="line">$ 上面这句一定是要在git初始化之后执行.在前面执行无效果</div></pre></td></tr></table></figure>
+<h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
+<p>本文系原创,如有转载,麻烦请注明出处.</p>
 
           
         
@@ -1573,6 +1564,175 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="url">
+                  Android推送迅雷离线任务到Aria2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小作品/" itemprop="url" rel="index">
+                    <span itemprop="name">小作品</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>首先你要有个迅雷会员  </p>
+</blockquote>
+<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
+<hr>
+<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
+<li>集成了Aria2 Web版本的管理界面</li>
+<li>获取离线任务并推送到Aria2</li>
+<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
+</ol>
+<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
+<li>删除离线任务</li>
+<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
+<li>资源查找并添加到离线</li>
+<li>支持百度网盘等  </li>
+</ol>
+<hr>
+<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="http://ok4c1axne.bkt.clouddn.com/2017012139416Screenshot_2014-08-24-12-22-15.png" alt="2017012139416Screenshot_2014-08-24-12-22-15.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/201701214213Screenshot_2014-08-24-12-23-25.png" alt="201701214213Screenshot_2014-08-24-12-23-25.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012183172Screenshot_2014-08-24-12-23-30.png" alt="2017012183172Screenshot_2014-08-24-12-23-30.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012156811Screenshot_2014-08-24-12-23-39.png" alt="2017012156811Screenshot_2014-08-24-12-23-39.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012155129Screenshot_2014-08-24-12-23-46.png" alt="2017012155129Screenshot_2014-08-24-12-23-46.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012171619Screenshot_2014-08-24-12-24-03.png" alt="2017012171619Screenshot_2014-08-24-12-24-03.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012164619Screenshot_2014-08-24-12-24-12.png" alt="2017012164619Screenshot_2014-08-24-12-24-12.png"></p>
+<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-17-google-java-style.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1944,175 +2104,6 @@
 <h4 id="7-3-2-例外：重载"><a href="#7-3-2-例外：重载" class="headerlink" title="7.3.2 例外：重载"></a>7.3.2 例外：重载</h4><p>如果一个方法重载了超类中的方法，那么Javadoc并非必需的。</p>
 <h4 id="7-3-3-可选的Javadoc"><a href="#7-3-3-可选的Javadoc" class="headerlink" title="7.3.3 可选的Javadoc"></a>7.3.3 可选的Javadoc</h4><p>对于包外不可见的类和方法，如有需要，也是要使用Javadoc的。如果一个注释是用来定义一个类，方法，字段的整体目的或行为，<br>那么这个注释应该写成Javadoc，这样更统一更友好。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a id="End">后记</a></h2><p>本文档翻译自<a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html" target="_blank" rel="external">Google Java Style</a>，<br>译者<a href="http://weibo.com/hawstein" target="_blank" rel="external">@Hawstein</a>。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="url">
-                  Android推送迅雷离线任务到Aria2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小作品/" itemprop="url" rel="index">
-                    <span itemprop="name">小作品</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>首先你要有个迅雷会员  </p>
-</blockquote>
-<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
-<hr>
-<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
-<li>集成了Aria2 Web版本的管理界面</li>
-<li>获取离线任务并推送到Aria2</li>
-<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
-</ol>
-<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
-<li>删除离线任务</li>
-<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
-<li>资源查找并添加到离线</li>
-<li>支持百度网盘等  </li>
-</ol>
-<hr>
-<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="http://ok4c1axne.bkt.clouddn.com/2017012139416Screenshot_2014-08-24-12-22-15.png" alt="2017012139416Screenshot_2014-08-24-12-22-15.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/201701214213Screenshot_2014-08-24-12-23-25.png" alt="201701214213Screenshot_2014-08-24-12-23-25.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012183172Screenshot_2014-08-24-12-23-30.png" alt="2017012183172Screenshot_2014-08-24-12-23-30.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012156811Screenshot_2014-08-24-12-23-39.png" alt="2017012156811Screenshot_2014-08-24-12-23-39.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012155129Screenshot_2014-08-24-12-23-46.png" alt="2017012155129Screenshot_2014-08-24-12-23-46.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012171619Screenshot_2014-08-24-12-24-03.png" alt="2017012171619Screenshot_2014-08-24-12-24-03.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012164619Screenshot_2014-08-24-12-24-12.png" alt="2017012164619Screenshot_2014-08-24-12-24-12.png"></p>
-<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
 
           
         

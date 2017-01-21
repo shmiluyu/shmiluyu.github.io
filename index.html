@@ -616,6 +616,167 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-10-git-summary.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-10-git-summary.html" itemprop="url">
+                  Git问题汇总
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
+                    <span itemprop="name">技巧备忘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014-08-10-git-summary.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-10-git-summary.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>持续更新  </p>
+</blockquote>
+<h4 id="1-ssh端口变更原文在此"><a href="#1-ssh端口变更原文在此" class="headerlink" title="1. ssh端口变更原文在此"></a>1. ssh端口变更<a href="http://zengrong.net/post/1544.htm" target="_blank" rel="external">原文在此</a></h4><h5 id="方法一-直接修改URL为SSH开头"><a href="#方法一-直接修改URL为SSH开头" class="headerlink" title="方法一:直接修改URL为SSH开头"></a>方法一:直接修改URL为SSH开头</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url origin ssh://git@domain.com:3022/~/Projects/p1.git</div></pre></td></tr></table></figure>
+<h5 id="方法二-修改本地配置文件"><a href="#方法二-修改本地配置文件" class="headerlink" title="方法二: 修改本地配置文件"></a>方法二: 修改本地配置文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cat&gt;~/.ssh/config</div><div class="line"><span class="comment"># 映射一个别名</span></div><div class="line">host newdomain</div><div class="line">hostname domain.com</div><div class="line">port 3022</div><div class="line"><span class="comment"># ctrl+D</span></div></pre></td></tr></table></figure>
+<p>修改p1.git项目下的git配置文件  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url origin git@newdomain:Projects/p1.git</div></pre></td></tr></table></figure>
+<h4 id="2-推送git项目到多个远程仓库原文地址"><a href="#2-推送git项目到多个远程仓库原文地址" class="headerlink" title="2. 推送git项目到多个远程仓库原文地址"></a>2. 推送git项目到多个远程仓库<a href="http://blog.codepiano.com/2013/07/03/push-multi-remote-repositories/" target="_blank" rel="external">原文地址</a></h4><p>打开.git/config文件,在<code>[remote &quot;origin&quot;]</code>节点的原始url下面添加对应的ssh地址  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[remote <span class="string">"origin"</span>]</div><div class="line">url = git@github.com:codepiano/pull-all-git-project.git</div><div class="line">url = git@git.oschina.net:codepiano/pull-all-git-project.git</div><div class="line">fetch = +refs/heads/*:refs/remotes/origin/*</div></pre></td></tr></table></figure>
+<p>也可以使用命令添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url --add origin git@git.oschina.net:codepiano/pull-all-git-project.git</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-install-git-on-openwrt.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -744,167 +905,6 @@
 <h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
 <p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
 <p>本文系原创,如有转载,麻烦请注明出处.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-10-git-summary.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014-08-10-git-summary.html" itemprop="url">
-                  Git问题汇总
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014-08-10-git-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-10-git-summary.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-ssh端口变更原文在此"><a href="#1-ssh端口变更原文在此" class="headerlink" title="1. ssh端口变更原文在此"></a>1. ssh端口变更<a href="http://zengrong.net/post/1544.htm" target="_blank" rel="external">原文在此</a></h4><h5 id="方法一-直接修改URL为SSH开头"><a href="#方法一-直接修改URL为SSH开头" class="headerlink" title="方法一:直接修改URL为SSH开头"></a>方法一:直接修改URL为SSH开头</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url origin ssh://git@domain.com:3022/~/Projects/p1.git</div></pre></td></tr></table></figure>
-<h5 id="方法二-修改本地配置文件"><a href="#方法二-修改本地配置文件" class="headerlink" title="方法二: 修改本地配置文件"></a>方法二: 修改本地配置文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cat&gt;~/.ssh/config</div><div class="line"><span class="comment"># 映射一个别名</span></div><div class="line">host newdomain</div><div class="line">hostname domain.com</div><div class="line">port 3022</div><div class="line"><span class="comment"># ctrl+D</span></div></pre></td></tr></table></figure>
-<p>修改p1.git项目下的git配置文件  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url origin git@newdomain:Projects/p1.git</div></pre></td></tr></table></figure>
-<h4 id="2-推送git项目到多个远程仓库原文地址"><a href="#2-推送git项目到多个远程仓库原文地址" class="headerlink" title="2. 推送git项目到多个远程仓库原文地址"></a>2. 推送git项目到多个远程仓库<a href="http://blog.codepiano.com/2013/07/03/push-multi-remote-repositories/" target="_blank" rel="external">原文地址</a></h4><p>打开.git/config文件,在<code>[remote &quot;origin&quot;]</code>节点的原始url下面添加对应的ssh地址  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[remote <span class="string">"origin"</span>]</div><div class="line">url = git@github.com:codepiano/pull-all-git-project.git</div><div class="line">url = git@git.oschina.net:codepiano/pull-all-git-project.git</div><div class="line">fetch = +refs/heads/*:refs/remotes/origin/*</div></pre></td></tr></table></figure>
-<p>也可以使用命令添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url --add origin git@git.oschina.net:codepiano/pull-all-git-project.git</div></pre></td></tr></table></figure>
 
           
         
@@ -1564,175 +1564,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="url">
-                  Android推送迅雷离线任务到Aria2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小作品/" itemprop="url" rel="index">
-                    <span itemprop="name">小作品</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>首先你要有个迅雷会员  </p>
-</blockquote>
-<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
-<hr>
-<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
-<li>集成了Aria2 Web版本的管理界面</li>
-<li>获取离线任务并推送到Aria2</li>
-<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
-</ol>
-<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
-<li>删除离线任务</li>
-<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
-<li>资源查找并添加到离线</li>
-<li>支持百度网盘等  </li>
-</ol>
-<hr>
-<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="http://ok4c1axne.bkt.clouddn.com/2017012139416Screenshot_2014-08-24-12-22-15.png" alt="2017012139416Screenshot_2014-08-24-12-22-15.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/201701214213Screenshot_2014-08-24-12-23-25.png" alt="201701214213Screenshot_2014-08-24-12-23-25.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012183172Screenshot_2014-08-24-12-23-30.png" alt="2017012183172Screenshot_2014-08-24-12-23-30.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012156811Screenshot_2014-08-24-12-23-39.png" alt="2017012156811Screenshot_2014-08-24-12-23-39.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012155129Screenshot_2014-08-24-12-23-46.png" alt="2017012155129Screenshot_2014-08-24-12-23-46.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012171619Screenshot_2014-08-24-12-24-03.png" alt="2017012171619Screenshot_2014-08-24-12-24-03.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012164619Screenshot_2014-08-24-12-24-12.png" alt="2017012164619Screenshot_2014-08-24-12-24-12.png"></p>
-<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-17-google-java-style.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2104,6 +1935,184 @@
 <h4 id="7-3-2-例外：重载"><a href="#7-3-2-例外：重载" class="headerlink" title="7.3.2 例外：重载"></a>7.3.2 例外：重载</h4><p>如果一个方法重载了超类中的方法，那么Javadoc并非必需的。</p>
 <h4 id="7-3-3-可选的Javadoc"><a href="#7-3-3-可选的Javadoc" class="headerlink" title="7.3.3 可选的Javadoc"></a>7.3.3 可选的Javadoc</h4><p>对于包外不可见的类和方法，如有需要，也是要使用Javadoc的。如果一个注释是用来定义一个类，方法，字段的整体目的或行为，<br>那么这个注释应该写成Javadoc，这样更统一更友好。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><a id="End">后记</a></h2><p>本文档翻译自<a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html" target="_blank" rel="external">Google Java Style</a>，<br>译者<a href="http://weibo.com/hawstein" target="_blank" rel="external">@Hawstein</a>。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-30-compile-c-code-for-openwrt.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-30-compile-c-code-for-openwrt.html" itemprop="url">
+                  编译一个可以运行在openwrt上的c程序
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/openwrt/" itemprop="url" rel="index">
+                    <span itemprop="name">openwrt</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014-08-30-compile-c-code-for-openwrt.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-30-compile-c-code-for-openwrt.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文的测试环境为 <code>Ubuntu 14.0</code>  <code>TP-LINK WDR4320</code> <code>OpenWrt Attitude Adjustment 12.09</code>  </p>
+<p>首先在ubuntu上安装一些东西</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libncurses5-dev gawk flex build-essential qemu-user</div></pre></td></tr></table></figure>
+<p>获取Openwrt的源代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git://git.openwrt.org/openwrt.git</div></pre></td></tr></table></figure>
+<p>编译源代码,默认配置即可,不需要勾选什么</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> openwrt</div><div class="line">make menuconfig</div></pre></td></tr></table></figure>
+<p>编译,耗时较长,可以忙些别的事情</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nice make -j16</div></pre></td></tr></table></figure>
+<p>一切无错的情况下,会在<code>staging_dir</code>目录下列出三个目录  </p>
+<ul>
+<li><code>host</code></li>
+<li><code>target-mips_34kc_uClibc-0.9.33.2</code></li>
+<li><code>toolchain-mips_34kc_gcc-4.8-linaro_uClibc-0.9.33.2</code></li>
+</ul>
+<p>将<code>toolchain</code>加到<code>PATH</code>里面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> STAGING_DIR=/path/to/openwrt/staging_dir/toolchain-mips_34kc_gcc-4.8-linaro_uClibc-0.9.33.2</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$STAGING_DIR</span>/bin</div></pre></td></tr></table></figure>
+<p>编译<code>hello.c</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mips-openwrt-linux-gcc hello.c -o hello -static</div></pre></td></tr></table></figure>
+<p>直接在本机运行的话会报如下错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shmiluyu@:~/openwrt/src$ ./hello </div><div class="line">bash: ./hello: cannot execute binary file: 可执行文件格式错误</div></pre></td></tr></table></figure>
+<p>因为是为MIPS指令架构编译的,所以如果想在本机上运行,可以使用之前安装的<code>QEMU</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shmiluyu@:~/openwrt/src$ qemu-mips hello</div><div class="line">hello openwrt</div></pre></td></tr></table></figure>
+<p>如果要编译MIPS64架构,只需要编译的时候加个参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mips-openwrt-linux-gcc hello.c -o hello-mips64 -static -mips64r2</div></pre></td></tr></table></figure>
+<p>使用file命令可以看下可执行文件的信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shmiluyu@:~/openwrt/src$ file hello</div><div class="line">hello: ELF 32-bit MSB  executable, MIPS, MIPS32 rel2 version 1, statically linked, not stripped</div></pre></td></tr></table></figure>
+<p>使用SCP上传到路由器,运行即可.</p>
 
           
         

@@ -359,8 +359,8 @@
           
             <h1 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h1><p>首先我们先看几张图</p>
 <blockquote>
-<p>计算机内存模型<br><img src="../assets/images/212219343783699.jpg" alt="计算机内存模型" title="计算机内存模型"></p>
-<p>典型计算机构成<br><img src="../assets/images/12202815-43d7b2736d834c76a7c139d8438c9cfa.png" alt=""></p>
+<p>计算机内存模型<br><img src="http://ok4c1axne.bkt.clouddn.com/2017012124817212219343783699.jpg" alt="2017012124817212219343783699.jpg" title="计算机内存模型"></p>
+<p>典型计算机构成<br><img src="http://ok4c1axne.bkt.clouddn.com/2017012157112202815-43d7b2736d834c76a7c139d8438c9cfa.png" alt="2017012157112202815-43d7b2736d834c76a7c139d8438c9cfa.png"></p>
 </blockquote>
 <p>在第一张图可以看到,为了解决CPU等待IO操作的问题,CPU都配备了高速缓存,数据先从速度很慢的主存加载到高速缓存,CPU加载数据直接从速度较快的高速缓存.计算之后,再将数据存储到高速缓存,高速缓存再刷回主存.</p>
 <p>第二张图看到CPU和主存交互,都是通过<code>System Bus</code>来传输数据的.</p>
@@ -616,7 +616,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-09-install-git-on-openwrt.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-09-23-java-apt-simple-tutorial.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -641,8 +641,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-08-09-install-git-on-openwrt.html" itemprop="url">
-                  在Openwrt上安装GIT
+                <a class="post-title-link" href="/blog/2014-09-23-java-apt-simple-tutorial.html" itemprop="url">
+                  Java APT简易教程
                 </a>
               
             
@@ -681,8 +681,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/原创文章/" itemprop="url" rel="index">
-                    <span itemprop="name">原创文章</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -699,8 +699,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-09-install-git-on-openwrt.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-09-install-git-on-openwrt.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-09-23-java-apt-simple-tutorial.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-09-23-java-apt-simple-tutorial.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -728,22 +728,149 @@
       
         
           
-            <p>本文系原创<br>作者：Shmiluyu<br>出处：<a href="http://aboutchen.org/blog/install-git-on-openwrt/" target="_blank" rel="external">http://aboutchen.org/blog/install-git-on-openwrt/</a><br>声明：本文采用以下协议进行授权： <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
-<p>迷上了git这个神器,自家的路由器上装的有svn,感觉svn弱爆了,于是乎想给路由器装上git<br>baidu和google走起,搜了一天,没搜到教程.只能自己来了.过程很坎坷,但是装好之后happy了  </p>
-<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><p>这个直接有包,直接按照就行,请安装到u盘里面,flash太小了.挂u盘教程<a href="http://blog.csdn.net/jk110333/article/details/11920163" target="_blank" rel="external">点击这里</a>  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install git --dest usb</div></pre></td></tr></table></figure>
-<p>下面把U盘里面的git相关都软链接到<strong>/user/bin</strong>,要使用绝对路径  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-pack /usr/bin/git-upload-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-archive /usr/bin/git-upload-archive</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git-receive-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git</div></pre></td></tr></table></figure>
-<h3 id="2-灰常暴力的创建用户git"><a href="#2-灰常暴力的创建用户git" class="headerlink" title="2. 灰常暴力的创建用户git"></a>2. 灰常暴力的创建用户git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:1000:git:/home/git:/bin/ash'</span> vi &gt;&gt;/etc/passwd</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:15020:0:99999:7:::'</span> &gt;&gt;/etc/shadow</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:'</span> &gt;&gt;/etc/group</div></pre></td></tr></table></figure>
-<h3 id="3-创建git用户目录并授权"><a href="#3-创建git用户目录并授权" class="headerlink" title="3. 创建git用户目录并授权"></a>3. 创建git用户目录并授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /home</div><div class="line">$ mkdir /home/git</div><div class="line">$ midir /home/git/.ssh</div><div class="line">$ chown -R git:git /home/git</div></pre></td></tr></table></figure>
-<p>在刚才创建的.ssh目录下面创建一个文件 <strong>authorized_keys</strong>  </p>
-<h3 id="4-电脑上创建SSH-Key"><a href="#4-电脑上创建SSH-Key" class="headerlink" title="4. 电脑上创建SSH Key"></a>4. 电脑上创建SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></div><div class="line">$ 其他操作系统自行百度</div></pre></td></tr></table></figure>
-<p>操作没问题的话,在用户主目录找到.ssh目录,里面有两个文件,<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,一个私钥,一个公钥.<br>把公钥里面的内容拷贝到第3步创建的<strong>authorized_keys</strong>里面<br>以后想添加一台电脑就是第4步,不断的往<strong>authorized_keys</strong>添加就是了  </p>
-<h3 id="5-git操作"><a href="#5-git操作" class="headerlink" title="5. git操作"></a>5. git操作</h3><p>路由器上随便创建一个目录,我是创建到移动硬盘里面了  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda3/gitrep/demo.git</div><div class="line">$ git init --bare demo.git</div><div class="line">$ chown -R git:git demo.git</div><div class="line">$ 上面这句一定是要在git初始化之后执行.在前面执行无效果</div></pre></td></tr></table></figure>
-<h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
-<p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
-<p>本文系原创,如有转载,麻烦请注明出处.</p>
+            <h3 id="1-编写一个Processor"><a href="#1-编写一个Processor" class="headerlink" title="1. 编写一个Processor"></a>1. 编写一个Processor</h3><p>自<code>JDK1.6</code>之后,官方统一使用<code>javax.annotation.processing.Processor</code><br>只需要集成<code>AbstractProcessor</code>即可  </p>
+<p>首先写一个简单的注解  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> demo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Print &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编写Processor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@SupportedAnnotationTypes</span>(&#123;<span class="string">"demo.Print"</span>&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceAnnotationProcessor</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv)</span> </span>&#123;</div><div class="line">		<span class="comment">//在这里处理注解</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>还需要在META-INF中导出服务<br>创建一个文件<code>META-INF.services.javax.annotation.processing.Processor</code><br>文件内容就是你要导出的<code>Processor</code>类名</p>
+<h3 id="2-重点说调试部分"><a href="#2-重点说调试部分" class="headerlink" title="2. 重点说调试部分"></a>2. 重点说调试部分</h3><p>需要把javac设置为debug模式,在<code>IntelliJ IDEA 13</code>里面设置步骤为<br><code>File</code>—-<code>Settings</code>—-<code>Compiler</code>—-<code>Additional build process VM options</code><br>添加<code>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5003</code>  </p>
+<p>然后建一个远程调试就行了.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-10-jekyll-summary.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2014-08-10-jekyll-summary.html" itemprop="url">
+                  Jekyll 备忘
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2014-08-10-jekyll-summary.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-10-jekyll-summary.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>持续更新  </p>
+</blockquote>
+<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
+<hr>
 
           
         
@@ -943,7 +1070,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-10-jekyll-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-11-personal-ubuntu-configuration-summary.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -968,8 +1095,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-08-10-jekyll-summary.html" itemprop="url">
-                  Jekyll 备忘
+                <a class="post-title-link" href="/blog/2014-08-11-personal-ubuntu-configuration-summary.html" itemprop="url">
+                  Ubuntu个人配置汇总
                 </a>
               
             
@@ -996,6 +1123,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
+                    <span itemprop="name">技巧备忘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1004,8 +1153,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-10-jekyll-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-10-jekyll-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-08-11-personal-ubuntu-configuration-summary.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-11-personal-ubuntu-configuration-summary.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1033,13 +1182,23 @@
       
         
           
-            <blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
+            <h4 id="1-配置输入法点击这里"><a href="#1-配置输入法点击这里" class="headerlink" title="1. 配置输入法点击这里"></a>1. 配置输入法<a href="/blog/install-fcitx-on-ubuntu/">点击这里</a></h4><h4 id="2-配置命令行提示符号参考原文"><a href="#2-配置命令行提示符号参考原文" class="headerlink" title="2. 配置命令行提示符号参考原文"></a>2. 配置命令行提示符号<a href="http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html" target="_blank" rel="external">参考原文</a></h4><p>修改<strong>~/.bashrc</strong>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gedit ~/.bashrc</div></pre></td></tr></table></figure>
+<p>搜索$PS1,并按照你愿意的修改，如下  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$color_prompt</span>"</span> = yes ]; <span class="keyword">then</span></div><div class="line">    PS1=<span class="string">'$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '</span></div><div class="line">    <span class="comment">#PS1='$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\W\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    PS1=<span class="string">'$&#123;debian_chroot:+($debian_chroot)&#125;\u@:\w\$ '</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">unset</span> color_prompt force_color_prompt</div><div class="line"></div><div class="line"><span class="comment"># If this is an xterm set the title to user@host:dir</span></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$TERM</span>"</span> <span class="keyword">in</span></div><div class="line">xterm*|rxvt*)</div><div class="line">    PS1=<span class="string">"\[\e]0;<span class="variable">$&#123;debian_chroot:+($debian_chroot)&#125;</span>\u@: \w\a\]<span class="variable">$PS1</span>"</span></div><div class="line">    ;;</div><div class="line">*)</div><div class="line">    ;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
+<p>立即生效，执行完之后立刻就能看到效果  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure>
+<h4 id="3-设置热区"><a href="#3-设置热区" class="headerlink" title="3. 设置热区"></a>3. 设置热区</h4><p>热区安装Unity Tweak Tool就行  </p>
+<h4 id="4-为下载安装的软件建立快捷方式"><a href="#4-为下载安装的软件建立快捷方式" class="headerlink" title="4. 为下载安装的软件建立快捷方式"></a>4. 为下载安装的软件建立快捷方式</h4><p>以Sublime Text为例子，在桌面创建一个文件，并命名为<strong>Sublime Text 2.desktop</strong>,内容如下  </p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="section"></span></div><div class="line">[Desktop Entry]</div><div class="line"><span class="attr">Name</span>=Sublime Text <span class="number">2</span></div><div class="line"><span class="attr">Comment</span>=Sublime Text <span class="number">2</span></div><div class="line"><span class="attr">Exec</span>=/usr/bin/sb2</div><div class="line"><span class="attr">Icon</span>=/usr/local/lib/Sublime Text <span class="number">2</span>/Icon/<span class="number">48</span>x48/sublime_text.png</div><div class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></div><div class="line"><span class="attr">Type</span>=Application</div><div class="line"><span class="attr">Categories</span>=Application;</div></pre></td></tr></table></figure>
+<p>加上运行权限即可  </p>
+<h4 id="5-QQ原文出处"><a href="#5-QQ原文出处" class="headerlink" title="5. QQ原文出处"></a>5. QQ<a href="http://www.ubuntukylin.com/ukylin/forum.php?mod=viewthread&amp;tid=6438" target="_blank" rel="external">原文出处</a></h4><p>桌面环境：Linux Deepin 2013，基于ubuntu 13.04<br>QQ国际版  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ wget http://test.packages.linuxdeepin.com/deepin/pool/non-free/d/deepinwine-qqintl/deepinwine-qqintl_0.1.3-2_all.deb</div><div class="line">$ wget http://test.packages.linuxdeepin.com/deepin/pool/non-free/d/deepinwine-qqintl/wine-qqintl_0.1.3-2_i386.deb</div></pre></td></tr></table></figure>
+<p>然后执行安装即可  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo dpkg -i deepinwine-qqintl_0.1.3-2_all.deb wine-qqintl_0.1.3-2_i386.deb</div><div class="line">$ sudo apt-get <span class="_">-f</span> install</div><div class="line">$ sudo dpkg -i deepinwine-qqintl_0.1.3-2_all.deb wine-qqintl_0.1.3-2_i386.deb</div></pre></td></tr></table></figure>
+<p>感谢Linux deepin团队</p>
+<h4 id="6-FLV文件转为MP3原文出处"><a href="#6-FLV文件转为MP3原文出处" class="headerlink" title="6. FLV文件转为MP3原文出处"></a>6. FLV文件转为MP3<a href="http://askubuntu.com/questions/80954/how-can-i-extract-audio-from-mp4-or-flv-video-files?answertab=votes#tab-top" target="_blank" rel="external">原文出处</a></h4><p>安装WinFF即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install winff libavcodec-extra</div></pre></td></tr></table></figure></p>
+<h4 id="7-Markdown编辑器Haroopad"><a href="#7-Markdown编辑器Haroopad" class="headerlink" title="7. Markdown编辑器Haroopad"></a>7. Markdown编辑器<a href="http://pad.haroopress.com/user.html" target="_blank" rel="external">Haroopad</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.12.2_amd64.deb</div><div class="line">dpkg -i haroopad-v0.12.2_amd64.deb</div></pre></td></tr></table></figure>
 
           
         
@@ -1233,7 +1392,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-10-openwrt-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -1258,8 +1417,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-08-10-openwrt-summary.html" itemprop="url">
-                  Openwrt配置汇总
+                <a class="post-title-link" href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="url">
+                  Android推送迅雷离线任务到Aria2
                 </a>
               
             
@@ -1298,8 +1457,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
+                  <a href="/categories/小作品/" itemprop="url" rel="index">
+                    <span itemprop="name">小作品</span>
                   </a>
                 </span>
 
@@ -1316,8 +1475,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-10-openwrt-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-10-openwrt-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1346,186 +1505,24 @@
         
           
             <blockquote>
-<p>持续更新</p>
+<p>首先你要有个迅雷会员  </p>
 </blockquote>
-<h4 id="1-开放端口"><a href="#1-开放端口" class="headerlink" title="1. 开放端口"></a>1. 开放端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ vi /etc/config/firewall</div></pre></td></tr></table></figure>
-<p>在里面添加一段  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">config rule</div><div class="line">        option target <span class="string">'ACCEPT'</span></div><div class="line">        option name <span class="string">'9000'</span></div><div class="line">        option src <span class="string">'wan'</span></div><div class="line">        option proto <span class="string">'tcpudp'</span></div><div class="line">        option dest_port <span class="string">'9000'</span></div></pre></td></tr></table></figure>
-<h4 id="2-Aria2导致硬盘无法休眠"><a href="#2-Aria2导致硬盘无法休眠" class="headerlink" title="2. Aria2导致硬盘无法休眠"></a>2. Aria2导致硬盘无法休眠</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ vi /etc/init.d/aria2</div></pre></td></tr></table></figure>
-<p>修改<strong>aria2_conf_path</strong>到flash本身或者其他的u盘,总之不要在休眠的硬盘上  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">aria2_conf_path=<span class="string">"/www/.aria2"</span></div></pre></td></tr></table></figure>
-<h4 id="3-安装软件到U盘"><a href="#3-安装软件到U盘" class="headerlink" title="3. 安装软件到U盘"></a>3. 安装软件到U盘</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda1/packages/</div><div class="line">$ <span class="built_in">echo</span> dest usb /mnt/sda1/packages/ &gt;&gt; /etc/opkg.conf</div></pre></td></tr></table></figure>
-<p>安装的时候需要加上<strong>--dest usb</strong><br>eg:  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install xxx --dest usb</div></pre></td></tr></table></figure>
-<p>最好软链接到/user/bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /mnt/sda/packages/usr/bin/python /usr/bin/python</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-11-personal-ubuntu-configuration-summary.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2014-08-11-personal-ubuntu-configuration-summary.html" itemprop="url">
-                  Ubuntu个人配置汇总
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2014-08-11-personal-ubuntu-configuration-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-11-personal-ubuntu-configuration-summary.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-配置输入法点击这里"><a href="#1-配置输入法点击这里" class="headerlink" title="1. 配置输入法点击这里"></a>1. 配置输入法<a href="/blog/install-fcitx-on-ubuntu/">点击这里</a></h4><h4 id="2-配置命令行提示符号参考原文"><a href="#2-配置命令行提示符号参考原文" class="headerlink" title="2. 配置命令行提示符号参考原文"></a>2. 配置命令行提示符号<a href="http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html" target="_blank" rel="external">参考原文</a></h4><p>修改<strong>~/.bashrc</strong>  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gedit ~/.bashrc</div></pre></td></tr></table></figure>
-<p>搜索$PS1,并按照你愿意的修改，如下  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$color_prompt</span>"</span> = yes ]; <span class="keyword">then</span></div><div class="line">    PS1=<span class="string">'$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '</span></div><div class="line">    <span class="comment">#PS1='$&#123;debian_chroot:+($debian_chroot)&#125;\[\033[01;32m\]\u@\W\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '</span></div><div class="line"><span class="keyword">else</span></div><div class="line">    PS1=<span class="string">'$&#123;debian_chroot:+($debian_chroot)&#125;\u@:\w\$ '</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"><span class="built_in">unset</span> color_prompt force_color_prompt</div><div class="line"></div><div class="line"><span class="comment"># If this is an xterm set the title to user@host:dir</span></div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$TERM</span>"</span> <span class="keyword">in</span></div><div class="line">xterm*|rxvt*)</div><div class="line">    PS1=<span class="string">"\[\e]0;<span class="variable">$&#123;debian_chroot:+($debian_chroot)&#125;</span>\u@: \w\a\]<span class="variable">$PS1</span>"</span></div><div class="line">    ;;</div><div class="line">*)</div><div class="line">    ;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure>
-<p>立即生效，执行完之后立刻就能看到效果  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">source</span> ~/.bashrc</div></pre></td></tr></table></figure>
-<h4 id="3-设置热区"><a href="#3-设置热区" class="headerlink" title="3. 设置热区"></a>3. 设置热区</h4><p>热区安装Unity Tweak Tool就行  </p>
-<h4 id="4-为下载安装的软件建立快捷方式"><a href="#4-为下载安装的软件建立快捷方式" class="headerlink" title="4. 为下载安装的软件建立快捷方式"></a>4. 为下载安装的软件建立快捷方式</h4><p>以Sublime Text为例子，在桌面创建一个文件，并命名为<strong>Sublime Text 2.desktop</strong>,内容如下  </p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="section"></span></div><div class="line">[Desktop Entry]</div><div class="line"><span class="attr">Name</span>=Sublime Text <span class="number">2</span></div><div class="line"><span class="attr">Comment</span>=Sublime Text <span class="number">2</span></div><div class="line"><span class="attr">Exec</span>=/usr/bin/sb2</div><div class="line"><span class="attr">Icon</span>=/usr/local/lib/Sublime Text <span class="number">2</span>/Icon/<span class="number">48</span>x48/sublime_text.png</div><div class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></div><div class="line"><span class="attr">Type</span>=Application</div><div class="line"><span class="attr">Categories</span>=Application;</div></pre></td></tr></table></figure>
-<p>加上运行权限即可  </p>
-<h4 id="5-QQ原文出处"><a href="#5-QQ原文出处" class="headerlink" title="5. QQ原文出处"></a>5. QQ<a href="http://www.ubuntukylin.com/ukylin/forum.php?mod=viewthread&amp;tid=6438" target="_blank" rel="external">原文出处</a></h4><p>桌面环境：Linux Deepin 2013，基于ubuntu 13.04<br>QQ国际版  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ wget http://test.packages.linuxdeepin.com/deepin/pool/non-free/d/deepinwine-qqintl/deepinwine-qqintl_0.1.3-2_all.deb</div><div class="line">$ wget http://test.packages.linuxdeepin.com/deepin/pool/non-free/d/deepinwine-qqintl/wine-qqintl_0.1.3-2_i386.deb</div></pre></td></tr></table></figure>
-<p>然后执行安装即可  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo dpkg -i deepinwine-qqintl_0.1.3-2_all.deb wine-qqintl_0.1.3-2_i386.deb</div><div class="line">$ sudo apt-get <span class="_">-f</span> install</div><div class="line">$ sudo dpkg -i deepinwine-qqintl_0.1.3-2_all.deb wine-qqintl_0.1.3-2_i386.deb</div></pre></td></tr></table></figure>
-<p>感谢Linux deepin团队</p>
-<h4 id="6-FLV文件转为MP3原文出处"><a href="#6-FLV文件转为MP3原文出处" class="headerlink" title="6. FLV文件转为MP3原文出处"></a>6. FLV文件转为MP3<a href="http://askubuntu.com/questions/80954/how-can-i-extract-audio-from-mp4-or-flv-video-files?answertab=votes#tab-top" target="_blank" rel="external">原文出处</a></h4><p>安装WinFF即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install winff libavcodec-extra</div></pre></td></tr></table></figure></p>
-<h4 id="7-Markdown编辑器Haroopad"><a href="#7-Markdown编辑器Haroopad" class="headerlink" title="7. Markdown编辑器Haroopad"></a>7. Markdown编辑器<a href="http://pad.haroopress.com/user.html" target="_blank" rel="external">Haroopad</a></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://bitbucket.org/rhiokim/haroopad-download/downloads/haroopad-v0.12.2_amd64.deb</div><div class="line">dpkg -i haroopad-v0.12.2_amd64.deb</div></pre></td></tr></table></figure>
+<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
+<hr>
+<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
+<li>集成了Aria2 Web版本的管理界面</li>
+<li>获取离线任务并推送到Aria2</li>
+<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
+</ol>
+<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
+<li>删除离线任务</li>
+<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
+<li>资源查找并添加到离线</li>
+<li>支持百度网盘等  </li>
+</ol>
+<hr>
+<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="http://ok4c1axne.bkt.clouddn.com/2017012139416Screenshot_2014-08-24-12-22-15.png" alt="2017012139416Screenshot_2014-08-24-12-22-15.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/201701214213Screenshot_2014-08-24-12-23-25.png" alt="201701214213Screenshot_2014-08-24-12-23-25.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012183172Screenshot_2014-08-24-12-23-30.png" alt="2017012183172Screenshot_2014-08-24-12-23-30.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012156811Screenshot_2014-08-24-12-23-39.png" alt="2017012156811Screenshot_2014-08-24-12-23-39.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012155129Screenshot_2014-08-24-12-23-46.png" alt="2017012155129Screenshot_2014-08-24-12-23-46.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012171619Screenshot_2014-08-24-12-24-03.png" alt="2017012171619Screenshot_2014-08-24-12-24-03.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012164619Screenshot_2014-08-24-12-24-12.png" alt="2017012164619Screenshot_2014-08-24-12-24-12.png"></p>
+<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
 
           
         
@@ -1973,7 +1970,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2014-08-24-use-mxplayer-open-youku-video.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -1998,8 +1995,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="url">
-                  Android推送迅雷离线任务到Aria2
+                <a class="post-title-link" href="/blog/2014-08-24-use-mxplayer-open-youku-video.html" itemprop="url">
+                  Android使用MxPlayer打开优酷视频
                 </a>
               
             
@@ -2056,8 +2053,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-24-push-lixian-task-to-aria2-on-android.html" itemprop="commentCount"></span>
+                <a href="/blog/2014-08-24-use-mxplayer-open-youku-video.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014-08-24-use-mxplayer-open-youku-video.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2085,26 +2082,10 @@
       
         
           
-            <blockquote>
-<p>首先你要有个迅雷会员  </p>
-</blockquote>
-<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
-<hr>
-<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
-<li>集成了Aria2 Web版本的管理界面</li>
-<li>获取离线任务并推送到Aria2</li>
-<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
-</ol>
-<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
-<li>删除离线任务</li>
-<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
-<li>资源查找并添加到离线</li>
-<li>支持百度网盘等  </li>
-</ol>
-<hr>
-<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="/assets/images/Screenshot_2014-08-24-12-22-15.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-25.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-30.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-39.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-46.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-24-03.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-24-12.png" style="width:300px;height:533px;margin-left:0px;"></p>
-<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
-
+            <p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>
           
         
       

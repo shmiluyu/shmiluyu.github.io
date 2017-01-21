@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.aboutchen.org//blog/macos-print-clipboard.html</loc>
+    
+    <lastmod>2017-01-21T10:52:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/how-jvm-performs-thread-synchronization.html</loc>
+    
+    <lastmod>2017-01-21T09:21:33.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.aboutchen.org//blog/how-java-volitale-works.html</loc>
     
     <lastmod>2017-01-21T08:35:12.000Z</lastmod>
@@ -128,14 +142,14 @@
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/deploy-to-tomcat-7-with-maven.html</loc>
+    <loc>http://www.aboutchen.org//blog/use-port-80-with-ngrok.html</loc>
     
     <lastmod>2017-01-21T06:53:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/use-port-80-with-ngrok.html</loc>
+    <loc>http://www.aboutchen.org//blog/deploy-to-tomcat-7-with-maven.html</loc>
     
     <lastmod>2017-01-21T06:53:02.000Z</lastmod>
     
@@ -159,13 +173,6 @@
     <loc>http://www.aboutchen.org//blog/personal-intellij-idea-plugin.html</loc>
     
     <lastmod>2017-01-21T06:52:59.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.aboutchen.org//blog/how-jvm-performs-thread-synchronization.html</loc>
-    
-    <lastmod>2017-01-21T06:52:58.000Z</lastmod>
     
   </url>
   

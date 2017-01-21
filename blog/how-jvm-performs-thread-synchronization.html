@@ -90,22 +90,16 @@
 
 
 
-<meta name="description" content="TOC{:toc}
-
-线程和共享数据   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个Java Stack,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(Primitive Type)和引用类型(Object References),例如你不可能将一个图片对象放到Stack里面,所有的对象数据都">
+<meta name="description" content="线程和共享数据   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个Java Stack,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(Primitive Type)和引用类型(Object References),例如你不可能将一个图片对象放到Stack里面,所有的对象数据都存在Heap里面.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java同步实现原理">
 <meta property="og:url" content="http://www.aboutchen.org/blog/how-jvm-performs-thread-synchronization.html">
 <meta property="og:site_name" content="Shmiluyu-麻吉">
-<meta property="og:description" content="TOC{:toc}
-
-线程和共享数据   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个Java Stack,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(Primitive Type)和引用类型(Object References),例如你不可能将一个图片对象放到Stack里面,所有的对象数据都">
-<meta property="og:updated_time" content="2017-01-21T06:52:58.000Z">
+<meta property="og:description" content="线程和共享数据   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个Java Stack,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(Primitive Type)和引用类型(Object References),例如你不可能将一个图片对象放到Stack里面,所有的对象数据都存在Heap里面.">
+<meta property="og:updated_time" content="2017-01-21T09:21:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java同步实现原理">
-<meta name="twitter:description" content="TOC{:toc}
-
-线程和共享数据   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个Java Stack,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(Primitive Type)和引用类型(Object References),例如你不可能将一个图片对象放到Stack里面,所有的对象数据都">
+<meta name="twitter:description" content="线程和共享数据   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个Java Stack,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(Primitive Type)和引用类型(Object References),例如你不可能将一个图片对象放到Stack里面,所有的对象数据都存在Heap里面.">
 
 
 
@@ -357,10 +351,7 @@
       
 
       
-        <ul>
-<li>TOC<br>{:toc}</li>
-</ul>
-<h1 id="线程和共享数据"><a href="#线程和共享数据" class="headerlink" title="线程和共享数据"></a>线程和共享数据</h1><p>   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个<code>Java Stack</code>,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(<code>Primitive Type</code>)和引用类型(<code>Object References</code>),例如你不可能将一个图片对象放到<code>Stack</code>里面,所有的对象数据都存在<code>Heap</code>里面. </p>
+        <h1 id="线程和共享数据"><a href="#线程和共享数据" class="headerlink" title="线程和共享数据"></a>线程和共享数据</h1><p>   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个<code>Java Stack</code>,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(<code>Primitive Type</code>)和引用类型(<code>Object References</code>),例如你不可能将一个图片对象放到<code>Stack</code>里面,所有的对象数据都存在<code>Heap</code>里面. </p>
 <p>   JVM中只存在一个<code>Heap</code>,所有的线程共享这个区域,<code>Heap</code>里皆对象,不可能存在孤立的原生类型或者对象引用,这两个必须是对象的一部分,数组也存放在<code>Heap</code>里,包括原生数组,在Java中,数据也是对象. </p>
 <p>   除了<code>Stack</code>和<code>Heap</code>,还有一个方法区(Method Area),用于存在类变量和静态变量,这个区域是所有线程共享的. </p>
 <h1 id="锁lock"><a href="#锁lock" class="headerlink" title="锁lock"></a>锁<code>lock</code></h1><p>   综上所述,JVM有两个内存区域是被所有线程共享的.   </p>
@@ -530,7 +521,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -539,7 +530,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -548,7 +539,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

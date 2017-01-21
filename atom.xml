@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.aboutchen.org/"/>
-  <updated>2017-01-21T08:35:12.000Z</updated>
+  <updated>2017-01-21T10:52:45.000Z</updated>
   <id>http://www.aboutchen.org/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>即时打印Mac剪切板内容(文字以及图片)</title>
+    <link href="http://www.aboutchen.org//blog/macos-print-clipboard.html"/>
+    <id>http://www.aboutchen.org//blog/macos-print-clipboard.html</id>
+    <published>2017-01-21T09:17:24.000Z</published>
+    <updated>2017-01-21T10:52:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;虽然有外接屏幕,但是有些资料还是打出来拿手里舒服斯基.比如想打印网页上某一段文字,或者某个图片,先复制到一个文档,然后保存打印,图片更甚,先下载,然后打开,再打印,如果想打印其中一部分,更麻烦,对于我这种超级懒人来说,不能忍.借助Alfred神器,实现了即时打印.图片会花几秒钟.</p>
+<h2 id="打印剪切板文字内容"><a href="#打印剪切板文字内容" class="headerlink" title="打印剪切板文字内容"></a>打印剪切板文字内容</h2><p>国外一个同学写的,直接用,但是打中文乱码,调试发现是写文件的时候不是utf8编码.改了就好了<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> <span class="built_in">the clipboard</span> <span class="keyword">to</span> «<span class="built_in">class</span> ktxt» <span class="keyword">of</span> ((<span class="built_in">the clipboard</span> <span class="keyword">as</span> <span class="built_in">text</span>) <span class="keyword">as</span> <span class="built_in">record</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span> the_clip <span class="keyword">to</span> <span class="built_in">the clipboard</span></div><div class="line"><span class="comment">--Comment out if not needed</span></div><div class="line"><span class="built_in">display dialog</span> the_clip</div><div class="line"></div><div class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"Finder"</span> <span class="keyword">to</span> <span class="keyword">set</span> the_folder <span class="keyword">to</span> (<span class="built_in">path to</span> temporary items folder) <span class="keyword">as</span> <span class="built_in">text</span></div><div class="line"><span class="comment">--If you want to keep the file use</span></div><div class="line"><span class="comment">--tell application "Finder" to set the_desktop to (path to desktop folder) as text</span></div><div class="line"></div><div class="line"><span class="keyword">set</span> target_file <span class="keyword">to</span> the_folder &amp; <span class="string">"JUNK"</span></div><div class="line"><span class="comment">--display dialog target_file</span></div><div class="line"></div><div class="line"><span class="comment">--do shell script "echo  " &amp; quoted form of the_clip &amp; " &gt;  " &amp; quoted form of target_file</span></div><div class="line"><span class="keyword">my</span> write_to_file(the_clip, target_file, <span class="literal">false</span>)</div><div class="line"></div><div class="line"><span class="keyword">set</span> posix_path <span class="keyword">to</span> <span class="keyword">POSIX path</span> <span class="keyword">of</span> target_file</div><div class="line"><span class="comment">--display dialog posix_path</span></div><div class="line"></div><div class="line"><span class="keyword">set</span> to_print <span class="keyword">to</span> <span class="string">"lp "</span> &amp; posix_path</div><div class="line"></div><div class="line"><span class="built_in">do shell script</span> to_print</div><div class="line"><span class="comment">--For testing</span></div><div class="line"><span class="comment">--tell application "Terminal"</span></div><div class="line"><span class="comment">--activate</span></div><div class="line"><span class="comment">--do script to_print</span></div><div class="line"><span class="comment">--end tell</span></div><div class="line"></div><div class="line"><span class="keyword">on</span> write_to_file(this_data, target_file, append_data)</div><div class="line">  <span class="keyword">try</span></div><div class="line">      <span class="keyword">set</span> <span class="keyword">the</span> target_file <span class="keyword">to</span> <span class="keyword">the</span> target_file <span class="keyword">as</span> <span class="built_in">text</span></div><div class="line">        <span class="keyword">set</span> <span class="keyword">the</span> open_target_file <span class="keyword">to</span> ¬</div><div class="line">          <span class="built_in">open for access</span> <span class="built_in">file</span> target_file <span class="keyword">with</span> <span class="built_in">write</span> permission</div><div class="line">      <span class="keyword">if</span> append_data <span class="keyword">is</span> <span class="literal">false</span> <span class="keyword">then</span> ¬</div><div class="line">          <span class="built_in">set eof</span> <span class="keyword">of</span> <span class="keyword">the</span> open_target_file <span class="keyword">to</span> <span class="number">0</span></div><div class="line">      <span class="built_in">write</span> this_data <span class="keyword">as</span> «<span class="built_in">class</span> utf8» <span class="keyword">to</span> <span class="keyword">the</span> open_target_file starting <span class="keyword">at</span> eof</div><div class="line">        <span class="built_in">close access</span> <span class="keyword">the</span> open_target_file</div><div class="line">        <span class="comment">--display dialog "file_done"</span></div><div class="line"><span class="built_in">        return</span> <span class="literal">true</span></div><div class="line">  <span class="keyword">on</span> <span class="keyword">error</span></div><div class="line">      <span class="keyword">try</span></div><div class="line">          <span class="built_in">close access</span> <span class="built_in">file</span> target_file</div><div class="line">      <span class="keyword">end</span> <span class="keyword">try</span></div><div class="line"><span class="built_in">        return</span> <span class="literal">false</span></div><div class="line">  <span class="keyword">end</span> <span class="keyword">try</span></div><div class="line"><span class="keyword">end</span> write_to_file</div></pre></td></tr></table></figure></p>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/20170121148499188758734.png" alt="20170121148499188758734.png"></p>
+<h2 id="打印截屏图片"><a href="#打印截屏图片" class="headerlink" title="打印截屏图片"></a>打印截屏图片</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;基本思路为,先截图,自带的截图也好,QQ截图也好,然后调用Preview,从剪切板创建文件,然后发打印指令.看码</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"Preview"</span>  </div><div class="line"> <span class="built_in">activate</span>  </div><div class="line"><span class="keyword">end</span> <span class="keyword">tell</span></div><div class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"System Events"</span></div><div class="line"> key code <span class="number">45</span> using &#123;command down&#125;</div><div class="line"> <span class="built_in">delay</span> <span class="number">0.5</span></div><div class="line"> key code <span class="number">35</span> using &#123;command down&#125;</div><div class="line"> <span class="built_in">delay</span> <span class="number">0.5</span></div><div class="line"> key code <span class="number">76</span></div><div class="line"> <span class="built_in">delay</span> <span class="number">5</span></div><div class="line"><span class="keyword">end</span> <span class="keyword">tell</span></div><div class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"Preview"</span> <span class="keyword">to</span> quit saving no</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;虽然有外接屏幕,但是有些资料还是打出来拿手里舒服斯基.比如想打印网页上某一段文字,或者某个图片,先复制到一个文档,然后保存打印,图片更甚,先下载,然后打开,再打印,如果想打印其中一部分,更麻烦,对于我这种超级懒人来说,不能忍.
+    
+    </summary>
+    
+      <category term="Mac小技巧" scheme="http://www.aboutchen.org/categories/Mac%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+    
+    
+      <category term="Alfred" scheme="http://www.aboutchen.org/tags/Alfred/"/>
+    
+      <category term="AppleScript" scheme="http://www.aboutchen.org/tags/AppleScript/"/>
+    
+  </entry>
   
   <entry>
     <title>Java volatile 实现原理</title>
@@ -84,12 +113,9 @@
     <link href="http://www.aboutchen.org//blog/how-jvm-performs-thread-synchronization.html"/>
     <id>http://www.aboutchen.org//blog/how-jvm-performs-thread-synchronization.html</id>
     <published>2016-04-29T16:00:00.000Z</published>
-    <updated>2017-01-21T06:52:58.000Z</updated>
+    <updated>2017-01-21T09:21:33.000Z</updated>
     
-    <content type="html"><![CDATA[<ul>
-<li>TOC<br>{:toc}</li>
-</ul>
-<h1 id="线程和共享数据"><a href="#线程和共享数据" class="headerlink" title="线程和共享数据"></a>线程和共享数据</h1><p>   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个<code>Java Stack</code>,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(<code>Primitive Type</code>)和引用类型(<code>Object References</code>),例如你不可能将一个图片对象放到<code>Stack</code>里面,所有的对象数据都存在<code>Heap</code>里面. </p>
+    <content type="html"><![CDATA[<h1 id="线程和共享数据"><a href="#线程和共享数据" class="headerlink" title="线程和共享数据"></a>线程和共享数据</h1><p>   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个<code>Java Stack</code>,这里面有本地变量,参数和函数返回结果,这些数据是禁止其他线程访问的,并且这些数据只可能是原生类型(<code>Primitive Type</code>)和引用类型(<code>Object References</code>),例如你不可能将一个图片对象放到<code>Stack</code>里面,所有的对象数据都存在<code>Heap</code>里面. </p>
 <p>   JVM中只存在一个<code>Heap</code>,所有的线程共享这个区域,<code>Heap</code>里皆对象,不可能存在孤立的原生类型或者对象引用,这两个必须是对象的一部分,数组也存放在<code>Heap</code>里,包括原生数组,在Java中,数据也是对象. </p>
 <p>   除了<code>Stack</code>和<code>Heap</code>,还有一个方法区(Method Area),用于存在类变量和静态变量,这个区域是所有线程共享的. </p>
 <h1 id="锁lock"><a href="#锁lock" class="headerlink" title="锁lock"></a>锁<code>lock</code></h1><p>   综上所述,JVM有两个内存区域是被所有线程共享的.   </p>
@@ -143,10 +169,7 @@
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;TOC&lt;br&gt;{:toc}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;线程和共享数据&quot;&gt;&lt;a href=&quot;#线程和共享数据&quot; class=&quot;headerlink&quot; title=&quot;线程和共享数据&quot;&gt;&lt;/a&gt;线程和共享数据&lt;/h1&gt;&lt;p&gt;   Java特点之一就是支持语
+      &lt;h1 id=&quot;线程和共享数据&quot;&gt;&lt;a href=&quot;#线程和共享数据&quot; class=&quot;headerlink&quot; title=&quot;线程和共享数据&quot;&gt;&lt;/a&gt;线程和共享数据&lt;/h1&gt;&lt;p&gt;   Java特点之一就是支持语言层面的多线程编程,在JVM中,每创建一个线程,就会为该线程分配一个
     
     </summary>
     
@@ -514,6 +537,31 @@
   </entry>
   
   <entry>
+    <title>Android使用MxPlayer打开优酷视频</title>
+    <link href="http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html"/>
+    <id>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</id>
+    <published>2014-08-23T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
+    
+    </summary>
+    
+      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
+    
+    
+      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android推送迅雷离线任务到Aria2</title>
     <link href="http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html"/>
     <id>http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html</id>
@@ -555,36 +603,11 @@
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
     
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
       <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
     
-      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android使用MxPlayer打开优酷视频</title>
-    <link href="http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html"/>
-    <id>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</id>
-    <published>2014-08-23T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
-<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
-<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
       <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
+    
+      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
@@ -909,32 +932,29 @@
   </entry>
   
   <entry>
-    <title>Jekyll 备忘</title>
-    <link href="http://www.aboutchen.org//blog/jekyll-summary.html"/>
-    <id>http://www.aboutchen.org//blog/jekyll-summary.html</id>
+    <title>Sublime Text 常用插件汇总</title>
+    <link href="http://www.aboutchen.org//blog/sublime-text-plugin-summary.html"/>
+    <id>http://www.aboutchen.org//blog/sublime-text-plugin-summary.html</id>
     <published>2014-08-09T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:16.000Z</updated>
+    <updated>2017-01-21T06:53:14.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
+    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
+<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;持续更新  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
+      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
     
     </summary>
     
+      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
     
-      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
+    
+      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
     
   </entry>
   
@@ -974,33 +994,6 @@
     
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Sublime Text 常用插件汇总</title>
-    <link href="http://www.aboutchen.org//blog/sublime-text-plugin-summary.html"/>
-    <id>http://www.aboutchen.org//blog/sublime-text-plugin-summary.html</id>
-    <published>2014-08-09T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
-    
-    </summary>
-    
-      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
-    
-    
-      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
     
   </entry>
   

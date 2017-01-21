@@ -267,6 +267,137 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/create-spring-application-context-with-string.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/create-spring-application-context-with-string.html" itemprop="url">
+                  用String来创建Spring的ApplicationContext
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-05T00:00:00+08:00">
+                2014-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/create-spring-application-context-with-string.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/create-spring-application-context-with-string.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Google来的,做个备忘</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">String contextXML = <span class="string">"&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n"</span> +</div><div class="line">        <span class="string">"&lt;beans xmlns=\"http://www.springframework.org/schema/beans\"\n"</span> +</div><div class="line">        <span class="string">"       xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"</span> +</div><div class="line">        <span class="string">"       xsi:schemaLocation=\"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd\"&gt;\n"</span> +</div><div class="line">        <span class="string">"\n"</span> +</div><div class="line">        <span class="string">"&lt;/beans&gt;"</span>;</div><div class="line">Resource resource = <span class="keyword">new</span> ByteArrayResource(contextXML.getBytes());</div><div class="line">springContext = <span class="keyword">new</span> GenericXmlApplicationContext();</div><div class="line">springContext.load(resource);</div></pre></td></tr></table></figure>
+<p>以及代码创建bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) springContext.getBeanFactory();</div><div class="line">ClassPathScanningCandidateComponentProvider scanner =</div><div class="line">        <span class="keyword">new</span> ClassPathScanningCandidateComponentProvider(<span class="keyword">false</span>);</div><div class="line">scanner.addIncludeFilter(<span class="keyword">new</span> AnnotationTypeFilter(SpringService.class));</div><div class="line"><span class="keyword">for</span> (BeanDefinition beanDefinition : scanner.findCandidateComponents(ConstantsKit.DEFAULT_PACKAGE)) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        SpringService anno = Class.forName(beanDefinition.getBeanClassName()).getAnnotation(SpringService.class);</div><div class="line">        beanDefinition.setScope(anno.value().name());</div><div class="line">        beanFactory.registerBeanDefinition(beanDefinition.getBeanClassName(),beanDefinition);</div><div class="line">    &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/java-apt-simple-tutorial.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -767,6 +898,159 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/use-mxplayer-open-youku-video.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/use-mxplayer-open-youku-video.html" itemprop="url">
+                  Android使用MxPlayer打开优酷视频
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-24T00:00:00+08:00">
+                2014-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小作品/" itemprop="url" rel="index">
+                    <span itemprop="name">小作品</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/use-mxplayer-open-youku-video.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/use-mxplayer-open-youku-video.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/push-lixian-task-to-aria2-on-android.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -899,159 +1183,6 @@
 <h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="http://ok4c1axne.bkt.clouddn.com/2017012139416Screenshot_2014-08-24-12-22-15.png" alt="2017012139416Screenshot_2014-08-24-12-22-15.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/201701214213Screenshot_2014-08-24-12-23-25.png" alt="201701214213Screenshot_2014-08-24-12-23-25.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012183172Screenshot_2014-08-24-12-23-30.png" alt="2017012183172Screenshot_2014-08-24-12-23-30.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012156811Screenshot_2014-08-24-12-23-39.png" alt="2017012156811Screenshot_2014-08-24-12-23-39.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012155129Screenshot_2014-08-24-12-23-46.png" alt="2017012155129Screenshot_2014-08-24-12-23-46.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012171619Screenshot_2014-08-24-12-24-03.png" alt="2017012171619Screenshot_2014-08-24-12-24-03.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012164619Screenshot_2014-08-24-12-24-12.png" alt="2017012164619Screenshot_2014-08-24-12-24-12.png"></p>
 <h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/use-mxplayer-open-youku-video.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/use-mxplayer-open-youku-video.html" itemprop="url">
-                  Android使用MxPlayer打开优酷视频
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-24T00:00:00+08:00">
-                2014-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/小作品/" itemprop="url" rel="index">
-                    <span itemprop="name">小作品</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/use-mxplayer-open-youku-video.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/use-mxplayer-open-youku-video.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
-<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
-<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>
           
         
       
@@ -1665,7 +1796,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/jekyll-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/sublime-text-plugin-summary.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -1690,8 +1821,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/jekyll-summary.html" itemprop="url">
-                  Jekyll 备忘
+                <a class="post-title-link" href="/blog/sublime-text-plugin-summary.html" itemprop="url">
+                  Sublime Text 常用插件汇总
                 </a>
               
             
@@ -1718,6 +1849,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
+                    <span itemprop="name">技巧备忘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1726,8 +1879,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/jekyll-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/jekyll-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/sublime-text-plugin-summary.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/sublime-text-plugin-summary.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1755,13 +1908,11 @@
       
         
           
-            <blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
+            <h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
+<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
 
           
         
@@ -1955,161 +2106,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/sublime-text-plugin-summary.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/sublime-text-plugin-summary.html" itemprop="url">
-                  Sublime Text 常用插件汇总
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-10T00:00:00+08:00">
-                2014-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/sublime-text-plugin-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/sublime-text-plugin-summary.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2157,7 +2153,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2166,7 +2162,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2175,7 +2171,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

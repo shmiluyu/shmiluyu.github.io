@@ -158,42 +158,55 @@
   </entry>
   
   <entry>
-    <title>在Openwrt上安装GIT</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-09-install-git-on-openwrt.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-09-install-git-on-openwrt.html</id>
+    <title>Ubuntu 安装Fcitx输入法,并设置支持Sublime Text2</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html</id>
     <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:18.000Z</updated>
+    <updated>2017-01-21T06:53:19.000Z</updated>
     
-    <content type="html"><![CDATA[<p>本文系原创<br>作者：Shmiluyu<br>出处：<a href="http://aboutchen.org/blog/install-git-on-openwrt/" target="_blank" rel="external">http://aboutchen.org/blog/install-git-on-openwrt/</a><br>声明：本文采用以下协议进行授权： <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
-<p>迷上了git这个神器,自家的路由器上装的有svn,感觉svn弱爆了,于是乎想给路由器装上git<br>baidu和google走起,搜了一天,没搜到教程.只能自己来了.过程很坎坷,但是装好之后happy了  </p>
-<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><p>这个直接有包,直接按照就行,请安装到u盘里面,flash太小了.挂u盘教程<a href="http://blog.csdn.net/jk110333/article/details/11920163" target="_blank" rel="external">点击这里</a>  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install git --dest usb</div></pre></td></tr></table></figure>
-<p>下面把U盘里面的git相关都软链接到<strong>/user/bin</strong>,要使用绝对路径  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-pack /usr/bin/git-upload-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-archive /usr/bin/git-upload-archive</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git-receive-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git</div></pre></td></tr></table></figure>
-<h3 id="2-灰常暴力的创建用户git"><a href="#2-灰常暴力的创建用户git" class="headerlink" title="2. 灰常暴力的创建用户git"></a>2. 灰常暴力的创建用户git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:1000:git:/home/git:/bin/ash'</span> vi &gt;&gt;/etc/passwd</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:15020:0:99999:7:::'</span> &gt;&gt;/etc/shadow</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:'</span> &gt;&gt;/etc/group</div></pre></td></tr></table></figure>
-<h3 id="3-创建git用户目录并授权"><a href="#3-创建git用户目录并授权" class="headerlink" title="3. 创建git用户目录并授权"></a>3. 创建git用户目录并授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /home</div><div class="line">$ mkdir /home/git</div><div class="line">$ midir /home/git/.ssh</div><div class="line">$ chown -R git:git /home/git</div></pre></td></tr></table></figure>
-<p>在刚才创建的.ssh目录下面创建一个文件 <strong>authorized_keys</strong>  </p>
-<h3 id="4-电脑上创建SSH-Key"><a href="#4-电脑上创建SSH-Key" class="headerlink" title="4. 电脑上创建SSH Key"></a>4. 电脑上创建SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></div><div class="line">$ 其他操作系统自行百度</div></pre></td></tr></table></figure>
-<p>操作没问题的话,在用户主目录找到.ssh目录,里面有两个文件,<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,一个私钥,一个公钥.<br>把公钥里面的内容拷贝到第3步创建的<strong>authorized_keys</strong>里面<br>以后想添加一台电脑就是第4步,不断的往<strong>authorized_keys</strong>添加就是了  </p>
-<h3 id="5-git操作"><a href="#5-git操作" class="headerlink" title="5. git操作"></a>5. git操作</h3><p>路由器上随便创建一个目录,我是创建到移动硬盘里面了  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda3/gitrep/demo.git</div><div class="line">$ git init --bare demo.git</div><div class="line">$ chown -R git:git demo.git</div><div class="line">$ 上面这句一定是要在git初始化之后执行.在前面执行无效果</div></pre></td></tr></table></figure>
-<h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
-<p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
-<p>本文系原创,如有转载,麻烦请注明出处.</p>
+    <content type="html"><![CDATA[<p>安装输入法教程源自<a href="http://www.linuxidc.com/Linux/2013-07/87062.htm" target="_blank" rel="external">这里</a>,这里仅仅是排个好版看着舒服  </p>
+<hr>
+<h3 id="首先卸载ibus输入法"><a href="#首先卸载ibus输入法" class="headerlink" title="首先卸载ibus输入法"></a>首先卸载ibus输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get remove ibus</div></pre></td></tr></table></figure>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo add-apt-repository ppa:fcitx-team/nightly  </div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
+<p>注销或者重启即可  </p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo sudo gedit /etc/apt/sources.list</div></pre></td></tr></table></figure>
+<p>在打开的文件中添加下面两行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">deb http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main  </div><div class="line">deb-src http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main</div></pre></td></tr></table></figure>
+<p>终端执行  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
+<p>注销或者重启即可  </p>
+<hr>
+<h3 id="让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里"><a href="#让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里" class="headerlink" title="让输入法支持Sublime Text 2, Sublime Text2的安装教程请点击这里"></a>让输入法支持Sublime Text 2, Sublime Text2的安装教程请<a href="http://www.cnblogs.com/fanyong/p/3462023.html" target="_blank" rel="external">点击这里</a></h3><h4 id="1-保存下述代码为-sublime-imfix-c-文件"><a href="#1-保存下述代码为-sublime-imfix-c-文件" class="headerlink" title="1. 保存下述代码为 sublime-imfix.c 文件"></a>1. 保存下述代码为 sublime-imfix.c 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sublime-imfix.c</div><div class="line">Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.</div><div class="line">By Cjacker Huang &lt;jianzhong.huang at i-soft.com.cn&gt;</div><div class="line"> </div><div class="line">gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC</div><div class="line">LD_PRELOAD=./libsublime-imfix.so sublime_text</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gtk/gtk.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gdk/gdkx.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> GdkSegment GdkRegionBox;</div><div class="line"> </div><div class="line"><span class="keyword">struct</span> _GdkRegion</div><div class="line">&#123;</div><div class="line">  <span class="keyword">long</span> size;</div><div class="line">  <span class="keyword">long</span> numRects;</div><div class="line">  GdkRegionBox *rects;</div><div class="line">  GdkRegionBox extents;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">GtkIMContext *local_context;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span></span></div><div class="line"><span class="title">gdk_region_get_clipbox</span> <span class="params">(<span class="keyword">const</span> GdkRegion *region,</span></div><div class="line">            GdkRectangle    *rectangle)</div><div class="line">&#123;</div><div class="line">  g_return_if_fail (region != <span class="literal">NULL</span>);</div><div class="line">  g_return_if_fail (rectangle != <span class="literal">NULL</span>);</div><div class="line"> </div><div class="line">  rectangle-&gt;x = region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;y = region-&gt;extents.y1;</div><div class="line">  rectangle-&gt;width = region-&gt;extents.x2 - region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;height = region-&gt;extents.y2 - region-&gt;extents.y1;</div><div class="line">  GdkRectangle rect;</div><div class="line">  rect.x = rectangle-&gt;x;</div><div class="line">  rect.y = rectangle-&gt;y;</div><div class="line">  rect.width = <span class="number">0</span>;</div><div class="line">  rect.height = rectangle-&gt;height;</div><div class="line">  <span class="comment">//The caret width is 2;</span></div><div class="line">  <span class="comment">//Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.</span></div><div class="line">  <span class="keyword">if</span>(rectangle-&gt;width == <span class="number">2</span> &amp;&amp; GTK_IS_IM_CONTEXT(local_context)) &#123;</div><div class="line">        gtk_im_context_set_cursor_location(local_context, rectangle);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//this is needed, for example, if you input something in file dialog and return back the edit area</span></div><div class="line"><span class="comment">//context will lost, so here we set it again.</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">static</span> GdkFilterReturn <span class="title">event_filter</span> <span class="params">(GdkXEvent *xevent, GdkEvent *event, gpointer im_context)</span></span></div><div class="line">&#123;</div><div class="line">    XEvent *xev = (XEvent *)xevent;</div><div class="line">    <span class="keyword">if</span>(xev-&gt;type == KeyRelease &amp;&amp; GTK_IS_IM_CONTEXT(im_context)) &#123;</div><div class="line">       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),<span class="string">"window"</span>);</div><div class="line">       <span class="keyword">if</span>(GDK_IS_WINDOW(win))</div><div class="line">         gtk_im_context_set_client_window(im_context, win);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> GDK_FILTER_CONTINUE;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gtk_im_context_set_client_window</span> <span class="params">(GtkIMContext *context,</span></span></div><div class="line">          GdkWindow    *window)</div><div class="line">&#123;</div><div class="line">  GtkIMContextClass *klass;</div><div class="line">  g_return_if_fail (GTK_IS_IM_CONTEXT (context));</div><div class="line">  klass = GTK_IM_CONTEXT_GET_CLASS (context);</div><div class="line">  <span class="keyword">if</span> (klass-&gt;set_client_window)</div><div class="line">    klass-&gt;set_client_window (context, window);</div><div class="line"> </div><div class="line">  <span class="keyword">if</span>(!GDK_IS_WINDOW (window))</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  g_object_set_data(G_OBJECT(context),<span class="string">"window"</span>,window);</div><div class="line">  <span class="keyword">int</span> width = gdk_window_get_width(window);</div><div class="line">  <span class="keyword">int</span> height = gdk_window_get_height(window);</div><div class="line">  <span class="keyword">if</span>(width != <span class="number">0</span> &amp;&amp; height !=<span class="number">0</span>) &#123;</div><div class="line">    gtk_im_context_focus_in(context);</div><div class="line">    local_context = context;</div><div class="line">  &#125;</div><div class="line">  gdk_window_add_filter (window, event_filter, context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-安装C-C-的编译环境和gtk-libgtk2-0-dev"><a href="#2-安装C-C-的编译环境和gtk-libgtk2-0-dev" class="headerlink" title="2. 安装C/C++的编译环境和gtk libgtk2.0-dev"></a>2. 安装C/C++的编译环境和gtk libgtk2.0-dev</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install build-essential</div><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
+<h4 id="3-编译共享内库"><a href="#3-编译共享内库" class="headerlink" title="3. 编译共享内库"></a>3. 编译共享内库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` <span class="_">-f</span>PIC</div></pre></td></tr></table></figure>
+<h4 id="4-启动-Sublime-Text-2"><a href="#4-启动-Sublime-Text-2" class="headerlink" title="4. 启动 Sublime Text 2"></a>4. 启动 Sublime Text 2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ LD_PRELOAD=./libsublime-imfix.so sublime_text</div></pre></td></tr></table></figure>
+<p>我没有在桌面放图标的需求,有需求的看原文<a href="http://my.oschina.net/wugaoxing/blog/121281" target="_blank" rel="external">这里</a><br>我倒是需要在终端启动,所以做了个sh脚本并加到/usr/bin目录里面<br>先是链接到bin  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /usr/lib/Sublime\ Text\ 2/sublime_text /usr/bin/sb</div></pre></td></tr></table></figure>
+<p>然后写脚本sb.sh  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment"># Android Studio offline inspection script.</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment">#</span></div><div class="line">LD_PRELOAD=/usr/lib/libsublime-imfix.so sb</div></pre></td></tr></table></figure>
+<p>然后再添加到PATH  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> ~/sb.sh /usr/bin/sb2</div></pre></td></tr></table></figure>
+<blockquote>
+<p>转的和参考的博文我努力都附上链接地址,如果不幸侵了你的权,你过来打我啊.</p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;本文系原创&lt;br&gt;作者：Shmiluyu&lt;br&gt;出处：&lt;a href=&quot;http://aboutchen.org/blog/install-git-on-openwrt/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://aboutchen.or
+      &lt;p&gt;安装输入法教程源自&lt;a href=&quot;http://www.linuxidc.com/Linux/2013-07/87062.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;,这里仅仅是排个好版看着舒服  &lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=
     
     </summary>
     
-      <category term="原创文章" scheme="http://www.aboutchen.org/categories/%E5%8E%9F%E5%88%9B%E6%96%87%E7%AB%A0/"/>
+      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
     
     
-      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
+      <category term="ubuntu" scheme="http://www.aboutchen.org/tags/ubuntu/"/>
     
-      <category term="git" scheme="http://www.aboutchen.org/tags/git/"/>
+      <category term="fcitx" scheme="http://www.aboutchen.org/tags/fcitx/"/>
+    
+      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
     
   </entry>
   
@@ -234,6 +247,36 @@
   </entry>
   
   <entry>
+    <title>Jekyll 备忘</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>持续更新  </p>
+</blockquote>
+<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;持续更新  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
+    
+    </summary>
+    
+    
+      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Openwrt配置汇总</title>
     <link href="http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html</id>
@@ -269,36 +312,6 @@
     
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Jekyll 备忘</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-10-jekyll-summary.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;持续更新  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
-    
-    </summary>
-    
-    
-      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
     
   </entry>
   
@@ -776,87 +789,79 @@
   </entry>
   
   <entry>
-    <title>Ubuntu 安装Fcitx输入法,并设置支持Sublime Text2</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-09-install-fcitx-on-ubuntu.html</id>
+    <title>在Openwrt上安装GIT</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-09-install-git-on-openwrt.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-09-install-git-on-openwrt.html</id>
     <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:19.000Z</updated>
+    <updated>2017-01-21T06:53:18.000Z</updated>
     
-    <content type="html"><![CDATA[<p>安装输入法教程源自<a href="http://www.linuxidc.com/Linux/2013-07/87062.htm" target="_blank" rel="external">这里</a>,这里仅仅是排个好版看着舒服  </p>
-<hr>
-<h3 id="首先卸载ibus输入法"><a href="#首先卸载ibus输入法" class="headerlink" title="首先卸载ibus输入法"></a>首先卸载ibus输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get remove ibus</div></pre></td></tr></table></figure>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo add-apt-repository ppa:fcitx-team/nightly  </div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo sudo gedit /etc/apt/sources.list</div></pre></td></tr></table></figure>
-<p>在打开的文件中添加下面两行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">deb http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main  </div><div class="line">deb-src http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main</div></pre></td></tr></table></figure>
-<p>终端执行  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<hr>
-<h3 id="让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里"><a href="#让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里" class="headerlink" title="让输入法支持Sublime Text 2, Sublime Text2的安装教程请点击这里"></a>让输入法支持Sublime Text 2, Sublime Text2的安装教程请<a href="http://www.cnblogs.com/fanyong/p/3462023.html" target="_blank" rel="external">点击这里</a></h3><h4 id="1-保存下述代码为-sublime-imfix-c-文件"><a href="#1-保存下述代码为-sublime-imfix-c-文件" class="headerlink" title="1. 保存下述代码为 sublime-imfix.c 文件"></a>1. 保存下述代码为 sublime-imfix.c 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sublime-imfix.c</div><div class="line">Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.</div><div class="line">By Cjacker Huang &lt;jianzhong.huang at i-soft.com.cn&gt;</div><div class="line"> </div><div class="line">gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC</div><div class="line">LD_PRELOAD=./libsublime-imfix.so sublime_text</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gtk/gtk.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gdk/gdkx.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> GdkSegment GdkRegionBox;</div><div class="line"> </div><div class="line"><span class="keyword">struct</span> _GdkRegion</div><div class="line">&#123;</div><div class="line">  <span class="keyword">long</span> size;</div><div class="line">  <span class="keyword">long</span> numRects;</div><div class="line">  GdkRegionBox *rects;</div><div class="line">  GdkRegionBox extents;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">GtkIMContext *local_context;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span></span></div><div class="line"><span class="title">gdk_region_get_clipbox</span> <span class="params">(<span class="keyword">const</span> GdkRegion *region,</span></div><div class="line">            GdkRectangle    *rectangle)</div><div class="line">&#123;</div><div class="line">  g_return_if_fail (region != <span class="literal">NULL</span>);</div><div class="line">  g_return_if_fail (rectangle != <span class="literal">NULL</span>);</div><div class="line"> </div><div class="line">  rectangle-&gt;x = region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;y = region-&gt;extents.y1;</div><div class="line">  rectangle-&gt;width = region-&gt;extents.x2 - region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;height = region-&gt;extents.y2 - region-&gt;extents.y1;</div><div class="line">  GdkRectangle rect;</div><div class="line">  rect.x = rectangle-&gt;x;</div><div class="line">  rect.y = rectangle-&gt;y;</div><div class="line">  rect.width = <span class="number">0</span>;</div><div class="line">  rect.height = rectangle-&gt;height;</div><div class="line">  <span class="comment">//The caret width is 2;</span></div><div class="line">  <span class="comment">//Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.</span></div><div class="line">  <span class="keyword">if</span>(rectangle-&gt;width == <span class="number">2</span> &amp;&amp; GTK_IS_IM_CONTEXT(local_context)) &#123;</div><div class="line">        gtk_im_context_set_cursor_location(local_context, rectangle);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//this is needed, for example, if you input something in file dialog and return back the edit area</span></div><div class="line"><span class="comment">//context will lost, so here we set it again.</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">static</span> GdkFilterReturn <span class="title">event_filter</span> <span class="params">(GdkXEvent *xevent, GdkEvent *event, gpointer im_context)</span></span></div><div class="line">&#123;</div><div class="line">    XEvent *xev = (XEvent *)xevent;</div><div class="line">    <span class="keyword">if</span>(xev-&gt;type == KeyRelease &amp;&amp; GTK_IS_IM_CONTEXT(im_context)) &#123;</div><div class="line">       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),<span class="string">"window"</span>);</div><div class="line">       <span class="keyword">if</span>(GDK_IS_WINDOW(win))</div><div class="line">         gtk_im_context_set_client_window(im_context, win);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> GDK_FILTER_CONTINUE;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gtk_im_context_set_client_window</span> <span class="params">(GtkIMContext *context,</span></span></div><div class="line">          GdkWindow    *window)</div><div class="line">&#123;</div><div class="line">  GtkIMContextClass *klass;</div><div class="line">  g_return_if_fail (GTK_IS_IM_CONTEXT (context));</div><div class="line">  klass = GTK_IM_CONTEXT_GET_CLASS (context);</div><div class="line">  <span class="keyword">if</span> (klass-&gt;set_client_window)</div><div class="line">    klass-&gt;set_client_window (context, window);</div><div class="line"> </div><div class="line">  <span class="keyword">if</span>(!GDK_IS_WINDOW (window))</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  g_object_set_data(G_OBJECT(context),<span class="string">"window"</span>,window);</div><div class="line">  <span class="keyword">int</span> width = gdk_window_get_width(window);</div><div class="line">  <span class="keyword">int</span> height = gdk_window_get_height(window);</div><div class="line">  <span class="keyword">if</span>(width != <span class="number">0</span> &amp;&amp; height !=<span class="number">0</span>) &#123;</div><div class="line">    gtk_im_context_focus_in(context);</div><div class="line">    local_context = context;</div><div class="line">  &#125;</div><div class="line">  gdk_window_add_filter (window, event_filter, context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2-安装C-C-的编译环境和gtk-libgtk2-0-dev"><a href="#2-安装C-C-的编译环境和gtk-libgtk2-0-dev" class="headerlink" title="2. 安装C/C++的编译环境和gtk libgtk2.0-dev"></a>2. 安装C/C++的编译环境和gtk libgtk2.0-dev</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install build-essential</div><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
-<h4 id="3-编译共享内库"><a href="#3-编译共享内库" class="headerlink" title="3. 编译共享内库"></a>3. 编译共享内库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` <span class="_">-f</span>PIC</div></pre></td></tr></table></figure>
-<h4 id="4-启动-Sublime-Text-2"><a href="#4-启动-Sublime-Text-2" class="headerlink" title="4. 启动 Sublime Text 2"></a>4. 启动 Sublime Text 2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ LD_PRELOAD=./libsublime-imfix.so sublime_text</div></pre></td></tr></table></figure>
-<p>我没有在桌面放图标的需求,有需求的看原文<a href="http://my.oschina.net/wugaoxing/blog/121281" target="_blank" rel="external">这里</a><br>我倒是需要在终端启动,所以做了个sh脚本并加到/usr/bin目录里面<br>先是链接到bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /usr/lib/Sublime\ Text\ 2/sublime_text /usr/bin/sb</div></pre></td></tr></table></figure>
-<p>然后写脚本sb.sh  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment"># Android Studio offline inspection script.</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment">#</span></div><div class="line">LD_PRELOAD=/usr/lib/libsublime-imfix.so sb</div></pre></td></tr></table></figure>
-<p>然后再添加到PATH  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> ~/sb.sh /usr/bin/sb2</div></pre></td></tr></table></figure>
-<blockquote>
-<p>转的和参考的博文我努力都附上链接地址,如果不幸侵了你的权,你过来打我啊.</p>
-</blockquote>
+    <content type="html"><![CDATA[<p>本文系原创<br>作者：Shmiluyu<br>出处：<a href="http://aboutchen.org/blog/install-git-on-openwrt/" target="_blank" rel="external">http://aboutchen.org/blog/install-git-on-openwrt/</a><br>声明：本文采用以下协议进行授权： <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
+<p>迷上了git这个神器,自家的路由器上装的有svn,感觉svn弱爆了,于是乎想给路由器装上git<br>baidu和google走起,搜了一天,没搜到教程.只能自己来了.过程很坎坷,但是装好之后happy了  </p>
+<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><p>这个直接有包,直接按照就行,请安装到u盘里面,flash太小了.挂u盘教程<a href="http://blog.csdn.net/jk110333/article/details/11920163" target="_blank" rel="external">点击这里</a>  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install git --dest usb</div></pre></td></tr></table></figure>
+<p>下面把U盘里面的git相关都软链接到<strong>/user/bin</strong>,要使用绝对路径  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-pack /usr/bin/git-upload-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-archive /usr/bin/git-upload-archive</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git-receive-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git</div></pre></td></tr></table></figure>
+<h3 id="2-灰常暴力的创建用户git"><a href="#2-灰常暴力的创建用户git" class="headerlink" title="2. 灰常暴力的创建用户git"></a>2. 灰常暴力的创建用户git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:1000:git:/home/git:/bin/ash'</span> vi &gt;&gt;/etc/passwd</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:15020:0:99999:7:::'</span> &gt;&gt;/etc/shadow</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:'</span> &gt;&gt;/etc/group</div></pre></td></tr></table></figure>
+<h3 id="3-创建git用户目录并授权"><a href="#3-创建git用户目录并授权" class="headerlink" title="3. 创建git用户目录并授权"></a>3. 创建git用户目录并授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /home</div><div class="line">$ mkdir /home/git</div><div class="line">$ midir /home/git/.ssh</div><div class="line">$ chown -R git:git /home/git</div></pre></td></tr></table></figure>
+<p>在刚才创建的.ssh目录下面创建一个文件 <strong>authorized_keys</strong>  </p>
+<h3 id="4-电脑上创建SSH-Key"><a href="#4-电脑上创建SSH-Key" class="headerlink" title="4. 电脑上创建SSH Key"></a>4. 电脑上创建SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></div><div class="line">$ 其他操作系统自行百度</div></pre></td></tr></table></figure>
+<p>操作没问题的话,在用户主目录找到.ssh目录,里面有两个文件,<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,一个私钥,一个公钥.<br>把公钥里面的内容拷贝到第3步创建的<strong>authorized_keys</strong>里面<br>以后想添加一台电脑就是第4步,不断的往<strong>authorized_keys</strong>添加就是了  </p>
+<h3 id="5-git操作"><a href="#5-git操作" class="headerlink" title="5. git操作"></a>5. git操作</h3><p>路由器上随便创建一个目录,我是创建到移动硬盘里面了  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda3/gitrep/demo.git</div><div class="line">$ git init --bare demo.git</div><div class="line">$ chown -R git:git demo.git</div><div class="line">$ 上面这句一定是要在git初始化之后执行.在前面执行无效果</div></pre></td></tr></table></figure>
+<h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
+<p>本文系原创,如有转载,麻烦请注明出处.</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;安装输入法教程源自&lt;a href=&quot;http://www.linuxidc.com/Linux/2013-07/87062.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;,这里仅仅是排个好版看着舒服  &lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=
+      &lt;p&gt;本文系原创&lt;br&gt;作者：Shmiluyu&lt;br&gt;出处：&lt;a href=&quot;http://aboutchen.org/blog/install-git-on-openwrt/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://aboutchen.or
     
     </summary>
     
-      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
+      <category term="原创文章" scheme="http://www.aboutchen.org/categories/%E5%8E%9F%E5%88%9B%E6%96%87%E7%AB%A0/"/>
     
     
-      <category term="ubuntu" scheme="http://www.aboutchen.org/tags/ubuntu/"/>
+      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
     
-      <category term="fcitx" scheme="http://www.aboutchen.org/tags/fcitx/"/>
-    
-      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
+      <category term="git" scheme="http://www.aboutchen.org/tags/git/"/>
     
   </entry>
   
   <entry>
-    <title>Java APT简易教程</title>
-    <link href="http://www.aboutchen.org//blog/2014-09-23-java-apt-simple-tutorial.html"/>
-    <id>http://www.aboutchen.org//blog/2014-09-23-java-apt-simple-tutorial.html</id>
+    <title>为openwrt打包一个ipk程序</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-30-package-a-c-program-for-openwrt.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-30-package-a-c-program-for-openwrt.html</id>
     <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:06.000Z</updated>
+    <updated>2017-01-21T06:53:07.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-编写一个Processor"><a href="#1-编写一个Processor" class="headerlink" title="1. 编写一个Processor"></a>1. 编写一个Processor</h3><p>自<code>JDK1.6</code>之后,官方统一使用<code>javax.annotation.processing.Processor</code><br>只需要集成<code>AbstractProcessor</code>即可  </p>
-<p>首先写一个简单的注解  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">package</span> demo;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Print &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>编写Processor</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@SupportedAnnotationTypes</span>(&#123;<span class="string">"demo.Print"</span>&#125;)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourceAnnotationProcessor</span> <span class="keyword">extends</span> <span class="title">AbstractProcessor</span> </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">process</span><span class="params">(Set&lt;? extends TypeElement&gt; annotations, RoundEnvironment roundEnv)</span> </span>&#123;</div><div class="line">		<span class="comment">//在这里处理注解</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>还需要在META-INF中导出服务<br>创建一个文件<code>META-INF.services.javax.annotation.processing.Processor</code><br>文件内容就是你要导出的<code>Processor</code>类名</p>
-<h3 id="2-重点说调试部分"><a href="#2-重点说调试部分" class="headerlink" title="2. 重点说调试部分"></a>2. 重点说调试部分</h3><p>需要把javac设置为debug模式,在<code>IntelliJ IDEA 13</code>里面设置步骤为<br><code>File</code>—-<code>Settings</code>—-<code>Compiler</code>—-<code>Additional build process VM options</code><br>添加<code>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5003</code>  </p>
-<p>然后建一个远程调试就行了.</p>
-]]></content>
+    <content type="html"><![CDATA[<p>前面一篇说了如何编译一个可以在<code>openwrt</code>上面运行的C程序<br>这篇文章是说明如何打包成ipk  </p>
+<h3 id="1-获取Openwrt-SDK"><a href="#1-获取Openwrt-SDK" class="headerlink" title="1. 获取Openwrt SDK"></a>1. 获取<code>Openwrt SDK</code></h3><p>这里有两种方法  </p>
+<ul>
+<li>直接下载编译好的<a href="http://downloads.openwrt.org/" target="_blank" rel="external">http://downloads.openwrt.org/</a></li>
+<li>自己编译,<code>make menuconfig</code>,选中<code>Build the Openwrt SDK</code>,生成的SDK包在<code>bin/ar71xx</code>目录下面</li>
+</ul>
+<h3 id="2-将SDK包解压到任意路径"><a href="#2-将SDK包解压到任意路径" class="headerlink" title="2. 将SDK包解压到任意路径."></a>2. 将<code>SDK</code>包解压到任意路径.</h3><h3 id="3-在SDK-package目录下面-创建一个helloop目录"><a href="#3-在SDK-package目录下面-创建一个helloop目录" class="headerlink" title="3. 在SDK/package目录下面 创建一个helloop目录"></a>3. 在<code>SDK/package</code>目录下面 创建一个<code>helloop</code>目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$mkdir</span> openwrt-sdk/package/helloop</div></pre></td></tr></table></figure>
+<h3 id="4-编写helloop-c-保存到SDK-package-helloop-src目录"><a href="#4-编写helloop-c-保存到SDK-package-helloop-src目录" class="headerlink" title="4. 编写helloop.c,保存到SDK/package/helloop/src目录"></a>4. 编写<code>helloop.c</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"hello openwrt!\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录"><a href="#5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录" class="headerlink" title="5. 编写GNU Makefile文件Makefile,保存到SDK/package/helloop/src目录"></a>5. 编写GNU Makefile文件<code>Makefile</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># build helloworld executable when user executes &quot;make&quot;</div><div class="line">helloop: helloop.o</div><div class="line">	$(CC) $(LDFLAGS) helloop.o -o helloop</div><div class="line">helloop.o: helloop.c</div><div class="line">	$(CC) $(CFLAGS) -c helloop.c</div><div class="line"></div><div class="line"># remove object files and executable when user executes &quot;make clean&quot;</div><div class="line">clean:</div><div class="line">	rm *.o helloop</div></pre></td></tr></table></figure>
+<h3 id="6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录"><a href="#6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录" class="headerlink" title="6. 编写OpenWRT BuildPackage Makefile文件Makefile,保存到SDK/package/helloop目录"></a>6. 编写<code>OpenWRT BuildPackage Makefile</code>文件<code>Makefile</code>,保存到<code>SDK/package/helloop</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">##############################################</div><div class="line"># OpenWrt Makefile for helloop program</div><div class="line">#</div><div class="line">#</div><div class="line"># Most of the variables used here are defined in</div><div class="line"># the include directives below. We just need to </div><div class="line"># specify a basic description of the package, </div><div class="line"># where to build our program, where to find </div><div class="line"># the source files, and where to install the </div><div class="line"># compiled program on the router. </div><div class="line"># </div><div class="line"># Be very careful of spacing in this file.</div><div class="line"># Indents should be tabs, not spaces, and </div><div class="line"># there should be no trailing whitespace in</div><div class="line"># lines that are not commented.</div><div class="line"># </div><div class="line">##############################################</div><div class="line"></div><div class="line">include $(TOPDIR)/rules.mk</div><div class="line"></div><div class="line"># Name and release number of this package</div><div class="line">PKG_NAME:=helloop</div><div class="line">PKG_RELEASE:=1</div><div class="line"></div><div class="line"></div><div class="line"># This specifies the directory where we&apos;re going to build the program.  </div><div class="line"># The root build directory, $(BUILD_DIR), is by default the build_mipsel </div><div class="line"># directory in your OpenWrt SDK directory</div><div class="line">PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)</div><div class="line"></div><div class="line"></div><div class="line">include $(INCLUDE_DIR)/package.mk</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># Specify package information for this program. </div><div class="line"># The variables defined here should be self explanatory.</div><div class="line">define Package/helloop</div><div class="line">	SECTION:=utils</div><div class="line">	CATEGORY:=Utilities</div><div class="line">	TITLE:=helloop -- prints a snarky message</div><div class="line">	DEPENDS:=+libstdcpp +libc</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># Specify what needs to be done to prepare for building the package.</div><div class="line"># In our case, we need to copy the source files to the build directory.</div><div class="line"># This is NOT the default.  The default uses the PKG_SOURCE_URL and the</div><div class="line"># PKG_SOURCE which is not defined here to download the source from the web.</div><div class="line"># In order to just build a simple program that we have just written, it is</div><div class="line"># much easier to do it this way.</div><div class="line">define Build/Prepare</div><div class="line">	mkdir -p $(PKG_BUILD_DIR)</div><div class="line">	$(CP) ./src/* $(PKG_BUILD_DIR)/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># We do not need to define Build/Configure or Build/Compile directives</div><div class="line"># The defaults are appropriate for compiling a simple program such as this one</div><div class="line"></div><div class="line"></div><div class="line"># Specify where and how to install the program. Since we only have one file, </div><div class="line"># the helloop executable, install it by copying it to the /bin directory on</div><div class="line"># the router. The $(1) variable represents the root directory on the router running </div><div class="line"># OpenWrt. The $(INSTALL_DIR) variable contains a command to prepare the install </div><div class="line"># directory if it does not already exist.  Likewise $(INSTALL_BIN) contains the </div><div class="line"># command to copy the binary file from its current location (in our case the build</div><div class="line"># directory) to the install directory.</div><div class="line">define Package/helloop/install</div><div class="line">	$(INSTALL_DIR) $(1)/bin</div><div class="line">	$(INSTALL_BIN) $(PKG_BUILD_DIR)/helloop $(1)/bin/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># This line executes the necessary commands to compile our program.</div><div class="line"># The above define directives specify all the information needed, but this</div><div class="line"># line calls BuildPackage which in turn actually uses this information to</div><div class="line"># build a package.</div><div class="line">$(eval $(call BuildPackage,helloop))</div></pre></td></tr></table></figure>
+<h3 id="7-编译"><a href="#7-编译" class="headerlink" title="7. 编译"></a>7. 编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在SDK目录执行</span></div><div class="line">$ make V=99</div></pre></td></tr></table></figure>
+<p>生成的IPK文件在<code>bin/ar71xx/packages/base</code>目录里面</p>
+<h3 id="8-拷贝到路由器"><a href="#8-拷贝到路由器" class="headerlink" title="8. 拷贝到路由器"></a>8. 拷贝到路由器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp helloop_1_ar71xx.ipk root@home:/mnt/sda1</div></pre></td></tr></table></figure>
+<h3 id="9-在路由器执行安装-这里我安装到了U盘上面"><a href="#9-在路由器执行安装-这里我安装到了U盘上面" class="headerlink" title="9. 在路由器执行安装,这里我安装到了U盘上面"></a>9. 在路由器执行安装,这里我安装到了U盘上面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1<span class="comment"># opkg install helloop_1_ar71xx.ipk --dest usb</span></div></pre></td></tr></table></figure>
+<h3 id="10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接"><a href="#10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接" class="headerlink" title="10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接"></a>10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1/packages/bin<span class="comment"># ./helloop </span></div><div class="line">hello openwrt!</div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-编写一个Processor&quot;&gt;&lt;a href=&quot;#1-编写一个Processor&quot; class=&quot;headerlink&quot; title=&quot;1. 编写一个Processor&quot;&gt;&lt;/a&gt;1. 编写一个Processor&lt;/h3&gt;&lt;p&gt;自&lt;code&gt;JDK1.6&lt;/c
+      &lt;p&gt;前面一篇说了如何编译一个可以在&lt;code&gt;openwrt&lt;/code&gt;上面运行的C程序&lt;br&gt;这篇文章是说明如何打包成ipk  &lt;/p&gt;
+&lt;h3 id=&quot;1-获取Openwrt-SDK&quot;&gt;&lt;a href=&quot;#1-获取Openwrt-SDK&quot; class=&quot;headerlin
     
     </summary>
     
-      <category term="java" scheme="http://www.aboutchen.org/categories/java/"/>
+      <category term="openwrt" scheme="http://www.aboutchen.org/categories/openwrt/"/>
     
     
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="apt" scheme="http://www.aboutchen.org/tags/apt/"/>
+      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
     
   </entry>
   
@@ -953,32 +958,6 @@
   </entry>
   
   <entry>
-    <title>使用ngrok映射本机端口到公网80</title>
-    <link href="http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html"/>
-    <id>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口<br>于是搜到这个工具  </p>
-<h4 id="下载ngrok"><a href="#下载ngrok" class="headerlink" title="下载ngrok"></a>下载ngrok</h4><p>网址:<a href="https://ngrok.com/download" target="_blank" rel="external">https://ngrok.com/</a>,选择你的系统版本<br><img src="/assets/images/ngrox-1.png" style="margin-left:0px"></p>
-<h4 id="解压运行"><a href="#解压运行" class="headerlink" title="解压运行"></a>解压运行</h4><p>直接运行即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ngrok 8090</div></pre></td></tr></table></figure>
-<p>如下图所示: 通过访问<em><a href="http://6844e42d.ngrok.com" target="_blank" rel="external">http://6844e42d.ngrok.com</a></em>就可以转发到本机的8090端口了,对于微信公众号来说,还是80端口<br><img src="/assets/images/ngrok-2.png" style="margin-left:0px"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口&lt;br&gt;于是搜到这个工具  &lt;/p&gt;
-&lt;h4 id=&quot;下载ngrok&quot;&gt;&lt;a href=&quot;#下载ngrok&quot; class=&quot;headerlink&quot; title=&quot;下载ngrok&quot;&gt;&lt;/a&gt;下载ngro
-    
-    </summary>
-    
-    
-      <category term="ngrok" scheme="http://www.aboutchen.org/tags/ngrok/"/>
-    
-  </entry>
-  
-  <entry>
     <title>如何使用Maven部署程序到Tomcat7</title>
     <link href="http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html"/>
     <id>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</id>
@@ -1004,6 +983,32 @@
       <category term="tomcat" scheme="http://www.aboutchen.org/tags/tomcat/"/>
     
       <category term="maven" scheme="http://www.aboutchen.org/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用ngrok映射本机端口到公网80</title>
+    <link href="http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html"/>
+    <id>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口<br>于是搜到这个工具  </p>
+<h4 id="下载ngrok"><a href="#下载ngrok" class="headerlink" title="下载ngrok"></a>下载ngrok</h4><p>网址:<a href="https://ngrok.com/download" target="_blank" rel="external">https://ngrok.com/</a>,选择你的系统版本<br><img src="/assets/images/ngrox-1.png" style="margin-left:0px"></p>
+<h4 id="解压运行"><a href="#解压运行" class="headerlink" title="解压运行"></a>解压运行</h4><p>直接运行即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ngrok 8090</div></pre></td></tr></table></figure>
+<p>如下图所示: 通过访问<em><a href="http://6844e42d.ngrok.com" target="_blank" rel="external">http://6844e42d.ngrok.com</a></em>就可以转发到本机的8090端口了,对于微信公众号来说,还是80端口<br><img src="/assets/images/ngrok-2.png" style="margin-left:0px"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口&lt;br&gt;于是搜到这个工具  &lt;/p&gt;
+&lt;h4 id=&quot;下载ngrok&quot;&gt;&lt;a href=&quot;#下载ngrok&quot; class=&quot;headerlink&quot; title=&quot;下载ngrok&quot;&gt;&lt;/a&gt;下载ngro
+    
+    </summary>
+    
+    
+      <category term="ngrok" scheme="http://www.aboutchen.org/tags/ngrok/"/>
     
   </entry>
   

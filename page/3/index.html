@@ -267,159 +267,6 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2015-07-27-personal-intellij-idea-plugin.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015-07-27-personal-intellij-idea-plugin.html" itemprop="url">
-                  自用Intellij Idea插件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
-                2016-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/原创/" itemprop="url" rel="index">
-                    <span itemprop="name">原创</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/2015-07-27-personal-intellij-idea-plugin.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-07-27-personal-intellij-idea-plugin.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="1-有道翻译插件下载"><a href="#1-有道翻译插件下载" class="headerlink" title="1. 有道翻译插件下载"></a>1. 有道翻译插件<a href="/assets/images/idea-translate-plugin.zip">下载</a></h4><p>自已开发的小工具</p>
-<h4 id="2-鼠标手势支持官网"><a href="#2-鼠标手势支持官网" class="headerlink" title="2. 鼠标手势支持官网"></a>2. 鼠标手势支持<a href="http://www.smardec.com/products/idea.html" target="_blank" rel="external">官网</a></h4><p>超赞的手势支持,存在右键菜单冲突,解决办法暂时用快捷键调右键菜单</p>
-<h4 id="3-GrepCode搜索官网"><a href="#3-GrepCode搜索官网" class="headerlink" title="3. GrepCode搜索官网"></a>3. GrepCode搜索<a href="http://grepcode.com/intellij" target="_blank" rel="external">官网</a></h4><h4 id="4-Go开发插件官网"><a href="#4-Go开发插件官网" class="headerlink" title="4. Go开发插件官网"></a>4. Go开发插件<a href="https://github.com/go-lang-plugin-org" target="_blank" rel="external">官网</a></h4><p>一直在更新,希望越来越好用</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2015-01-15-enable-gzip-of-nginx.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -544,6 +391,159 @@
 <li>其中的<em>gzip_http_version</em>的设置<br>它的默认值是1.1，就是说对HTTP/1.1协议的请求才会进行gzip压缩<br>如果我们使用了proxy_pass进行反向代理，那么nginx和后端的upstream server之间是用HTTP/1.0协议通信的<br>This module makes it possible to transfer requests to another server.<br>It is an HTTP/1.0 proxy without the ability for keep-alive requests yet. (As a result, backend connections are created and destroyed on every request.) Nginx talks HTTP/1.1 to the browser and HTTP/1.0 to the backend server. As such it handles keep-alive to the browser.<br>如果我们使用nginx通过反向代理做Cache Server，而且前端的nginx没有开启gzip<br>同时，我们后端的nginx上没有设置<em>gzip_http_version</em>为1.0，那么Cache的url将不会进行gzip压缩  </li>
 <li>gzip_disable的设置是禁用IE6的gzip压缩，又是因为杯具的IE6<br>IE6的某些版本对gzip的压缩支持很不好，会造成页面的假死，今天产品的同学就测试出了这个问题<br>后来调试后，发现是对img进行gzip后造成IE6的假死，把对img的gzip压缩去掉后就正常了<br>为了确保其它的IE6版本不出问题，所以就加上了gzip_disable的设置</li>
 </ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/2015-07-27-personal-intellij-idea-plugin.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2015-07-27-personal-intellij-idea-plugin.html" itemprop="url">
+                  自用Intellij Idea插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-21T22:34:53+08:00">
+                2016-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2015-07-27-personal-intellij-idea-plugin.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2015-07-27-personal-intellij-idea-plugin.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="1-有道翻译插件下载"><a href="#1-有道翻译插件下载" class="headerlink" title="1. 有道翻译插件下载"></a>1. 有道翻译插件<a href="/assets/images/idea-translate-plugin.zip">下载</a></h4><p>自已开发的小工具</p>
+<h4 id="2-鼠标手势支持官网"><a href="#2-鼠标手势支持官网" class="headerlink" title="2. 鼠标手势支持官网"></a>2. 鼠标手势支持<a href="http://www.smardec.com/products/idea.html" target="_blank" rel="external">官网</a></h4><p>超赞的手势支持,存在右键菜单冲突,解决办法暂时用快捷键调右键菜单</p>
+<h4 id="3-GrepCode搜索官网"><a href="#3-GrepCode搜索官网" class="headerlink" title="3. GrepCode搜索官网"></a>3. GrepCode搜索<a href="http://grepcode.com/intellij" target="_blank" rel="external">官网</a></h4><h4 id="4-Go开发插件官网"><a href="#4-Go开发插件官网" class="headerlink" title="4. Go开发插件官网"></a>4. Go开发插件<a href="https://github.com/go-lang-plugin-org" target="_blank" rel="external">官网</a></h4><p>一直在更新,希望越来越好用</p>
 
           
         

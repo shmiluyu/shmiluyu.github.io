@@ -264,6 +264,33 @@
   </entry>
   
   <entry>
+    <title>Sublime Text 常用插件汇总</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
+<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
+    
+    </summary>
+    
+      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
+    
+    
+      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Openwrt配置汇总</title>
     <link href="http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-10-openwrt-summary.html</id>
@@ -303,33 +330,6 @@
   </entry>
   
   <entry>
-    <title>Sublime Text 常用插件汇总</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-10-sublime-text-plugin-summary.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
-    
-    </summary>
-    
-      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
-    
-    
-      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Ubuntu个人配置汇总</title>
     <link href="http://www.aboutchen.org//blog/2014-08-11-personal-ubuntu-configuration-summary.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-11-personal-ubuntu-configuration-summary.html</id>
@@ -365,81 +365,6 @@
     
     
       <category term="ubuntu" scheme="http://www.aboutchen.org/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android使用MxPlayer打开优酷视频</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
-<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
-<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android推送迅雷离线任务到Aria2</title>
-    <link href="http://www.aboutchen.org//blog/2014-08-24-push-lixian-task-to-aria2-on-android.html"/>
-    <id>http://www.aboutchen.org//blog/2014-08-24-push-lixian-task-to-aria2-on-android.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>首先你要有个迅雷会员  </p>
-</blockquote>
-<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
-<hr>
-<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
-<li>集成了Aria2 Web版本的管理界面</li>
-<li>获取离线任务并推送到Aria2</li>
-<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
-</ol>
-<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
-<li>删除离线任务</li>
-<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
-<li>资源查找并添加到离线</li>
-<li>支持百度网盘等  </li>
-</ol>
-<hr>
-<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="/assets/images/Screenshot_2014-08-24-12-22-15.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-25.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-30.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-39.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-46.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-24-03.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-24-12.png" style="width:300px;height:533px;margin-left:0px;"></p>
-<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;首先你要有个迅雷会员  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.&lt;br&gt;后来装了个&lt;code&gt;Opera Mobile Labs&lt;/code&gt;,
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
-      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
-      <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
-    
-      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
@@ -725,6 +650,81 @@
   </entry>
   
   <entry>
+    <title>Android推送迅雷离线任务到Aria2</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-24-push-lixian-task-to-aria2-on-android.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-24-push-lixian-task-to-aria2-on-android.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>首先你要有个迅雷会员  </p>
+</blockquote>
+<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
+<hr>
+<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
+<li>集成了Aria2 Web版本的管理界面</li>
+<li>获取离线任务并推送到Aria2</li>
+<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
+</ol>
+<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
+<li>删除离线任务</li>
+<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
+<li>资源查找并添加到离线</li>
+<li>支持百度网盘等  </li>
+</ol>
+<hr>
+<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="/assets/images/Screenshot_2014-08-24-12-22-15.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-25.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-30.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-39.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-23-46.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-24-03.png" style="width:300px;height:533px;margin-left:0px;"><br><img src="/assets/images/Screenshot_2014-08-24-12-24-12.png" style="width:300px;height:533px;margin-left:0px;"></p>
+<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;首先你要有个迅雷会员  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.&lt;br&gt;后来装了个&lt;code&gt;Opera Mobile Labs&lt;/code&gt;,
+    
+    </summary>
+    
+      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
+    
+    
+      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
+    
+      <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
+    
+      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
+    
+      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android使用MxPlayer打开优酷视频</title>
+    <link href="http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html"/>
+    <id>http://www.aboutchen.org//blog/2014-08-24-use-mxplayer-open-youku-video.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
+    
+    </summary>
+    
+      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
+    
+    
+      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编译一个可以运行在openwrt上的c程序</title>
     <link href="http://www.aboutchen.org//blog/2014-08-30-compile-c-code-for-openwrt.html"/>
     <id>http://www.aboutchen.org//blog/2014-08-30-compile-c-code-for-openwrt.html</id>
@@ -866,30 +866,6 @@
   </entry>
   
   <entry>
-    <title>JAVA压缩目录</title>
-    <link href="http://www.aboutchen.org//blog/2014-10-05-compress-folder-with-java.html"/>
-    <id>http://www.aboutchen.org//blog/2014-10-05-compress-folder-with-java.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
-<p>用法非常简单:  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
-    
-  </entry>
-  
-  <entry>
     <title>用String来创建Spring的ApplicationContext</title>
     <link href="http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html"/>
     <id>http://www.aboutchen.org//blog/2014-10-05-create-spring-application-context-with-string.html</id>
@@ -912,6 +888,30 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA压缩目录</title>
+    <link href="http://www.aboutchen.org//blog/2014-10-05-compress-folder-with-java.html"/>
+    <id>http://www.aboutchen.org//blog/2014-10-05-compress-folder-with-java.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
+<p>用法非常简单:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
+    
+      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
     
   </entry>
   
@@ -958,6 +958,32 @@
   </entry>
   
   <entry>
+    <title>使用ngrok映射本机端口到公网80</title>
+    <link href="http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html"/>
+    <id>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</id>
+    <published>2016-04-21T14:34:53.000Z</published>
+    <updated>2017-01-21T06:53:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口<br>于是搜到这个工具  </p>
+<h4 id="下载ngrok"><a href="#下载ngrok" class="headerlink" title="下载ngrok"></a>下载ngrok</h4><p>网址:<a href="https://ngrok.com/download" target="_blank" rel="external">https://ngrok.com/</a>,选择你的系统版本<br><img src="/assets/images/ngrox-1.png" style="margin-left:0px"></p>
+<h4 id="解压运行"><a href="#解压运行" class="headerlink" title="解压运行"></a>解压运行</h4><p>直接运行即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ngrok 8090</div></pre></td></tr></table></figure>
+<p>如下图所示: 通过访问<em><a href="http://6844e42d.ngrok.com" target="_blank" rel="external">http://6844e42d.ngrok.com</a></em>就可以转发到本机的8090端口了,对于微信公众号来说,还是80端口<br><img src="/assets/images/ngrok-2.png" style="margin-left:0px"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口&lt;br&gt;于是搜到这个工具  &lt;/p&gt;
+&lt;h4 id=&quot;下载ngrok&quot;&gt;&lt;a href=&quot;#下载ngrok&quot; class=&quot;headerlink&quot; title=&quot;下载ngrok&quot;&gt;&lt;/a&gt;下载ngro
+    
+    </summary>
+    
+    
+      <category term="ngrok" scheme="http://www.aboutchen.org/tags/ngrok/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何使用Maven部署程序到Tomcat7</title>
     <link href="http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html"/>
     <id>http://www.aboutchen.org//blog/2014-10-15-deploy-to-tomcat-7-with-maven.html</id>
@@ -983,32 +1009,6 @@
       <category term="tomcat" scheme="http://www.aboutchen.org/tags/tomcat/"/>
     
       <category term="maven" scheme="http://www.aboutchen.org/tags/maven/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用ngrok映射本机端口到公网80</title>
-    <link href="http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html"/>
-    <id>http://www.aboutchen.org//blog/2014-12-18-use-port-80-with-ngrok.html</id>
-    <published>2016-04-21T14:34:53.000Z</published>
-    <updated>2017-01-21T06:53:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口<br>于是搜到这个工具  </p>
-<h4 id="下载ngrok"><a href="#下载ngrok" class="headerlink" title="下载ngrok"></a>下载ngrok</h4><p>网址:<a href="https://ngrok.com/download" target="_blank" rel="external">https://ngrok.com/</a>,选择你的系统版本<br><img src="/assets/images/ngrox-1.png" style="margin-left:0px"></p>
-<h4 id="解压运行"><a href="#解压运行" class="headerlink" title="解压运行"></a>解压运行</h4><p>直接运行即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./ngrok 8090</div></pre></td></tr></table></figure>
-<p>如下图所示: 通过访问<em><a href="http://6844e42d.ngrok.com" target="_blank" rel="external">http://6844e42d.ngrok.com</a></em>就可以转发到本机的8090端口了,对于微信公众号来说,还是80端口<br><img src="/assets/images/ngrok-2.png" style="margin-left:0px"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在测试微信公众号的时候发现电信把80端口封了,而微信公众号只能使用80端口&lt;br&gt;于是搜到这个工具  &lt;/p&gt;
-&lt;h4 id=&quot;下载ngrok&quot;&gt;&lt;a href=&quot;#下载ngrok&quot; class=&quot;headerlink&quot; title=&quot;下载ngrok&quot;&gt;&lt;/a&gt;下载ngro
-    
-    </summary>
-    
-    
-      <category term="ngrok" scheme="http://www.aboutchen.org/tags/ngrok/"/>
     
   </entry>
   

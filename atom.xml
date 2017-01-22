@@ -537,31 +537,6 @@
   </entry>
   
   <entry>
-    <title>Android使用MxPlayer打开优酷视频</title>
-    <link href="http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html"/>
-    <id>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</id>
-    <published>2014-08-23T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
-<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
-<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Android推送迅雷离线任务到Aria2</title>
     <link href="http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html"/>
     <id>http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html</id>
@@ -603,11 +578,36 @@
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
     
-      <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
-    
       <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
     
+      <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
+    
       <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android使用MxPlayer打开优酷视频</title>
+    <link href="http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html"/>
+    <id>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</id>
+    <published>2014-08-23T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:09.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
+    
+    </summary>
+    
+      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
+    
+    
+      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
     
   </entry>
   
@@ -932,33 +932,6 @@
   </entry>
   
   <entry>
-    <title>Sublime Text 常用插件汇总</title>
-    <link href="http://www.aboutchen.org//blog/sublime-text-plugin-summary.html"/>
-    <id>http://www.aboutchen.org//blog/sublime-text-plugin-summary.html</id>
-    <published>2014-08-09T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
-    
-    </summary>
-    
-      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
-    
-    
-      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Openwrt配置汇总</title>
     <link href="http://www.aboutchen.org//blog/openwrt-summary.html"/>
     <id>http://www.aboutchen.org//blog/openwrt-summary.html</id>
@@ -994,6 +967,36 @@
     
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jekyll 备忘</title>
+    <link href="http://www.aboutchen.org//blog/jekyll-summary.html"/>
+    <id>http://www.aboutchen.org//blog/jekyll-summary.html</id>
+    <published>2014-08-09T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>持续更新  </p>
+</blockquote>
+<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;持续更新  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
+    
+    </summary>
+    
+    
+      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
     
   </entry>
   

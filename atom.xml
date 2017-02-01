@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.aboutchen.org/"/>
-  <updated>2017-01-21T10:52:45.000Z</updated>
+  <updated>2017-02-01T05:27:03.000Z</updated>
   <id>http://www.aboutchen.org/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>西游伏妖篇</title>
+    <link href="http://www.aboutchen.org//blog/xiyou.html"/>
+    <id>http://www.aboutchen.org//blog/xiyou.html</id>
+    <published>2017-02-01T05:25:51.000Z</published>
+    <updated>2017-02-01T05:27:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>看之前就听说不太好看，所以也没抱太高的期望，全程看的好尴尬啊！！！</p>
+<blockquote>
+<p>之前的星爷作品是演员们经常演的很尴尬而我觉得很搞笑，伏妖篇是演员们觉得演的很搞笑而我觉得好尴尬啊！！！！！！</p>
+</blockquote>
+<p>看完之后我觉得<em>《长城》</em>不会比这个更烂了，至少<em>《长城》</em>里面有一个我喜欢的演员啊！伏妖有什么？演员？哼！剧情？哼！特效？当我第一次看特效片？</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看之前就听说不太好看，所以也没抱太高的期望，全程看的好尴尬啊！！！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;之前的星爷作品是演员们经常演的很尴尬而我觉得很搞笑，伏妖篇是演员们觉得演的很搞笑而我觉得好尴尬啊！！！！！！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;看完之后我觉得
+    
+    </summary>
+    
+      <category term="杂谈" scheme="http://www.aboutchen.org/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>即时打印Mac剪切板内容(文字以及图片)</title>
@@ -367,30 +396,6 @@
   </entry>
   
   <entry>
-    <title>JAVA压缩目录</title>
-    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
-    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
-    <published>2014-10-04T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
-<p>用法非常简单:  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
-    
-  </entry>
-  
-  <entry>
     <title>用String来创建Spring的ApplicationContext</title>
     <link href="http://www.aboutchen.org//blog/create-spring-application-context-with-string.html"/>
     <id>http://www.aboutchen.org//blog/create-spring-application-context-with-string.html</id>
@@ -413,6 +418,30 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA压缩目录</title>
+    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
+    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
+    <published>2014-10-04T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
+<p>用法非常简单:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
+    
+      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
     
   </entry>
   
@@ -445,6 +474,43 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="apt" scheme="http://www.aboutchen.org/tags/apt/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>为openwrt打包一个ipk程序</title>
+    <link href="http://www.aboutchen.org//blog/package-a-c-program-for-openwrt.html"/>
+    <id>http://www.aboutchen.org//blog/package-a-c-program-for-openwrt.html</id>
+    <published>2014-08-29T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>前面一篇说了如何编译一个可以在<code>openwrt</code>上面运行的C程序<br>这篇文章是说明如何打包成ipk  </p>
+<h3 id="1-获取Openwrt-SDK"><a href="#1-获取Openwrt-SDK" class="headerlink" title="1. 获取Openwrt SDK"></a>1. 获取<code>Openwrt SDK</code></h3><p>这里有两种方法  </p>
+<ul>
+<li>直接下载编译好的<a href="http://downloads.openwrt.org/" target="_blank" rel="external">http://downloads.openwrt.org/</a></li>
+<li>自己编译,<code>make menuconfig</code>,选中<code>Build the Openwrt SDK</code>,生成的SDK包在<code>bin/ar71xx</code>目录下面</li>
+</ul>
+<h3 id="2-将SDK包解压到任意路径"><a href="#2-将SDK包解压到任意路径" class="headerlink" title="2. 将SDK包解压到任意路径."></a>2. 将<code>SDK</code>包解压到任意路径.</h3><h3 id="3-在SDK-package目录下面-创建一个helloop目录"><a href="#3-在SDK-package目录下面-创建一个helloop目录" class="headerlink" title="3. 在SDK/package目录下面 创建一个helloop目录"></a>3. 在<code>SDK/package</code>目录下面 创建一个<code>helloop</code>目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$mkdir</span> openwrt-sdk/package/helloop</div></pre></td></tr></table></figure>
+<h3 id="4-编写helloop-c-保存到SDK-package-helloop-src目录"><a href="#4-编写helloop-c-保存到SDK-package-helloop-src目录" class="headerlink" title="4. 编写helloop.c,保存到SDK/package/helloop/src目录"></a>4. 编写<code>helloop.c</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"hello openwrt!\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录"><a href="#5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录" class="headerlink" title="5. 编写GNU Makefile文件Makefile,保存到SDK/package/helloop/src目录"></a>5. 编写GNU Makefile文件<code>Makefile</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># build helloworld executable when user executes &quot;make&quot;</div><div class="line">helloop: helloop.o</div><div class="line">	$(CC) $(LDFLAGS) helloop.o -o helloop</div><div class="line">helloop.o: helloop.c</div><div class="line">	$(CC) $(CFLAGS) -c helloop.c</div><div class="line"></div><div class="line"># remove object files and executable when user executes &quot;make clean&quot;</div><div class="line">clean:</div><div class="line">	rm *.o helloop</div></pre></td></tr></table></figure>
+<h3 id="6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录"><a href="#6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录" class="headerlink" title="6. 编写OpenWRT BuildPackage Makefile文件Makefile,保存到SDK/package/helloop目录"></a>6. 编写<code>OpenWRT BuildPackage Makefile</code>文件<code>Makefile</code>,保存到<code>SDK/package/helloop</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">##############################################</div><div class="line"># OpenWrt Makefile for helloop program</div><div class="line">#</div><div class="line">#</div><div class="line"># Most of the variables used here are defined in</div><div class="line"># the include directives below. We just need to </div><div class="line"># specify a basic description of the package, </div><div class="line"># where to build our program, where to find </div><div class="line"># the source files, and where to install the </div><div class="line"># compiled program on the router. </div><div class="line"># </div><div class="line"># Be very careful of spacing in this file.</div><div class="line"># Indents should be tabs, not spaces, and </div><div class="line"># there should be no trailing whitespace in</div><div class="line"># lines that are not commented.</div><div class="line"># </div><div class="line">##############################################</div><div class="line"></div><div class="line">include $(TOPDIR)/rules.mk</div><div class="line"></div><div class="line"># Name and release number of this package</div><div class="line">PKG_NAME:=helloop</div><div class="line">PKG_RELEASE:=1</div><div class="line"></div><div class="line"></div><div class="line"># This specifies the directory where we&apos;re going to build the program.  </div><div class="line"># The root build directory, $(BUILD_DIR), is by default the build_mipsel </div><div class="line"># directory in your OpenWrt SDK directory</div><div class="line">PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)</div><div class="line"></div><div class="line"></div><div class="line">include $(INCLUDE_DIR)/package.mk</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># Specify package information for this program. </div><div class="line"># The variables defined here should be self explanatory.</div><div class="line">define Package/helloop</div><div class="line">	SECTION:=utils</div><div class="line">	CATEGORY:=Utilities</div><div class="line">	TITLE:=helloop -- prints a snarky message</div><div class="line">	DEPENDS:=+libstdcpp +libc</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># Specify what needs to be done to prepare for building the package.</div><div class="line"># In our case, we need to copy the source files to the build directory.</div><div class="line"># This is NOT the default.  The default uses the PKG_SOURCE_URL and the</div><div class="line"># PKG_SOURCE which is not defined here to download the source from the web.</div><div class="line"># In order to just build a simple program that we have just written, it is</div><div class="line"># much easier to do it this way.</div><div class="line">define Build/Prepare</div><div class="line">	mkdir -p $(PKG_BUILD_DIR)</div><div class="line">	$(CP) ./src/* $(PKG_BUILD_DIR)/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># We do not need to define Build/Configure or Build/Compile directives</div><div class="line"># The defaults are appropriate for compiling a simple program such as this one</div><div class="line"></div><div class="line"></div><div class="line"># Specify where and how to install the program. Since we only have one file, </div><div class="line"># the helloop executable, install it by copying it to the /bin directory on</div><div class="line"># the router. The $(1) variable represents the root directory on the router running </div><div class="line"># OpenWrt. The $(INSTALL_DIR) variable contains a command to prepare the install </div><div class="line"># directory if it does not already exist.  Likewise $(INSTALL_BIN) contains the </div><div class="line"># command to copy the binary file from its current location (in our case the build</div><div class="line"># directory) to the install directory.</div><div class="line">define Package/helloop/install</div><div class="line">	$(INSTALL_DIR) $(1)/bin</div><div class="line">	$(INSTALL_BIN) $(PKG_BUILD_DIR)/helloop $(1)/bin/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># This line executes the necessary commands to compile our program.</div><div class="line"># The above define directives specify all the information needed, but this</div><div class="line"># line calls BuildPackage which in turn actually uses this information to</div><div class="line"># build a package.</div><div class="line">$(eval $(call BuildPackage,helloop))</div></pre></td></tr></table></figure>
+<h3 id="7-编译"><a href="#7-编译" class="headerlink" title="7. 编译"></a>7. 编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在SDK目录执行</span></div><div class="line">$ make V=99</div></pre></td></tr></table></figure>
+<p>生成的IPK文件在<code>bin/ar71xx/packages/base</code>目录里面</p>
+<h3 id="8-拷贝到路由器"><a href="#8-拷贝到路由器" class="headerlink" title="8. 拷贝到路由器"></a>8. 拷贝到路由器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp helloop_1_ar71xx.ipk root@home:/mnt/sda1</div></pre></td></tr></table></figure>
+<h3 id="9-在路由器执行安装-这里我安装到了U盘上面"><a href="#9-在路由器执行安装-这里我安装到了U盘上面" class="headerlink" title="9. 在路由器执行安装,这里我安装到了U盘上面"></a>9. 在路由器执行安装,这里我安装到了U盘上面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1<span class="comment"># opkg install helloop_1_ar71xx.ipk --dest usb</span></div></pre></td></tr></table></figure>
+<h3 id="10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接"><a href="#10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接" class="headerlink" title="10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接"></a>10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1/packages/bin<span class="comment"># ./helloop </span></div><div class="line">hello openwrt!</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前面一篇说了如何编译一个可以在&lt;code&gt;openwrt&lt;/code&gt;上面运行的C程序&lt;br&gt;这篇文章是说明如何打包成ipk  &lt;/p&gt;
+&lt;h3 id=&quot;1-获取Openwrt-SDK&quot;&gt;&lt;a href=&quot;#1-获取Openwrt-SDK&quot; class=&quot;headerlin
+    
+    </summary>
+    
+      <category term="openwrt" scheme="http://www.aboutchen.org/categories/openwrt/"/>
+    
+    
+      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
     
   </entry>
   
@@ -500,39 +566,27 @@
   </entry>
   
   <entry>
-    <title>为openwrt打包一个ipk程序</title>
-    <link href="http://www.aboutchen.org//blog/package-a-c-program-for-openwrt.html"/>
-    <id>http://www.aboutchen.org//blog/package-a-c-program-for-openwrt.html</id>
-    <published>2014-08-29T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:07.000Z</updated>
+    <title>Android使用MxPlayer打开优酷视频</title>
+    <link href="http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html"/>
+    <id>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</id>
+    <published>2014-08-23T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:09.000Z</updated>
     
-    <content type="html"><![CDATA[<p>前面一篇说了如何编译一个可以在<code>openwrt</code>上面运行的C程序<br>这篇文章是说明如何打包成ipk  </p>
-<h3 id="1-获取Openwrt-SDK"><a href="#1-获取Openwrt-SDK" class="headerlink" title="1. 获取Openwrt SDK"></a>1. 获取<code>Openwrt SDK</code></h3><p>这里有两种方法  </p>
-<ul>
-<li>直接下载编译好的<a href="http://downloads.openwrt.org/" target="_blank" rel="external">http://downloads.openwrt.org/</a></li>
-<li>自己编译,<code>make menuconfig</code>,选中<code>Build the Openwrt SDK</code>,生成的SDK包在<code>bin/ar71xx</code>目录下面</li>
-</ul>
-<h3 id="2-将SDK包解压到任意路径"><a href="#2-将SDK包解压到任意路径" class="headerlink" title="2. 将SDK包解压到任意路径."></a>2. 将<code>SDK</code>包解压到任意路径.</h3><h3 id="3-在SDK-package目录下面-创建一个helloop目录"><a href="#3-在SDK-package目录下面-创建一个helloop目录" class="headerlink" title="3. 在SDK/package目录下面 创建一个helloop目录"></a>3. 在<code>SDK/package</code>目录下面 创建一个<code>helloop</code>目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$mkdir</span> openwrt-sdk/package/helloop</div></pre></td></tr></table></figure>
-<h3 id="4-编写helloop-c-保存到SDK-package-helloop-src目录"><a href="#4-编写helloop-c-保存到SDK-package-helloop-src目录" class="headerlink" title="4. 编写helloop.c,保存到SDK/package/helloop/src目录"></a>4. 编写<code>helloop.c</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"hello openwrt!\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录"><a href="#5-编写GNU-Makefile文件Makefile-保存到SDK-package-helloop-src目录" class="headerlink" title="5. 编写GNU Makefile文件Makefile,保存到SDK/package/helloop/src目录"></a>5. 编写GNU Makefile文件<code>Makefile</code>,保存到<code>SDK/package/helloop/src</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># build helloworld executable when user executes &quot;make&quot;</div><div class="line">helloop: helloop.o</div><div class="line">	$(CC) $(LDFLAGS) helloop.o -o helloop</div><div class="line">helloop.o: helloop.c</div><div class="line">	$(CC) $(CFLAGS) -c helloop.c</div><div class="line"></div><div class="line"># remove object files and executable when user executes &quot;make clean&quot;</div><div class="line">clean:</div><div class="line">	rm *.o helloop</div></pre></td></tr></table></figure>
-<h3 id="6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录"><a href="#6-编写OpenWRT-BuildPackage-Makefile文件Makefile-保存到SDK-package-helloop目录" class="headerlink" title="6. 编写OpenWRT BuildPackage Makefile文件Makefile,保存到SDK/package/helloop目录"></a>6. 编写<code>OpenWRT BuildPackage Makefile</code>文件<code>Makefile</code>,保存到<code>SDK/package/helloop</code>目录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line">##############################################</div><div class="line"># OpenWrt Makefile for helloop program</div><div class="line">#</div><div class="line">#</div><div class="line"># Most of the variables used here are defined in</div><div class="line"># the include directives below. We just need to </div><div class="line"># specify a basic description of the package, </div><div class="line"># where to build our program, where to find </div><div class="line"># the source files, and where to install the </div><div class="line"># compiled program on the router. </div><div class="line"># </div><div class="line"># Be very careful of spacing in this file.</div><div class="line"># Indents should be tabs, not spaces, and </div><div class="line"># there should be no trailing whitespace in</div><div class="line"># lines that are not commented.</div><div class="line"># </div><div class="line">##############################################</div><div class="line"></div><div class="line">include $(TOPDIR)/rules.mk</div><div class="line"></div><div class="line"># Name and release number of this package</div><div class="line">PKG_NAME:=helloop</div><div class="line">PKG_RELEASE:=1</div><div class="line"></div><div class="line"></div><div class="line"># This specifies the directory where we&apos;re going to build the program.  </div><div class="line"># The root build directory, $(BUILD_DIR), is by default the build_mipsel </div><div class="line"># directory in your OpenWrt SDK directory</div><div class="line">PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)</div><div class="line"></div><div class="line"></div><div class="line">include $(INCLUDE_DIR)/package.mk</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># Specify package information for this program. </div><div class="line"># The variables defined here should be self explanatory.</div><div class="line">define Package/helloop</div><div class="line">	SECTION:=utils</div><div class="line">	CATEGORY:=Utilities</div><div class="line">	TITLE:=helloop -- prints a snarky message</div><div class="line">	DEPENDS:=+libstdcpp +libc</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># Specify what needs to be done to prepare for building the package.</div><div class="line"># In our case, we need to copy the source files to the build directory.</div><div class="line"># This is NOT the default.  The default uses the PKG_SOURCE_URL and the</div><div class="line"># PKG_SOURCE which is not defined here to download the source from the web.</div><div class="line"># In order to just build a simple program that we have just written, it is</div><div class="line"># much easier to do it this way.</div><div class="line">define Build/Prepare</div><div class="line">	mkdir -p $(PKG_BUILD_DIR)</div><div class="line">	$(CP) ./src/* $(PKG_BUILD_DIR)/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># We do not need to define Build/Configure or Build/Compile directives</div><div class="line"># The defaults are appropriate for compiling a simple program such as this one</div><div class="line"></div><div class="line"></div><div class="line"># Specify where and how to install the program. Since we only have one file, </div><div class="line"># the helloop executable, install it by copying it to the /bin directory on</div><div class="line"># the router. The $(1) variable represents the root directory on the router running </div><div class="line"># OpenWrt. The $(INSTALL_DIR) variable contains a command to prepare the install </div><div class="line"># directory if it does not already exist.  Likewise $(INSTALL_BIN) contains the </div><div class="line"># command to copy the binary file from its current location (in our case the build</div><div class="line"># directory) to the install directory.</div><div class="line">define Package/helloop/install</div><div class="line">	$(INSTALL_DIR) $(1)/bin</div><div class="line">	$(INSTALL_BIN) $(PKG_BUILD_DIR)/helloop $(1)/bin/</div><div class="line">endef</div><div class="line"></div><div class="line"></div><div class="line"># This line executes the necessary commands to compile our program.</div><div class="line"># The above define directives specify all the information needed, but this</div><div class="line"># line calls BuildPackage which in turn actually uses this information to</div><div class="line"># build a package.</div><div class="line">$(eval $(call BuildPackage,helloop))</div></pre></td></tr></table></figure>
-<h3 id="7-编译"><a href="#7-编译" class="headerlink" title="7. 编译"></a>7. 编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在SDK目录执行</span></div><div class="line">$ make V=99</div></pre></td></tr></table></figure>
-<p>生成的IPK文件在<code>bin/ar71xx/packages/base</code>目录里面</p>
-<h3 id="8-拷贝到路由器"><a href="#8-拷贝到路由器" class="headerlink" title="8. 拷贝到路由器"></a>8. 拷贝到路由器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp helloop_1_ar71xx.ipk root@home:/mnt/sda1</div></pre></td></tr></table></figure>
-<h3 id="9-在路由器执行安装-这里我安装到了U盘上面"><a href="#9-在路由器执行安装-这里我安装到了U盘上面" class="headerlink" title="9. 在路由器执行安装,这里我安装到了U盘上面"></a>9. 在路由器执行安装,这里我安装到了U盘上面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1<span class="comment"># opkg install helloop_1_ar71xx.ipk --dest usb</span></div></pre></td></tr></table></figure>
-<h3 id="10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接"><a href="#10-运行-由于安装到U盘-所以在U盘的bin里面-直接运行会提示找不到-可以做软链接" class="headerlink" title="10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接"></a>10. 运行,由于安装到U盘,所以在U盘的bin里面.直接运行会提示找不到,可以做软链接</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@OpenWrt:/mnt/sda1/packages/bin<span class="comment"># ./helloop </span></div><div class="line">hello openwrt!</div></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
+<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
+<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;前面一篇说了如何编译一个可以在&lt;code&gt;openwrt&lt;/code&gt;上面运行的C程序&lt;br&gt;这篇文章是说明如何打包成ipk  &lt;/p&gt;
-&lt;h3 id=&quot;1-获取Openwrt-SDK&quot;&gt;&lt;a href=&quot;#1-获取Openwrt-SDK&quot; class=&quot;headerlin
+      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
     
     </summary>
     
-      <category term="openwrt" scheme="http://www.aboutchen.org/categories/openwrt/"/>
+      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
     
     
-      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
+      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
     
   </entry>
   
@@ -578,36 +632,11 @@
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
     
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
       <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
     
-      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android使用MxPlayer打开优酷视频</title>
-    <link href="http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html"/>
-    <id>http://www.aboutchen.org//blog/use-mxplayer-open-youku-video.html</id>
-    <published>2014-08-23T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>作者已经更新,推荐<br>之前一直都是用的<a href="https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;hl=zh-CN" target="_blank" rel="external">优酷伴侣</a>,效果很好<br>最近估计优酷接口换了不能用了.作者也不更新了,而我已经习惯了这样看优酷了,没广告,省电,流畅.就自己写了这个小app迁就用  </p>
-<p>视频接口是使用的第三方的接口,理论上是支持很多视频网站的,不过我只看优酷 :)<br>目前只支持<code>MxPlayer</code>,因为获取的优酷视频是<code>分段的</code>,其他的播放器我也没看,也不知道有没有api接口.<br>如果其他的播放器需求多了,我就加上  </p>
-<p>使用方法和优酷伴侣差不多<br><img src="/assets/images/Screenshot_2014-08-24-17-51-321.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-09.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-20.png" style="margin-left:0px"><br><img src="/assets/images/Screenshot_2014-08-24-17-47-29.png" style="margin-left:0px"></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a><a href="http://pan.baidu.com/s/1hq1Oj2W" target="_blank" rel="external">下载地址</a></h3>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;目前&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.linangran.openwithexternalplayer&amp;amp;hl=zh-CN&quot; target=&quot;_blank&quot; rel=&quot;external
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
       <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
+    
+      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
@@ -932,71 +961,29 @@
   </entry>
   
   <entry>
-    <title>Openwrt配置汇总</title>
-    <link href="http://www.aboutchen.org//blog/openwrt-summary.html"/>
-    <id>http://www.aboutchen.org//blog/openwrt-summary.html</id>
+    <title>Sublime Text 常用插件汇总</title>
+    <link href="http://www.aboutchen.org//blog/sublime-text-plugin-summary.html"/>
+    <id>http://www.aboutchen.org//blog/sublime-text-plugin-summary.html</id>
     <published>2014-08-09T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:15.000Z</updated>
+    <updated>2017-01-21T06:53:14.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>持续更新</p>
-</blockquote>
-<h4 id="1-开放端口"><a href="#1-开放端口" class="headerlink" title="1. 开放端口"></a>1. 开放端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ vi /etc/config/firewall</div></pre></td></tr></table></figure>
-<p>在里面添加一段  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">config rule</div><div class="line">        option target <span class="string">'ACCEPT'</span></div><div class="line">        option name <span class="string">'9000'</span></div><div class="line">        option src <span class="string">'wan'</span></div><div class="line">        option proto <span class="string">'tcpudp'</span></div><div class="line">        option dest_port <span class="string">'9000'</span></div></pre></td></tr></table></figure>
-<h4 id="2-Aria2导致硬盘无法休眠"><a href="#2-Aria2导致硬盘无法休眠" class="headerlink" title="2. Aria2导致硬盘无法休眠"></a>2. Aria2导致硬盘无法休眠</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ vi /etc/init.d/aria2</div></pre></td></tr></table></figure>
-<p>修改<strong>aria2_conf_path</strong>到flash本身或者其他的u盘,总之不要在休眠的硬盘上  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">aria2_conf_path=<span class="string">"/www/.aria2"</span></div></pre></td></tr></table></figure>
-<h4 id="3-安装软件到U盘"><a href="#3-安装软件到U盘" class="headerlink" title="3. 安装软件到U盘"></a>3. 安装软件到U盘</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda1/packages/</div><div class="line">$ <span class="built_in">echo</span> dest usb /mnt/sda1/packages/ &gt;&gt; /etc/opkg.conf</div></pre></td></tr></table></figure>
-<p>安装的时候需要加上<strong>--dest usb</strong><br>eg:  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install xxx --dest usb</div></pre></td></tr></table></figure>
-<p>最好软链接到/user/bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /mnt/sda/packages/usr/bin/python /usr/bin/python</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
+<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+<p>为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;持续更新&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-开放端口&quot;&gt;&lt;a href=&quot;#1-开放端口&quot; class=&quot;headerlink&quot; title=&quot;1. 开放端口&quot;&gt;&lt;/a&gt;1. 开放端口&lt;/h4&gt;&lt;figure class=&quot;h
+      &lt;h4 id=&quot;1-Javascript-Minifier&quot;&gt;&lt;a href=&quot;#1-Javascript-Minifier&quot; class=&quot;headerlink&quot; title=&quot;1. Javascript Minifier&quot;&gt;&lt;/a&gt;1. Javascript Minifier
     
     </summary>
     
       <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
     
     
-      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Jekyll 备忘</title>
-    <link href="http://www.aboutchen.org//blog/jekyll-summary.html"/>
-    <id>http://www.aboutchen.org//blog/jekyll-summary.html</id>
-    <published>2014-08-09T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;持续更新  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h4 id=&quot;1-代码高亮&quot;&gt;&lt;a href=&quot;#1-代码高亮&quot; class=&quot;headerlink&quot; title=&quot;1. 代码高亮&quot;&gt;&lt;/a&gt;1. 代码高亮&lt;/h4&gt;&lt;p&gt;我使用的是&lt;stron
-    
-    </summary>
-    
-    
-      <category term="jekyll" scheme="http://www.aboutchen.org/tags/jekyll/"/>
+      <category term="sublime text" scheme="http://www.aboutchen.org/tags/sublime-text/"/>
     
   </entry>
   

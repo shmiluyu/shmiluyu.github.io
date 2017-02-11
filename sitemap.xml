@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.aboutchen.org//blog/fast-upgrade-nodejs.html</loc>
+    
+    <lastmod>2017-02-11T15:35:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.aboutchen.org//blog/install-redis-on-macos.html</loc>
+    
+    <lastmod>2017-02-11T15:34:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.aboutchen.org//blog/caonima.html</loc>
     
     <lastmod>2017-02-05T07:22:34.000Z</lastmod>

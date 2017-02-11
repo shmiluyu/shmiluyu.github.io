@@ -36,32 +36,6 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
@@ -277,7 +251,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/sublime-text-plugin-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/minifying-javascript-with-jetbrains-intellij-idea.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -302,8 +276,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/sublime-text-plugin-summary.html" itemprop="url">
-                  Sublime Text 常用插件汇总
+                <a class="post-title-link" href="/blog/minifying-javascript-with-jetbrains-intellij-idea.html" itemprop="url">
+                  IntelliJ IDEA自动压缩js,css等文件
                 </a>
               
             
@@ -319,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-10T00:00:00+08:00">
-                2014-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-07T00:00:00+08:00">
+                2014-10-07
               </time>
             
 
@@ -330,28 +304,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -360,8 +312,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/sublime-text-plugin-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/sublime-text-plugin-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/minifying-javascript-with-jetbrains-intellij-idea.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/minifying-javascript-with-jetbrains-intellij-idea.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,13 +341,20 @@
       
         
           
-            <h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+          IntelliJ IDEA可以自动压缩js,css等源文件到一个新的文件.如果希望使用此功能,要满足以下两个条件
 
-          
+本机已经安装了NodeJS以及npm
+IntelliJ IDEA安装NodeJS和File Watchers插件
+
+满足以上条件后,下面就很简单了,以压缩javascript为例子  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/minifying-javascript-with-jetbrains-intellij-idea.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -432,7 +391,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/openwrt-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/create-spring-application-context-with-string.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -457,8 +416,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/openwrt-summary.html" itemprop="url">
-                  Openwrt配置汇总
+                <a class="post-title-link" href="/blog/create-spring-application-context-with-string.html" itemprop="url">
+                  用String来创建Spring的ApplicationContext
                 </a>
               
             
@@ -474,8 +433,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-10T00:00:00+08:00">
-                2014-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-05T00:00:00+08:00">
+                2014-10-05
               </time>
             
 
@@ -485,28 +444,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -515,8 +452,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/openwrt-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/openwrt-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/create-spring-application-context-with-string.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/create-spring-application-context-with-string.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -544,22 +481,16 @@
       
         
           
-            <blockquote>
-<p>持续更新</p>
-</blockquote>
-<h4 id="1-开放端口"><a href="#1-开放端口" class="headerlink" title="1. 开放端口"></a>1. 开放端口</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ vi /etc/config/firewall</div></pre></td></tr></table></figure>
-<p>在里面添加一段  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">config rule</div><div class="line">        option target <span class="string">'ACCEPT'</span></div><div class="line">        option name <span class="string">'9000'</span></div><div class="line">        option src <span class="string">'wan'</span></div><div class="line">        option proto <span class="string">'tcpudp'</span></div><div class="line">        option dest_port <span class="string">'9000'</span></div></pre></td></tr></table></figure>
-<h4 id="2-Aria2导致硬盘无法休眠"><a href="#2-Aria2导致硬盘无法休眠" class="headerlink" title="2. Aria2导致硬盘无法休眠"></a>2. Aria2导致硬盘无法休眠</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ vi /etc/init.d/aria2</div></pre></td></tr></table></figure>
-<p>修改<strong>aria2_conf_path</strong>到flash本身或者其他的u盘,总之不要在休眠的硬盘上  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">aria2_conf_path=<span class="string">"/www/.aria2"</span></div></pre></td></tr></table></figure>
-<h4 id="3-安装软件到U盘"><a href="#3-安装软件到U盘" class="headerlink" title="3. 安装软件到U盘"></a>3. 安装软件到U盘</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda1/packages/</div><div class="line">$ <span class="built_in">echo</span> dest usb /mnt/sda1/packages/ &gt;&gt; /etc/opkg.conf</div></pre></td></tr></table></figure>
-<p>安装的时候需要加上<strong>--dest usb</strong><br>eg:  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install xxx --dest usb</div></pre></td></tr></table></figure>
-<p>最好软链接到/user/bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /mnt/sda/packages/usr/bin/python /usr/bin/python</div></pre></td></tr></table></figure>
-
-          
+          Google来的,做个备忘
+12345678910String contextXML = "&lt;?xml version=\"1.0\" encoding=\"UTF-8\"?&gt;\n" +        "&lt;beans xmlns=\"http://www.springframewo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/create-spring-application-context-with-string.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -596,7 +527,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/jekyll-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/compress-folder-with-java.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -621,8 +552,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/jekyll-summary.html" itemprop="url">
-                  Jekyll 备忘
+                <a class="post-title-link" href="/blog/compress-folder-with-java.html" itemprop="url">
+                  JAVA压缩目录
                 </a>
               
             
@@ -638,8 +569,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-10T00:00:00+08:00">
-                2014-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-05T00:00:00+08:00">
+                2014-10-05
               </time>
             
 
@@ -657,8 +588,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/jekyll-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/jekyll-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/compress-folder-with-java.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/compress-folder-with-java.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -686,15 +617,17 @@
       
         
           
-            <blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-代码高亮"><a href="#1-代码高亮" class="headerlink" title="1. 代码高亮"></a>1. 代码高亮</h4><p>我使用的是<strong>Highlight.js</strong>,简单易用,缺点就是高亮的不太完美<br>使用方法很简单,把<strong>Highlight.js</strong>加入到页面中,找个css模板<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">在这里挑选</a>,引入到页面就行了<br>由于在国内,我使用的是<a href="http://libs.useso.com/" target="_blank" rel="external">360的CDN</a>. PS: 360终于干件人事了  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**  引入css  **/</div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/styles/obsidian.min.css"</span>&gt;</span></div><div class="line">/**  引入js  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://libs.useso.com/js/highlight.js/8.0/highlight.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">/**  初始化  **/</div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>虽然很多人反映高亮不完美,但是我喜欢,因为太简单  </p>
-<hr>
-
-          
+          Java JDK本身带的有java.util.Zip包,可以压缩和解压文件,但是存在一个问题就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法倒是找到了一个好用的三方库plexus-archiver  
+用法非常简单:  
+1234567891011
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/compress-folder-with-java.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -731,7 +664,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/git-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/java-apt-simple-tutorial.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -756,8 +689,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/git-summary.html" itemprop="url">
-                  Git问题汇总
+                <a class="post-title-link" href="/blog/java-apt-simple-tutorial.html" itemprop="url">
+                  Java APT简易教程
                 </a>
               
             
@@ -773,8 +706,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-10T00:00:00+08:00">
-                2014-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-09-23T00:00:00+08:00">
+                2014-09-23
               </time>
             
 
@@ -796,8 +729,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -814,8 +747,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/git-summary.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/git-summary.html" itemprop="commentCount"></span>
+                <a href="/blog/java-apt-simple-tutorial.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/java-apt-simple-tutorial.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -843,19 +776,17 @@
       
         
           
-            <blockquote>
-<p>持续更新  </p>
-</blockquote>
-<h4 id="1-ssh端口变更原文在此"><a href="#1-ssh端口变更原文在此" class="headerlink" title="1. ssh端口变更原文在此"></a>1. ssh端口变更<a href="http://zengrong.net/post/1544.htm" target="_blank" rel="external">原文在此</a></h4><h5 id="方法一-直接修改URL为SSH开头"><a href="#方法一-直接修改URL为SSH开头" class="headerlink" title="方法一:直接修改URL为SSH开头"></a>方法一:直接修改URL为SSH开头</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url origin ssh://git@domain.com:3022/~/Projects/p1.git</div></pre></td></tr></table></figure>
-<h5 id="方法二-修改本地配置文件"><a href="#方法二-修改本地配置文件" class="headerlink" title="方法二: 修改本地配置文件"></a>方法二: 修改本地配置文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cat&gt;~/.ssh/config</div><div class="line"><span class="comment"># 映射一个别名</span></div><div class="line">host newdomain</div><div class="line">hostname domain.com</div><div class="line">port 3022</div><div class="line"><span class="comment"># ctrl+D</span></div></pre></td></tr></table></figure>
-<p>修改p1.git项目下的git配置文件  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url origin git@newdomain:Projects/p1.git</div></pre></td></tr></table></figure>
-<h4 id="2-推送git项目到多个远程仓库原文地址"><a href="#2-推送git项目到多个远程仓库原文地址" class="headerlink" title="2. 推送git项目到多个远程仓库原文地址"></a>2. 推送git项目到多个远程仓库<a href="http://blog.codepiano.com/2013/07/03/push-multi-remote-repositories/" target="_blank" rel="external">原文地址</a></h4><p>打开.git/config文件,在<code>[remote &quot;origin&quot;]</code>节点的原始url下面添加对应的ssh地址  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[remote <span class="string">"origin"</span>]</div><div class="line">url = git@github.com:codepiano/pull-all-git-project.git</div><div class="line">url = git@git.oschina.net:codepiano/pull-all-git-project.git</div><div class="line">fetch = +refs/heads/*:refs/remotes/origin/*</div></pre></td></tr></table></figure>
-<p>也可以使用命令添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">git remote <span class="built_in">set</span>-url --add origin git@git.oschina.net:codepiano/pull-all-git-project.git</div></pre></td></tr></table></figure>
-
-          
+          1. 编写一个Processor自JDK1.6之后,官方统一使用javax.annotation.processing.Processor只需要集成AbstractProcessor即可  
+首先写一个简单的注解  
+12345package demo;public @interface Print
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/java-apt-simple-tutorial.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -892,7 +823,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/install-git-on-openwrt.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/compile-c-code-for-openwrt.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -917,8 +848,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/install-git-on-openwrt.html" itemprop="url">
-                  在Openwrt上安装GIT
+                <a class="post-title-link" href="/blog/compile-c-code-for-openwrt.html" itemprop="url">
+                  编译一个可以运行在openwrt上的c程序
                 </a>
               
             
@@ -934,8 +865,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-09T00:00:00+08:00">
-                2014-08-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-30T00:00:00+08:00">
+                2014-08-30
               </time>
             
 
@@ -957,8 +888,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/原创文章/" itemprop="url" rel="index">
-                    <span itemprop="name">原创文章</span>
+                  <a href="/categories/openwrt/" itemprop="url" rel="index">
+                    <span itemprop="name">openwrt</span>
                   </a>
                 </span>
 
@@ -975,8 +906,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/install-git-on-openwrt.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/install-git-on-openwrt.html" itemprop="commentCount"></span>
+                <a href="/blog/compile-c-code-for-openwrt.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/compile-c-code-for-openwrt.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1004,24 +935,17 @@
       
         
           
-            <p>本文系原创<br>作者：Shmiluyu<br>出处：<a href="http://aboutchen.org/blog/install-git-on-openwrt/" target="_blank" rel="external">http://aboutchen.org/blog/install-git-on-openwrt/</a><br>声明：本文采用以下协议进行授权： <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="external">自由转载-非商用-非衍生-保持署名|Creative Commons BY-NC-ND 3.0</a> ，转载请注明作者及出处。  </p>
-<p>迷上了git这个神器,自家的路由器上装的有svn,感觉svn弱爆了,于是乎想给路由器装上git<br>baidu和google走起,搜了一天,没搜到教程.只能自己来了.过程很坎坷,但是装好之后happy了  </p>
-<h3 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1. 安装git"></a>1. 安装git</h3><p>这个直接有包,直接按照就行,请安装到u盘里面,flash太小了.挂u盘教程<a href="http://blog.csdn.net/jk110333/article/details/11920163" target="_blank" rel="external">点击这里</a>  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ opkg install git --dest usb</div></pre></td></tr></table></figure>
-<p>下面把U盘里面的git相关都软链接到<strong>/user/bin</strong>,要使用绝对路径  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-pack /usr/bin/git-upload-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-upload-archive /usr/bin/git-upload-archive</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git-receive-pack</div><div class="line">$ ln <span class="_">-s</span> /这里是设置的u盘路径/usr/bin/git-receive-pack /usr/bin/git</div></pre></td></tr></table></figure>
-<h3 id="2-灰常暴力的创建用户git"><a href="#2-灰常暴力的创建用户git" class="headerlink" title="2. 灰常暴力的创建用户git"></a>2. 灰常暴力的创建用户git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:1000:git:/home/git:/bin/ash'</span> vi &gt;&gt;/etc/passwd</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:15020:0:99999:7:::'</span> &gt;&gt;/etc/shadow</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'git:x:1000:'</span> &gt;&gt;/etc/group</div></pre></td></tr></table></figure>
-<h3 id="3-创建git用户目录并授权"><a href="#3-创建git用户目录并授权" class="headerlink" title="3. 创建git用户目录并授权"></a>3. 创建git用户目录并授权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /home</div><div class="line">$ mkdir /home/git</div><div class="line">$ midir /home/git/.ssh</div><div class="line">$ chown -R git:git /home/git</div></pre></td></tr></table></figure>
-<p>在刚才创建的.ssh目录下面创建一个文件 <strong>authorized_keys</strong>  </p>
-<h3 id="4-电脑上创建SSH-Key"><a href="#4-电脑上创建SSH-Key" class="headerlink" title="4. 电脑上创建SSH Key"></a>4. 电脑上创建SSH Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></div><div class="line">$ 其他操作系统自行百度</div></pre></td></tr></table></figure>
-<p>操作没问题的话,在用户主目录找到.ssh目录,里面有两个文件,<strong>id_rsa</strong>和<strong>id_rsa.pub</strong>,一个私钥,一个公钥.<br>把公钥里面的内容拷贝到第3步创建的<strong>authorized_keys</strong>里面<br>以后想添加一台电脑就是第4步,不断的往<strong>authorized_keys</strong>添加就是了  </p>
-<h3 id="5-git操作"><a href="#5-git操作" class="headerlink" title="5. git操作"></a>5. git操作</h3><p>路由器上随便创建一个目录,我是创建到移动硬盘里面了  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ mkdir /mnt/sda3/gitrep/demo.git</div><div class="line">$ git init --bare demo.git</div><div class="line">$ chown -R git:git demo.git</div><div class="line">$ 上面这句一定是要在git初始化之后执行.在前面执行无效果</div></pre></td></tr></table></figure>
-<h3 id="6-本地测试"><a href="#6-本地测试" class="headerlink" title="6. 本地测试"></a>6. 本地测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git remote add origin git@192.168.1.1:/mnt/sda3/gitrep/demo.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
-<p>到这里就算结束了,给路由挂上花生壳,就可以 说走咱就走…..  </p>
-<p>本文系原创,如有转载,麻烦请注明出处.</p>
-
-          
+          本文的测试环境为 Ubuntu 14.0  TP-LINK WDR4320 OpenWrt Attitude Adjustment 12.09  
+首先在ubuntu上安装一些东西
+1sudo apt-get install libncurses5-dev gawk flex build-essen
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/compile-c-code-for-openwrt.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1058,7 +982,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/install-fcitx-on-ubuntu.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/package-a-c-program-for-openwrt.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -1083,8 +1007,8 @@
             
               
                 
-                <a class="post-title-link" href="/blog/install-fcitx-on-ubuntu.html" itemprop="url">
-                  Ubuntu 安装Fcitx输入法,并设置支持Sublime Text2
+                <a class="post-title-link" href="/blog/package-a-c-program-for-openwrt.html" itemprop="url">
+                  为openwrt打包一个ipk程序
                 </a>
               
             
@@ -1100,8 +1024,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-09T00:00:00+08:00">
-                2014-08-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-30T00:00:00+08:00">
+                2014-08-30
               </time>
             
 
@@ -1123,8 +1047,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
+                  <a href="/categories/openwrt/" itemprop="url" rel="index">
+                    <span itemprop="name">openwrt</span>
                   </a>
                 </span>
 
@@ -1141,8 +1065,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/install-fcitx-on-ubuntu.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/install-fcitx-on-ubuntu.html" itemprop="commentCount"></span>
+                <a href="/blog/package-a-c-program-for-openwrt.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/package-a-c-program-for-openwrt.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1170,200 +1094,19 @@
       
         
           
-            <p>安装输入法教程源自<a href="http://www.linuxidc.com/Linux/2013-07/87062.htm" target="_blank" rel="external">这里</a>,这里仅仅是排个好版看着舒服  </p>
-<hr>
-<h3 id="首先卸载ibus输入法"><a href="#首先卸载ibus输入法" class="headerlink" title="首先卸载ibus输入法"></a>首先卸载ibus输入法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get remove ibus</div></pre></td></tr></table></figure>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo add-apt-repository ppa:fcitx-team/nightly  </div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo sudo gedit /etc/apt/sources.list</div></pre></td></tr></table></figure>
-<p>在打开的文件中添加下面两行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">deb http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main  </div><div class="line">deb-src http://ppa.launchpad.net/fcitx-team/nightly/ubuntu quantal main</div></pre></td></tr></table></figure>
-<p>终端执行  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get update  </div><div class="line">$ sudo apt-get install fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin fcitx-sogoupinyin im-switch  </div><div class="line">$ sudo im-switch <span class="_">-s</span> fcitx -z default</div></pre></td></tr></table></figure>
-<p>注销或者重启即可  </p>
-<hr>
-<h3 id="让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里"><a href="#让输入法支持Sublime-Text-2-Sublime-Text2的安装教程请点击这里" class="headerlink" title="让输入法支持Sublime Text 2, Sublime Text2的安装教程请点击这里"></a>让输入法支持Sublime Text 2, Sublime Text2的安装教程请<a href="http://www.cnblogs.com/fanyong/p/3462023.html" target="_blank" rel="external">点击这里</a></h3><h4 id="1-保存下述代码为-sublime-imfix-c-文件"><a href="#1-保存下述代码为-sublime-imfix-c-文件" class="headerlink" title="1. 保存下述代码为 sublime-imfix.c 文件"></a>1. 保存下述代码为 sublime-imfix.c 文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">sublime-imfix.c</div><div class="line">Use LD_PRELOAD to interpose some function to fix sublime input method support for linux.</div><div class="line">By Cjacker Huang &lt;jianzhong.huang at i-soft.com.cn&gt;</div><div class="line"> </div><div class="line">gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC</div><div class="line">LD_PRELOAD=./libsublime-imfix.so sublime_text</div><div class="line">*/</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gtk/gtk.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;gdk/gdkx.h&gt;</span></span></div><div class="line"><span class="keyword">typedef</span> GdkSegment GdkRegionBox;</div><div class="line"> </div><div class="line"><span class="keyword">struct</span> _GdkRegion</div><div class="line">&#123;</div><div class="line">  <span class="keyword">long</span> size;</div><div class="line">  <span class="keyword">long</span> numRects;</div><div class="line">  GdkRegionBox *rects;</div><div class="line">  GdkRegionBox extents;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">GtkIMContext *local_context;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span></span></div><div class="line"><span class="title">gdk_region_get_clipbox</span> <span class="params">(<span class="keyword">const</span> GdkRegion *region,</span></div><div class="line">            GdkRectangle    *rectangle)</div><div class="line">&#123;</div><div class="line">  g_return_if_fail (region != <span class="literal">NULL</span>);</div><div class="line">  g_return_if_fail (rectangle != <span class="literal">NULL</span>);</div><div class="line"> </div><div class="line">  rectangle-&gt;x = region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;y = region-&gt;extents.y1;</div><div class="line">  rectangle-&gt;width = region-&gt;extents.x2 - region-&gt;extents.x1;</div><div class="line">  rectangle-&gt;height = region-&gt;extents.y2 - region-&gt;extents.y1;</div><div class="line">  GdkRectangle rect;</div><div class="line">  rect.x = rectangle-&gt;x;</div><div class="line">  rect.y = rectangle-&gt;y;</div><div class="line">  rect.width = <span class="number">0</span>;</div><div class="line">  rect.height = rectangle-&gt;height;</div><div class="line">  <span class="comment">//The caret width is 2;</span></div><div class="line">  <span class="comment">//Maybe sometimes we will make a mistake, but for most of the time, it should be the caret.</span></div><div class="line">  <span class="keyword">if</span>(rectangle-&gt;width == <span class="number">2</span> &amp;&amp; GTK_IS_IM_CONTEXT(local_context)) &#123;</div><div class="line">        gtk_im_context_set_cursor_location(local_context, rectangle);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//this is needed, for example, if you input something in file dialog and return back the edit area</span></div><div class="line"><span class="comment">//context will lost, so here we set it again.</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">static</span> GdkFilterReturn <span class="title">event_filter</span> <span class="params">(GdkXEvent *xevent, GdkEvent *event, gpointer im_context)</span></span></div><div class="line">&#123;</div><div class="line">    XEvent *xev = (XEvent *)xevent;</div><div class="line">    <span class="keyword">if</span>(xev-&gt;type == KeyRelease &amp;&amp; GTK_IS_IM_CONTEXT(im_context)) &#123;</div><div class="line">       GdkWindow * win = g_object_get_data(G_OBJECT(im_context),<span class="string">"window"</span>);</div><div class="line">       <span class="keyword">if</span>(GDK_IS_WINDOW(win))</div><div class="line">         gtk_im_context_set_client_window(im_context, win);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> GDK_FILTER_CONTINUE;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gtk_im_context_set_client_window</span> <span class="params">(GtkIMContext *context,</span></span></div><div class="line">          GdkWindow    *window)</div><div class="line">&#123;</div><div class="line">  GtkIMContextClass *klass;</div><div class="line">  g_return_if_fail (GTK_IS_IM_CONTEXT (context));</div><div class="line">  klass = GTK_IM_CONTEXT_GET_CLASS (context);</div><div class="line">  <span class="keyword">if</span> (klass-&gt;set_client_window)</div><div class="line">    klass-&gt;set_client_window (context, window);</div><div class="line"> </div><div class="line">  <span class="keyword">if</span>(!GDK_IS_WINDOW (window))</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  g_object_set_data(G_OBJECT(context),<span class="string">"window"</span>,window);</div><div class="line">  <span class="keyword">int</span> width = gdk_window_get_width(window);</div><div class="line">  <span class="keyword">int</span> height = gdk_window_get_height(window);</div><div class="line">  <span class="keyword">if</span>(width != <span class="number">0</span> &amp;&amp; height !=<span class="number">0</span>) &#123;</div><div class="line">    gtk_im_context_focus_in(context);</div><div class="line">    local_context = context;</div><div class="line">  &#125;</div><div class="line">  gdk_window_add_filter (window, event_filter, context);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2-安装C-C-的编译环境和gtk-libgtk2-0-dev"><a href="#2-安装C-C-的编译环境和gtk-libgtk2-0-dev" class="headerlink" title="2. 安装C/C++的编译环境和gtk libgtk2.0-dev"></a>2. 安装C/C++的编译环境和gtk libgtk2.0-dev</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install build-essential</div><div class="line">$ sudo apt-get install libgtk2.0-dev</div></pre></td></tr></table></figure>
-<h4 id="3-编译共享内库"><a href="#3-编译共享内库" class="headerlink" title="3. 编译共享内库"></a>3. 编译共享内库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` <span class="_">-f</span>PIC</div></pre></td></tr></table></figure>
-<h4 id="4-启动-Sublime-Text-2"><a href="#4-启动-Sublime-Text-2" class="headerlink" title="4. 启动 Sublime Text 2"></a>4. 启动 Sublime Text 2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ LD_PRELOAD=./libsublime-imfix.so sublime_text</div></pre></td></tr></table></figure>
-<p>我没有在桌面放图标的需求,有需求的看原文<a href="http://my.oschina.net/wugaoxing/blog/121281" target="_blank" rel="external">这里</a><br>我倒是需要在终端启动,所以做了个sh脚本并加到/usr/bin目录里面<br>先是链接到bin  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> /usr/lib/Sublime\ Text\ 2/sublime_text /usr/bin/sb</div></pre></td></tr></table></figure>
-<p>然后写脚本sb.sh  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment"># Android Studio offline inspection script.</span></div><div class="line"><span class="comment"># ------------------------------------------------------</span></div><div class="line"><span class="comment">#</span></div><div class="line">LD_PRELOAD=/usr/lib/libsublime-imfix.so sb</div></pre></td></tr></table></figure>
-<p>然后再添加到PATH  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ ln <span class="_">-s</span> ~/sb.sh /usr/bin/sb2</div></pre></td></tr></table></figure>
-<blockquote>
-<p>转的和参考的博文我努力都附上链接地址,如果不幸侵了你的权,你过来打我啊.</p>
-</blockquote>
+          前面一篇说了如何编译一个可以在openwrt上面运行的C程序这篇文章是说明如何打包成ipk  
+1. 获取Openwrt SDK这里有两种方法  
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/blog-with-github-and-jekyll.html">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="Chen">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Shmiluyu-麻吉">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/blog-with-github-and-jekyll.html" itemprop="url">
-                  Github+Jekyll构建个人博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-09T00:00:00+08:00">
-                2014-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/blog/blog-with-github-and-jekyll.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/blog-with-github-and-jekyll.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文将简要介绍如何在Github上建立个人博客。英文教程<a href="http://jekyllbootstrap.com/usage/jekyll-quick-start.html" target="_blank" rel="external">在这里</a>.</p>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><p>1. 首先，需要的是Github帐号，如果没有的话<a href="https://github.com/plans" target="_blank" rel="external">在这里注册</a>。<br>2. 在自己的机器上配置Git，教程见<a href="http://help.github.com/linux-set-up-git/" target="_blank" rel="external">这里</a>。<br>完成以上两步后，就可以用Jekyll来构建写作环境了。</p>
-<h2 id="Jekyll"><a href="#Jekyll" class="headerlink" title="Jekyll"></a>Jekyll</h2><p>Jekyll是一个静态网站生成工具。它允许用户使用HTML、Markdown或Textile来建立静态页面，然后通过模板引擎Liquid（<a href="http://liquidmarkup.org" target="_blank" rel="external">Liquid Templating Engine</a>）来运行。  </p>
-<h3 id="1-安装Jekyll"><a href="#1-安装Jekyll" class="headerlink" title="1. 安装Jekyll"></a>1. 安装Jekyll</h3><p>通过RubyGems安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gem install jekyll</div></pre></td></tr></table></figure>
-<p>编译插件需要ruby1.9.1-dev</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo apt-get install ruby1.9.1-dev</div></pre></td></tr></table></figure>
-<h3 id="2-创建Repo"><a href="#2-创建Repo" class="headerlink" title="2. 创建Repo"></a>2. 创建Repo</h3><p>在Github Dashboard中创建一个新的名为USERNAME.github.com的Repo。</p>
-<h3 id="3-安装Jekyll-Bootstrap"><a href="#3-安装Jekyll-Bootstrap" class="headerlink" title="3. 安装Jekyll-Bootstrap"></a>3. 安装Jekyll-Bootstrap</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ git <span class="built_in">clone</span> https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com</div><div class="line">$ <span class="built_in">cd</span> USERNAME.github.com</div><div class="line">$ git remote add origin git@github.com:USERNAME/USERNAME.github.com.git</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
-<h3 id="4-安装rake"><a href="#4-安装rake" class="headerlink" title="4. 安装rake"></a>4. 安装rake</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ sudo gem install rake</div></pre></td></tr></table></figure>
-<h3 id="5-配置-config-yml"><a href="#5-配置-config-yml" class="headerlink" title="5. 配置_config.yml"></a>5. 配置_config.yml</h3><p>在_config.yml中除了可以设置博客的常规信息之外，还默认自带了一些常用功能，如评论（disqus）、Analytics跟踪（Google Analytics）等等。详细教程见<a href="http://jekyllbootstrap.com/usage/blog-configuration.html" target="_blank" rel="external">这里</a>。</p>
-<h3 id="6-本地运行"><a href="#6-本地运行" class="headerlink" title="6.本地运行"></a>6.本地运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ <span class="built_in">cd</span> USERNAME.github.com</div><div class="line">$ jekyll serve</div></pre></td></tr></table></figure>
-<p>在浏览器打开: <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>  </p>
-<h3 id="7-修改模板简述"><a href="#7-修改模板简述" class="headerlink" title="7.修改模板简述"></a>7.修改模板简述</h3><p>模板文件存在两个地方  <strong>/assets/themes/TEMPLATE_NAME</strong> 和 <strong>/_includes/themes/TEMPLATE_NAME</strong><br>具体怎么修改可以参考<a href="http://www.jekyllbootstrap.com/usage/jekyll-theming.html#toc_5" target="_blank" rel="external">这里</a>  </p>
-<p>以上配置完成之后可以很容易的通过  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ rake post title=<span class="string">"Hello World"</span></div><div class="line">$ rake page name=<span class="string">"about.markdown"</span></div></pre></td></tr></table></figure>
-<p>分别来创建博文和页面。</p>
-
-          
+直接下载编译好的http://downloads.openwrt.org/
+自己编译,make menuconfig,选中Build the Open
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/package-a-c-program-for-openwrt.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1395,7 +1138,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1438,7 +1181,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1447,7 +1190,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1456,7 +1199,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

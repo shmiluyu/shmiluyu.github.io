@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.aboutchen.org/"/>
-  <updated>2017-02-11T15:35:48.000Z</updated>
+  <updated>2017-02-14T17:04:51.000Z</updated>
   <id>http://www.aboutchen.org/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sublime Text 左侧目录隐藏特定的文件</title>
+    <link href="http://www.aboutchen.org//blog/hide-certain-files-of-folders.html"/>
+    <id>http://www.aboutchen.org//blog/hide-certain-files-of-folders.html</id>
+    <published>2017-02-14T17:01:24.000Z</published>
+    <updated>2017-02-14T17:04:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="通过配置隐藏特定文件-全局生效"><a href="#通过配置隐藏特定文件-全局生效" class="headerlink" title="通过配置隐藏特定文件,全局生效"></a>通过配置隐藏特定文件,全局生效</h2><p>修改<em>Preferences → Settings – User</em>,增加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="string">"file_exclude_patterns"</span>: [<span class="string">"*.pyc"</span>, <span class="string">"*.pyo"</span>, <span class="string">"*.exe"</span>, <span class="string">"*.dll"</span>, <span class="string">"*.obj"</span>]</div></pre></td></tr></table></figure>
+<h2 id="修改项目文件-sublime-project-只在当前项目生效"><a href="#修改项目文件-sublime-project-只在当前项目生效" class="headerlink" title="修改项目文件.sublime-project,只在当前项目生效"></a>修改项目文件<em>.sublime-project</em>,只在当前项目生效</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&#123;</div><div class="line">    <span class="string">"folders"</span>: [&#123;</div><div class="line">        <span class="string">"path"</span>: <span class="string">"."</span>,</div><div class="line">        <span class="string">"folder_exclude_patterns"</span>: [<span class="string">".svn"</span>, <span class="string">"._d"</span>, <span class="string">".metadata"</span>, <span class="string">".settings"</span>],</div><div class="line">        <span class="string">"file_exclude_patterns"</span>: [<span class="string">"*.pyc"</span>, <span class="string">"*.pyo"</span>, <span class="string">".project"</span>]</div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;通过配置隐藏特定文件-全局生效&quot;&gt;&lt;a href=&quot;#通过配置隐藏特定文件-全局生效&quot; class=&quot;headerlink&quot; title=&quot;通过配置隐藏特定文件,全局生效&quot;&gt;&lt;/a&gt;通过配置隐藏特定文件,全局生效&lt;/h2&gt;&lt;p&gt;修改&lt;em&gt;Preferences 
+    
+    </summary>
+    
+      <category term="技巧备忘" scheme="http://www.aboutchen.org/categories/%E6%8A%80%E5%B7%A7%E5%A4%87%E5%BF%98/"/>
+    
+    
+      <category term="Sublime Text" scheme="http://www.aboutchen.org/tags/Sublime-Text/"/>
+    
+  </entry>
   
   <entry>
     <title>快速升级NodeJs到最新版本</title>
@@ -510,6 +534,30 @@
   </entry>
   
   <entry>
+    <title>JAVA压缩目录</title>
+    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
+    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
+    <published>2014-10-04T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
+<p>用法非常简单:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
+    
+      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
+    
+  </entry>
+  
+  <entry>
     <title>用String来创建Spring的ApplicationContext</title>
     <link href="http://www.aboutchen.org//blog/create-spring-application-context-with-string.html"/>
     <id>http://www.aboutchen.org//blog/create-spring-application-context-with-string.html</id>
@@ -532,30 +580,6 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA压缩目录</title>
-    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
-    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
-    <published>2014-10-04T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
-<p>用法非常简单:  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
     
   </entry>
   
@@ -676,56 +700,6 @@
     
     
       <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android推送迅雷离线任务到Aria2</title>
-    <link href="http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html"/>
-    <id>http://www.aboutchen.org//blog/push-lixian-task-to-aria2-on-android.html</id>
-    <published>2014-08-23T16:00:00.000Z</published>
-    <updated>2017-01-21T07:36:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>首先你要有个迅雷会员  </p>
-</blockquote>
-<p>一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.<br>后来装了个<code>Opera Mobile Labs</code>,支持脚本,一直在手机上都是用这个推送.<br>后来实在受不了了,每次推送都要登录帐号.然后就自己断断续续写了这个自用app<br>使用的迅雷离线的web接口,Aria2管理界面直接集成了<a href="http://aria2.ghostry.cn/yaaw-master/" target="_blank" rel="external">web版本</a>的.省事.  </p>
-<hr>
-<h4 id="目前能做到的"><a href="#目前能做到的" class="headerlink" title="目前能做到的"></a>目前能做到的</h4><ol>
-<li>集成了Aria2 Web版本的管理界面</li>
-<li>获取离线任务并推送到Aria2</li>
-<li>可以指定推送的目录,比如推送到<code>动作</code>这个目录,如果该目录不存在,Aria2会自动创建</li>
-</ol>
-<h4 id="目前做不到的"><a href="#目前做不到的" class="headerlink" title="目前做不到的"></a>目前做不到的</h4><ol>
-<li>删除离线任务</li>
-<li>Aria2手工添加新任务,集成的web有问题,我给删了</li>
-<li>资源查找并添加到离线</li>
-<li>支持百度网盘等  </li>
-</ol>
-<hr>
-<h4 id="界面预览"><a href="#界面预览" class="headerlink" title="界面预览"></a>界面预览</h4><p><img src="http://ok4c1axne.bkt.clouddn.com/2017012139416Screenshot_2014-08-24-12-22-15.png" alt="2017012139416Screenshot_2014-08-24-12-22-15.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/201701214213Screenshot_2014-08-24-12-23-25.png" alt="201701214213Screenshot_2014-08-24-12-23-25.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012183172Screenshot_2014-08-24-12-23-30.png" alt="2017012183172Screenshot_2014-08-24-12-23-30.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012156811Screenshot_2014-08-24-12-23-39.png" alt="2017012156811Screenshot_2014-08-24-12-23-39.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012155129Screenshot_2014-08-24-12-23-46.png" alt="2017012155129Screenshot_2014-08-24-12-23-46.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012171619Screenshot_2014-08-24-12-24-03.png" alt="2017012171619Screenshot_2014-08-24-12-24-03.png"><br><img src="http://ok4c1axne.bkt.clouddn.com/2017012164619Screenshot_2014-08-24-12-24-12.png" alt="2017012164619Screenshot_2014-08-24-12-24-12.png"></p>
-<h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p>有需要的可以在<a href="http://pan.baidu.com/s/1i3HvgBr" target="_blank" rel="external">这里下载</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;首先你要有个迅雷会员  &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;一直都是在电脑上推送任务到openwrt路由器,一直找android的推送迅雷离线的软件,也没找到.&lt;br&gt;后来装了个&lt;code&gt;Opera Mobile Labs&lt;/code&gt;,
-    
-    </summary>
-    
-      <category term="小作品" scheme="http://www.aboutchen.org/categories/%E5%B0%8F%E4%BD%9C%E5%93%81/"/>
-    
-    
-      <category term="openwrt" scheme="http://www.aboutchen.org/tags/openwrt/"/>
-    
-      <category term="aria2" scheme="http://www.aboutchen.org/tags/aria2/"/>
-    
-      <category term="android" scheme="http://www.aboutchen.org/tags/android/"/>
-    
-      <category term="离线下载" scheme="http://www.aboutchen.org/tags/%E7%A6%BB%E7%BA%BF%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   

@@ -46,7 +46,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java,zip," />
+  <meta name="keywords" content="Sublime Text," />
 
 
 
@@ -64,22 +64,22 @@
 
 
 
-<meta name="description" content="Java JDK本身带的有java.util.Zip包,可以压缩和解压文件,但是存在一个问题就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法倒是找到了一个好用的三方库plexus-archiver  
-用法非常简单:  
-1234567891011121314151617public void zipDirectory(File director">
+<meta name="description" content="通过配置隐藏特定文件,全局生效修改Preferences → Settings – User,增加
+12&quot;file_exclude_patterns&quot;: [&quot;*.pyc&quot;, &quot;*.pyo&quot;, &quot;*.exe&quot;, &quot;*.dll&quot;, &quot;*.obj&quot;]
+修改项目文件.sublime-project,只在当前项目生效12345678&amp;#123;    &quot;folders&quot;: [&amp;#123;        &quot;p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JAVA压缩目录">
-<meta property="og:url" content="http://www.aboutchen.org/blog/compress-folder-with-java.html">
+<meta property="og:title" content="Sublime Text 左侧目录隐藏特定的文件">
+<meta property="og:url" content="http://www.aboutchen.org/blog/hide-certain-files-of-folders.html">
 <meta property="og:site_name" content="Shmiluyu-麻吉">
-<meta property="og:description" content="Java JDK本身带的有java.util.Zip包,可以压缩和解压文件,但是存在一个问题就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法倒是找到了一个好用的三方库plexus-archiver  
-用法非常简单:  
-1234567891011121314151617public void zipDirectory(File director">
-<meta property="og:updated_time" content="2017-01-21T06:53:05.000Z">
+<meta property="og:description" content="通过配置隐藏特定文件,全局生效修改Preferences → Settings – User,增加
+12&quot;file_exclude_patterns&quot;: [&quot;*.pyc&quot;, &quot;*.pyo&quot;, &quot;*.exe&quot;, &quot;*.dll&quot;, &quot;*.obj&quot;]
+修改项目文件.sublime-project,只在当前项目生效12345678&amp;#123;    &quot;folders&quot;: [&amp;#123;        &quot;p">
+<meta property="og:updated_time" content="2017-02-14T17:04:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JAVA压缩目录">
-<meta name="twitter:description" content="Java JDK本身带的有java.util.Zip包,可以压缩和解压文件,但是存在一个问题就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法倒是找到了一个好用的三方库plexus-archiver  
-用法非常简单:  
-1234567891011121314151617public void zipDirectory(File director">
+<meta name="twitter:title" content="Sublime Text 左侧目录隐藏特定的文件">
+<meta name="twitter:description" content="通过配置隐藏特定文件,全局生效修改Preferences → Settings – User,增加
+12&quot;file_exclude_patterns&quot;: [&quot;*.pyc&quot;, &quot;*.pyo&quot;, &quot;*.exe&quot;, &quot;*.dll&quot;, &quot;*.obj&quot;]
+修改项目文件.sublime-project,只在当前项目生效12345678&amp;#123;    &quot;folders&quot;: [&amp;#123;        &quot;p">
 
 
 
@@ -107,13 +107,13 @@
 
 
 
-  <link rel="canonical" href="http://www.aboutchen.org/blog/compress-folder-with-java.html"/>
+  <link rel="canonical" href="http://www.aboutchen.org/blog/hide-certain-files-of-folders.html"/>
 
 
 
 
 
-  <title> JAVA压缩目录 | Shmiluyu-麻吉 </title>
+  <title> Sublime Text 左侧目录隐藏特定的文件 | Shmiluyu-麻吉 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/compress-folder-with-java.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/hide-certain-files-of-folders.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -280,7 +280,7 @@
             
             
               
-                JAVA压缩目录
+                Sublime Text 左侧目录隐藏特定的文件
               
             
           </h1>
@@ -295,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-10-05T00:00:00+08:00">
-                2014-10-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-15T01:01:24+08:00">
+                2017-02-15
               </time>
             
 
@@ -306,6 +306,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
+                    <span itemprop="name">技巧备忘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -314,8 +336,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/compress-folder-with-java.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/compress-folder-with-java.html" itemprop="commentCount"></span>
+                <a href="/blog/hide-certain-files-of-folders.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/hide-certain-files-of-folders.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -341,9 +363,9 @@
       
 
       
-        <p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
-<p>用法非常简单:  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+        <h2 id="通过配置隐藏特定文件-全局生效"><a href="#通过配置隐藏特定文件-全局生效" class="headerlink" title="通过配置隐藏特定文件,全局生效"></a>通过配置隐藏特定文件,全局生效</h2><p>修改<em>Preferences → Settings – User</em>,增加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="string">"file_exclude_patterns"</span>: [<span class="string">"*.pyc"</span>, <span class="string">"*.pyo"</span>, <span class="string">"*.exe"</span>, <span class="string">"*.dll"</span>, <span class="string">"*.obj"</span>]</div></pre></td></tr></table></figure>
+<h2 id="修改项目文件-sublime-project-只在当前项目生效"><a href="#修改项目文件-sublime-project-只在当前项目生效" class="headerlink" title="修改项目文件.sublime-project,只在当前项目生效"></a>修改项目文件<em>.sublime-project</em>,只在当前项目生效</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&#123;</div><div class="line">    <span class="string">"folders"</span>: [&#123;</div><div class="line">        <span class="string">"path"</span>: <span class="string">"."</span>,</div><div class="line">        <span class="string">"folder_exclude_patterns"</span>: [<span class="string">".svn"</span>, <span class="string">"._d"</span>, <span class="string">".metadata"</span>, <span class="string">".settings"</span>],</div><div class="line">        <span class="string">"file_exclude_patterns"</span>: [<span class="string">"*.pyc"</span>, <span class="string">"*.pyo"</span>, <span class="string">".project"</span>]</div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -366,9 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/java/" rel="tag"># java</a>
-          
-            <a href="/tags/zip/" rel="tag"># zip</a>
+            <a href="/tags/Sublime-Text/" rel="tag"># Sublime Text</a>
           
         </div>
       
@@ -377,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/create-spring-application-context-with-string.html" rel="next" title="用String来创建Spring的ApplicationContext">
-                <i class="fa fa-chevron-left"></i> 用String来创建Spring的ApplicationContext
+              <a href="/blog/fast-upgrade-nodejs.html" rel="next" title="快速升级NodeJs到最新版本">
+                <i class="fa fa-chevron-left"></i> 快速升级NodeJs到最新版本
               </a>
             
           </div>
@@ -386,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/minifying-javascript-with-jetbrains-intellij-idea.html" rel="prev" title="IntelliJ IDEA自动压缩js,css等文件">
-                IntelliJ IDEA自动压缩js,css等文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -415,8 +431,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/compress-folder-with-java.html"
-           data-title="JAVA压缩目录" data-url="http://www.aboutchen.org//blog/compress-folder-with-java.html">
+      <div class="ds-thread" data-thread-key="/blog/hide-certain-files-of-folders.html"
+           data-title="Sublime Text 左侧目录隐藏特定的文件" data-url="http://www.aboutchen.org//blog/hide-certain-files-of-folders.html">
       </div>
     
   </div>
@@ -440,8 +456,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -504,6 +529,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过配置隐藏特定文件-全局生效"><span class="nav-number">1.</span> <span class="nav-text">通过配置隐藏特定文件,全局生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改项目文件-sublime-project-只在当前项目生效"><span class="nav-number">2.</span> <span class="nav-text">修改项目文件.sublime-project,只在当前项目生效</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

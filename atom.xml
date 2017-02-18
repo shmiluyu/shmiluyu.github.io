@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.aboutchen.org/"/>
-  <updated>2017-02-18T07:46:43.000Z</updated>
+  <updated>2017-02-18T07:48:11.000Z</updated>
   <id>http://www.aboutchen.org/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.aboutchen.org//blog/springmvc-fastjson-property-filter.html"/>
     <id>http://www.aboutchen.org//blog/springmvc-fastjson-property-filter.html</id>
     <published>2017-02-18T07:07:27.000Z</published>
-    <updated>2017-02-18T07:46:43.000Z</updated>
+    <updated>2017-02-18T07:48:11.000Z</updated>
     
     <content type="html"><![CDATA[<ul>
 <li>本文章使用的Spring版本是4.3,其他版本原理相同</li>
@@ -39,6 +39,7 @@
 <li>新建一个<em>ResponseBodyAdvice</em>,解析注解,并封装成第一步自定义的<em>JsonWithFilterValue</em></li>
 </ol>
 </blockquote>
+<a id="more"></a>
 <h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><h5 id="1-自定义封装对象JsonWithFilterValue"><a href="#1-自定义封装对象JsonWithFilterValue" class="headerlink" title="1. 自定义封装对象JsonWithFilterValue"></a>1. 自定义封装对象<em>JsonWithFilterValue</em></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonWithFilterValue</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> SerializeFilter[] filters;</div><div class="line">    <span class="keyword">private</span> Object value;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JsonWithFilterValue</span><span class="params">(Object value)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> SerializeFilter[] getFilters() &#123;</div><div class="line">        <span class="keyword">return</span> filters;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> JsonWithFilterValue <span class="title">setFilters</span><span class="params">(SerializeFilter[] filters)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.filters = filters;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="2-自定义FastJsonHttpMessageConverter4实现-我起的类名是FastJsonHttpMessageConverter4Ext"><a href="#2-自定义FastJsonHttpMessageConverter4实现-我起的类名是FastJsonHttpMessageConverter4Ext" class="headerlink" title="2 自定义FastJsonHttpMessageConverter4实现,我起的类名是FastJsonHttpMessageConverter4Ext"></a>2 自定义<em>FastJsonHttpMessageConverter4</em>实现,我起的类名是<em>FastJsonHttpMessageConverter4Ext</em></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastJsonHttpMessageConverter4Ext</span> <span class="keyword">extends</span> <span class="title">FastJsonHttpMessageConverter4</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FastJsonHttpMessageConverter4Ext</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">writeInternal</span><span class="params">(Object obj, Type type, HttpOutputMessage outputMessage)</span> <span class="keyword">throws</span> IOException, HttpMessageNotWritableException </span>&#123;</div><div class="line">        HttpHeaders           headers = outputMessage.getHeaders();</div><div class="line">        ByteArrayOutputStream outnew  = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">        Object                value;</div><div class="line">        SerializeFilter[]     filters;</div><div class="line">        <span class="comment">//判断是否是我们自定义的封装对象</span></div><div class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> JsonWithFilterValue) &#123;</div><div class="line">            value = ((JsonWithFilterValue) obj).getValue();</div><div class="line">            filters = concat(((JsonWithFilterValue) obj).getFilters(), getFastJsonConfig().getSerializeFilters());</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            value = obj;</div><div class="line">            filters = getFastJsonConfig().getSerializeFilters();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> len = JSON.writeJSONString(outnew, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getCharset(), <span class="comment">//</span></div><div class="line">                value, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getSerializeConfig(), <span class="comment">//</span></div><div class="line">                filters, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getDateFormat(), <span class="comment">//</span></div><div class="line">                JSON.DEFAULT_GENERATE_FEATURE, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getSerializerFeatures());</div><div class="line">        headers.setContentLength(len);</div><div class="line">        OutputStream out = outputMessage.getBody();</div><div class="line">        outnew.writeTo(out);</div><div class="line">        outnew.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    SerializeFilter[] concat(SerializeFilter[] a, SerializeFilter[] b) &#123;</div><div class="line">        <span class="keyword">if</span> (a == <span class="keyword">null</span>) <span class="keyword">return</span> b;</div><div class="line">        <span class="keyword">if</span> (b == <span class="keyword">null</span>) <span class="keyword">return</span> a;</div><div class="line">        SerializeFilter[] c = <span class="keyword">new</span> SerializeFilter[a.length + b.length];</div><div class="line">        System.arraycopy(a, <span class="number">0</span>, c, <span class="number">0</span>, a.length);</div><div class="line">        System.arraycopy(b, <span class="number">0</span>, c, a.length, b.length);</div><div class="line">        <span class="keyword">return</span> c;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="3-自定义注解"><a href="#3-自定义注解" class="headerlink" title="3 自定义注解"></a>3 自定义注解</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JsonPropertyFilter &#123;</div><div class="line">    Class&lt;?&gt; target() <span class="keyword">default</span> Object.class;</div><div class="line">    <span class="function">String <span class="title">include</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">    <span class="function">String <span class="title">exclude</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -55,7 +56,19 @@
 &lt;li&gt;本文章使用的Spring版本是4.3,其他版本原理相同&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&quot;导语&quot;&gt;&lt;a href=&quot;#导语&quot; class=&quot;headerlink&quot; title=&quot;导语&quot;&gt;&lt;/a&gt;导语&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;在返回json数据
+&lt;p&gt;在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot; title=&quot;实现原理&quot;&gt;&lt;/a&gt;实现原理&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;实现原理是创建一个&lt;em&gt;ControllerAdvise&lt;/em&gt;在数据被传送到&lt;em&gt;MessageConverter&lt;/em&gt;之前,包装一下数据,读取&lt;em&gt;Controller&lt;/em&gt;方法的注解,将注解元数据和原始数据包装起来.传递给自定义的&lt;em&gt;MessageConverter&lt;/em&gt;来处理.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;我们需要做这些&quot;&gt;&lt;a href=&quot;#我们需要做这些&quot; class=&quot;headerlink&quot; title=&quot;我们需要做这些&quot;&gt;&lt;/a&gt;我们需要做这些&lt;/h4&gt;&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;新建一个&lt;em&gt;JsonWithFilterValue&lt;/em&gt;,将原对象和注解解析出来的&lt;em&gt;SerializeFilter&lt;/em&gt;封装起来&lt;/li&gt;
+&lt;li&gt;新建一个&lt;em&gt;FastJsonHttpMessageConverter4Ext&lt;/em&gt;,继承自&lt;em&gt;FastJsonHttpMessageConverter4&lt;/em&gt;,覆盖&lt;em&gt;writeInternal&lt;/em&gt;方法,序列化第一步自定义的&lt;em&gt;JsonWithFilterValue&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;自定义注解的实现&lt;/li&gt;
+&lt;li&gt;新建一个&lt;em&gt;ResponseBodyAdvice&lt;/em&gt;,解析注解,并封装成第一步自定义的&lt;em&gt;JsonWithFilterValue&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -628,6 +641,30 @@
   </entry>
   
   <entry>
+    <title>JAVA压缩目录</title>
+    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
+    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
+    <published>2014-10-04T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
+<p>用法非常简单:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
+    
+      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
+    
+  </entry>
+  
+  <entry>
     <title>用String来创建Spring的ApplicationContext</title>
     <link href="http://www.aboutchen.org//blog/create-spring-application-context-with-string.html"/>
     <id>http://www.aboutchen.org//blog/create-spring-application-context-with-string.html</id>
@@ -650,30 +687,6 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JAVA压缩目录</title>
-    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
-    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
-    <published>2014-10-04T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
-<p>用法非常简单:  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
     
   </entry>
   

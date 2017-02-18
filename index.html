@@ -362,16 +362,23 @@
 
       
         
-          
-          
-本文章使用的Spring版本是4.3,其他版本原理相同
-
-导语
-在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.
-
-实现原理
-实现原理是创建一个ControllerAdvise在数据被传送到MessageC
-          ...
+          <ul>
+<li>本文章使用的Spring版本是4.3,其他版本原理相同</li>
+</ul>
+<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.</p>
+</blockquote>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><blockquote>
+<p>实现原理是创建一个<em>ControllerAdvise</em>在数据被传送到<em>MessageConverter</em>之前,包装一下数据,读取<em>Controller</em>方法的注解,将注解元数据和原始数据包装起来.传递给自定义的<em>MessageConverter</em>来处理.</p>
+</blockquote>
+<h4 id="我们需要做这些"><a href="#我们需要做这些" class="headerlink" title="我们需要做这些"></a>我们需要做这些</h4><blockquote>
+<ol>
+<li>新建一个<em>JsonWithFilterValue</em>,将原对象和注解解析出来的<em>SerializeFilter</em>封装起来</li>
+<li>新建一个<em>FastJsonHttpMessageConverter4Ext</em>,继承自<em>FastJsonHttpMessageConverter4</em>,覆盖<em>writeInternal</em>方法,序列化第一步自定义的<em>JsonWithFilterValue</em></li>
+<li>自定义注解的实现</li>
+<li>新建一个<em>ResponseBodyAdvice</em>,解析注解,并封装成第一步自定义的<em>JsonWithFilterValue</em></li>
+</ol>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/springmvc-fastjson-property-filter.html#more" rel="contents">
@@ -1160,7 +1167,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://ok4c1axne.bkt.clouddn.com/20170205148627910370889.png" rel="gallery_cizax7zrp00240pc69m41pav0"
+                 href="http://ok4c1axne.bkt.clouddn.com/20170205148627910370889.png" rel="gallery_cizaxzv5l0024zlc684zwx3s4"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://ok4c1axne.bkt.clouddn.com/20170205148627910370889.png" itemprop="contentUrl"/>
               </a>

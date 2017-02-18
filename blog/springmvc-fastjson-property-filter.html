@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+  
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SpringMVC,FastJSON," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shmiluyu-麻吉" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文章使用的Spring版本是4.3,其他版本原理相同
+
+导语
+在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.
+
+实现原理
+实现原理是创建一个ControllerAdvise在数据被传送到MessageConverter之前,包装一下数据,读取Controller方法的注解,将注解元数据和原始数据包装起">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC结合FastJSON定制json返回(过滤某些字段)">
+<meta property="og:url" content="http://www.aboutchen.org/blog/springmvc-fastjson-property-filter.html">
+<meta property="og:site_name" content="Shmiluyu-麻吉">
+<meta property="og:description" content="本文章使用的Spring版本是4.3,其他版本原理相同
+
+导语
+在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.
+
+实现原理
+实现原理是创建一个ControllerAdvise在数据被传送到MessageConverter之前,包装一下数据,读取Controller方法的注解,将注解元数据和原始数据包装起">
+<meta property="og:updated_time" content="2017-02-18T07:46:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC结合FastJSON定制json返回(过滤某些字段)">
+<meta name="twitter:description" content="本文章使用的Spring版本是4.3,其他版本原理相同
+
+导语
+在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.
+
+实现原理
+实现原理是创建一个ControllerAdvise在数据被传送到MessageConverter之前,包装一下数据,读取Controller方法的注解,将注解元数据和原始数据包装起">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '8417278',
+      author: '码农Shmiluyu'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.aboutchen.org/blog/springmvc-fastjson-property-filter.html"/>
+
+
+
+
+
+  <title> SpringMVC结合FastJSON定制json返回(过滤某些字段) | Shmiluyu-麻吉 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?723edc58d712568e8f144ef3f9591d20";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shmiluyu-麻吉</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/springmvc-fastjson-property-filter.html">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Chen">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shmiluyu-麻吉">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shmiluyu-麻吉" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SpringMVC结合FastJSON定制json返回(过滤某些字段)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-18T15:07:27+08:00">
+                2017-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/原创/" itemprop="url" rel="index">
+                    <span itemprop="name">原创</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/springmvc-fastjson-property-filter.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/springmvc-fastjson-property-filter.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>本文章使用的Spring版本是4.3,其他版本原理相同</li>
+</ul>
+<h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>在返回json数据的时候,有时候会需要控制一些字段不返回.简单的办法就是写VO.本文实现的是通过注解来控制返回的字段.省去一部分VO的编写.</p>
+</blockquote>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><blockquote>
+<p>实现原理是创建一个<em>ControllerAdvise</em>在数据被传送到<em>MessageConverter</em>之前,包装一下数据,读取<em>Controller</em>方法的注解,将注解元数据和原始数据包装起来.传递给自定义的<em>MessageConverter</em>来处理.</p>
+</blockquote>
+<h4 id="我们需要做这些"><a href="#我们需要做这些" class="headerlink" title="我们需要做这些"></a>我们需要做这些</h4><blockquote>
+<ol>
+<li>新建一个<em>JsonWithFilterValue</em>,将原对象和注解解析出来的<em>SerializeFilter</em>封装起来</li>
+<li>新建一个<em>FastJsonHttpMessageConverter4Ext</em>,继承自<em>FastJsonHttpMessageConverter4</em>,覆盖<em>writeInternal</em>方法,序列化第一步自定义的<em>JsonWithFilterValue</em></li>
+<li>自定义注解的实现</li>
+<li>新建一个<em>ResponseBodyAdvice</em>,解析注解,并封装成第一步自定义的<em>JsonWithFilterValue</em></li>
+</ol>
+</blockquote>
+<h4 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h4><h5 id="1-自定义封装对象JsonWithFilterValue"><a href="#1-自定义封装对象JsonWithFilterValue" class="headerlink" title="1. 自定义封装对象JsonWithFilterValue"></a>1. 自定义封装对象<em>JsonWithFilterValue</em></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonWithFilterValue</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> SerializeFilter[] filters;</div><div class="line">    <span class="keyword">private</span> Object value;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">JsonWithFilterValue</span><span class="params">(Object value)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.value = value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> SerializeFilter[] getFilters() &#123;</div><div class="line">        <span class="keyword">return</span> filters;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> JsonWithFilterValue <span class="title">setFilters</span><span class="params">(SerializeFilter[] filters)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.filters = filters;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getValue</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="2-自定义FastJsonHttpMessageConverter4实现-我起的类名是FastJsonHttpMessageConverter4Ext"><a href="#2-自定义FastJsonHttpMessageConverter4实现-我起的类名是FastJsonHttpMessageConverter4Ext" class="headerlink" title="2 自定义FastJsonHttpMessageConverter4实现,我起的类名是FastJsonHttpMessageConverter4Ext"></a>2 自定义<em>FastJsonHttpMessageConverter4</em>实现,我起的类名是<em>FastJsonHttpMessageConverter4Ext</em></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastJsonHttpMessageConverter4Ext</span> <span class="keyword">extends</span> <span class="title">FastJsonHttpMessageConverter4</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">FastJsonHttpMessageConverter4Ext</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">writeInternal</span><span class="params">(Object obj, Type type, HttpOutputMessage outputMessage)</span> <span class="keyword">throws</span> IOException, HttpMessageNotWritableException </span>&#123;</div><div class="line">        HttpHeaders           headers = outputMessage.getHeaders();</div><div class="line">        ByteArrayOutputStream outnew  = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">        Object                value;</div><div class="line">        SerializeFilter[]     filters;</div><div class="line">        <span class="comment">//判断是否是我们自定义的封装对象</span></div><div class="line">        <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> JsonWithFilterValue) &#123;</div><div class="line">            value = ((JsonWithFilterValue) obj).getValue();</div><div class="line">            filters = concat(((JsonWithFilterValue) obj).getFilters(), getFastJsonConfig().getSerializeFilters());</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            value = obj;</div><div class="line">            filters = getFastJsonConfig().getSerializeFilters();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> len = JSON.writeJSONString(outnew, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getCharset(), <span class="comment">//</span></div><div class="line">                value, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getSerializeConfig(), <span class="comment">//</span></div><div class="line">                filters, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getDateFormat(), <span class="comment">//</span></div><div class="line">                JSON.DEFAULT_GENERATE_FEATURE, <span class="comment">//</span></div><div class="line">                getFastJsonConfig().getSerializerFeatures());</div><div class="line">        headers.setContentLength(len);</div><div class="line">        OutputStream out = outputMessage.getBody();</div><div class="line">        outnew.writeTo(out);</div><div class="line">        outnew.close();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    SerializeFilter[] concat(SerializeFilter[] a, SerializeFilter[] b) &#123;</div><div class="line">        <span class="keyword">if</span> (a == <span class="keyword">null</span>) <span class="keyword">return</span> b;</div><div class="line">        <span class="keyword">if</span> (b == <span class="keyword">null</span>) <span class="keyword">return</span> a;</div><div class="line">        SerializeFilter[] c = <span class="keyword">new</span> SerializeFilter[a.length + b.length];</div><div class="line">        System.arraycopy(a, <span class="number">0</span>, c, <span class="number">0</span>, a.length);</div><div class="line">        System.arraycopy(b, <span class="number">0</span>, c, a.length, b.length);</div><div class="line">        <span class="keyword">return</span> c;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="3-自定义注解"><a href="#3-自定义注解" class="headerlink" title="3 自定义注解"></a>3 自定义注解</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JsonPropertyFilter &#123;</div><div class="line">    Class&lt;?&gt; target() <span class="keyword">default</span> Object.class;</div><div class="line">    <span class="function">String <span class="title">include</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">    <span class="function">String <span class="title">exclude</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>java7 不支持重复注解,变相实现重复注解,如果是java8,没有这么麻烦,直接用重复注解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Target</span>(ElementType.METHOD)</div><div class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</div><div class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JsonPropertyFilters &#123;</div><div class="line">    JsonPropertyFilter[] value();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-ControlAdvise"><a href="#4-ControlAdvise" class="headerlink" title="4 ControlAdvise"></a>4 ControlAdvise</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@ControllerAdvice</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastJsonPropertyFilterAdvice</span> <span class="keyword">implements</span> <span class="title">ResponseBodyAdvice</span>&lt;<span class="title">Object</span>&gt; </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supports</span><span class="params">(MethodParameter returnType, Class&lt;? extends HttpMessageConverter&lt;?&gt;&gt; converterType)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> FastJsonHttpMessageConverter4.class.isAssignableFrom(converterType);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">beforeBodyWrite</span><span class="params">(Object body, MethodParameter returnType, MediaType selectedContentType, Class&lt;? extends HttpMessageConverter&lt;?&gt;&gt; selectedConverterType, ServerHttpRequest request, ServerHttpResponse response)</span> </span>&#123;</div><div class="line">        JsonWithFilterValue   value   = getOrCreateContainer(body);</div><div class="line">        List&lt;SerializeFilter&gt; filters = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">        <span class="keyword">for</span> (Annotation annotation : returnType.getMethodAnnotations()) &#123;</div><div class="line">            <span class="keyword">if</span> (annotation <span class="keyword">instanceof</span> JsonPropertyFilter) &#123;</div><div class="line">                <span class="keyword">final</span> JsonPropertyFilter propertyFilter = (JsonPropertyFilter) annotation;</div><div class="line">                <span class="keyword">final</span> Class&lt;?&gt;           target         = propertyFilter.target();</div><div class="line">                filters.add(creatFilter(propertyFilter, target));</div><div class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (annotation <span class="keyword">instanceof</span> JsonPropertyFilters) &#123;</div><div class="line">                JsonPropertyFilters propertyFilters = (JsonPropertyFilters) annotation;</div><div class="line">                <span class="keyword">for</span> (JsonPropertyFilter propertyFilter : propertyFilters.value()) &#123;</div><div class="line">                    Class&lt;?&gt; target = propertyFilter.target();</div><div class="line">                    filters.add(creatFilter(propertyFilter, target));</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        value.setFilters(filters.toArray(<span class="keyword">new</span> SerializeFilter[<span class="number">0</span>]));</div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> SerializeFilter <span class="title">creatFilter</span><span class="params">(<span class="keyword">final</span> JsonPropertyFilter propertyFilter, <span class="keyword">final</span> Class&lt;?&gt; target)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PropertyFilter() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">apply</span><span class="params">(Object object, String name, Object value)</span> </span>&#123;</div><div class="line">                <span class="keyword">if</span> (target != Object.class) &#123;</div><div class="line">                    <span class="keyword">if</span> (!object.getClass().isAssignableFrom(target)) &#123;</div><div class="line">                        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">return</span> _apply(name, value);</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">return</span> _apply(name, value);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">_apply</span><span class="params">(String name, Object value)</span> </span>&#123;</div><div class="line">                <span class="comment">//两者同时存在的情况下,无法同时判断,因为还有其他属性.</span></div><div class="line">                <span class="comment">//优先判断exclues,其次是includes</span></div><div class="line">                String[] includes = propertyFilter.include().split(<span class="string">","</span>);</div><div class="line">                String[] excludes = propertyFilter.exclude().split(<span class="string">","</span>);</div><div class="line">                <span class="keyword">if</span> (includes.length &gt; <span class="number">0</span> &amp;&amp; excludes.length &gt; <span class="number">0</span>) &#123;</div><div class="line">                    <span class="comment">//两者都存在,只处理排除属性</span></div><div class="line">                    <span class="keyword">return</span> !(StringUtil.equalsOne(name, excludes) &gt; -<span class="number">1</span>);</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (excludes.length &gt; <span class="number">0</span>) &#123;</div><div class="line">                    <span class="comment">//只排除某些属性</span></div><div class="line">                    <span class="keyword">return</span> !(StringUtil.equalsOne(name, excludes) &gt; -<span class="number">1</span>);</div><div class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (includes.length &gt; <span class="number">0</span>) &#123;</div><div class="line">                    <span class="comment">//只包含某些属性</span></div><div class="line">                    <span class="keyword">return</span> StringUtil.equalsOne(name, includes) &gt; -<span class="number">1</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//两者都不存在</span></div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> JsonWithFilterValue <span class="title">getOrCreateContainer</span><span class="params">(Object body)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> (body <span class="keyword">instanceof</span> JsonWithFilterValue ? (JsonWithFilterValue) body : <span class="keyword">new</span> JsonWithFilterValue(body));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@GetMapping</span>(<span class="string">"/filter"</span>)</div><div class="line"><span class="meta">@ResponseBody</span></div><div class="line"><span class="meta">@JsonPropertyFilters</span>(&#123;</div><div class="line">        <span class="meta">@JsonPropertyFilter</span>(target = User.class,exclude = <span class="string">"password"</span>),</div><div class="line">        <span class="meta">@JsonPropertyFilter</span>(target = Address.class,include = <span class="string">"city"</span>)</div><div class="line">&#125;)</div><div class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">propertyFilterTest</span><span class="params">()</span> </span>&#123;</div><div class="line">    User user = <span class="keyword">new</span> User();</div><div class="line">    Address address = <span class="keyword">new</span> Address();</div><div class="line">    address.setCity(<span class="string">"TheCity"</span>).setCountry(<span class="string">"TheCountry"</span>);</div><div class="line">    user.setUserName(<span class="string">"Baymax"</span>).setPassword(<span class="string">"i'm bay max"</span>).setAddress(address);</div><div class="line">    <span class="keyword">return</span> user;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String userName,password;</div><div class="line">    <span class="keyword">private</span> Address address;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> userName;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.userName = userName;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> password;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.password = password;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Address <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> address;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">setAddress</span><span class="params">(Address address)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.address = address;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> String city,country;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCity</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> city;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Address <span class="title">setCity</span><span class="params">(String city)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.city = city;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCountry</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> country;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Address <span class="title">setCountry</span><span class="params">(String country)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.country = country;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          
+            <a href="/tags/FastJSON/" rel="tag"># FastJSON</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/spring-mvc-annotation-not-work.html" rel="next" title="SpringMVC 莫名的注解服务不生效,如缓存注解">
+                <i class="fa fa-chevron-left"></i> SpringMVC 莫名的注解服务不生效,如缓存注解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/springmvc-fastjson-property-filter.html"
+           data-title="SpringMVC结合FastJSON定制json返回(过滤某些字段)" data-url="http://www.aboutchen.org//blog/springmvc-fastjson-property-filter.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Chen" />
+          <p class="site-author-name" itemprop="name">Chen</p>
+          <p class="site-description motion-element" itemprop="description">About Chen</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现原理"><span class="nav-number">2.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我们需要做这些"><span class="nav-number">3.</span> <span class="nav-text">我们需要做这些</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体实现"><span class="nav-number">4.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-自定义封装对象JsonWithFilterValue"><span class="nav-number">4.1.</span> <span class="nav-text">1. 自定义封装对象JsonWithFilterValue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-自定义FastJsonHttpMessageConverter4实现-我起的类名是FastJsonHttpMessageConverter4Ext"><span class="nav-number">4.2.</span> <span class="nav-text">2 自定义FastJsonHttpMessageConverter4实现,我起的类名是FastJsonHttpMessageConverter4Ext</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-自定义注解"><span class="nav-number">4.3.</span> <span class="nav-text">3 自定义注解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-ControlAdvise"><span class="nav-number">4.4.</span> <span class="nav-text">4 ControlAdvise</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用"><span class="nav-number">4.5.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chen</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="//cdn.jsdelivr.net/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"aboutchen"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="//cdn.jsdelivr.net/ua-parser.js/0.7.10/ua-parser.min.js"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

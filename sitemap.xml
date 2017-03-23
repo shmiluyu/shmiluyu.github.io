@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.aboutchen.org//blog/spring-cloud.html</loc>
+    
+    <lastmod>2017-03-23T04:11:58.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.aboutchen.org//blog/springmvc-fastjson-property-filter.html</loc>
     
     <lastmod>2017-02-18T07:48:11.000Z</lastmod>
@@ -191,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/deploy-to-tomcat-7-with-maven.html</loc>
+    <loc>http://www.aboutchen.org//blog/use-port-80-with-ngrok.html</loc>
     
     <lastmod>2017-01-21T06:53:02.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.aboutchen.org//blog/use-port-80-with-ngrok.html</loc>
+    <loc>http://www.aboutchen.org//blog/deploy-to-tomcat-7-with-maven.html</loc>
     
     <lastmod>2017-01-21T06:53:02.000Z</lastmod>
     

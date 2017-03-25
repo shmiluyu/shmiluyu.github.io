@@ -716,30 +716,6 @@
   </entry>
   
   <entry>
-    <title>JAVA压缩目录</title>
-    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
-    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
-    <published>2014-10-04T16:00:00.000Z</published>
-    <updated>2017-01-21T06:53:05.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
-<p>用法非常简单:  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
-    
-      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
-    
-  </entry>
-  
-  <entry>
     <title>用String来创建Spring的ApplicationContext</title>
     <link href="http://www.aboutchen.org//blog/create-spring-application-context-with-string.html"/>
     <id>http://www.aboutchen.org//blog/create-spring-application-context-with-string.html</id>
@@ -762,6 +738,30 @@
       <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
     
       <category term="spring" scheme="http://www.aboutchen.org/tags/spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA压缩目录</title>
+    <link href="http://www.aboutchen.org//blog/compress-folder-with-java.html"/>
+    <id>http://www.aboutchen.org//blog/compress-folder-with-java.html</id>
+    <published>2014-10-04T16:00:00.000Z</published>
+    <updated>2017-01-21T06:53:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java JDK本身带的有<code>java.util.Zip</code>包,可以压缩和解压文件,但是存在一个问题<br>就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法<br>倒是找到了一个好用的三方库<code>plexus-archiver</code>  </p>
+<p>用法非常简单:  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">zipDirectory</span><span class="params">(File directory, String target)</span> </span>&#123;</div><div class="line">        Archiver archiver = <span class="keyword">new</span> ZipArchiver();</div><div class="line">        archiver.setDestFile(<span class="keyword">new</span> File(target));</div><div class="line">        <span class="comment">//是否包含空目录</span></div><div class="line">        archiver.setIncludeEmptyDirs(<span class="keyword">true</span>);</div><div class="line">        <span class="keyword">for</span> (File file : directory.listFiles()) &#123;</div><div class="line">            DefaultFileSet fileSet = <span class="keyword">new</span> DefaultFileSet();</div><div class="line">            fileSet.setDirectory(directory);</div><div class="line">            archiver.addFileSet(fileSet);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            archiver.createArchive();</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java JDK本身带的有&lt;code&gt;java.util.Zip&lt;/code&gt;包,可以压缩和解压文件,但是存在一个问题&lt;br&gt;就是,空目录会被丢弃掉.最近碰到一个需求,必须要保留空目录,google了也没找到解决这个问题的办法&lt;br&gt;倒是找到了一个好用的三方库&lt;code&gt;p
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://www.aboutchen.org/tags/java/"/>
+    
+      <category term="zip" scheme="http://www.aboutchen.org/tags/zip/"/>
     
   </entry>
   

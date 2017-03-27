@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.aboutchen.org//blog/java-memory-model.html</loc>
+    
+    <lastmod>2017-03-26T05:52:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.aboutchen.org//blog/spring-cloud.html</loc>
     
     <lastmod>2017-03-23T04:13:45.000Z</lastmod>

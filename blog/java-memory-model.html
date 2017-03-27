@@ -46,7 +46,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sublime text," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -64,22 +64,36 @@
 
 
 
-<meta name="description" content="1. Javascript Minifier压缩js,支持 Google Closure Compiler 和 UglifyJS.  
-2. 无法编译程序UnicodeDecodeError: &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte 0xe6 in position 15: ordinal not in range在exec.py里面替换
-1proc">
+<meta name="description" content="译自Java Memory Model
+
+JVM是一个仿真的计算机(不知道定义是否准确,我是这么理解的),既然是计算机,肯定包含内存管理这一块,就是Java内存模型(Java Memeory Model),下文简称JMM
+理解JMM对于并发编程非常重要,JMM定义了多线程什么时候以什么样的方式去同步访问一个共享变量
+早期的JMM不完善,现在的规范以Java1.5后修订版为准,JDK1.5修订版J">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sublime Text 常用插件汇总">
-<meta property="og:url" content="http://www.aboutchen.org/blog/sublime-text-plugin-summary.html">
+<meta property="og:title" content="Java内存模型">
+<meta property="og:url" content="http://www.aboutchen.org/blog/java-memory-model.html">
 <meta property="og:site_name" content="Shmiluyu-麻吉">
-<meta property="og:description" content="1. Javascript Minifier压缩js,支持 Google Closure Compiler 和 UglifyJS.  
-2. 无法编译程序UnicodeDecodeError: &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte 0xe6 in position 15: ordinal not in range在exec.py里面替换
-1proc">
-<meta property="og:updated_time" content="2017-01-21T06:53:14.000Z">
+<meta property="og:description" content="译自Java Memory Model
+
+JVM是一个仿真的计算机(不知道定义是否准确,我是这么理解的),既然是计算机,肯定包含内存管理这一块,就是Java内存模型(Java Memeory Model),下文简称JMM
+理解JMM对于并发编程非常重要,JMM定义了多线程什么时候以什么样的方式去同步访问一个共享变量
+早期的JMM不完善,现在的规范以Java1.5后修订版为准,JDK1.5修订版J">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/20170325149044611062889.png">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/20170325149044614644165.png">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/20170325149044616370843.png">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/20170325149044694430289.png">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/2017032514904474825249.png">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/20170326149050223894579.png">
+<meta property="og:image" content="http://ok4c1axne.bkt.clouddn.com/20170326149050306236317.png">
+<meta property="og:updated_time" content="2017-03-26T05:52:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sublime Text 常用插件汇总">
-<meta name="twitter:description" content="1. Javascript Minifier压缩js,支持 Google Closure Compiler 和 UglifyJS.  
-2. 无法编译程序UnicodeDecodeError: &amp;#39;ascii&amp;#39; codec can&amp;#39;t decode byte 0xe6 in position 15: ordinal not in range在exec.py里面替换
-1proc">
+<meta name="twitter:title" content="Java内存模型">
+<meta name="twitter:description" content="译自Java Memory Model
+
+JVM是一个仿真的计算机(不知道定义是否准确,我是这么理解的),既然是计算机,肯定包含内存管理这一块,就是Java内存模型(Java Memeory Model),下文简称JMM
+理解JMM对于并发编程非常重要,JMM定义了多线程什么时候以什么样的方式去同步访问一个共享变量
+早期的JMM不完善,现在的规范以Java1.5后修订版为准,JDK1.5修订版J">
+<meta name="twitter:image" content="http://ok4c1axne.bkt.clouddn.com/20170325149044611062889.png">
 
 
 
@@ -107,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://www.aboutchen.org/blog/sublime-text-plugin-summary.html"/>
+  <link rel="canonical" href="http://www.aboutchen.org/blog/java-memory-model.html"/>
 
 
 
 
 
-  <title> Sublime Text 常用插件汇总 | Shmiluyu-麻吉 </title>
+  <title> Java内存模型 | Shmiluyu-麻吉 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/sublime-text-plugin-summary.html">
+  <link itemprop="mainEntityOfPage" href="http://www.aboutchen.org/blog/java-memory-model.html">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Chen">
@@ -280,7 +294,7 @@
             
             
               
-                Sublime Text 常用插件汇总
+                Java内存模型
               
             
           </h1>
@@ -295,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-08-10T00:00:00+08:00">
-                2014-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-25T19:45:14+08:00">
+                2017-03-25
               </time>
             
 
@@ -318,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技巧备忘/" itemprop="url" rel="index">
-                    <span itemprop="name">技巧备忘</span>
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
                   </a>
                 </span>
 
@@ -353,11 +367,51 @@
       
 
       
-        <h4 id="1-Javascript-Minifier"><a href="#1-Javascript-Minifier" class="headerlink" title="1. Javascript Minifier"></a>1. Javascript Minifier</h4><p>压缩js,支持 Google Closure Compiler 和 UglifyJS.  </p>
-<h4 id="2-无法编译程序"><a href="#2-无法编译程序" class="headerlink" title="2. 无法编译程序"></a>2. 无法编译程序</h4><p><code>UnicodeDecodeError: &#39;ascii&#39; codec can&#39;t decode byte 0xe6 in position 15: ordinal not in range</code><br>在<code>exec.py</code>里面替换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
-<p>为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">proc_env[k] = os.path.expandvars(v.decode(sys.getfilesystemencoding())).encode(sys.getfilesystemencoding())</div></pre></td></tr></table></figure>
+        <blockquote>
+<p>译自<a href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html" target="_blank" rel="external">Java Memory Model</a></p>
+</blockquote>
+<p>JVM是一个仿真的计算机(不知道定义是否准确,我是这么理解的),既然是计算机,肯定包含内存管理这一块,就是Java内存模型(Java Memeory Model),下文简称JMM</p>
+<p>理解<strong>JMM</strong>对于并发编程非常重要,<strong>JMM</strong>定义了多线程什么时候以什么样的方式去同步访问一个共享变量</p>
+<p>早期的<strong>JMM</strong>不完善,现在的规范以Java1.5后修订版为准,JDK1.5修订版<strong>JMM</strong>一直到现在的JDK8仍在使用.</p>
+<h2 id="JVM内部的内存模型"><a href="#JVM内部的内存模型" class="headerlink" title="JVM内部的内存模型"></a>JVM内部的内存模型</h2><p>JVM内部的内存模型,分为两部分,线程栈(Thread Stack)和堆(Heap),如下图<br><img src="http://ok4c1axne.bkt.clouddn.com/20170325149044611062889.png" alt="20170325149044611062889.png"></p>
+<p>运行在JVM内部的每一个线程,都有自己的线程栈(Thread Stack),线程栈包含了当前正在调用的方法信息,我们称之为调用栈(Call Stack).</p>
+<p>线程栈也包含每一个方法调用的局部变量信息,线程只能访问自己的线程栈,对外不可见,即使两个线程执行相同的代码,也会创建各自的线程栈.</p>
+<p>其实我们在做代码调试的时候,看到的就是线程栈.以Intellij Idea调试为例子,下图:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>&#123;</div><div class="line">  String a=<span class="string">"hello world"</span>;</div><div class="line">  System.out.println(<span class="string">"hello world"</span>);<span class="comment">//这里加断点</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/20170325149044614644165.png" alt="20170325149044614644165.png"></p>
+<p>可以看到图中,调用栈,目前正在执行的方法在栈顶,当java开始执行,先执行main方法,main方法入栈,同时main方法的变量信息也会保存起来,然后调用say方法,say方法入栈,同样保存变量信息.等say方法执行完毕,say方法出栈,继续执行main方法.以此类推.</p>
+<p>基本类型(Primitive types,boolean,byte,short,char,etc…)的本地变量是直接存储到线程栈里面,并且对其他线程不可见,一个线程只有可能会传递一个基本类型的拷贝到另外一个线程,但是不可能共享一个基本类型.</p>
+<p>堆(Heap)保存了所有创建的Java对象,其中也包含封装类型(Byte,Long,Integer,etc..),不管你在哪创建的对象,统统都存储到堆里面.</p>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/20170325149044616370843.png" alt="20170325149044616370843.png"></p>
+<ul>
+<li>基本类型会直接存储在线程栈</li>
+<li>线程栈内的引用变量,指向的是堆里的一个对象.栈内只是存对象引用(可以理解为指针)</li>
+<li>一个对象可能包含方法,方法体内的局部变量同样存储在线程栈内</li>
+<li>一个对象的成员变量存储在堆内,无论是基本类型还是对象</li>
+<li>类的静态成员变量,跟随类定义存放在堆内</li>
+<li>堆内的对象可以被任何有拥有引用的线程访问,当一个线程可以访问一个对象,同样可以访问该对象的成员变量. 如果两个线程调用 同一个对象的方法,这两个线程都可以访问这个对象的成员变量,但是方法内的局部变量不会共享,每个线程生成一份独立的副本.</li>
+</ul>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/20170325149044694430289.png" alt="20170325149044694430289.png"></p>
+<h2 id="硬件内存架构"><a href="#硬件内存架构" class="headerlink" title="硬件内存架构"></a>硬件内存架构</h2><p>现代计算机的内存模型和<strong>JMM</strong>有些区别,了解一下可以帮助理解<strong>JMM</strong>,现代计算机内存模型简化图.</p>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/2017032514904474825249.png" alt="2017032514904474825249.png"></p>
+<p>现代的计算大多有两个或以上的cpu,每个cpu有可能是多个核心.在这种计算机上,假如你有3个cpu,那么同一时刻,你可以并发执行3条线程.</p>
+<p>每个cpu内部都有一组寄存器,另外还有cpu缓存,我们常说的cpu参数里面的一级缓存,二级缓存等. 可以把这个层级理解为多级缓存,因为RAM的速度相对于CPU缓存来说慢的多,而CPU缓存相对于寄存器又慢的多.但是CPU的运算速度很快,所以为了不让CPU等待,最大化的利用CPU,才出现了这种多级缓存的设计</p>
+<p>一般来说,CPU会把数据从RAM加载到CPU缓存,然后再读到寄存器,等操作完毕,会逐级回写到RAM</p>
+<p>关于CPU之间,如何保持数据同步可以参考<a href="http://www.infoq.com/cn/articles/cache-coherency-primer/" target="_blank" rel="external">缓存一致性</a>,这里一句两句说不完.</p>
+<h2 id="JMM-lt-gt-硬件内存"><a href="#JMM-lt-gt-硬件内存" class="headerlink" title="JMM&lt;-&gt;硬件内存"></a>JMM&lt;-&gt;硬件内存</h2><p>硬件内存体系并不区分线程栈(Thread Stack)和堆(Heap),对于它来说,都是主存(main memory),有些可能存在Cpu缓存或者寄存器中,如下图.</p>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/20170326149050223894579.png" alt="20170326149050223894579.png"></p>
+<p>那么问题来了:</p>
+<ul>
+<li>一给线程对共享变量的读写对线程的可见性</li>
+<li>多个线程读写共享变量的竞争条件(race conditions)</li>
+</ul>
+<p>这两个问题会在下面解释</p>
+<h2 id="共享变量的可见性"><a href="#共享变量的可见性" class="headerlink" title="共享变量的可见性"></a>共享变量的可见性</h2><p>两个以上的线程共享一个对象, 如果没有用<strong>volatile</strong>或者<strong>synchronized</strong>做同步,一个线程对对象做出的修改,其他线程不一定能拿到最新的值</p>
+<p>假设一个共享对象存在RAM中, 有一个正在某一个CPU内运行的线程,把它读取到CPU缓存内,并对其进行了修改, 在他还没有刷回主存的时候, 另外一个线程也读取到这个对象到运行它的CPU缓存内,首先读取到的不是最新的.其次如果刷回到主存,可能会覆盖掉其他线程的修改. 总之很乱,没有前后顺序.</p>
+<p><img src="http://ok4c1axne.bkt.clouddn.com/20170326149050306236317.png" alt="20170326149050306236317.png"></p>
+<p>解决这个问题,可以使用<strong>volatile</strong>关键字进行同步,详细分析见<a href="http://www.aboutchen.org/blog/how-java-volitale-works.html">Java volatile实现原理</a>,<strong>volatile</strong>可以保证每次使用都是从主存读取,每次更新都是直接写入主存.</p>
+<h2 id="竞争条件-Race-Conditions"><a href="#竞争条件-Race-Conditions" class="headerlink" title="竞争条件(Race Conditions)"></a>竞争条件(Race Conditions)</h2><p>Java中使用同步代码库解决竞争问题, 被同步的代码库,同一时刻只允许一个线程进入,并且代码块内部的变量都是从主存直接读取,当线程离开同步区域时,所有的变量更新都会被直接写回主存.不管变量是否被声明为<strong>volatile</strong></p>
+<p>关于<strong>synchronized</strong>的详细理解可以阅读<a href="http://www.aboutchen.org/blog/how-jvm-performs-thread-synchronization.html">Java同步实现原理</a></p>
 
       
     </div>
@@ -381,7 +435,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/sublime-text/" rel="tag"># sublime text</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -390,8 +444,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/openwrt-summary.html" rel="next" title="Openwrt配置汇总">
-                <i class="fa fa-chevron-left"></i> Openwrt配置汇总
+              <a href="/blog/spring-cloud.html" rel="next" title="About Spring Cloud">
+                <i class="fa fa-chevron-left"></i> About Spring Cloud
               </a>
             
           </div>
@@ -399,10 +453,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/jekyll-summary.html" rel="prev" title="Jekyll 备忘">
-                Jekyll 备忘 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -545,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Javascript-Minifier"><span class="nav-number">1.</span> <span class="nav-text">1. Javascript Minifier</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-无法编译程序"><span class="nav-number">2.</span> <span class="nav-text">2. 无法编译程序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内部的内存模型"><span class="nav-number">1.</span> <span class="nav-text">JVM内部的内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件内存架构"><span class="nav-number">2.</span> <span class="nav-text">硬件内存架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM-lt-gt-硬件内存"><span class="nav-number">3.</span> <span class="nav-text">JMM<->硬件内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享变量的可见性"><span class="nav-number">4.</span> <span class="nav-text">共享变量的可见性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#竞争条件-Race-Conditions"><span class="nav-number">5.</span> <span class="nav-text">竞争条件(Race Conditions)</span></a></li></ol></div>
             
 
           </div>

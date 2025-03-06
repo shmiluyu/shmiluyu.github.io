@@ -39,9 +39,10 @@ jobs:
                   { encoding: 'utf-8' }
                 ).trim();
                 
-                // 格式化日期，移除 "T"
+                // 格式化日期，移除 "T" 和时区信息
                 let formattedDate = dateStr || new Date().toISOString();
-                formattedDate = formattedDate.replace('T', ' ');
+                // 替换T并移除时区信息部分
+                formattedDate = formattedDate.replace('T', ' ').replace(/(\+|-)\d{2}:\d{2}$/, '');
                 
                 return {
                   name: file,
@@ -49,8 +50,9 @@ jobs:
                 };
               } catch (err) {
                 console.error(`Error getting date for ${file}:`, err);
-                // 格式化当前日期，移除 "T"
-                const currentDate = new Date().toISOString().replace('T', ' ');
+                // 格式化当前日期，移除 "T" 和时区信息
+                const now = new Date().toISOString();
+                const currentDate = now.replace('T', ' ').replace(/(\+|-)\d{2}:\d{2}$/, '');
                 return {
                   name: file,
                   date: currentDate
@@ -59,7 +61,12 @@ jobs:
             });
           
           // 按日期排序（最新的在前）
-          files.sort((a, b) => new Date(b.date.replace(' ', 'T')) - new Date(a.date.replace(' ', 'T')));
+          files.sort((a, b) => {
+            // 为了正确比较，临时将空格替换回T以创建有效的日期对象
+            const dateA = new Date(a.date.replace(' ', 'T') + 'Z');
+            const dateB = new Date(b.date.replace(' ', 'T') + 'Z');
+            return dateB - dateA;
+          });
           
           // 将文件信息转换为 JSON 字符串
           const filesJson = JSON.stringify(files);

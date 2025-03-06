@@ -1,2 +1,3 @@
- M temp_git_status.txt
-?? .github/
+D  temp_git_status.txt
+?? archives/en-prototype.html
+?? temp_git_status.txt

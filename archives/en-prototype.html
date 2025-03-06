@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .word-card {
+            border-left: 4px solid #3b82f6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .word-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .term {
+            cursor: pointer;
+            color: #2563eb;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .term:hover, .term:active {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        
+        .scene {
+            background-color: #eff6ff;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+        
+        .example {
+            position: relative;
+            padding: 0.5rem 0.75rem;
+            margin: 0.5rem 0;
+            border-left: 2px solid #60a5fa;
+            background-color: #f9fafb;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .refresh-btn:hover, .refresh-btn:active {
+            background-color: #2563eb;
+            transform: rotate(30deg);
+        }
+        
+        .refresh-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .sound-icon {
+            cursor: pointer;
+            color: #3b82f6;
+            margin-left: 0.25rem;
+            transition: color 0.2s ease;
+            padding: 0.25rem;
+        }
+        
+        .sound-icon:hover, .sound-icon:active {
+            color: #1d4ed8;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* 移动优先样式 */
+        .container {
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .word-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .word-card {
+            padding: 1.25rem !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        h1 {
+            font-size: 1.75rem !important;
+        }
+        
+        /* 更大屏幕的适配 */
+        @media (min-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+            
+            .word-card {
+                padding: 2rem !important;
+            }
+            
+            h1 {
+                font-size: 2.25rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container mx-auto max-w-3xl">
+        <header class="mb-6 text-center">
+            <h1 class="font-bold text-gray-800 mb-2">{{title}}</h1>
+            <p class="text-gray-600 text-sm mb-4">点击单词听发音，点击句子旁的喇叭图标听整句</p>
+        </header>
+        
+        <div class="word-container">
+            <transition name="fade">
+                <div v-if="currentWord" class="word-card bg-white rounded-lg fade-in">
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="term text-xl" @click="speakText(currentWord.en)">{{ currentWord.en }}</span>
+                        <span class="text-gray-400">|</span>
+                        <span class="text-gray-700 text-xl">{{ currentWord.zh }}</span>
+                    </div>
+                    <div class="scene">
+                        {{ currentWord.scene }}
+                    </div>
+                    <div v-for="(example, exIndex) in currentWord.examples" :key="exIndex" class="example">
+                        <p>{{ example.en }}</p>
+                        <p class="text-gray-600 mt-1">{{ example.zh }}</p>
+                        <i class="fas fa-volume-up sound-icon" @click="speakText(example.en)"></i>
+                    </div>
+                </div>
+            </transition>
+        </div>
+        
+        <div class="refresh-btn" @click="getRandomWord">
+            <i class="fas fa-random"></i>
+        </div>
+    </div>
+    
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+    
+    <script>
+        // 词汇数据
+        const vocabData = {{vocabData}};
+        
+        // Vue 应用
+        const app = Vue.createApp({
+            data() {
+                return {
+                    vocabData: vocabData,
+                    currentWord: null,
+                    isAnimating: false
+                };
+            },
+            methods: {
+                speakText(text) {
+                    // 取消正在进行的语音
+                    window.speechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    
+                    // 尝试选择一个好的英语声音
+                    const voices = window.speechSynthesis.getVoices();
+                    const englishVoices = voices.filter(voice => voice.lang.includes('en-'));
+                    
+                    if (englishVoices.length > 0) {
+                        // 尝试找到一个优质声音
+                        const preferredVoices = englishVoices.filter(v => 
+                            v.name.includes('Google') || 
+                            v.name.includes('Daniel') || 
+                            v.name.includes('Samantha')
+                        );
+                        
+                        utterance.voice = preferredVoices.length > 0 ? 
+                            preferredVoices[0] : englishVoices[0];
+                    }
+                    
+                    window.speechSynthesis.speak(utterance);
+                },
+                getRandomWord() {
+                    if (this.isAnimating) return;
+                    
+                    this.isAnimating = true;
+                    
+                    // 添加淡出效果
+                    const wordCard = document.querySelector('.word-card');
+                    if (wordCard) {
+                        wordCard.style.opacity = '0';
+                        wordCard.style.transform = 'translateY(20px)';
+                    }
+                    
+                    setTimeout(() => {
+                        // 随机选择一个单词
+                        const randomIndex = Math.floor(Math.random() * this.vocabData.length);
+                        this.currentWord = this.vocabData[randomIndex];
+                        
+                        // 重置动画状态
+                        this.$nextTick(() => {
+                            const newWordCard = document.querySelector('.word-card');
+                            if (newWordCard) {
+                                // 强制重绘
+                                void newWordCard.offsetWidth;
+                                newWordCard.style.opacity = '1';
+                                newWordCard.style.transform = 'translateY(0)';
+                            }
+                            
+                            setTimeout(() => {
+                                this.isAnimating = false;
+                            }, 500);
+                        });
+                    }, 300);
+                }
+            },
+            mounted() {
+                // 初始加载时随机显示一个单词
+                this.getRandomWord();
+                
+                // 确保语音API已加载
+                if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        // 语音已加载
+                    };
+                }
+            }
+        });
+        
+        app.mount('#app');
+    </script>
+
+
+</body></html>

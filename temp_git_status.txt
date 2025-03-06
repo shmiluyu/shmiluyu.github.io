@@ -1,2 +1,2 @@
  M temp_git_status.txt
-?? archives/
+?? .github/

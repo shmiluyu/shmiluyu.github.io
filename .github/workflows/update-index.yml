@@ -1,0 +1,93 @@
+name: Update Index HTML
+
+on:
+  push:
+    paths:
+      - 'archives/**'
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # 获取完整的历史记录以便获取文件创建日期
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          
+      - name: Create index.html from archives
+        run: |
+          # 创建一个 Node.js 脚本来执行我们的任务
+          cat > update-index.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const { execSync } = require('child_process');
+          
+          // 扫描 archives 目录中的所有 HTML 文件
+          const archivesDir = path.join(process.cwd(), 'archives');
+          const files = fs.readdirSync(archivesDir)
+            .filter(file => file.endsWith('.html'))
+            .map(file => {
+              try {
+                // 使用 git log 获取文件的创建日期
+                const dateStr = execSync(
+                  `git log --follow --format=%aI --reverse -- "archives/${file}" | head -1`,
+                  { encoding: 'utf-8' }
+                ).trim();
+                
+                return {
+                  name: file,
+                  date: dateStr || new Date().toISOString() // 如果无法获取日期，使用当前日期
+                };
+              } catch (err) {
+                console.error(`Error getting date for ${file}:`, err);
+                return {
+                  name: file,
+                  date: new Date().toISOString()
+                };
+              }
+            });
+          
+          // 按日期排序（最新的在前）
+          files.sort((a, b) => new Date(b.date) - new Date(a.date));
+          
+          // 将文件信息转换为 JSON 字符串
+          const filesJson = JSON.stringify(files);
+          
+          // 读取 _list.html 模板
+          let template;
+          try {
+            template = fs.readFileSync('_list.html', 'utf-8');
+          } catch (err) {
+            console.error('Error reading _list.html:', err);
+            process.exit(1);
+          }
+          
+          // 替换模板中的 {{files}} 标记
+          const indexContent = template.replace('{{files}}', filesJson);
+          
+          // 将结果写入 index.html
+          try {
+            fs.writeFileSync('index.html', indexContent);
+            console.log('Successfully generated index.html');
+          } catch (err) {
+            console.error('Error writing index.html:', err);
+            process.exit(1);
+          }
+          EOF
+          
+          # 执行脚本
+          node update-index.js
+          
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add index.html
+          
+          # 尝试提交更改，如果有的话
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update index.html based on archives changes" && git push)

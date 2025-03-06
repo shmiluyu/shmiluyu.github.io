@@ -39,21 +39,27 @@ jobs:
                   { encoding: 'utf-8' }
                 ).trim();
                 
+                // 格式化日期，移除 "T"
+                let formattedDate = dateStr || new Date().toISOString();
+                formattedDate = formattedDate.replace('T', ' ');
+                
                 return {
                   name: file,
-                  date: dateStr || new Date().toISOString() // 如果无法获取日期，使用当前日期
+                  date: formattedDate
                 };
               } catch (err) {
                 console.error(`Error getting date for ${file}:`, err);
+                // 格式化当前日期，移除 "T"
+                const currentDate = new Date().toISOString().replace('T', ' ');
                 return {
                   name: file,
-                  date: new Date().toISOString()
+                  date: currentDate
                 };
               }
             });
           
           // 按日期排序（最新的在前）
-          files.sort((a, b) => new Date(b.date) - new Date(a.date));
+          files.sort((a, b) => new Date(b.date.replace(' ', 'T')) - new Date(a.date.replace(' ', 'T')));
           
           // 将文件信息转换为 JSON 字符串
           const filesJson = JSON.stringify(files);

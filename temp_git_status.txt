@@ -1,3 +1,2 @@
-D  temp_git_status.txt
-?? archives/en-prototype.html
-?? temp_git_status.txt
+ M .github/workflows/update-index.yml
+ M temp_git_status.txt

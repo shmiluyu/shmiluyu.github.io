@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户体验设计</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="archive.css"> 
+</head>
+<body>
+    <div id="app" class="container mx-auto max-w-3xl">
+        <header class="mb-6 text-center">
+            <h1 class="font-bold text-gray-800 mb-2">用户体验设计</h1>
+            <p class="text-gray-600 text-sm mb-4">
+                点击单词听发音，点击句子旁的喇叭图标听整句
+                <span class="text-gray-400 text-xs ml-2">· {{ vocabData.length }}个词汇</span>
+            </p>
+            <div class="flex items-center justify-center gap-4">
+                <label class="text-sm text-gray-600">语速控制:</label>
+                <input 
+                    type="range" 
+                    v-model="speechRate" 
+                    min="0.5" 
+                    max="2" 
+                    step="0.1" 
+                    class="w-32"
+                >
+                <span class="text-sm text-gray-600">{{ speechRate }}x</span>
+            </div>
+        </header>
+        
+        <div class="word-container">
+            <transition name="fade">
+                <div v-if="currentWord" class="word-card bg-white rounded-lg fade-in">
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                        <span class="term text-xl" @click="speakText(currentWord.en)">{{ currentWord.en }}</span>
+                        <span class="text-gray-400">|</span>
+                        <span class="text-gray-700 text-xl">{{ currentWord.zh }}</span>
+                    </div>
+                    <div class="scene">
+                        {{ currentWord.scene }}
+                    </div>
+                    <div v-for="(example, exIndex) in currentWord.examples" 
+                         :key="exIndex" 
+                         class="example"
+                         @click="speakText(example.en)">
+                        <p>{{ example.en }}</p>
+                        <p class="text-gray-600 mt-1">{{ example.zh }}</p>
+                        <i class="fas fa-volume-up sound-icon"></i>
+                    </div>
+                </div>
+            </transition>
+        </div>
+        
+        <div class="refresh-btn" 
+             :class="{ 'loading': isAnimating }" 
+             @click="getRandomWord">
+            <i class="fas fa-random"></i>
+        </div>
+    </div>
+    
+    <!-- Vue 3 -->
+    <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+    
+    <script>
+        // 词汇数据
+        const vocabData =  [{"en": "UX Design Requirements", "zh": "\u7528\u6237\u4f53\u9a8c\u8bbe\u8ba1\u9700\u6c42", "scene": "\u901a\u5e38\u7528\u4e8e\u4ea7\u54c1\u8bbe\u8ba1\u9636\u6bb5\uff0c\u5f3a\u8c03\u7528\u6237\u7684\u9700\u6c42\u3001\u671f\u671b\u548c\u529f\u80fd\u8981\u6c42\u3002", "examples": [{"en": "The UX design requirements should be gathered from user interviews.", "zh": "\u7528\u6237\u4f53\u9a8c\u8bbe\u8ba1\u9700\u6c42\u5e94\u901a\u8fc7\u7528\u6237\u8bbf\u8c08\u6536\u96c6\u3002"}, {"en": "Clear UX design requirements help in creating a better user interface.", "zh": "\u6e05\u6670\u7684\u7528\u6237\u4f53\u9a8c\u8bbe\u8ba1\u9700\u6c42\u6709\u52a9\u4e8e\u521b\u5efa\u66f4\u597d\u7684\u7528\u6237\u754c\u9762\u3002"}, {"en": "We need to prioritize UX design requirements based on user feedback.", "zh": "\u6211\u4eec\u9700\u8981\u6839\u636e\u7528\u6237\u53cd\u9988\u4f18\u5148\u8003\u8651\u7528\u6237\u4f53\u9a8c\u8bbe\u8ba1\u9700\u6c42\u3002"}, {"en": "Documenting UX design requirements is essential for the development team.", "zh": "\u8bb0\u5f55\u7528\u6237\u4f53\u9a8c\u8bbe\u8ba1\u9700\u6c42\u5bf9\u5f00\u53d1\u56e2\u961f\u81f3\u5173\u91cd\u8981\u3002"}, {"en": "The UX design requirements will guide the entire design process.", "zh": "\u7528\u6237\u4f53\u9a8c\u8bbe\u8ba1\u9700\u6c42\u5c06\u6307\u5bfc\u6574\u4e2a\u8bbe\u8ba1\u8fc7\u7a0b\u3002"}]}, {"en": "User Flow", "zh": "\u7528\u6237\u6d41\u7a0b", "scene": "\u7528\u4e8e\u63cf\u8ff0\u7528\u6237\u5728\u5e94\u7528\u6216\u7f51\u7ad9\u4e2d\u6267\u884c\u4efb\u52a1\u7684\u6b65\u9aa4\u3002", "examples": [{"en": "Mapping out the user flow helps identify potential bottlenecks.", "zh": "\u7ed8\u5236\u7528\u6237\u6d41\u7a0b\u6709\u52a9\u4e8e\u8bc6\u522b\u6f5c\u5728\u7684\u74f6\u9888\u3002"}, {"en": "A smooth user flow enhances the overall user experience.", "zh": "\u6d41\u7545\u7684\u7528\u6237\u6d41\u7a0b\u63d0\u5347\u6574\u4f53\u7528\u6237\u4f53\u9a8c\u3002"}, {"en": "We need to simplify the user flow for new users.", "zh": "\u6211\u4eec\u9700\u8981\u7b80\u5316\u65b0\u7528\u6237\u7684\u7528\u6237\u6d41\u7a0b\u3002"}, {"en": "The user flow diagram illustrates how users navigate the system.", "zh": "\u7528\u6237\u6d41\u7a0b\u56fe\u5c55\u793a\u4e86\u7528\u6237\u5982\u4f55\u5728\u7cfb\u7edf\u4e2d\u5bfc\u822a\u3002"}, {"en": "Testing the user flow can reveal usability issues.", "zh": "\u6d4b\u8bd5\u7528\u6237\u6d41\u7a0b\u53ef\u4ee5\u63ed\u793a\u53ef\u7528\u6027\u95ee\u9898\u3002"}]}, {"en": "Interaction Design", "zh": "\u4ea4\u4e92\u8bbe\u8ba1", "scene": "\u4e13\u6ce8\u4e8e\u7528\u6237\u4e0e\u4ea7\u54c1\u4e4b\u95f4\u7684\u4e92\u52a8\uff0c\u786e\u4fdd\u7528\u6237\u4f53\u9a8c\u6d41\u7545\u4e14\u76f4\u89c2\u3002", "examples": [{"en": "Good interaction design makes the application easy to use.", "zh": "\u826f\u597d\u7684\u4ea4\u4e92\u8bbe\u8ba1\u4f7f\u5e94\u7528\u7a0b\u5e8f\u6613\u4e8e\u4f7f\u7528\u3002"}, {"en": "We need to improve the interaction design for better engagement.", "zh": "\u6211\u4eec\u9700\u8981\u6539\u5584\u4ea4\u4e92\u8bbe\u8ba1\u4ee5\u63d0\u9ad8\u7528\u6237\u53c2\u4e0e\u5ea6\u3002"}, {"en": "The interaction design should consider various user scenarios.", "zh": "\u4ea4\u4e92\u8bbe\u8ba1\u5e94\u8003\u8651\u591a\u79cd\u7528\u6237\u573a\u666f\u3002"}, {"en": "Feedback is an important aspect of interaction design.", "zh": "\u53cd\u9988\u662f\u4ea4\u4e92\u8bbe\u8ba1\u7684\u91cd\u8981\u65b9\u9762\u3002"}, {"en": "Effective interaction design reduces user frustration.", "zh": "\u6709\u6548\u7684\u4ea4\u4e92\u8bbe\u8ba1\u51cf\u5c11\u7528\u6237\u7684\u632b\u6298\u611f\u3002"}]}, {"en": "Navigation Design", "zh": "\u5bfc\u822a\u8bbe\u8ba1", "scene": "\u6d89\u53ca\u5982\u4f55\u7ec4\u7ec7\u548c\u5e03\u5c40\u5e94\u7528\u6216\u7f51\u7ad9\u7684\u5bfc\u822a\u5143\u7d20\uff0c\u4ee5\u786e\u4fdd\u7528\u6237\u80fd\u591f\u8f7b\u677e\u627e\u5230\u6240\u9700\u4fe1\u606f\u3002", "examples": [{"en": "Clear navigation design is crucial for user retention.", "zh": "\u6e05\u6670\u7684\u5bfc\u822a\u8bbe\u8ba1\u5bf9\u7528\u6237\u7559\u5b58\u81f3\u5173\u91cd\u8981\u3002"}, {"en": "We should evaluate the navigation design based on user testing.", "zh": "\u6211\u4eec\u5e94\u8be5\u6839\u636e\u7528\u6237\u6d4b\u8bd5\u8bc4\u4f30\u5bfc\u822a\u8bbe\u8ba1\u3002"}, {"en": "The navigation design must be intuitive and easy to use.", "zh": "\u5bfc\u822a\u8bbe\u8ba1\u5fc5\u987b\u76f4\u89c2\u4e14\u6613\u4e8e\u4f7f\u7528\u3002"}, {"en": "A well-structured navigation design enhances the user experience.", "zh": "\u7ed3\u6784\u826f\u597d\u7684\u5bfc\u822a\u8bbe\u8ba1\u589e\u5f3a\u7528\u6237\u4f53\u9a8c\u3002"}, {"en": "Navigation design can significantly impact user satisfaction.", "zh": "\u5bfc\u822a\u8bbe\u8ba1\u53ef\u4ee5\u663e\u8457\u5f71\u54cd\u7528\u6237\u6ee1\u610f\u5ea6\u3002"}]}];
+        // Vue 应用
+        const app = Vue.createApp({
+            data() {
+                return {
+                    vocabData: vocabData,
+                    currentWord: null,
+                    isAnimating: false,
+                    // 添加历史记录数组
+                    history: [],
+                    // 从 localStorage 读取语速设置，如果没有则使用默认值 1.0
+                    speechRate: parseFloat(localStorage.getItem('speechRate')) || 1.0
+                };
+            },
+            watch: {
+                // 监听 speechRate 的变化，保存到 localStorage
+                speechRate(newRate) {
+                    localStorage.setItem('speechRate', newRate);
+                }
+            },
+            methods: {
+                speakText(text) {
+                    // 取消正在进行的语音
+                    window.speechSynthesis.cancel();
+                    
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    // 设置语速
+                    utterance.rate = this.speechRate;
+                    
+                    const voices = window.speechSynthesis.getVoices();
+                    const englishVoices = voices.filter(voice => voice.lang.includes('en-'));
+                    
+                    if (englishVoices.length > 0) {
+                        const preferredVoices = englishVoices.filter(v => 
+                            v.name.includes('Google') || 
+                            v.name.includes('Daniel') || 
+                            v.name.includes('Samantha')
+                        );
+                        
+                        utterance.voice = preferredVoices.length > 0 ? 
+                            preferredVoices[0] : englishVoices[0];
+                    }
+                    
+                    window.speechSynthesis.speak(utterance);
+                },
+                getRandomWord() {
+                    if (this.isAnimating) return;
+                    this.isAnimating = true;
+                    
+                    // 添加淡出效果
+                    const wordCard = document.querySelector('.word-card');
+                    if (wordCard) {
+                        wordCard.style.opacity = '0';
+                        wordCard.style.transform = 'translateY(20px)';
+                    }
+                    
+                    setTimeout(() => {
+                        let randomIndex;
+                        let attempts = 0;
+                        const maxAttempts = 10; // 防止无限循环
+                        
+                        do {
+                            randomIndex = Math.floor(Math.random() * this.vocabData.length);
+                            attempts++;
+                        } while (
+                            this.history.includes(randomIndex) && 
+                            attempts < maxAttempts && 
+                            this.vocabData.length > 2
+                        );
+                        
+                        // 更新历史记录
+                        this.history.push(randomIndex);
+                        if (this.history.length > 3) {
+                            this.history.shift(); // 移除最老的记录
+                        }
+                        
+                        this.currentWord = this.vocabData[randomIndex];
+                        
+                        // 重置动画状态
+                        this.$nextTick(() => {
+                            const newWordCard = document.querySelector('.word-card');
+                            if (newWordCard) {
+                                void newWordCard.offsetWidth;
+                                newWordCard.style.opacity = '1';
+                                newWordCard.style.transform = 'translateY(0)';
+                            }
+                            
+                            setTimeout(() => {
+                                this.isAnimating = false;
+                            }, 500);
+                        });
+                    }, 300);
+                }
+            },
+            mounted() {
+                // 初始加载时随机显示一个单词
+                this.getRandomWord();
+                
+                // 确保语音API已加载
+                if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        // 语音已加载
+                    };
+                }
+            }
+        });
+        
+        app.mount('#app');
+    </script>
+
+
+</body></html>

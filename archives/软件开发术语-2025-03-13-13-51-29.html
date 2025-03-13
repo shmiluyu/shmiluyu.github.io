@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>软件开发术语</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../archive.css">
+</head>
+<body>
+<div id="app" class="container mx-auto max-w-3xl">
+  <header class="mb-6 text-center">
+    <h1 class="font-bold text-gray-800 mb-2">软件开发术语</h1>
+    <p class="text-gray-600 text-sm mb-4">
+      点击单词听发音，点击句子旁的喇叭图标听整句
+      <span class="text-gray-400 text-xs ml-2">· {{ vocabData.length }}个词汇</span>
+    </p>
+    <div class="flex items-center justify-center gap-4">
+      <label class="text-sm text-gray-600">语速控制:</label>
+      <input
+          type="range"
+          v-model="speechRate"
+          min="0.5"
+          max="2"
+          step="0.1"
+          class="w-32"
+      >
+      <span class="text-sm text-gray-600">{{ speechRate }}x</span>
+    </div>
+  </header>
+
+  <div class="word-container">
+    <transition name="fade">
+      <div v-if="currentWord" class="word-card bg-white rounded-lg fade-in">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="term text-xl" @click="speakText(currentWord.en)">{{ currentWord.en }}</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-700 text-xl">{{ currentWord.zh }}</span>
+        </div>
+        <div class="scene">
+          {{ currentWord.scene }}
+        </div>
+        <div v-for="(example, exIndex) in currentWord.examples"
+             :key="exIndex"
+             class="example"
+             @click="speakText(example.en)">
+          <p>{{ example.en }}</p>
+          <p class="text-gray-600 mt-1">{{ example.zh }}</p>
+          <i class="fas fa-volume-up sound-icon"></i>
+        </div>
+      </div>
+    </transition>
+  </div>
+
+  <div class="refresh-btn"
+       :class="{ 'loading': isAnimating }"
+       @click="getRandomWord">
+    <i class="fas fa-random"></i>
+  </div>
+</div>
+
+<!-- Vue 3 -->
+<script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+
+<script>
+  // 词汇数据
+  const vocabData =  [{"en": "applications", "zh": "\u5e94\u7528\u7a0b\u5e8f", "scene": "\u6307\u4e3a\u6ee1\u8db3\u7528\u6237\u9700\u6c42\u800c\u5f00\u53d1\u7684\u7a0b\u5e8f\uff0c\u901a\u5e38\u5728\u7279\u5b9a\u5e73\u53f0\u4e0a\u8fd0\u884c\u3002", "examples": [{"en": "I use various applications on my phone for productivity.", "zh": "\u6211\u5728\u624b\u673a\u4e0a\u4f7f\u7528\u5404\u79cd\u5e94\u7528\u7a0b\u5e8f\u6765\u63d0\u9ad8\u751f\u4ea7\u529b\u3002"}, {"en": "Applications can be classified into web apps and mobile apps.", "zh": "\u5e94\u7528\u7a0b\u5e8f\u53ef\u4ee5\u5206\u4e3a\u7f51\u7edc\u5e94\u7528\u548c\u79fb\u52a8\u5e94\u7528\u3002"}, {"en": "This application allows users to manage their tasks effectively.", "zh": "\u8fd9\u4e2a\u5e94\u7528\u7a0b\u5e8f\u4f7f\u7528\u6237\u80fd\u591f\u6709\u6548\u5730\u7ba1\u7406\u4ed6\u4eec\u7684\u4efb\u52a1\u3002"}, {"en": "There are many applications available for data analysis.", "zh": "\u6709\u8bb8\u591a\u53ef\u7528\u4e8e\u6570\u636e\u5206\u6790\u7684\u5e94\u7528\u7a0b\u5e8f\u3002"}, {"en": "The application needs to be updated regularly for security reasons.", "zh": "\u51fa\u4e8e\u5b89\u5168\u539f\u56e0\uff0c\u8be5\u5e94\u7528\u7a0b\u5e8f\u9700\u8981\u5b9a\u671f\u66f4\u65b0\u3002"}]}, {"en": "Zero config", "zh": "\u96f6\u914d\u7f6e", "scene": "\u6307\u4f7f\u7528\u65f6\u65e0\u9700\u8fdb\u884c\u914d\u7f6e\u6216\u8bbe\u7f6e\u7684\u7cfb\u7edf\u6216\u670d\u52a1\uff0c\u901a\u5e38\u65e8\u5728\u964d\u4f4e\u7528\u6237\u7684\u4f7f\u7528\u95e8\u69db\u3002", "examples": [{"en": "This tool offers zero config deployment for quick setup.", "zh": "\u8fd9\u4e2a\u5de5\u5177\u63d0\u4f9b\u96f6\u914d\u7f6e\u90e8\u7f72\uff0c\u5feb\u901f\u8bbe\u7f6e\u3002"}, {"en": "With zero config, you can start using the application immediately.", "zh": "\u6709\u4e86\u96f6\u914d\u7f6e\uff0c\u4f60\u53ef\u4ee5\u7acb\u5373\u5f00\u59cb\u4f7f\u7528\u8be5\u5e94\u7528\u7a0b\u5e8f\u3002"}, {"en": "Zero config services are becoming increasingly popular among developers.", "zh": "\u96f6\u914d\u7f6e\u670d\u52a1\u5728\u5f00\u53d1\u8005\u4e2d\u8d8a\u6765\u8d8a\u53d7\u6b22\u8fce\u3002"}, {"en": "The platform is designed for zero config, making it user-friendly.", "zh": "\u8be5\u5e73\u53f0\u8bbe\u8ba1\u4e3a\u96f6\u914d\u7f6e\uff0c\u4f7f\u5176\u7528\u6237\u53cb\u597d\u3002"}, {"en": "Zero config setups save time and reduce complexity.", "zh": "\u96f6\u914d\u7f6e\u8bbe\u7f6e\u8282\u7701\u65f6\u95f4\u5e76\u964d\u4f4e\u590d\u6742\u6027\u3002"}]}, {"en": "common usages", "zh": "\u5e38\u89c1\u7528\u6cd5", "scene": "\u6307\u4e00\u4e2a\u8bcd\u8bed\u6216\u77ed\u8bed\u6700\u666e\u904d\u548c\u5e7f\u6cdb\u63a5\u53d7\u7684\u4f7f\u7528\u65b9\u5f0f\u3002", "examples": [{"en": "Understanding common usages can help you improve your language skills.", "zh": "\u4e86\u89e3\u5e38\u89c1\u7528\u6cd5\u53ef\u4ee5\u5e2e\u52a9\u4f60\u63d0\u9ad8\u8bed\u8a00\u6280\u80fd\u3002"}, {"en": "The common usages of this term vary by region.", "zh": "\u8fd9\u4e2a\u672f\u8bed\u7684\u5e38\u89c1\u7528\u6cd5\u56e0\u5730\u533a\u800c\u5f02\u3002"}, {"en": "In technical writing, common usages are crucial for clarity.", "zh": "\u5728\u6280\u672f\u5199\u4f5c\u4e2d\uff0c\u5e38\u89c1\u7528\u6cd5\u5bf9\u6e05\u6670\u5ea6\u81f3\u5173\u91cd\u8981\u3002"}, {"en": "It's important to learn common usages when studying a new language.", "zh": "\u5b66\u4e60\u65b0\u8bed\u8a00\u65f6\uff0c\u4e86\u89e3\u5e38\u89c1\u7528\u6cd5\u662f\u5f88\u91cd\u8981\u7684\u3002"}, {"en": "The dictionary provides examples of common usages.", "zh": "\u8fd9\u672c\u8bcd\u5178\u63d0\u4f9b\u4e86\u5e38\u89c1\u7528\u6cd5\u7684\u4f8b\u5b50\u3002"}]}, {"en": "full-stack framework", "zh": "\u5168\u6808\u6846\u67b6", "scene": "\u6307\u80fd\u591f\u652f\u6301\u6574\u4e2a\u5e94\u7528\u7a0b\u5e8f\u5f00\u53d1\u7684\u6846\u67b6\uff0c\u6db5\u76d6\u524d\u7aef\u548c\u540e\u7aef\u6280\u672f\u3002", "examples": [{"en": "A full-stack framework enables developers to work on both server-side and client-side.", "zh": "\u5168\u6808\u6846\u67b6\u4f7f\u5f00\u53d1\u4eba\u5458\u80fd\u591f\u540c\u65f6\u5904\u7406\u670d\u52a1\u5668\u7aef\u548c\u5ba2\u6237\u7aef\u3002"}, {"en": "Using a full-stack framework can speed up the development process.", "zh": "\u4f7f\u7528\u5168\u6808\u6846\u67b6\u53ef\u4ee5\u52a0\u5feb\u5f00\u53d1\u8fc7\u7a0b\u3002"}, {"en": "Many developers prefer full-stack frameworks for building dynamic web applications.", "zh": "\u8bb8\u591a\u5f00\u53d1\u8005\u559c\u6b22\u4f7f\u7528\u5168\u6808\u6846\u67b6\u6765\u6784\u5efa\u52a8\u6001\u7f51\u7ad9\u5e94\u7528\u7a0b\u5e8f\u3002"}, {"en": "The full-stack framework includes tools for database management.", "zh": "\u8fd9\u4e2a\u5168\u6808\u6846\u67b6\u5305\u62ec\u6570\u636e\u5e93\u7ba1\u7406\u5de5\u5177\u3002"}, {"en": "A popular full-stack framework is MEAN, which stands for MongoDB, Express, Angular, and Node.js.", "zh": "\u4e00\u4e2a\u53d7\u6b22\u8fce\u7684\u5168\u6808\u6846\u67b6\u662fMEAN\uff0c\u4ee3\u8868MongoDB\u3001Express\u3001Angular\u548cNode.js\u3002"}]}];
+  // Vue 应用
+  const app = Vue.createApp({
+    data() {
+      return {
+        vocabData: vocabData,
+        currentWord: null,
+        isAnimating: false,
+        // 添加历史记录数组
+        history: [],
+        // 从 localStorage 读取语速设置，如果没有则使用默认值 1.0
+        speechRate: parseFloat(localStorage.getItem('speechRate')) || 1.0
+      };
+    },
+    watch: {
+      // 监听 speechRate 的变化，保存到 localStorage
+      speechRate(newRate) {
+        localStorage.setItem('speechRate', newRate);
+      }
+    },
+    methods: {
+      speakText(text) {
+        // 取消正在进行的语音
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        // 设置语速
+        utterance.rate = this.speechRate;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoices = voices.filter(voice => voice.lang.includes('en-'));
+
+        if (englishVoices.length > 0) {
+          const preferredVoices = englishVoices.filter(v =>
+              v.name.includes('Google') ||
+              v.name.includes('Daniel') ||
+              v.name.includes('Samantha')
+          );
+
+          utterance.voice = preferredVoices.length > 0 ?
+              preferredVoices[0] : englishVoices[0];
+        }
+
+        window.speechSynthesis.speak(utterance);
+      },
+      getRandomWord() {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        // 添加淡出效果
+        const wordCard = document.querySelector('.word-card');
+        if (wordCard) {
+          wordCard.style.opacity = '0';
+          wordCard.style.transform = 'translateY(20px)';
+        }
+
+        setTimeout(() => {
+          let randomIndex;
+          let attempts = 0;
+          const maxAttempts = 10; // 防止无限循环
+
+          do {
+            randomIndex = Math.floor(Math.random() * this.vocabData.length);
+            attempts++;
+          } while (
+              this.history.includes(randomIndex) &&
+              attempts < maxAttempts &&
+              this.vocabData.length > 2
+              );
+
+          // 更新历史记录
+          this.history.push(randomIndex);
+          if (this.history.length > 3) {
+            this.history.shift(); // 移除最老的记录
+          }
+
+          this.currentWord = this.vocabData[randomIndex];
+
+          // 重置动画状态
+          this.$nextTick(() => {
+            const newWordCard = document.querySelector('.word-card');
+            if (newWordCard) {
+              void newWordCard.offsetWidth;
+              newWordCard.style.opacity = '1';
+              newWordCard.style.transform = 'translateY(0)';
+            }
+
+            setTimeout(() => {
+              this.isAnimating = false;
+            }, 500);
+          });
+        }, 300);
+      }
+    },
+    mounted() {
+      // 初始加载时随机显示一个单词
+      this.getRandomWord();
+
+      // 确保语音API已加载
+      if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          // 语音已加载
+        };
+      }
+    }
+  });
+
+  app.mount('#app');
+</script>
+
+
+</body></html>

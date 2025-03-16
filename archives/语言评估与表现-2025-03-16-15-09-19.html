@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>语言评估与表现</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../archive.css">
+</head>
+<body>
+<div id="app" class="container mx-auto max-w-3xl">
+  <header class="mb-6 text-center">
+    <h1 class="font-bold text-gray-800 mb-2">语言评估与表现</h1>
+    <p class="text-gray-600 text-sm mb-4">
+      点击单词听发音，点击句子旁的喇叭图标听整句
+      <span class="text-gray-400 text-xs ml-2">· {{ vocabData.length }}个词汇</span>
+    </p>
+    <div class="flex items-center justify-center gap-4">
+      <label class="text-sm text-gray-600">语速控制:</label>
+      <input
+          type="range"
+          v-model="speechRate"
+          min="0.5"
+          max="2"
+          step="0.1"
+          class="w-32"
+      >
+      <span class="text-sm text-gray-600">{{ speechRate }}x</span>
+    </div>
+  </header>
+
+  <div class="word-container">
+    <transition name="fade">
+      <div v-if="currentWord" class="word-card bg-white rounded-lg fade-in">
+        <div class="flex flex-wrap items-center gap-2 mb-2">
+          <span class="term text-xl" @click="speakText(currentWord.en)">{{ currentWord.en }}</span>
+          <span class="text-gray-400">|</span>
+          <span class="text-gray-700 text-xl">{{ currentWord.zh }}</span>
+        </div>
+        <div class="scene">
+          {{ currentWord.scene }}
+        </div>
+        <div v-for="(example, exIndex) in currentWord.examples"
+             :key="exIndex"
+             class="example"
+             @click="speakText(example.en)">
+          <p>{{ example.en }}</p>
+          <p class="text-gray-600 mt-1">{{ example.zh }}</p>
+          <i class="fas fa-volume-up sound-icon"></i>
+        </div>
+      </div>
+    </transition>
+  </div>
+
+  <div class="refresh-btn"
+       :class="{ 'loading': isAnimating }"
+       @click="getRandomWord">
+    <i class="fas fa-random"></i>
+  </div>
+</div>
+
+<!-- Vue 3 -->
+<script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+
+<script>
+  // 词汇数据
+  const vocabData =  [{"en": "Bag of Strengths and Weaknesses", "zh": "\u4f18\u7f3a\u70b9\u96c6\u5408", "scene": "\u7528\u4e8e\u63cf\u8ff0\u67d0\u4eba\u6216\u67d0\u7269\u7684\u591a\u65b9\u9762\u80fd\u529b\u548c\u4e0d\u8db3\u4e4b\u5904\u3002", "examples": [{"en": "This report provides a bag of strengths and weaknesses for each candidate.", "zh": "\u8fd9\u4efd\u62a5\u544a\u4e3a\u6bcf\u4e2a\u5019\u9009\u4eba\u63d0\u4f9b\u4e86\u4f18\u7f3a\u70b9\u96c6\u5408\u3002"}, {"en": "When preparing for an interview, consider your bag of strengths and weaknesses.", "zh": "\u5728\u51c6\u5907\u9762\u8bd5\u65f6\uff0c\u8003\u8651\u4f60\u7684\u4f18\u7f3a\u70b9\u96c6\u5408\u3002"}, {"en": "Understanding your bag of strengths and weaknesses can help in personal development.", "zh": "\u4e86\u89e3\u4f60\u7684\u4f18\u7f3a\u70b9\u96c6\u5408\u53ef\u4ee5\u5e2e\u52a9\u4e2a\u4eba\u53d1\u5c55\u3002"}, {"en": "The project review highlighted the bag of strengths and weaknesses in the team's approach.", "zh": "\u9879\u76ee\u8bc4\u5ba1\u5f3a\u8c03\u4e86\u56e2\u961f\u65b9\u6cd5\u4e2d\u7684\u4f18\u7f3a\u70b9\u96c6\u5408\u3002"}, {"en": "A good leader knows their own bag of strengths and weaknesses.", "zh": "\u4e00\u4e2a\u597d\u7684\u9886\u5bfc\u8005\u77e5\u9053\u81ea\u5df1\u7684\u4f18\u7f3a\u70b9\u96c6\u5408\u3002"}]}, {"en": "lineup", "zh": "\u9635\u5bb9", "scene": "\u901a\u5e38\u7528\u4e8e\u63cf\u8ff0\u56e2\u961f\u6216\u53c2\u4e0e\u8005\u7684\u7ec4\u5408\u3002", "examples": [{"en": "The team lineup was announced before the game.", "zh": "\u6bd4\u8d5b\u524d\u516c\u5e03\u4e86\u7403\u961f\u9635\u5bb9\u3002"}, {"en": "We have a strong lineup of speakers for the conference.", "zh": "\u6211\u4eec\u4e3a\u4f1a\u8bae\u51c6\u5907\u4e86\u4e00\u4efd\u5f3a\u5927\u7684\u6f14\u8bb2\u8005\u9635\u5bb9\u3002"}, {"en": "The festival features a diverse lineup of performers.", "zh": "\u8fd9\u4e2a\u8282\u65e5\u6709\u4e00\u7ec4\u591a\u5143\u5316\u7684\u8868\u6f14\u8005\u9635\u5bb9\u3002"}, {"en": "I prefer my lineup of favorite movies for a movie night.", "zh": "\u6211\u559c\u6b22\u6211\u7684\u7535\u5f71\u4e4b\u591c\u7684\u6700\u7231\u7535\u5f71\u9635\u5bb9\u3002"}, {"en": "Check out the lineup for this summer\u2019s music festival!", "zh": "\u67e5\u770b\u8fd9\u4e2a\u590f\u5b63\u97f3\u4e50\u8282\u7684\u9635\u5bb9\uff01"}]}, {"en": "Touted as", "zh": "\u88ab\u5439\u6367\u4e3a", "scene": "\u7528\u4e8e\u5f3a\u8c03\u67d0\u4e8b\u7269\u7684\u58f0\u8a89\u6216\u91cd\u8981\u6027\u3002", "examples": [{"en": "She is touted as the best player in the league.", "zh": "\u5979\u88ab\u5439\u6367\u4e3a\u8054\u8d5b\u4e2d\u6700\u597d\u7684\u7403\u5458\u3002"}, {"en": "The new product is touted as a breakthrough in technology.", "zh": "\u65b0\u4ea7\u54c1\u88ab\u5439\u6367\u4e3a\u6280\u672f\u4e0a\u7684\u7a81\u7834\u3002"}, {"en": "He was touted as the next big star in Hollywood.", "zh": "\u4ed6\u88ab\u5439\u6367\u4e3a\u597d\u83b1\u575e\u4e0b\u4e00\u4e2a\u5927\u660e\u661f\u3002"}, {"en": "This book is touted as a must-read for every student.", "zh": "\u8fd9\u672c\u4e66\u88ab\u5439\u6367\u4e3a\u6bcf\u4e2a\u5b66\u751f\u7684\u5fc5\u8bfb\u4e66\u7c4d\u3002"}, {"en": "Their service is touted as the best in the industry.", "zh": "\u4ed6\u4eec\u7684\u670d\u52a1\u88ab\u5439\u6367\u4e3a\u4e1a\u5185\u6700\u4f73\u3002"}]}, {"en": "claims", "zh": "\u58f0\u660e/\u4e3b\u5f20", "scene": "\u7528\u4e8e\u6307\u67d0\u4eba\u6240\u8bf4\u7684\u8bdd\u6216\u63d0\u4f9b\u7684\u4fe1\u606f\u3002", "examples": [{"en": "The company claims that their product is environmentally friendly.", "zh": "\u8be5\u516c\u53f8\u58f0\u79f0\u4ed6\u4eec\u7684\u4ea7\u54c1\u5bf9\u73af\u5883\u53cb\u597d\u3002"}, {"en": "She made several claims during her presentation.", "zh": "\u5979\u5728\u6f14\u8bb2\u4e2d\u505a\u4e86\u51e0\u9879\u58f0\u660e\u3002"}, {"en": "His claims were backed by substantial evidence.", "zh": "\u4ed6\u7684\u4e3b\u5f20\u6709\u5927\u91cf\u8bc1\u636e\u652f\u6301\u3002"}, {"en": "They denied the claims made in the article.", "zh": "\u4ed6\u4eec\u5426\u8ba4\u4e86\u6587\u7ae0\u4e2d\u7684\u58f0\u660e\u3002"}, {"en": "The claims of the study were published in a respected journal.", "zh": "\u8be5\u7814\u7a76\u7684\u58f0\u660e\u53d1\u8868\u5728\u4e00\u4e2a\u53d7\u5c0a\u91cd\u7684\u671f\u520a\u4e0a\u3002"}]}, {"en": "overall evaluation", "zh": "\u603b\u4f53\u8bc4\u4f30", "scene": "\u7528\u4e8e\u63cf\u8ff0\u5bf9\u67d0\u4e8b\u7269\u7684\u5168\u9762\u5206\u6790\u548c\u8bc4\u4ef7\u3002", "examples": [{"en": "The overall evaluation of the project was positive.", "zh": "\u8be5\u9879\u76ee\u7684\u603b\u4f53\u8bc4\u4f30\u662f\u79ef\u6781\u7684\u3002"}, {"en": "We need an overall evaluation of the program's effectiveness.", "zh": "\u6211\u4eec\u9700\u8981\u5bf9\u8be5\u9879\u76ee\u7684\u6709\u6548\u6027\u8fdb\u884c\u603b\u4f53\u8bc4\u4f30\u3002"}, {"en": "Her overall evaluation of the team was very encouraging.", "zh": "\u5979\u5bf9\u56e2\u961f\u7684\u603b\u4f53\u8bc4\u4f30\u975e\u5e38\u9f13\u821e\u4eba\u5fc3\u3002"}, {"en": "An overall evaluation will help us to identify areas for improvement.", "zh": "\u603b\u4f53\u8bc4\u4f30\u5c06\u5e2e\u52a9\u6211\u4eec\u8bc6\u522b\u9700\u8981\u6539\u8fdb\u7684\u9886\u57df\u3002"}, {"en": "This report provides an overall evaluation of the market trends.", "zh": "\u8be5\u62a5\u544a\u63d0\u4f9b\u4e86\u5e02\u573a\u8d8b\u52bf\u7684\u603b\u4f53\u8bc4\u4f30\u3002"}]}, {"en": "Multilingual", "zh": "\u591a\u8bed\u8a00\u7684", "scene": "\u7528\u4e8e\u63cf\u8ff0\u80fd\u591f\u4f7f\u7528\u591a\u79cd\u8bed\u8a00\u7684\u80fd\u529b\u6216\u72b6\u6001\u3002", "examples": [{"en": "She is multilingual and speaks five languages fluently.", "zh": "\u5979\u662f\u591a\u8bed\u8a00\u7684\uff0c\u80fd\u6d41\u5229\u5730\u8bf4\u4e94\u79cd\u8bed\u8a00\u3002"}, {"en": "In a multilingual society, communication can take many forms.", "zh": "\u5728\u4e00\u4e2a\u591a\u8bed\u8a00\u793e\u4f1a\u4e2d\uff0c\u6c9f\u901a\u53ef\u4ee5\u6709\u591a\u79cd\u5f62\u5f0f\u3002"}, {"en": "The multilingual support team is available 24/7.", "zh": "\u591a\u8bed\u8a00\u652f\u6301\u56e2\u961f\u5168\u5929\u5019\u63d0\u4f9b\u670d\u52a1\u3002"}, {"en": "Multilingual education can enhance cognitive skills.", "zh": "\u591a\u8bed\u8a00\u6559\u80b2\u53ef\u4ee5\u589e\u5f3a\u667a\u529b\u6280\u80fd\u3002"}, {"en": "They offer multilingual resources for students.", "zh": "\u4ed6\u4eec\u4e3a\u5b66\u751f\u63d0\u4f9b\u591a\u8bed\u8a00\u8d44\u6e90\u3002"}]}, {"en": "notable", "zh": "\u663e\u8457\u7684/\u503c\u5f97\u6ce8\u610f\u7684", "scene": "\u7528\u4e8e\u5f3a\u8c03\u67d0\u4eba\u6216\u4e8b\u7269\u7684\u663e\u8457\u6027\u6216\u91cd\u8981\u6027\u3002", "examples": [{"en": "She received a notable award for her contributions to science.", "zh": "\u5979\u56e0\u5bf9\u79d1\u5b66\u7684\u8d21\u732e\u83b7\u5f97\u4e86\u663e\u8457\u5956\u9879\u3002"}, {"en": "The event featured several notable speakers.", "zh": "\u8be5\u6d3b\u52a8\u6709\u51e0\u4f4d\u663e\u8457\u7684\u6f14\u8bb2\u8005\u3002"}, {"en": "He has made notable improvements in his performance.", "zh": "\u4ed6\u7684\u8868\u73b0\u6709\u663e\u8457\u7684\u6539\u5584\u3002"}, {"en": "This is a notable example of good architecture.", "zh": "\u8fd9\u662f\u4e00\u4e2a\u4f18\u79c0\u5efa\u7b51\u7684\u663e\u8457\u4f8b\u5b50\u3002"}, {"en": "The film has received notable acclaim from critics.", "zh": "\u8fd9\u90e8\u7535\u5f71\u83b7\u5f97\u4e86\u8bc4\u8bba\u5bb6\u7684\u663e\u8457\u8d5e\u8a89\u3002"}]}, {"en": "contender", "zh": "\u7ade\u4e89\u8005", "scene": "\u901a\u5e38\u7528\u4e8e\u63cf\u8ff0\u53c2\u4e0e\u7ade\u4e89\u7684\u4eba\u6216\u56e2\u961f\u3002", "examples": [{"en": "He is a serious contender for the championship.", "zh": "\u4ed6\u662f\u51a0\u519b\u7684\u6709\u529b\u7ade\u4e89\u8005\u3002"}, {"en": "There are many contenders for the best film award this year.", "zh": "\u4eca\u5e74\u6709\u5f88\u591a\u7ade\u4e89\u8005\u4e89\u593a\u6700\u4f73\u7535\u5f71\u5956\u3002"}, {"en": "As a contender in the race, she trained rigorously.", "zh": "\u4f5c\u4e3a\u6bd4\u8d5b\u4e2d\u7684\u7ade\u4e89\u8005\uff0c\u5979\u8fdb\u884c\u4e86\u4e25\u683c\u7684\u8bad\u7ec3\u3002"}, {"en": "The company is a contender in the tech industry.", "zh": "\u8be5\u516c\u53f8\u662f\u79d1\u6280\u884c\u4e1a\u7684\u7ade\u4e89\u8005\u3002"}, {"en": "Every contender must perform their best to win.", "zh": "\u6bcf\u4e2a\u7ade\u4e89\u8005\u90fd\u5fc5\u987b\u53d1\u6325\u6700\u4f73\u6c34\u5e73\u4ee5\u83b7\u80dc\u3002"}]}, {"en": "versatile", "zh": "\u591a\u624d\u591a\u827a\u7684", "scene": "\u5f62\u5bb9\u67d0\u4e8b\u7269\u53ef\u4ee5\u7528\u4e8e\u591a\u79cd\u7528\u9014\u6216\u529f\u80fd\u3002", "examples": [{"en": "She is a versatile musician, playing several instruments.", "zh": "\u5979\u662f\u4e00\u4f4d\u591a\u624d\u591a\u827a\u7684\u97f3\u4e50\u5bb6\uff0c\u4f1a\u6f14\u594f\u591a\u79cd\u4e50\u5668\u3002"}, {"en": "The versatile tool can be used in various situations.", "zh": "\u8fd9\u4e2a\u591a\u624d\u591a\u827a\u7684\u5de5\u5177\u53ef\u4ee5\u5728\u591a\u79cd\u60c5\u51b5\u4e0b\u4f7f\u7528\u3002"}, {"en": "His versatile skills make him an asset to the team.", "zh": "\u4ed6\u591a\u624d\u591a\u827a\u7684\u6280\u80fd\u4f7f\u4ed6\u6210\u4e3a\u56e2\u961f\u7684\u8d44\u4ea7\u3002"}, {"en": "Versatile fabrics are popular in the fashion industry.", "zh": "\u591a\u624d\u591a\u827a\u7684\u9762\u6599\u5728\u65f6\u5c1a\u884c\u4e1a\u5f88\u53d7\u6b22\u8fce\u3002"}, {"en": "This software is versatile and can be adapted for different users.", "zh": "\u8fd9\u4e2a\u8f6f\u4ef6\u662f\u591a\u624d\u591a\u827a\u7684\uff0c\u53ef\u4ee5\u9002\u5e94\u4e0d\u540c\u7684\u7528\u6237\u3002"}]}, {"en": "preliminary", "zh": "\u521d\u6b65\u7684", "scene": "\u7528\u4e8e\u6307\u67d0\u4e8b\u7269\u7684\u521d\u6b65\u9636\u6bb5\u6216\u6700\u521d\u7684\u6d4b\u8bd5\u3002", "examples": [{"en": "The preliminary results are promising.", "zh": "\u521d\u6b65\u7ed3\u679c\u4ee4\u4eba\u9f13\u821e\u3002"}, {"en": "We will conduct preliminary research before the main study.", "zh": "\u5728\u4e3b\u8981\u7814\u7a76\u4e4b\u524d\uff0c\u6211\u4eec\u5c06\u8fdb\u884c\u521d\u6b65\u7814\u7a76\u3002"}, {"en": "Preliminary meetings are necessary to plan the project.", "zh": "\u521d\u6b65\u4f1a\u8bae\u662f\u89c4\u5212\u9879\u76ee\u6240\u5fc5\u9700\u7684\u3002"}, {"en": "The preliminary design needs further refinement.", "zh": "\u521d\u6b65\u8bbe\u8ba1\u9700\u8981\u8fdb\u4e00\u6b65\u5b8c\u5584\u3002"}, {"en": "They released preliminary findings at the conference.", "zh": "\u4ed6\u4eec\u5728\u4f1a\u8bae\u4e0a\u53d1\u5e03\u4e86\u521d\u6b65\u8c03\u67e5\u7ed3\u679c\u3002"}]}, {"en": "A Mixed Performance", "zh": "\u6df7\u5408\u8868\u73b0", "scene": "\u6307\u7ed3\u679c\u6216\u8868\u73b0\u4e0d\u5c3d\u5982\u4eba\u610f\uff0c\u5b58\u5728\u597d\u574f\u53c2\u534a\u7684\u60c5\u51b5\u3002", "examples": [{"en": "The athlete had a mixed performance at the tournament.", "zh": "\u8fd9\u4f4d\u8fd0\u52a8\u5458\u5728\u6bd4\u8d5b\u4e2d\u8868\u73b0\u4e0d\u4e00\u3002"}, {"en": "The team's mixed performance left fans disappointed.", "zh": "\u7403\u961f\u7684\u6df7\u5408\u8868\u73b0\u8ba9\u7403\u8ff7\u611f\u5230\u5931\u671b\u3002"}, {"en": "Despite a mixed performance, the project achieved some goals.", "zh": "\u5c3d\u7ba1\u8868\u73b0\u4e0d\u4e00\uff0c\u8be5\u9879\u76ee\u4ecd\u7136\u53d6\u5f97\u4e86\u4e00\u4e9b\u76ee\u6807\u3002"}, {"en": "Her mixed performance in the exam was unexpected.", "zh": "\u5979\u5728\u8003\u8bd5\u4e2d\u7684\u6df7\u5408\u8868\u73b0\u51fa\u4e4e\u610f\u6599\u3002"}, {"en": "A mixed performance often leads to valuable lessons.", "zh": "\u6df7\u5408\u8868\u73b0\u5f80\u5f80\u4f1a\u5e26\u6765\u5b9d\u8d35\u7684\u6559\u8bad\u3002"}]}, {"en": "conducted", "zh": "\u8fdb\u884c/\u5b9e\u65bd", "scene": "\u7528\u4e8e\u63cf\u8ff0\u67d0\u9879\u6d3b\u52a8\u6216\u7814\u7a76\u7684\u6267\u884c\u8fc7\u7a0b\u3002", "examples": [{"en": "The survey was conducted online.", "zh": "\u8c03\u67e5\u662f\u5728\u7f51\u4e0a\u8fdb\u884c\u7684\u3002"}, {"en": "They conducted an experiment to test the hypothesis.", "zh": "\u4ed6\u4eec\u8fdb\u884c\u4e86\u5b9e\u9a8c\u6765\u9a8c\u8bc1\u5047\u8bbe\u3002"}, {"en": "The interviews were conducted in a professional manner.", "zh": "\u9762\u8bd5\u4ee5\u4e13\u4e1a\u7684\u65b9\u5f0f\u8fdb\u884c\u3002"}, {"en": "A review was conducted to assess the program's effectiveness.", "zh": "\u8fdb\u884c\u4e86\u8bc4\u5ba1\u4ee5\u8bc4\u4f30\u9879\u76ee\u7684\u6709\u6548\u6027\u3002"}, {"en": "The study was conducted over a period of three years.", "zh": "\u8be5\u7814\u7a76\u8fdb\u884c\u4e86\u4e09\u5e74\u3002"}]}, {"en": "revealed", "zh": "\u63ed\u793a/\u663e\u793a", "scene": "\u7528\u4e8e\u63cf\u8ff0\u53d1\u73b0\u6216\u66b4\u9732\u67d0\u7269\u7684\u8fc7\u7a0b\u3002", "examples": [{"en": "The research revealed new insights into the subject.", "zh": "\u7814\u7a76\u63ed\u793a\u4e86\u5bf9\u8be5\u4e3b\u9898\u7684\u65b0\u89c1\u89e3\u3002"}, {"en": "It was revealed that the project was behind schedule.", "zh": "\u9879\u76ee\u8fdb\u5ea6\u843d\u540e\u88ab\u63ed\u793a\u51fa\u6765\u3002"}, {"en": "The results revealed a significant difference in performance.", "zh": "\u7ed3\u679c\u663e\u793a\u51fa\u660e\u663e\u7684\u8868\u73b0\u5dee\u5f02\u3002"}, {"en": "Her smile revealed her happiness.", "zh": "\u5979\u7684\u5fae\u7b11\u63ed\u793a\u4e86\u5979\u7684\u5feb\u4e50\u3002"}, {"en": "The report revealed several key findings.", "zh": "\u62a5\u544a\u63ed\u793a\u4e86\u51e0\u9879\u5173\u952e\u53d1\u73b0\u3002"}]}, {"en": "Linguistic", "zh": "\u8bed\u8a00\u7684", "scene": "\u4e0e\u8bed\u8a00\u76f8\u5173\u7684\u6216\u6d89\u53ca\u8bed\u8a00\u5b66\u7684\u6982\u5ff5\u3002", "examples": [{"en": "Linguistic diversity is important for cultural heritage.", "zh": "\u8bed\u8a00\u591a\u6837\u6027\u5bf9\u6587\u5316\u9057\u4ea7\u81f3\u5173\u91cd\u8981\u3002"}, {"en": "The study focuses on linguistic patterns among different groups.", "zh": "\u7814\u7a76\u96c6\u4e2d\u5728\u4e0d\u540c\u7fa4\u4f53\u4e4b\u95f4\u7684\u8bed\u8a00\u6a21\u5f0f\u3002"}, {"en": "Linguistic skills are essential for communication.", "zh": "\u8bed\u8a00\u6280\u80fd\u5bf9\u6c9f\u901a\u81f3\u5173\u91cd\u8981\u3002"}, {"en": "He has a strong background in linguistic research.", "zh": "\u4ed6\u5728\u8bed\u8a00\u5b66\u7814\u7a76\u65b9\u9762\u6709\u5f88\u5f3a\u7684\u80cc\u666f\u3002"}, {"en": "Linguistic analysis helps us understand language use.", "zh": "\u8bed\u8a00\u5206\u6790\u5e2e\u52a9\u6211\u4eec\u7406\u89e3\u8bed\u8a00\u4f7f\u7528\u3002"}]}, {"en": "diagonal of a hexagon", "zh": "\u516d\u8fb9\u5f62\u7684\u5bf9\u89d2\u7ebf", "scene": "\u7528\u4e8e\u63cf\u8ff0\u51e0\u4f55\u5f62\u72b6\u4e2d\u7684\u7279\u5b9a\u76f4\u7ebf\u3002", "examples": [{"en": "To calculate the area, we need to consider the diagonal of a hexagon.", "zh": "\u8981\u8ba1\u7b97\u9762\u79ef\uff0c\u6211\u4eec\u9700\u8981\u8003\u8651\u516d\u8fb9\u5f62\u7684\u5bf9\u89d2\u7ebf\u3002"}, {"en": "The length of the diagonal of a hexagon can be determined using a formula.", "zh": "\u516d\u8fb9\u5f62\u7684\u5bf9\u89d2\u7ebf\u957f\u5ea6\u53ef\u4ee5\u901a\u8fc7\u516c\u5f0f\u786e\u5b9a\u3002"}, {"en": "In geometry, understanding the diagonal of a hexagon is crucial.", "zh": "\u5728\u51e0\u4f55\u5b66\u4e2d\uff0c\u7406\u89e3\u516d\u8fb9\u5f62\u7684\u5bf9\u89d2\u7ebf\u662f\u81f3\u5173\u91cd\u8981\u7684\u3002"}, {"en": "The diagonal of a hexagon intersects at various points.", "zh": "\u516d\u8fb9\u5f62\u7684\u5bf9\u89d2\u7ebf\u5728\u4e0d\u540c\u70b9\u76f8\u4ea4\u3002"}, {"en": "We drew the diagonal of a hexagon to analyze its properties.", "zh": "\u6211\u4eec\u753b\u4e86\u516d\u8fb9\u5f62\u7684\u5bf9\u89d2\u7ebf\u4ee5\u5206\u6790\u5176\u7279\u6027\u3002"}]}, {"en": "inconsistently", "zh": "\u4e0d\u4e00\u81f4\u5730", "scene": "\u7528\u4e8e\u63cf\u8ff0\u67d0\u79cd\u884c\u4e3a\u6216\u8868\u73b0\u4e0d\u7a33\u5b9a\u6216\u4e0d\u4e00\u81f4\u3002", "examples": [{"en": "His performance has varied inconsistently from game to game.", "zh": "\u4ed6\u7684\u8868\u73b0\u4ece\u6bd4\u8d5b\u5230\u6bd4\u8d5b\u4e0d\u4e00\u81f4\u3002"}, {"en": "The results were collected inconsistently, leading to confusion.", "zh": "\u7ed3\u679c\u7684\u6536\u96c6\u4e0d\u4e00\u81f4\uff0c\u5bfc\u81f4\u4e86\u6df7\u4e71\u3002"}, {"en": "She has been working inconsistently, which affects her output.", "zh": "\u5979\u7684\u5de5\u4f5c\u4e0d\u4e00\u81f4\uff0c\u8fd9\u5f71\u54cd\u4e86\u5979\u7684\u4ea7\u51fa\u3002"}, {"en": "Feedback was provided inconsistently throughout the project.", "zh": "\u5728\u6574\u4e2a\u9879\u76ee\u671f\u95f4\u53cd\u9988\u4e0d\u4e00\u81f4\u3002"}, {"en": "The policies were applied inconsistently among departments.", "zh": "\u5404\u90e8\u95e8\u4e4b\u95f4\u653f\u7b56\u7684\u6267\u884c\u4e0d\u4e00\u81f4\u3002"}]}, {"en": "confetti-exploding", "zh": "\u4e94\u5f69\u7eb8\u5c51\u7206\u70b8\u7684", "scene": "\u901a\u5e38\u7528\u4e8e\u63cf\u8ff0\u5e86\u795d\u573a\u5408\uff0c\u8c61\u5f81\u7740\u5feb\u4e50\u6216\u80dc\u5229\u3002", "examples": [{"en": "The confetti-exploding moment marked the end of the celebration.", "zh": "\u4e94\u5f69\u7eb8\u5c51\u7206\u70b8\u7684\u65f6\u523b\u6807\u5fd7\u7740\u5e86\u795d\u6d3b\u52a8\u7684\u7ed3\u675f\u3002"}, {"en": "The confetti-exploding scene was joyful and vibrant.", "zh": "\u4e94\u5f69\u7eb8\u5c51\u7206\u70b8\u7684\u573a\u9762\u5145\u6ee1\u6b22\u5feb\u4e0e\u6d3b\u529b\u3002"}, {"en": "We captured the confetti-exploding moments on camera.", "zh": "\u6211\u4eec\u5c06\u4e94\u5f69\u7eb8\u5c51\u7206\u70b8\u7684\u65f6\u523b\u7528\u76f8\u673a\u8bb0\u5f55\u4e0b\u6765\u3002"}, {"en": "Kids love the confetti-exploding effects at parties.", "zh": "\u5b69\u5b50\u4eec\u559c\u6b22\u6d3e\u5bf9\u4e0a\u7684\u4e94\u5f69\u7eb8\u5c51\u7206\u70b8\u6548\u679c\u3002"}, {"en": "The confetti-exploding finale left everyone amazed.", "zh": "\u4e94\u5f69\u7eb8\u5c51\u7206\u70b8\u7684\u7ed3\u5c40\u8ba9\u6240\u6709\u4eba\u90fd\u60ca\u5446\u4e86\u3002"}]}, {"en": "synth", "zh": "\u5408\u6210\u5668", "scene": "\u7528\u4e8e\u97f3\u4e50\u5236\u4f5c\u4e2d\uff0c\u4ea7\u751f\u5408\u6210\u58f0\u97f3\u7684\u8bbe\u5907\u3002", "examples": [{"en": "He played a melody on his synth.", "zh": "\u4ed6\u5728\u5408\u6210\u5668\u4e0a\u6f14\u594f\u4e86\u4e00\u6bb5\u65cb\u5f8b\u3002"}, {"en": "Synth music has a unique electronic vibe.", "zh": "\u5408\u6210\u97f3\u4e50\u6709\u7740\u72ec\u7279\u7684\u7535\u5b50\u6c1b\u56f4\u3002"}, {"en": "She prefers using a synth for her recordings.", "zh": "\u5979\u66f4\u559c\u6b22\u5728\u5f55\u97f3\u4e2d\u4f7f\u7528\u5408\u6210\u5668\u3002"}, {"en": "The band incorporated a synth into their latest album.", "zh": "\u4e50\u961f\u5728\u4ed6\u4eec\u7684\u6700\u65b0\u4e13\u8f91\u4e2d\u52a0\u5165\u4e86\u5408\u6210\u5668\u3002"}, {"en": "Learning to play the synth can be challenging but rewarding.", "zh": "\u5b66\u4e60\u6f14\u594f\u5408\u6210\u5668\u53ef\u80fd\u5177\u6709\u6311\u6218\u6027\uff0c\u4f46\u5f88\u6709\u6210\u5c31\u611f\u3002"}]}, {"en": "Ultimately", "zh": "\u6700\u7ec8", "scene": "\u7528\u4e8e\u8868\u793a\u67d0\u4e2a\u8fc7\u7a0b\u6216\u4e8b\u4ef6\u7684\u6700\u540e\u7ed3\u679c\u6216\u7ed3\u8bba\u3002", "examples": [{"en": "Ultimately, the decision rests with the board of directors.", "zh": "\u6700\u7ec8\uff0c\u51b3\u5b9a\u6743\u5728\u8463\u4e8b\u4f1a\u624b\u4e2d\u3002"}, {"en": "She worked hard, and ultimately, her efforts paid off.", "zh": "\u5979\u52aa\u529b\u5de5\u4f5c\uff0c\u6700\u7ec8\u5979\u7684\u52aa\u529b\u5f97\u5230\u4e86\u56de\u62a5\u3002"}, {"en": "Ultimately, it's about making the right choice.", "zh": "\u6700\u7ec8\uff0c\u8fd9\u5173\u4e4e\u505a\u51fa\u6b63\u786e\u7684\u9009\u62e9\u3002"}, {"en": "The project was tough, but ultimately successful.", "zh": "\u8be5\u9879\u76ee\u5f88\u8270\u96be\uff0c\u4f46\u6700\u7ec8\u53d6\u5f97\u4e86\u6210\u529f\u3002"}, {"en": "Ultimately, we must learn from our mistakes.", "zh": "\u6700\u7ec8\uff0c\u6211\u4eec\u5fc5\u987b\u4ece\u9519\u8bef\u4e2d\u5438\u53d6\u6559\u8bad\u3002"}]}];
+  // Vue 应用
+  const app = Vue.createApp({
+    data() {
+      return {
+        vocabData: vocabData,
+        currentWord: null,
+        isAnimating: false,
+        // 添加历史记录数组
+        history: [],
+        // 从 localStorage 读取语速设置，如果没有则使用默认值 1.0
+        speechRate: parseFloat(localStorage.getItem('speechRate')) || 1.0
+      };
+    },
+    watch: {
+      // 监听 speechRate 的变化，保存到 localStorage
+      speechRate(newRate) {
+        localStorage.setItem('speechRate', newRate);
+      }
+    },
+    methods: {
+      speakText(text) {
+        // 取消正在进行的语音
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        // 设置语速
+        utterance.rate = this.speechRate;
+
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoices = voices.filter(voice => voice.lang.includes('en-'));
+
+        if (englishVoices.length > 0) {
+          const preferredVoices = englishVoices.filter(v =>
+              v.name.includes('Google') ||
+              v.name.includes('Daniel') ||
+              v.name.includes('Samantha')
+          );
+
+          utterance.voice = preferredVoices.length > 0 ?
+              preferredVoices[0] : englishVoices[0];
+        }
+
+        window.speechSynthesis.speak(utterance);
+      },
+      getRandomWord() {
+        if (this.isAnimating) return;
+        this.isAnimating = true;
+
+        // 添加淡出效果
+        const wordCard = document.querySelector('.word-card');
+        if (wordCard) {
+          wordCard.style.opacity = '0';
+          wordCard.style.transform = 'translateY(20px)';
+        }
+
+        setTimeout(() => {
+          let randomIndex;
+          let attempts = 0;
+          const maxAttempts = 10; // 防止无限循环
+
+          do {
+            randomIndex = Math.floor(Math.random() * this.vocabData.length);
+            attempts++;
+          } while (
+              this.history.includes(randomIndex) &&
+              attempts < maxAttempts &&
+              this.vocabData.length > 2
+              );
+
+          // 更新历史记录
+          this.history.push(randomIndex);
+          if (this.history.length > 3) {
+            this.history.shift(); // 移除最老的记录
+          }
+
+          this.currentWord = this.vocabData[randomIndex];
+
+          // 重置动画状态
+          this.$nextTick(() => {
+            const newWordCard = document.querySelector('.word-card');
+            if (newWordCard) {
+              void newWordCard.offsetWidth;
+              newWordCard.style.opacity = '1';
+              newWordCard.style.transform = 'translateY(0)';
+            }
+
+            setTimeout(() => {
+              this.isAnimating = false;
+            }, 500);
+          });
+        }, 300);
+      }
+    },
+    mounted() {
+      // 初始加载时随机显示一个单词
+      this.getRandomWord();
+
+      // 确保语音API已加载
+      if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          // 语音已加载
+        };
+      }
+    }
+  });
+
+  app.mount('#app');
+</script>
+
+
+</body></html>

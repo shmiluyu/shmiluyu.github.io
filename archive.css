@@ -108,3 +108,28 @@ h1 {
         font-size: 2.25rem !important;
     }
 }
+
+.auto-read-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background: #4CAF50;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.auto-read-btn:hover {
+  transform: scale(1.1);
+}
+
+.auto-read-btn.active {
+  background: #f44336;
+}

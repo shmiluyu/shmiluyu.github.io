@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旅游英语<</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../archive.css">
+</head>
+
+<body>
+  <div id="app" class="container mx-auto max-w-3xl">
+    <header class="mb-6 text-center">
+      <h1 class="font-bold text-gray-800 mb-2">旅游英语</h1>
+      <p class="text-gray-600 text-sm mb-4">
+        点击单词听发音，点击句子旁的喇叭图标听整句
+        <span class="text-gray-400 text-xs ml-2">· {{ vocabData.length }}个词汇</span>
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <label class="text-sm text-gray-600">语速控制:</label>
+        <input type="range" v-model="speechRate" min="0.5" max="2" step="0.1" class="w-32">
+        <span class="text-sm text-gray-600">{{ speechRate }}x</span>
+      </div>
+    </header>
+
+    <div class="word-container">
+      <transition name="fade">
+        <div v-if="currentWord" class="word-card bg-white rounded-lg fade-in">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="term text-xl" @click="speakText(currentWord.en)">{{ currentWord.en }}</span>
+            <span class="text-gray-400">|</span>
+            <span class="text-gray-700 text-xl">{{ currentWord.zh }}</span>
+          </div>
+          <div class="scene">
+            {{ currentWord.scene }}
+          </div>
+          <div v-for="(example, exIndex) in currentWord.examples" :key="exIndex" class="example"
+            @click="speakText(example.en)">
+            <p>{{ example.en }}</p>
+            <p class="text-gray-600 mt-1">{{ example.zh }}</p>
+            <i class="fas fa-volume-up sound-icon"></i>
+          </div>
+        </div>
+      </transition>
+    </div>
+
+    <div class="refresh-btn" :class="{ 'loading': isAnimating }" @click="getRandomWord">
+      <i class="fas fa-random"></i>
+    </div>
+
+    <div v-show="ttsAvailable" class="auto-read-btn" :class="{ 'active': isAutoReading }"
+      @click="isAutoReading ? stopAutoReading() : startAutoReading()">
+      <i class="fas" :class="isAutoReading ? 'fa-stop' : 'fa-play'"></i>
+    </div>
+  </div>
+
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+
+  <script>
+    // 词汇数据
+    const vocabData =  [{"en": "Taxi stand", "zh": "\u51fa\u79df\u8f66\u7ad9", "scene": "\u901a\u5e38\u51fa\u73b0\u5728\u673a\u573a\u3001\u8f66\u7ad9\u7b49\u4ea4\u901a\u67a2\u7ebd\uff0c\u4f9b\u4e58\u5ba2\u6253\u8f66\u7684\u5730\u70b9\u3002", "examples": [{"en": "Where is the nearest taxi stand?", "zh": "\u6700\u8fd1\u7684\u51fa\u79df\u8f66\u7ad9\u5728\u54ea\u91cc\uff1f"}, {"en": "We can wait for a taxi at the taxi stand.", "zh": "\u6211\u4eec\u53ef\u4ee5\u5728\u51fa\u79df\u8f66\u7ad9\u7b49\u51fa\u79df\u8f66\u3002"}, {"en": "The taxi stand was crowded with travelers.", "zh": "\u51fa\u79df\u8f66\u7ad9\u6324\u6ee1\u4e86\u65c5\u5ba2\u3002"}, {"en": "You can find a taxi stand right outside the terminal.", "zh": "\u4f60\u53ef\u4ee5\u5728\u822a\u7ad9\u697c\u5916\u627e\u5230\u51fa\u79df\u8f66\u7ad9\u3002"}, {"en": "Make sure to use the designated taxi stand.", "zh": "\u786e\u4fdd\u4f7f\u7528\u6307\u5b9a\u7684\u51fa\u79df\u8f66\u7ad9\u3002"}]}, {"en": "Ticket counter", "zh": "\u552e\u7968\u5904", "scene": "\u552e\u7968\u5904\u901a\u5e38\u51fa\u73b0\u5728\u8f66\u7ad9\u3001\u7535\u5f71\u9662\u548c\u65c5\u6e38\u666f\u70b9\uff0c\u63d0\u4f9b\u8d2d\u7968\u670d\u52a1\u7684\u5730\u65b9\u3002", "examples": [{"en": "Please get your tickets at the ticket counter.", "zh": "\u8bf7\u5728\u552e\u7968\u5904\u53d6\u7968\u3002"}, {"en": "There was a long line at the ticket counter.", "zh": "\u552e\u7968\u5904\u6392\u4e86\u5f88\u957f\u7684\u961f\u3002"}, {"en": "The ticket counter opens at 9 AM.", "zh": "\u552e\u7968\u5904\u65e9\u4e0a9\u70b9\u5f00\u95e8\u3002"}, {"en": "I need to exchange my ticket at the ticket counter.", "zh": "\u6211\u9700\u8981\u5728\u552e\u7968\u5904\u6362\u7968\u3002"}, {"en": "The ticket counter for the concert is located on the first floor.", "zh": "\u97f3\u4e50\u4f1a\u7684\u552e\u7968\u5904\u5728\u4e00\u697c\u3002"}]}, {"en": "Round trip", "zh": "\u5f80\u8fd4\u7968", "scene": "\u6307\u5f80\u8fd4\u4e24\u4e2a\u5730\u70b9\u7684\u65c5\u6e38\u7968\u3002", "examples": [{"en": "I booked a round trip to New York.", "zh": "\u6211\u8ba2\u4e86\u53bb\u7ebd\u7ea6\u7684\u5f80\u8fd4\u7968\u3002"}, {"en": "Is there a discount for round trip tickets?", "zh": "\u5f80\u8fd4\u7968\u6709\u6298\u6263\u5417\uff1f"}, {"en": "The round trip flight takes about six hours.", "zh": "\u5f80\u8fd4\u822a\u73ed\u5927\u7ea6\u9700\u8981\u516d\u4e2a\u5c0f\u65f6\u3002"}, {"en": "She prefers round trip tickets for convenience.", "zh": "\u4e3a\u4e86\u65b9\u4fbf\uff0c\u5979\u66f4\u559c\u6b22\u5f80\u8fd4\u7968\u3002"}, {"en": "You can save money by purchasing a round trip ticket.", "zh": "\u8d2d\u4e70\u5f80\u8fd4\u7968\u53ef\u4ee5\u7701\u94b1\u3002"}]}, {"en": "Departure time", "zh": "\u51fa\u53d1\u65f6\u95f4", "scene": "\u98de\u673a\u6216\u5217\u8f66\u9884\u8ba1\u8d77\u98de\u6216\u79bb\u5f00\u7684\u65f6\u95f4\u3002", "examples": [{"en": "What is the departure time of the flight?", "zh": "\u822a\u73ed\u7684\u51fa\u53d1\u65f6\u95f4\u662f\u4ec0\u4e48\u65f6\u5019\uff1f"}, {"en": "The train's departure time is at 3 PM.", "zh": "\u706b\u8f66\u7684\u51fa\u53d1\u65f6\u95f4\u662f\u4e0b\u53483\u70b9\u3002"}, {"en": "Please arrive at the airport before your departure time.", "zh": "\u8bf7\u5728\u51fa\u53d1\u65f6\u95f4\u4e4b\u524d\u5230\u8fbe\u673a\u573a\u3002"}, {"en": "Can you check the departure time for me?", "zh": "\u4f60\u80fd\u5e2e\u6211\u68c0\u67e5\u4e00\u4e0b\u51fa\u53d1\u65f6\u95f4\u5417\uff1f"}, {"en": "There's a departure time display at the station.", "zh": "\u8f66\u7ad9\u6709\u51fa\u53d1\u65f6\u95f4\u7684\u663e\u793a\u5c4f\u3002"}]}, {"en": "Boarding pass", "zh": "\u767b\u673a\u724c", "scene": "\u98de\u884c\u524d\u4e58\u5ba2\u83b7\u53d6\u7684\u6587\u4ef6\uff0c\u5141\u8bb8\u4ed6\u4eec\u767b\u673a\u3002", "examples": [{"en": "You need to show your boarding pass before boarding.", "zh": "\u767b\u673a\u524d\u4f60\u9700\u8981\u51fa\u793a\u767b\u673a\u724c\u3002"}, {"en": "I printed my boarding pass at the airport.", "zh": "\u6211\u5728\u673a\u573a\u6253\u5370\u4e86\u6211\u7684\u767b\u673a\u724c\u3002"}, {"en": "Make sure your boarding pass is ready.", "zh": "\u786e\u4fdd\u4f60\u7684\u767b\u673a\u724c\u51c6\u5907\u597d\u3002"}, {"en": "The boarding pass indicates your seat number.", "zh": "\u767b\u673a\u724c\u4e0a\u663e\u793a\u4f60\u7684\u5ea7\u4f4d\u53f7\u3002"}, {"en": "Don't lose your boarding pass during the flight.", "zh": "\u5728\u98de\u884c\u8fc7\u7a0b\u4e2d\u4e0d\u8981\u4e22\u5931\u4f60\u7684\u767b\u673a\u724c\u3002"}]}, {"en": "Gate number", "zh": "\u767b\u673a\u53e3\u7f16\u53f7", "scene": "\u673a\u573a\u4e2d\u6307\u51fa\u4e58\u5ba2\u767b\u673a\u5730\u70b9\u7684\u6807\u8bc6\u3002", "examples": [{"en": "What is the gate number for my flight?", "zh": "\u6211\u7684\u822a\u73ed\u7684\u767b\u673a\u53e3\u7f16\u53f7\u662f\u4ec0\u4e48\uff1f"}, {"en": "The gate number may change, so check the screens.", "zh": "\u767b\u673a\u53e3\u7f16\u53f7\u53ef\u80fd\u4f1a\u66f4\u6539\uff0c\u6240\u4ee5\u8bf7\u67e5\u770b\u5c4f\u5e55\u3002"}, {"en": "Gate number 5 is where you'll board.", "zh": "\u4f60\u5c06\u57285\u53f7\u767b\u673a\u53e3\u767b\u673a\u3002"}, {"en": "Make sure to arrive at the gate number on time.", "zh": "\u786e\u4fdd\u51c6\u65f6\u5230\u8fbe\u6307\u5b9a\u7684\u767b\u673a\u53e3\u3002"}, {"en": "The gate number will be announced shortly.", "zh": "\u767b\u673a\u53e3\u7f16\u53f7\u5c06\u5f88\u5feb\u516c\u5e03\u3002"}]}, {"en": "Luggage claim", "zh": "\u884c\u674e\u9886\u53d6", "scene": "\u987e\u5ba2\u5728\u673a\u573a\u6216\u8f66\u7ad9\u9886\u53d6\u6258\u8fd0\u884c\u674e\u7684\u533a\u57df\u3002", "examples": [{"en": "Where is the luggage claim area?", "zh": "\u884c\u674e\u9886\u53d6\u533a\u5728\u54ea\u91cc\uff1f"}, {"en": "We need to go to the luggage claim after landing.", "zh": "\u6211\u4eec\u843d\u5730\u540e\u9700\u8981\u53bb\u884c\u674e\u9886\u53d6\u5904\u3002"}, {"en": "Do not forget to take your luggage from the luggage claim.", "zh": "\u4e0d\u8981\u5fd8\u8bb0\u4ece\u884c\u674e\u9886\u53d6\u5904\u53d6\u56de\u4f60\u7684\u884c\u674e\u3002"}, {"en": "The luggage claim process can take some time.", "zh": "\u884c\u674e\u9886\u53d6\u8fc7\u7a0b\u53ef\u80fd\u9700\u8981\u4e00\u4e9b\u65f6\u95f4\u3002"}, {"en": "Check the monitors for luggage claim information.", "zh": "\u67e5\u770b\u663e\u793a\u5c4f\u4ee5\u83b7\u53d6\u884c\u674e\u9886\u53d6\u4fe1\u606f\u3002"}]}, {"en": "Oversized baggage", "zh": "\u8d85\u5927\u884c\u674e", "scene": "\u6307\u8d85\u8fc7\u89c4\u5b9a\u5c3a\u5bf8\u6216\u91cd\u91cf\u7684\u884c\u674e\uff0c\u4e00\u822c\u9700\u8981\u989d\u5916\u6536\u8d39\u3002", "examples": [{"en": "You will need to pay extra for oversized baggage.", "zh": "\u8d85\u5927\u884c\u674e\u9700\u8981\u989d\u5916\u6536\u8d39\u3002"}, {"en": "Make sure to label your oversized baggage.", "zh": "\u786e\u4fdd\u7ed9\u4f60\u7684\u8d85\u5927\u884c\u674e\u8d34\u4e0a\u6807\u7b7e\u3002"}, {"en": "Where do I check in my oversized baggage?", "zh": "\u6211\u5728\u54ea\u91cc\u53ef\u4ee5\u529e\u7406\u8d85\u5927\u884c\u674e\u7684\u6258\u8fd0\uff1f"}, {"en": "They have separate counters for oversized baggage.", "zh": "\u4ed6\u4eec\u6709\u4e13\u95e8\u7684\u67dc\u53f0\u5904\u7406\u8d85\u5927\u884c\u674e\u3002"}, {"en": "Oversized baggage must be declared at check-in.", "zh": "\u8d85\u5927\u884c\u674e\u5fc5\u987b\u5728\u503c\u673a\u65f6\u7533\u62a5\u3002"}]}, {"en": "Lost and found", "zh": "\u5931\u7269\u62db\u9886", "scene": "\u670d\u52a1\u5904\u4e00\u822c\u8bbe\u5728\u673a\u573a\u6216\u8f66\u7ad9\uff0c\u5904\u7406\u4e22\u5931\u7269\u54c1\u7684\u5f52\u8fd8\u3002", "examples": [{"en": "I need to report my lost bag to the lost and found.", "zh": "\u6211\u9700\u8981\u5411\u5931\u7269\u62db\u9886\u5904\u62a5\u5931\u6211\u7684\u5305\u3002"}, {"en": "The lost and found is located near the main entrance.", "zh": "\u5931\u7269\u62db\u9886\u5904\u4f4d\u4e8e\u4e3b\u5165\u53e3\u9644\u8fd1\u3002"}, {"en": "Check the lost and found for your missing items.", "zh": "\u5728\u5931\u7269\u62db\u9886\u5904\u67e5\u770b\u4e00\u4e0b\u4f60\u7684\u9057\u5931\u7269\u54c1\u3002"}, {"en": "They posted a list of items in the lost and found.", "zh": "\u4ed6\u4eec\u5728\u5931\u7269\u62db\u9886\u5904\u5f20\u8d34\u4e86\u7269\u54c1\u6e05\u5355\u3002"}, {"en": "Bring your ID to the lost and found to claim your item.", "zh": "\u5230\u5931\u7269\u62db\u9886\u5904\u9886\u53d6\u7269\u54c1\u65f6\uff0c\u8bf7\u643a\u5e26\u8eab\u4efd\u8bc1\u3002"}]}, {"en": "Hotel reservation", "zh": "\u9152\u5e97\u9884\u5b9a", "scene": "\u5728\u65c5\u884c\u524d\u901a\u8fc7\u5728\u7ebf\u6216\u7535\u8bdd\u65b9\u5f0f\u786e\u8ba4\u7684\u4f4f\u5bbf\u5b89\u6392\u3002", "examples": [{"en": "Did you make a hotel reservation for the weekend?", "zh": "\u4f60\u5468\u672b\u7684\u9152\u5e97\u9884\u5b9a\u597d\u5417\uff1f"}, {"en": "I need to check my hotel reservation details.", "zh": "\u6211\u9700\u8981\u67e5\u770b\u6211\u7684\u9152\u5e97\u9884\u5b9a\u8be6\u7ec6\u4fe1\u606f\u3002"}, {"en": "You should confirm your hotel reservation ahead of time.", "zh": "\u4f60\u5e94\u8be5\u63d0\u524d\u786e\u8ba4\u4f60\u7684\u9152\u5e97\u9884\u5b9a\u3002"}, {"en": "The hotel reservation was processed online.", "zh": "\u9152\u5e97\u9884\u5b9a\u662f\u901a\u8fc7\u5728\u7ebf\u5904\u7406\u7684\u3002"}, {"en": "Don't forget to bring your confirmation for the hotel reservation.", "zh": "\u522b\u5fd8\u4e86\u5e26\u4e0a\u9152\u5e97\u9884\u5b9a\u7684\u786e\u8ba4\u4fe1\u3002"}]}, {"en": "Check-in time", "zh": "\u5165\u4f4f\u65f6\u95f4", "scene": "\u5ba2\u4eba\u53ef\u4ee5\u529e\u7406\u9152\u5e97\u5165\u4f4f\u624b\u7eed\u7684\u65f6\u95f4\u3002", "examples": [{"en": "What is the check-in time for this hotel?", "zh": "\u8fd9\u5bb6\u9152\u5e97\u7684\u5165\u4f4f\u65f6\u95f4\u662f\u4ec0\u4e48\uff1f"}, {"en": "The check-in time is usually after 3 PM.", "zh": "\u5165\u4f4f\u65f6\u95f4\u901a\u5e38\u5728\u4e0b\u53483\u70b9\u4e4b\u540e\u3002"}, {"en": "Make sure to arrive before the check-in time.", "zh": "\u786e\u4fdd\u5728\u5165\u4f4f\u65f6\u95f4\u4e4b\u524d\u5230\u8fbe\u3002"}, {"en": "I requested an early check-in time.", "zh": "\u6211\u8bf7\u6c42\u4e86\u63d0\u524d\u5165\u4f4f\u7684\u65f6\u95f4\u3002"}, {"en": "Your room will be ready at check-in time.", "zh": "\u4f60\u7684\u623f\u95f4\u5c06\u5728\u5165\u4f4f\u65f6\u95f4\u51c6\u5907\u597d\u3002"}]}, {"en": "Towels", "zh": "\u6bdb\u5dfe", "scene": "\u7528\u4e8e\u6d17\u6fa1\u6216\u6e38\u6cf3\u540e\u64e6\u5e72\u8eab\u4f53\u7684\u7ec7\u7269\u3002", "examples": [{"en": "Do you provide towels in the hotel?", "zh": "\u9152\u5e97\u63d0\u4f9b\u6bdb\u5dfe\u5417\uff1f"}, {"en": "I need a clean towel after my shower.", "zh": "\u6211\u6d17\u6fa1\u540e\u9700\u8981\u4e00\u4e2a\u5e72\u51c0\u7684\u6bdb\u5dfe\u3002"}, {"en": "The pool area has plenty of towels available.", "zh": "\u6cf3\u6c60\u533a\u57df\u63d0\u4f9b\u4e86\u5f88\u591a\u6bdb\u5dfe\u3002"}, {"en": "Remember to bring your own beach towel.", "zh": "\u8bb0\u5f97\u5e26\u4e0a\u4f60\u81ea\u5df1\u7684\u6c99\u6ee9\u6bdb\u5dfe\u3002"}, {"en": "They will change the towels daily.", "zh": "\u4ed6\u4eec\u4f1a\u6bcf\u5929\u66f4\u6362\u6bdb\u5dfe\u3002"}]}, {"en": "Blanket", "zh": "\u6bdb\u6bef", "scene": "\u901a\u5e38\u7528\u4e8e\u4fdd\u6696\u7684\u7ec7\u7269\uff0c\u53ef\u5728\u9152\u5e97\u7b49\u573a\u6240\u83b7\u5f97\u3002", "examples": [{"en": "Can I have an extra blanket for the bed?", "zh": "\u6211\u53ef\u4ee5\u8981\u4e00\u6761\u989d\u5916\u7684\u6bdb\u6bef\u5417\uff1f"}, {"en": "This blanket is very warm.", "zh": "\u8fd9\u6761\u6bdb\u6bef\u975e\u5e38\u6e29\u6696\u3002"}, {"en": "They provided blankets for the flight.", "zh": "\u4ed6\u4eec\u4e3a\u822a\u73ed\u63d0\u4f9b\u4e86\u6bdb\u6bef\u3002"}, {"en": "Don't forget to take a blanket for the picnic.", "zh": "\u522b\u5fd8\u4e86\u5e26\u4e0a\u6bdb\u6bef\u53bb\u91ce\u9910\u3002"}, {"en": "I love wrapping myself in a blanket during winter.", "zh": "\u51ac\u5929\u6211\u559c\u6b22\u7528\u6bdb\u6bef\u88f9\u7740\u81ea\u5df1\u3002"}]}, {"en": "Air conditioning", "zh": "\u7a7a\u8c03", "scene": "\u7528\u4e8e\u8c03\u8282\u5ba4\u5185\u6c14\u6e29\u7684\u8bbe\u5907\uff0c\u5e38\u89c1\u4e8e\u9152\u5e97\u3001\u6c7d\u8f66\u7b49\u3002", "examples": [{"en": "The air conditioning in this room is not working.", "zh": "\u8fd9\u4e2a\u623f\u95f4\u7684\u7a7a\u8c03\u574f\u4e86\u3002"}, {"en": "Make sure the air conditioning is set to a comfortable temperature.", "zh": "\u786e\u4fdd\u7a7a\u8c03\u8bbe\u7f6e\u5728\u8212\u9002\u7684\u6e29\u5ea6\u3002"}, {"en": "Can you adjust the air conditioning?", "zh": "\u4f60\u80fd\u8c03\u8282\u4e00\u4e0b\u7a7a\u8c03\u5417\uff1f"}, {"en": "The hotel has central air conditioning.", "zh": "\u8fd9\u5bb6\u9152\u5e97\u6709\u4e2d\u592e\u7a7a\u8c03\u3002"}, {"en": "The car\u2019s air conditioning is very efficient.", "zh": "\u8fd9\u4e2a\u8f66\u7684\u7a7a\u8c03\u975e\u5e38\u9ad8\u6548\u3002"}]}, {"en": "Have a safe", "zh": "\u4fdd\u9669\u7bb1", "scene": "\u7528\u4e8e\u5b58\u653e\u8d35\u91cd\u7269\u54c1\u7684\u5b89\u5168\u8bbe\u65bd\uff0c\u901a\u5e38\u5728\u9152\u5e97\u623f\u95f4\u5185\u63d0\u4f9b\u3002", "examples": [{"en": "Please store your valuables in the safe.", "zh": "\u8bf7\u5c06\u4f60\u7684\u8d35\u91cd\u7269\u54c1\u5b58\u653e\u5728\u4fdd\u9669\u7bb1\u91cc\u3002"}, {"en": "How do I use the safe in my hotel room?", "zh": "\u6211\u600e\u4e48\u4f7f\u7528\u9152\u5e97\u623f\u95f4\u91cc\u7684\u4fdd\u9669\u7bb1\uff1f"}, {"en": "Make sure to lock the safe properly.", "zh": "\u786e\u4fdd\u628a\u4fdd\u9669\u7bb1\u9501\u597d\u3002"}, {"en": "I forgot my code for the safe.", "zh": "\u6211\u5fd8\u8bb0\u4e86\u4fdd\u9669\u7bb1\u7684\u5bc6\u7801\u3002"}, {"en": "The safe is large enough for my laptop.", "zh": "\u4fdd\u9669\u7bb1\u8db3\u591f\u5927\uff0c\u53ef\u4ee5\u653e\u4e0b\u6211\u7684\u7535\u8111\u3002"}]}, {"en": "Luggage", "zh": "\u884c\u674e", "scene": "\u65c5\u9014\u4e2d\u643a\u5e26\u7684\u7269\u54c1\uff0c\u5305\u62ec\u7bb1\u5305\u548c\u80cc\u5305\u3002", "examples": [{"en": "How much luggage are you bringing on the trip?", "zh": "\u4f60\u5e26\u4e86\u591a\u5c11\u884c\u674e\u53bb\u65c5\u884c\uff1f"}, {"en": "Please keep an eye on your luggage at all times.", "zh": "\u8bf7\u968f\u65f6\u6ce8\u610f\u4f60\u7684\u884c\u674e\u3002"}, {"en": "I lost my luggage at the airport.", "zh": "\u6211\u5728\u673a\u573a\u4e22\u5931\u4e86\u884c\u674e\u3002"}, {"en": "There's a limit to the weight of your luggage.", "zh": "\u4f60\u7684\u884c\u674e\u91cd\u91cf\u6709\u9650\u5236\u3002"}, {"en": "Make sure to tag your luggage before checking in.", "zh": "\u5728\u529e\u7406\u6258\u8fd0\u4e4b\u524d\uff0c\u786e\u4fdd\u7ed9\u4f60\u7684\u884c\u674e\u8d34\u4e0a\u6807\u7b7e\u3002"}]}, {"en": "Elevator", "zh": "\u7535\u68af", "scene": "\u7528\u4e8e\u4e0a\u4e0b\u697c\u5c42\u7684\u673a\u68b0\u8bbe\u5907\uff0c\u4e3b\u8981\u5728\u9152\u5e97\u3001\u5546\u4e1a\u5efa\u7b51\u7b49\u573a\u6240\u4f7f\u7528\u3002", "examples": [{"en": "The elevator is located near the lobby.", "zh": "\u7535\u68af\u4f4d\u4e8e\u5927\u5802\u9644\u8fd1\u3002"}, {"en": "Please wait for the elevator to arrive.", "zh": "\u8bf7\u7b49\u7535\u68af\u5230\u6765\u3002"}, {"en": "The elevator is out of service today.", "zh": "\u4eca\u5929\u7535\u68af\u4e0d\u80fd\u4f7f\u7528\u3002"}, {"en": "Take the elevator to the fifth floor.", "zh": "\u5750\u7535\u68af\u5230\u4e94\u697c\u3002"}, {"en": "There are stairs if you prefer not to take the elevator.", "zh": "\u5982\u679c\u4f60\u4e0d\u60f3\u5750\u7535\u68af\uff0c\u8fd8\u6709\u697c\u68af\u3002"}]}, {"en": "Reception", "zh": "\u63a5\u5f85\u5904", "scene": "\u9152\u5e97\u6216\u4f1a\u5c55\u4e2d\u5fc3\u8d1f\u8d23\u767b\u8bb0\u5165\u4f4f\u3001\u63d0\u4f9b\u670d\u52a1\u7684\u5730\u65b9\u3002", "examples": [{"en": "I need to check in at the reception.", "zh": "\u6211\u9700\u8981\u5728\u63a5\u5f85\u5904\u767b\u8bb0\u5165\u4f4f\u3002"}, {"en": "The reception is open 24 hours.", "zh": "\u63a5\u5f85\u590424\u5c0f\u65f6\u5f00\u653e\u3002"}, {"en": "Can I get my keys at the reception?", "zh": "\u6211\u53ef\u4ee5\u5728\u63a5\u5f85\u5904\u53d6\u6211\u7684\u94a5\u5319\u5417\uff1f"}, {"en": "The reception staff are very helpful.", "zh": "\u63a5\u5f85\u5904\u7684\u5de5\u4f5c\u4eba\u5458\u5f88\u53cb\u597d\u3002"}, {"en": "Please contact the reception for any inquiries.", "zh": "\u5982\u9700\u54a8\u8be2\uff0c\u8bf7\u8054\u7cfb\u63a5\u5f85\u5904\u3002"}]}, {"en": "Vegetarian options", "zh": "\u7d20\u98df\u9009\u62e9", "scene": "\u63d0\u4f9b\u7ed9\u7d20\u98df\u8005\u7684\u996e\u98df\u9009\u9879\uff0c\u5e38\u5728\u9910\u5385\u548c\u9152\u5e97\u5185\u89c1\u5230\u3002", "examples": [{"en": "Does the restaurant have vegetarian options?", "zh": "\u8fd9\u5bb6\u9910\u5385\u6709\u7d20\u98df\u9009\u62e9\u5417\uff1f"}, {"en": "I prefer vegetarian options on the menu.", "zh": "\u6211\u66f4\u559c\u6b22\u83dc\u5355\u4e0a\u7684\u7d20\u98df\u9009\u62e9\u3002"}, {"en": "There are several vegetarian options available.", "zh": "\u6709\u51e0\u79cd\u7d20\u98df\u9009\u62e9\u53ef\u4f9b\u9009\u62e9\u3002"}, {"en": "Please let the staff know about vegetarian options.", "zh": "\u8bf7\u544a\u77e5\u5de5\u4f5c\u4eba\u5458\u5173\u4e8e\u7d20\u98df\u9009\u62e9\u7684\u4e8b\u3002"}, {"en": "I would like to see the vegetarian options, please.", "zh": "\u8bf7\u7ed9\u6211\u770b\u770b\u7d20\u98df\u9009\u62e9\u3002"}]}, {"en": "Allergic to", "zh": "\u5bf9...\u8fc7\u654f", "scene": "\u63cf\u8ff0\u4e00\u4e2a\u4eba\u5bf9\u67d0\u79cd\u7269\u8d28\u7684\u8fc7\u654f\u53cd\u5e94\uff0c\u901a\u5e38\u7528\u4e8e\u533b\u7597\u548c\u996e\u98df\u573a\u5408\u3002", "examples": [{"en": "I am allergic to peanuts.", "zh": "\u6211\u5bf9\u82b1\u751f\u8fc7\u654f\u3002"}, {"en": "Please inform the staff if you are allergic to any foods.", "zh": "\u5982\u679c\u4f60\u5bf9\u4efb\u4f55\u98df\u7269\u8fc7\u654f\uff0c\u8bf7\u544a\u77e5\u5de5\u4f5c\u4eba\u5458\u3002"}, {"en": "She is allergic to pollen.", "zh": "\u5979\u5bf9\u82b1\u7c89\u8fc7\u654f\u3002"}, {"en": "Do you have options for guests allergic to gluten?", "zh": "\u4f60\u4eec\u6709\u4f9b\u5bf9\u9eb8\u8d28\u8fc7\u654f\u8005\u7684\u9009\u9879\u5417\uff1f"}, {"en": "I need to take medicine because I am allergic to cats.", "zh": "\u6211\u56e0\u4e3a\u5bf9\u732b\u8fc7\u654f\u800c\u9700\u8981\u5403\u836f\u3002"}]}, {"en": "Spicy", "zh": "\u8fa3\u7684", "scene": "\u7528\u4e8e\u63cf\u8ff0\u4e00\u4e9b\u98df\u7269\uff0c\u5305\u542b\u8f9b\u8fa3\u6210\u5206\uff0c\u901a\u5e38\u9002\u5408\u559c\u6b22\u523a\u6fc0\u53e3\u611f\u7684\u4eba\u3002", "examples": [{"en": "Is this dish too spicy for you?", "zh": "\u8fd9\u9053\u83dc\u5bf9\u4f60\u6765\u8bf4\u592a\u8fa3\u4e86\u5417\uff1f"}, {"en": "I love spicy food from different cultures.", "zh": "\u6211\u559c\u6b22\u6765\u81ea\u4e0d\u540c\u6587\u5316\u7684\u8fa3\u5473\u98df\u54c1\u3002"}, {"en": "Please make it less spicy.", "zh": "\u8bf7\u628a\u5b83\u505a\u5f97\u4e0d\u90a3\u4e48\u8fa3\u3002"}, {"en": "Some people enjoy really spicy dishes.", "zh": "\u6709\u4e9b\u4eba\u559c\u6b22\u975e\u5e38\u8fa3\u7684\u83dc\u80b4\u3002"}, {"en": "This curry is too spicy for me.", "zh": "\u8fd9\u4e2a\u5496\u55b1\u5bf9\u6211\u6765\u8bf4\u592a\u8fa3\u4e86\u3002"}]}, {"en": "Takeaway", "zh": "\u5916\u5356", "scene": "\u6307\u5728\u9910\u5385\u70b9\u9910\u540e\u5e26\u8d70\u7684\u98df\u7269\uff0c\u5e38\u5728\u5feb\u9910\u5e97\u548c\u5c0f\u5403\u5e97\u770b\u5230\u3002", "examples": [{"en": "I ordered a takeaway for dinner.", "zh": "\u6211\u70b9\u4e86\u4e00\u4efd\u5916\u5356\u665a\u9910\u3002"}, {"en": "Do you have any good takeaway options around here?", "zh": "\u4f60\u8fd9\u91cc\u6709\u597d\u7684\u5916\u5356\u9009\u62e9\u5417\uff1f"}, {"en": "The takeaway service is quite fast.", "zh": "\u5916\u5356\u670d\u52a1\u76f8\u5f53\u5feb\u3002"}, {"en": "Please pack my meal for takeaway.", "zh": "\u8bf7\u628a\u6211\u7684\u9910\u6253\u5305\u6210\u5916\u5356\u3002"}, {"en": "Takeaway is a popular choice for busy people.", "zh": "\u5916\u5356\u662f\u5fd9\u788c\u4eba\u7fa4\u5e38\u9009\u7684\u9009\u62e9\u3002"}]}, {"en": "Gift wrap", "zh": "\u793c\u54c1\u5305\u88c5", "scene": "\u4e3a\u793c\u7269\u63d0\u4f9b\u5305\u88c5\u670d\u52a1\uff0c\u901a\u5e38\u5728\u96f6\u552e\u5e97\u3001\u5546\u573a\u4e2d\u63d0\u4f9b\u3002", "examples": [{"en": "Can you gift wrap this item for me?", "zh": "\u4f60\u80fd\u4e3a\u6211\u628a\u8fd9\u4e2a\u7269\u54c1\u793c\u54c1\u5305\u88c5\u5417\uff1f"}, {"en": "They offer complimentary gift wrap service.", "zh": "\u4ed6\u4eec\u63d0\u4f9b\u514d\u8d39\u7684\u793c\u54c1\u5305\u88c5\u670d\u52a1\u3002"}, {"en": "I love the gift wrap you used for my present.", "zh": "\u6211\u559c\u6b22\u4f60\u4e3a\u6211\u7684\u793c\u7269\u4f7f\u7528\u7684\u5305\u88c5\u3002"}, {"en": "Make sure to ask for gift wrap when purchasing gifts.", "zh": "\u5728\u8d2d\u4e70\u793c\u7269\u65f6\uff0c\u4e00\u5b9a\u8981\u8981\u6c42\u793c\u54c1\u5305\u88c5\u3002"}, {"en": "Gift wrap adds a nice touch to a present.", "zh": "\u793c\u54c1\u5305\u88c5\u4e3a\u793c\u7269\u589e\u6dfb\u4e86\u7f8e\u611f\u3002"}]}, {"en": "Receipt", "zh": "\u6536\u636e", "scene": "\u8d2d\u4e70\u5546\u54c1\u540e\u63d0\u4f9b\u7684\u8bc1\u660e\u6587\u4ef6\uff0c\u5e38\u5728\u8d2d\u7269\u3001\u5c31\u9910\u540e\u83b7\u5f97\u3002", "examples": [{"en": "Can I have a receipt for my purchase?", "zh": "\u6211\u53ef\u4ee5\u8981\u4e00\u5f20\u8d2d\u4e70\u7684\u6536\u636e\u5417\uff1f"}, {"en": "Please keep your receipt for warranty purposes.", "zh": "\u8bf7\u4fdd\u7559\u6536\u636e\u4ee5\u4fbf\u4fdd\u4fee\u3002"}, {"en": "The receipt shows the total amount spent.", "zh": "\u6536\u636e\u4e0a\u663e\u793a\u4e86\u603b\u6d88\u8d39\u91d1\u989d\u3002"}, {"en": "I'm going to need a receipt for my expense report.", "zh": "\u6211\u9700\u8981\u4e00\u5f20\u6536\u636e\u7528\u4e8e\u6211\u7684\u8d39\u7528\u62a5\u9500\u3002"}, {"en": "The cashier didn\u2019t give me a receipt.", "zh": "\u6536\u94f6\u5458\u6ca1\u6709\u7ed9\u6211\u6536\u636e\u3002"}]}, {"en": "Local souvenirs", "zh": "\u5f53\u5730\u7eaa\u5ff5\u54c1", "scene": "\u5728\u65c5\u884c\u4e2d\u53ef\u4ee5\u8d2d\u4e70\u7684\u5177\u6709\u5730\u65b9\u7279\u8272\u7684\u5546\u54c1\u3002", "examples": [{"en": "I want to buy some local souvenirs to take home.", "zh": "\u6211\u60f3\u4e70\u4e00\u4e9b\u5f53\u5730\u7eaa\u5ff5\u54c1\u5e26\u56de\u5bb6\u3002"}, {"en": "These local souvenirs are handmade.", "zh": "\u8fd9\u4e9b\u5f53\u5730\u7eaa\u5ff5\u54c1\u662f\u624b\u5de5\u5236\u4f5c\u7684\u3002"}, {"en": "Where can I find local souvenirs?", "zh": "\u6211\u5728\u54ea\u91cc\u53ef\u4ee5\u627e\u5230\u5f53\u5730\u7eaa\u5ff5\u54c1\uff1f"}, {"en": "Local souvenirs make great gifts.", "zh": "\u5f53\u5730\u7eaa\u5ff5\u54c1\u662f\u5f88\u597d\u7684\u793c\u7269\u3002"}, {"en": "I collect local souvenirs from my travels.", "zh": "\u6211\u4f1a\u6536\u96c6\u65c5\u884c\u4e2d\u7684\u5f53\u5730\u7eaa\u5ff5\u54c1\u3002"}]}, {"en": "Intersection", "zh": "\u4ea4\u53c9\u53e3", "scene": "\u4e24\u6761\u6216\u591a\u6761\u9053\u8def\u4ea4\u6c47\u7684\u5730\u70b9\uff0c\u5e38\u7528\u4e8e\u4ea4\u901a\u6307\u5f15\u3002", "examples": [{"en": "Turn left at the next intersection.", "zh": "\u5728\u4e0b\u4e00\u4e2a\u4ea4\u53c9\u53e3\u5de6\u8f6c\u3002"}, {"en": "The intersection can get crowded during rush hour.", "zh": "\u5728\u9ad8\u5cf0\u65f6\u6bb5\u4ea4\u53c9\u53e3\u53ef\u80fd\u4f1a\u62e5\u5835\u3002"}, {"en": "Look both ways before crossing the intersection.", "zh": "\u8fc7\u4ea4\u53c9\u53e3\u524d\u8bf7\u5de6\u53f3\u67e5\u770b\u3002"}, {"en": "There are traffic lights at the intersection.", "zh": "\u4ea4\u53c9\u53e3\u6709\u4ea4\u901a\u4fe1\u53f7\u706f\u3002"}, {"en": "The intersection is known for frequent accidents.", "zh": "\u8fd9\u4e2a\u4ea4\u53c9\u53e3\u5e38\u53d1\u751f\u4e8b\u6545\u3002"}]}]
+    // Vue 应用
+    const app = Vue.createApp({
+      data() {
+        return {
+          vocabData: vocabData,
+          currentWord: null,
+          isAnimating: false,
+          history: [],
+          speechRate: parseFloat(localStorage.getItem('speechRate')) || 1.0,
+          ttsAvailable: false,  // TTS服务是否可用
+          isAutoReading: false, // 是否正在自动朗读
+          autoReadingIndex: 0,  // 当前朗读索引
+          shuffledData: [],     // 打乱后的数据
+          // TTS常量配置
+          TTS_CONFIG: {
+            speed: 50,
+            volume: 100,
+            pitch: 50,
+            zhVoice: 'microsoft_zh-CN-YunxiNeural',  // 英文声音ID
+            enVoice: 'microsoft_en-US-GuyNeural'   // 中文声音ID
+          }
+        };
+      },
+      watch: {
+        // 监听 speechRate 的变化，保存到 localStorage
+        speechRate(newRate) {
+          localStorage.setItem('speechRate', newRate);
+        }
+      },
+      methods: {
+        speakText(text) {
+          // 取消正在进行的语音
+          window.speechSynthesis.cancel();
+
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'en-US';
+          // 设置语速
+          utterance.rate = this.speechRate;
+
+          const voices = window.speechSynthesis.getVoices();
+          const englishVoices = voices.filter(voice => voice.lang.includes('en'));
+
+          if (englishVoices.length > 0) {
+            const preferredVoices = englishVoices.filter(v =>
+              v.name.includes('Google') ||
+              v.name.includes('Daniel') ||
+              v.name.includes('Samantha')
+            );
+
+            utterance.voice = preferredVoices.length > 0 ?
+              preferredVoices[0] : englishVoices[0];
+          }
+
+          window.speechSynthesis.speak(utterance);
+        },
+        getRandomWord() {
+          if (this.isAnimating) return;
+          this.isAnimating = true;
+
+          // 添加淡出效果
+          const wordCard = document.querySelector('.word-card');
+          if (wordCard) {
+            wordCard.style.opacity = '0';
+            wordCard.style.transform = 'translateY(20px)';
+          }
+
+          setTimeout(() => {
+            let randomIndex;
+            let attempts = 0;
+            const maxAttempts = 10; // 防止无限循环
+
+            do {
+              randomIndex = Math.floor(Math.random() * this.vocabData.length);
+              attempts++;
+            } while (
+              this.history.includes(randomIndex) &&
+              attempts < maxAttempts &&
+              this.vocabData.length > 2
+            );
+
+            // 更新历史记录
+            this.history.push(randomIndex);
+            if (this.history.length > 3) {
+              this.history.shift(); // 移除最老的记录
+            }
+
+            this.currentWord = this.vocabData[randomIndex];
+
+            // 重置动画状态
+            this.$nextTick(() => {
+              const newWordCard = document.querySelector('.word-card');
+              if (newWordCard) {
+                void newWordCard.offsetWidth;
+                newWordCard.style.opacity = '1';
+                newWordCard.style.transform = 'translateY(0)';
+              }
+
+              setTimeout(() => {
+                this.isAnimating = false;
+              }, 500);
+            });
+          }, 300);
+        },
+        // 检查TTS服务是否可用
+        async checkTTSService() {
+          try {
+            const response = await fetch('http://nas.shmiluyu.xyz:5030/ai/tts/voices');
+            console.log(response);
+
+            if (response.ok) {
+              this.ttsAvailable = true;
+            }
+          } catch (error) {
+            console.error('TTS service check failed:', error);
+            this.ttsAvailable = false;
+          }
+        },
+
+        // TTS请求
+        async ttsSpeak(text, isEnglish = true, speed = null) {
+          const params = new URLSearchParams({
+            text,
+            speed: speed || this.TTS_CONFIG.speed,  // 如果传入speed则使用传入的值
+            volume: this.TTS_CONFIG.volume,
+            pitch: this.TTS_CONFIG.pitch,
+            voice: isEnglish ? this.TTS_CONFIG.enVoice : this.TTS_CONFIG.zhVoice
+          });
+
+          try {
+            const response = await fetch(`http://nas.shmiluyu.xyz:5030/ai/tts/forward?${params}`);
+            if (!response.ok) {
+              throw new Error('TTS request failed');
+            }
+
+            // 获取音频blob
+            const audioBlob = await response.blob();
+            // 创建blob URL
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            // 创建音频对象
+            const audio = new Audio(audioUrl);
+
+            // 返回一个Promise，在音频播放完成后resolve
+            return new Promise((resolve, reject) => {
+              audio.onended = () => {
+                URL.revokeObjectURL(audioUrl); // 清理blob URL
+                resolve(true);
+              };
+              audio.onerror = (error) => {
+                URL.revokeObjectURL(audioUrl);
+                reject(error);
+              };
+              audio.play();
+            });
+          } catch (error) {
+            console.error('TTS request failed:', error);
+            return false;
+          }
+        },
+
+        // 开始自动朗读
+        startAutoReading() {
+          if (this.isAutoReading) return;
+
+          this.isAutoReading = true;
+          this.autoReadingIndex = 0;
+          // 打乱数据
+          this.shuffledData = [...this.vocabData].sort(() => Math.random() - 0.5);
+          this.readNext();
+        },
+
+
+        // 停止自动朗读
+        stopAutoReading() {
+          this.isAutoReading = false;
+          this.autoReadingIndex = 0;
+        },
+
+        // 读取下一个单词
+        async readNext() {
+          if (!this.isAutoReading || this.autoReadingIndex >= this.shuffledData.length) {
+            this.stopAutoReading();
+            return;
+          }
+
+          const vd = this.shuffledData[this.autoReadingIndex];
+          // 更新当前显示的单词卡片
+          this.currentWord = vd;
+
+          // 读取英文
+          if (!this.isAutoReading) return;
+          await this.ttsSpeak(vd.en, true, 20);
+
+          // 读取中文 读取场景
+          if (!this.isAutoReading) return;
+          await this.ttsSpeak(`中文释义:${vd.zh},使用场景:${vd.scene}`, false, 30);
+
+          // 读取例句
+          for (const example of vd.examples) {
+            // 先读中文
+            if (!this.isAutoReading) return;
+            await this.ttsSpeak(`例句:${example.zh}`, false, 30);
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            const speeds = [10, 10, 20];
+            for (const speed of speeds) {
+              if (!this.isAutoReading) return;
+              await this.ttsSpeak(example.en, true, speed);
+              await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+          }
+
+          this.autoReadingIndex++;
+          this.readNext();
+        }
+      },
+      mounted() {
+        this.getRandomWord();
+        this.checkTTSService();  // 检查TTS服务
+      }
+    });
+
+    app.mount('#app');
+  </script>
+
+
+</body>
+
+</html>

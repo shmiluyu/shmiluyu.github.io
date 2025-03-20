@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学术英语</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../archive.css">
+</head>
+
+<body>
+  <div id="app" class="container mx-auto max-w-3xl">
+    <header class="mb-6 text-center">
+      <h1 class="font-bold text-gray-800 mb-2">学术英语</h1>
+      <p class="text-gray-600 text-sm mb-4">
+        点击单词听发音，点击句子旁的喇叭图标听整句
+        <span class="text-gray-400 text-xs ml-2">· {{ vocabData.length }}个词汇</span>
+      </p>
+      <div class="flex items-center justify-center gap-4">
+        <label class="text-sm text-gray-600">语速控制:</label>
+        <input type="range" v-model="speechRate" min="0.5" max="2" step="0.1" class="w-32">
+        <span class="text-sm text-gray-600">{{ speechRate }}x</span>
+      </div>
+    </header>
+
+    <div class="word-container">
+      <transition name="fade">
+        <div v-if="currentWord" class="word-card bg-white rounded-lg fade-in">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="term text-xl" @click="speakText(currentWord.en)">{{ currentWord.en }}</span>
+            <span class="text-gray-400">|</span>
+            <span class="text-gray-700 text-xl">{{ currentWord.zh }}</span>
+          </div>
+          <div class="scene">
+            {{ currentWord.scene }}
+          </div>
+          <div v-for="(example, exIndex) in currentWord.examples" :key="exIndex" class="example"
+            @click="speakText(example.en)">
+            <p>{{ example.en }}</p>
+            <p class="text-gray-600 mt-1">{{ example.zh }}</p>
+            <i class="fas fa-volume-up sound-icon"></i>
+          </div>
+        </div>
+      </transition>
+    </div>
+
+    <div class="refresh-btn" :class="{ 'loading': isAnimating }" @click="getRandomWord">
+      <i class="fas fa-random"></i>
+    </div>
+
+    <div v-show="ttsAvailable" class="auto-read-btn" :class="{ 'active': isAutoReading }"
+      @click="isAutoReading ? stopAutoReading() : startAutoReading()">
+      <i class="fas" :class="isAutoReading ? 'fa-stop' : 'fa-play'"></i>
+    </div>
+  </div>
+
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.prod.js"></script>
+
+  <script>
+    // 词汇数据
+    const vocabData =  [{"en": "breakdown", "zh": "\u5d29\u6e83; \u5206\u6790", "scene": "\u7528\u6765\u63cf\u8ff0\u7cfb\u7edf\u3001\u7ed3\u6784\u7b49\u7684\u5d29\u6e83\u6216\u5206\u6790\u67d0\u4e00\u4e8b\u7269\u7684\u7ec4\u6210\u90e8\u5206\u3002", "examples": [{"en": "The breakdown of the negotiation was unexpected.", "zh": "\u8c08\u5224\u7684\u5d29\u6e83\u662f\u610f\u6599\u4e4b\u5916\u7684\u3002"}, {"en": "We need a detailed breakdown of our expenses.", "zh": "\u6211\u4eec\u9700\u8981\u8be6\u7ec6\u7684\u8d39\u7528\u5206\u6790\u3002"}, {"en": "The system's breakdown caused a lot of issues.", "zh": "\u7cfb\u7edf\u7684\u5d29\u6e83\u5f15\u53d1\u4e86\u5f88\u591a\u95ee\u9898\u3002"}, {"en": "The breakdown of the data will help us understand the issue better.", "zh": "\u6570\u636e\u7684\u5206\u6790\u5c06\u5e2e\u52a9\u6211\u4eec\u66f4\u597d\u5730\u7406\u89e3\u95ee\u9898\u3002"}, {"en": "After the breakdown, the team had to reassess their strategies.", "zh": "\u5d29\u6e83\u4e4b\u540e\uff0c\u56e2\u961f\u5fc5\u987b\u91cd\u65b0\u8bc4\u4f30\u4ed6\u4eec\u7684\u7b56\u7565\u3002"}]}, {"en": "despite", "zh": "\u5c3d\u7ba1", "scene": "\u7528\u4f5c\u8fde\u63a5\u8bcd\uff0c\u8868\u793a\u5bf9\u6bd4\u6216\u8ba9\u6b65\u3002", "examples": [{"en": "Despite the rain, we continued our hike.", "zh": "\u5c3d\u7ba1\u4e0b\u96e8\uff0c\u6211\u4eec\u8fd8\u662f\u7ee7\u7eed\u5f92\u6b65\u65c5\u884c\u3002"}, {"en": "She succeeded despite facing many obstacles.", "zh": "\u5979\u5c3d\u7ba1\u9762\u4e34\u8bb8\u591a\u969c\u788d\uff0c\u8fd8\u662f\u53d6\u5f97\u4e86\u6210\u529f\u3002"}, {"en": "Despite the challenges, the project was completed on time.", "zh": "\u5c3d\u7ba1\u9762\u4e34\u6311\u6218\uff0c\u9879\u76ee\u8fd8\u662f\u6309\u65f6\u5b8c\u6210\u4e86\u3002"}, {"en": "He remains optimistic despite the bad news.", "zh": "\u5c3d\u7ba1\u6709\u574f\u6d88\u606f\uff0c\u4ed6\u4ecd\u7136\u4fdd\u6301\u4e50\u89c2\u3002"}, {"en": "Despite her busy schedule, she always finds time to volunteer.", "zh": "\u5c3d\u7ba1\u5979\u7684\u65e5\u7a0b\u5f88\u5fd9\uff0c\u5979\u603b\u662f\u80fd\u62bd\u51fa\u65f6\u95f4\u6765\u5fd7\u613f\u670d\u52a1\u3002"}]}, {"en": "appreciated", "zh": "\u88ab\u91cd\u89c6\u7684; \u53d7\u5230\u611f\u6fc0\u7684", "scene": "\u7528\u6765\u8868\u793a\u5bf9\u67d0\u4e8b\u6216\u67d0\u4eba\u7684\u611f\u6fc0\u3002", "examples": [{"en": "Your help is greatly appreciated.", "zh": "\u60a8\u7684\u5e2e\u52a9\u975e\u5e38\u611f\u8c22\u3002"}, {"en": "I appreciated her honesty.", "zh": "\u6211\u5f88\u611f\u6fc0\u5979\u7684\u8bda\u5b9e\u3002"}, {"en": "The team's efforts were appreciated by management.", "zh": "\u7ba1\u7406\u5c42\u5bf9\u56e2\u961f\u7684\u52aa\u529b\u8868\u793a\u8d5e\u8d4f\u3002"}, {"en": "He appreciated the support from his friends during tough times.", "zh": "\u5728\u56f0\u96be\u65f6\u671f\uff0c\u4ed6\u5f88\u611f\u6fc0\u670b\u53cb\u4eec\u7684\u652f\u6301\u3002"}, {"en": "Feedback is always appreciated for improving our services.", "zh": "\u53cd\u9988\u603b\u662f\u88ab\u91cd\u89c6\uff0c\u4ee5\u4fbf\u6539\u5584\u6211\u4eec\u7684\u670d\u52a1\u3002"}]}, {"en": "frustrating", "zh": "\u4ee4\u4eba\u6cae\u4e27\u7684", "scene": "\u7528\u6765\u5f62\u5bb9\u67d0\u4e8b\u8ba9\u4eba\u611f\u5230\u70e6\u607c\u6216\u5931\u671b\u3002", "examples": [{"en": "It can be frustrating when things don't go as planned.", "zh": "\u5f53\u4e8b\u60c5\u672a\u6309\u8ba1\u5212\u8fdb\u884c\u65f6\uff0c\u4f1a\u8ba9\u4eba\u611f\u5230\u6cae\u4e27\u3002"}, {"en": "The frustrating delay caused several issues.", "zh": "\u4ee4\u4eba\u6cae\u4e27\u7684\u5ef6\u8bef\u5f15\u53d1\u4e86\u51e0\u4e2a\u95ee\u9898\u3002"}, {"en": "She found it frustrating to deal with the constant changes.", "zh": "\u5979\u53d1\u73b0\u5728\u5e94\u5bf9\u4e0d\u65ad\u7684\u53d8\u5316\u65f6\u4ee4\u4eba\u6cae\u4e27\u3002"}, {"en": "Frustrating moments can lead to significant breakthroughs.", "zh": "\u6cae\u4e27\u7684\u65f6\u523b\u6709\u65f6\u4f1a\u5bfc\u81f4\u91cd\u8981\u7684\u7a81\u7834\u3002"}, {"en": "The frustrating experience taught him patience.", "zh": "\u8fd9\u6b21\u4ee4\u4eba\u6cae\u4e27\u7684\u7ecf\u5386\u6559\u4f1a\u4e86\u4ed6\u8010\u5fc3\u3002"}]}, {"en": "reliance", "zh": "\u4f9d\u9760; \u4f9d\u8d56", "scene": "\u7528\u6765\u63cf\u8ff0\u5bf9\u67d0\u7269\u6216\u67d0\u4eba\u7684\u4f9d\u8d56\u7a0b\u5ea6\u3002", "examples": [{"en": "There is a heavy reliance on technology in modern workplaces.", "zh": "\u73b0\u4ee3\u804c\u573a\u5bf9\u6280\u672f\u7684\u4f9d\u8d56\u7a0b\u5ea6\u5f88\u9ad8\u3002"}, {"en": "Their reliance on volunteers made the event successful.", "zh": "\u4ed6\u4eec\u5bf9\u5fd7\u613f\u8005\u7684\u4f9d\u8d56\u4f7f\u6d3b\u52a8\u53d6\u5f97\u4e86\u6210\u529f\u3002"}, {"en": "Reliance on public transport can be inconvenient.", "zh": "\u4f9d\u8d56\u516c\u5171\u4ea4\u901a\u53ef\u80fd\u4f1a\u5e26\u6765\u4e0d\u4fbf\u3002"}, {"en": "The lack of reliance on proper research led to mistakes.", "zh": "\u7f3a\u4e4f\u5bf9\u9002\u5f53\u7814\u7a76\u7684\u4f9d\u8d56\u5bfc\u81f4\u4e86\u9519\u8bef\u3002"}, {"en": "Her reliance on family support is evident.", "zh": "\u5979\u5bf9\u5bb6\u5ead\u652f\u6301\u7684\u4f9d\u8d56\u663e\u800c\u6613\u89c1\u3002"}]}, {"en": "Transition to", "zh": "\u8fc7\u6e21\u5230", "scene": "\u7528\u4e8e\u6307\u4ee3\u4ece\u4e00\u79cd\u72b6\u6001\u6216\u9636\u6bb5\u8fc7\u6e21\u5230\u53e6\u4e00\u79cd\u72b6\u6001\u6216\u9636\u6bb5\u3002", "examples": [{"en": "The transition to a new management system will take some time.", "zh": "\u8fc7\u6e21\u5230\u65b0\u7684\u7ba1\u7406\u7cfb\u7edf\u9700\u8981\u4e00\u4e9b\u65f6\u95f4\u3002"}, {"en": "The transition to remote work was challenging for many.", "zh": "\u5bf9\u8bb8\u591a\u4eba\u6765\u8bf4\uff0c\u8fc7\u6e21\u5230\u8fdc\u7a0b\u5de5\u4f5c\u662f\u5177\u6709\u6311\u6218\u6027\u7684\u3002"}, {"en": "We are in the process of transitioning to a more sustainable model.", "zh": "\u6211\u4eec\u6b63\u5728\u8fc7\u6e21\u5230\u66f4\u53ef\u6301\u7eed\u7684\u6a21\u5f0f\u3002"}, {"en": "Successful transition to adulthood requires support.", "zh": "\u6210\u529f\u8fc7\u6e21\u5230\u6210\u5e74\u9700\u8981\u652f\u6301\u3002"}, {"en": "The transition to a digital age has transformed businesses.", "zh": "\u5411\u6570\u5b57\u65f6\u4ee3\u7684\u8fc7\u6e21\u5df2\u7ecf\u8f6c\u53d8\u4e86\u5546\u4e1a\u3002"}]}, {"en": "promising", "zh": "\u6709\u524d\u9014\u7684; \u4ee4\u4eba\u671f\u5f85\u7684", "scene": "\u5f62\u5bb9\u67d0\u4e8b\u6216\u67d0\u4eba\u663e\u793a\u51fa\u826f\u597d\u7684\u53d1\u5c55\u6f5c\u529b\u3002", "examples": [{"en": "The new project seems promising.", "zh": "\u8fd9\u4e2a\u65b0\u9879\u76ee\u770b\u8d77\u6765\u5f88\u6709\u524d\u9014\u3002"}, {"en": "She has a promising career ahead of her.", "zh": "\u5979\u524d\u65b9\u6709\u4e00\u4e2a\u6709\u524d\u9014\u7684\u804c\u4e1a\u3002"}, {"en": "The research shows promising results.", "zh": "\u7814\u7a76\u663e\u793a\u51fa\u4ee4\u4eba\u671f\u5f85\u7684\u7ed3\u679c\u3002"}, {"en": "He is a promising young talent in the industry.", "zh": "\u4ed6\u662f\u884c\u4e1a\u5185\u4e00\u4e2a\u6709\u524d\u9014\u7684\u5e74\u8f7b\u4eba\u624d\u3002"}, {"en": "This partnership is promising for future growth.", "zh": "\u8fd9\u4e2a\u5408\u4f5c\u5bf9\u672a\u6765\u7684\u589e\u957f\u5f88\u6709\u524d\u9014\u3002"}]}, {"en": "encountered", "zh": "\u9047\u5230; \u906d\u9047", "scene": "\u8868\u793a\u9047\u5230\u67d0\u4eba\u6216\u67d0\u4e8b\uff0c\u901a\u5e38\u662f\u9762\u5bf9\u6311\u6218\u6216\u56f0\u96be\u3002", "examples": [{"en": "We encountered several problems during the project.", "zh": "\u5728\u9879\u76ee\u4e2d\u6211\u4eec\u9047\u5230\u4e86\u51e0\u4e2a\u95ee\u9898\u3002"}, {"en": "They encountered unexpected challenges in their research.", "zh": "\u4ed6\u4eec\u5728\u7814\u7a76\u4e2d\u906d\u9047\u4e86\u610f\u60f3\u4e0d\u5230\u7684\u6311\u6218\u3002"}, {"en": "The team encountered resistance to the new changes.", "zh": "\u56e2\u961f\u9047\u5230\u4e86\u5bf9\u65b0\u53d8\u5316\u7684\u62b5\u5236\u3002"}, {"en": "She encountered many different cultures while traveling.", "zh": "\u5979\u5728\u65c5\u884c\u4e2d\u9047\u5230\u4e86\u8bb8\u591a\u4e0d\u540c\u7684\u6587\u5316\u3002"}, {"en": "We have encountered a delay in shipping.", "zh": "\u6211\u4eec\u5728\u53d1\u8d27\u4e0a\u9047\u5230\u4e86\u5ef6\u8fdf\u3002"}]}, {"en": "ongoing", "zh": "\u6b63\u5728\u8fdb\u884c\u7684", "scene": "\u63cf\u8ff0\u67d0\u4e8b\u73b0\u5728\u8fd8\u5728\u7ee7\u7eed\uff0c\u5e76\u672a\u7ed3\u675f\u3002", "examples": [{"en": "The ongoing negotiations are crucial for the deal.", "zh": "\u6b63\u5728\u8fdb\u884c\u7684\u8c08\u5224\u5bf9\u4ea4\u6613\u81f3\u5173\u91cd\u8981\u3002"}, {"en": "There is an ongoing effort to improve customer service.", "zh": "\u76ee\u524d\u6b63\u5728\u52aa\u529b\u6539\u5584\u5ba2\u6237\u670d\u52a1\u3002"}, {"en": "The ongoing project will last for several months.", "zh": "\u6b63\u5728\u8fdb\u884c\u7684\u9879\u76ee\u5c06\u6301\u7eed\u51e0\u4e2a\u6708\u3002"}, {"en": "She is involved in ongoing research about climate change.", "zh": "\u5979\u53c2\u4e0e\u4e86\u5173\u4e8e\u6c14\u5019\u53d8\u5316\u7684\u6b63\u5728\u8fdb\u884c\u7684\u7814\u7a76\u3002"}, {"en": "The ongoing issues need to be addressed.", "zh": "\u6b63\u5728\u8fdb\u884c\u7684\u95ee\u9898\u9700\u8981\u5f97\u5230\u89e3\u51b3\u3002"}]}, {"en": "Overall Impression", "zh": "\u603b\u4f53\u5370\u8c61", "scene": "\u7528\u6765\u63cf\u8ff0\u5bf9\u67d0\u4e8b\u7684\u6574\u4f53\u770b\u6cd5\u6216\u611f\u53d7\u3002", "examples": [{"en": "My overall impression of the event was positive.", "zh": "\u6211\u5bf9\u8fd9\u6b21\u6d3b\u52a8\u7684\u603b\u4f53\u5370\u8c61\u662f\u79ef\u6781\u7684\u3002"}, {"en": "The overall impression of the product is very good.", "zh": "\u8be5\u4ea7\u54c1\u7684\u603b\u4f53\u5370\u8c61\u975e\u5e38\u597d\u3002"}, {"en": "In my overall impression, the performance was outstanding.", "zh": "\u5728\u6211\u770b\u6765\uff0c\u6574\u4f53\u5370\u8c61\u662f\u8868\u73b0\u5353\u8d8a\u3002"}, {"en": "The overall impression of the team is one of professionalism.", "zh": "\u56e2\u961f\u7684\u603b\u4f53\u5370\u8c61\u662f\u4e13\u4e1a\u6027\u5f3a\u3002"}, {"en": "His overall impression of the trip was memorable.", "zh": "\u4ed6\u5bf9\u8fd9\u6b21\u65c5\u884c\u7684\u603b\u4f53\u5370\u8c61\u4ee4\u4eba\u96be\u5fd8\u3002"}]}, {"en": "concluded", "zh": "\u7ed3\u675f; \u65ad\u5b9a", "scene": "\u7528\u4e8e\u8868\u793a\u67d0\u4e8b\u5df2\u5b8c\u6210\u6216\u5f97\u51fa\u7ed3\u8bba\u3002", "examples": [{"en": "The meeting concluded with several important decisions.", "zh": "\u4f1a\u8bae\u5728\u51e0\u9879\u91cd\u8981\u51b3\u5b9a\u4e2d\u7ed3\u675f\u3002"}, {"en": "She concluded that the research was successful.", "zh": "\u5979\u65ad\u5b9a\u8fd9\u9879\u7814\u7a76\u662f\u6210\u529f\u7684\u3002"}, {"en": "The report concluded that changes were necessary.", "zh": "\u62a5\u544a\u5f97\u51fa\u7ed3\u8bba\uff0c\u8ba4\u4e3a\u9700\u8981\u8fdb\u884c\u6539\u53d8\u3002"}, {"en": "After much debate, they concluded the discussion.", "zh": "\u7ecf\u8fc7\u591a\u6b21\u8fa9\u8bba\uff0c\u4ed6\u4eec\u7ed3\u675f\u4e86\u8ba8\u8bba\u3002"}, {"en": "The project was concluded ahead of schedule.", "zh": "\u9879\u76ee\u63d0\u524d\u5b8c\u6210\u3002"}]}, {"en": "Key Quotes", "zh": "\u5173\u952e\u5f15\u8a00", "scene": "\u7528\u4e8e\u6307\u4ee3\u5728\u6587\u6863\u6216\u6f14\u8bb2\u4e2d\u7684\u91cd\u8981\u5f15\u8a00\u6216\u9648\u8ff0\u3002", "examples": [{"en": "Here are some key quotes from the presentation.", "zh": "\u8fd9\u662f\u6f14\u793a\u4e2d\u4e00\u4e9b\u5173\u952e\u5f15\u8a00\u3002"}, {"en": "The report includes key quotes from the interviews.", "zh": "\u62a5\u544a\u5305\u542b\u4e86\u91c7\u8bbf\u4e2d\u7684\u5173\u952e\u5f15\u8a00\u3002"}, {"en": "Key quotes can highlight the main points of a discussion.", "zh": "\u5173\u952e\u5f15\u8a00\u53ef\u4ee5\u7a81\u663e\u8ba8\u8bba\u7684\u8981\u70b9\u3002"}, {"en": "He shared key quotes that resonated with the audience.", "zh": "\u4ed6\u5206\u4eab\u4e86\u4e00\u4e9b\u4e0e\u542c\u4f17\u4ea7\u751f\u5171\u9e23\u7684\u5173\u952e\u5f15\u8a00\u3002"}, {"en": "The article features key quotes from industry leaders.", "zh": "\u8fd9\u7bc7\u6587\u7ae0\u7684\u7279\u70b9\u662f\u5f15\u7528\u4e86\u884c\u4e1a\u9886\u8896\u7684\u5173\u952e\u5f15\u8a00\u3002"}]}, {"en": "regressing on", "zh": "\u5728\u67d0\u65b9\u9762\u9000\u6b65", "scene": "\u7528\u4e8e\u63cf\u8ff0\u5728\u67d0\u65b9\u9762\u53d1\u5c55\u4e0d\u4f73\u6216\u53d8\u5f97\u66f4\u5dee\u3002", "examples": [{"en": "The team has been regressing on their performance metrics.", "zh": "\u8be5\u56e2\u961f\u5728\u7ee9\u6548\u6307\u6807\u4e0a\u6709\u6240\u9000\u6b65\u3002"}, {"en": "We are regressing on our goals instead of progressing.", "zh": "\u6211\u4eec\u5728\u76ee\u6807\u4e0a\u505c\u6ede\u4e0d\u524d\uff0c\u800c\u4e0d\u662f\u524d\u8fdb\u3002"}, {"en": "Regressing on previous improvements is a concern.", "zh": "\u5728\u4e4b\u524d\u7684\u6539\u8fdb\u4e0a\u51fa\u73b0\u9000\u6b65\u4ee4\u4eba\u62c5\u5fe7\u3002"}, {"en": "The project's results are regressing on key indicators.", "zh": "\u8be5\u9879\u76ee\u7684\u7ed3\u679c\u5728\u5173\u952e\u6307\u6807\u4e0a\u51fa\u73b0\u4e86\u9000\u6b65\u3002"}, {"en": "They are regressing on their innovation efforts.", "zh": "\u4ed6\u4eec\u5728\u521b\u65b0\u65b9\u9762\u51fa\u73b0\u9000\u6b65\u3002"}]}, {"en": "Conclusion", "zh": "\u7ed3\u8bba", "scene": "\u7528\u4e8e\u8868\u793a\u6700\u540e\u7684\u603b\u7ed3\u6216\u89c2\u70b9\u3002", "examples": [{"en": "In conclusion, the study provides valuable insights.", "zh": "\u603b\u4e4b\uff0c\u8fd9\u9879\u7814\u7a76\u63d0\u4f9b\u4e86\u5b9d\u8d35\u7684\u89c1\u89e3\u3002"}, {"en": "The conclusion of the report summarizes the findings.", "zh": "\u62a5\u544a\u7684\u7ed3\u8bba\u603b\u7ed3\u4e86\u7814\u7a76\u7ed3\u679c\u3002"}, {"en": "To reach a conclusion, we need more data.", "zh": "\u8981\u5f97\u51fa\u7ed3\u8bba\uff0c\u6211\u4eec\u9700\u8981\u66f4\u591a\u6570\u636e\u3002"}, {"en": "The conclusion outlines the next steps for the project.", "zh": "\u7ed3\u8bba\u6982\u8ff0\u4e86\u9879\u76ee\u7684\u4e0b\u4e00\u6b65\u3002"}, {"en": "In conclusion, cooperation is essential for success.", "zh": "\u603b\u4e4b\uff0c\u5408\u4f5c\u5bf9\u6210\u529f\u81f3\u5173\u91cd\u8981\u3002"}]}]
+    // Vue 应用
+    const app = Vue.createApp({
+      data() {
+        return {
+          vocabData: vocabData,
+          currentWord: null,
+          isAnimating: false,
+          history: [],
+          speechRate: parseFloat(localStorage.getItem('speechRate')) || 1.0,
+          ttsAvailable: false,  // TTS服务是否可用
+          isAutoReading: false, // 是否正在自动朗读
+          autoReadingIndex: 0,  // 当前朗读索引
+          shuffledData: [],     // 打乱后的数据
+          // TTS常量配置
+          TTS_CONFIG: {
+            speed: 50,
+            volume: 100,
+            pitch: 50,
+            zhVoice: 'microsoft_zh-CN-YunxiNeural',  // 英文声音ID
+            enVoice: 'microsoft_en-US-GuyNeural'   // 中文声音ID
+          }
+        };
+      },
+      watch: {
+        // 监听 speechRate 的变化，保存到 localStorage
+        speechRate(newRate) {
+          localStorage.setItem('speechRate', newRate);
+        }
+      },
+      methods: {
+        speakText(text) {
+          // 取消正在进行的语音
+          window.speechSynthesis.cancel();
+
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = 'en-US';
+          // 设置语速
+          utterance.rate = this.speechRate;
+
+          const voices = window.speechSynthesis.getVoices();
+          const englishVoices = voices.filter(voice => voice.lang.includes('en'));
+
+          if (englishVoices.length > 0) {
+            const preferredVoices = englishVoices.filter(v =>
+              v.name.includes('Google') ||
+              v.name.includes('Daniel') ||
+              v.name.includes('Samantha')
+            );
+
+            utterance.voice = preferredVoices.length > 0 ?
+              preferredVoices[0] : englishVoices[0];
+          }
+
+          window.speechSynthesis.speak(utterance);
+        },
+        getRandomWord() {
+          if (this.isAnimating) return;
+          this.isAnimating = true;
+
+          // 添加淡出效果
+          const wordCard = document.querySelector('.word-card');
+          if (wordCard) {
+            wordCard.style.opacity = '0';
+            wordCard.style.transform = 'translateY(20px)';
+          }
+
+          setTimeout(() => {
+            let randomIndex;
+            let attempts = 0;
+            const maxAttempts = 10; // 防止无限循环
+
+            do {
+              randomIndex = Math.floor(Math.random() * this.vocabData.length);
+              attempts++;
+            } while (
+              this.history.includes(randomIndex) &&
+              attempts < maxAttempts &&
+              this.vocabData.length > 2
+            );
+
+            // 更新历史记录
+            this.history.push(randomIndex);
+            if (this.history.length > 3) {
+              this.history.shift(); // 移除最老的记录
+            }
+
+            this.currentWord = this.vocabData[randomIndex];
+
+            // 重置动画状态
+            this.$nextTick(() => {
+              const newWordCard = document.querySelector('.word-card');
+              if (newWordCard) {
+                void newWordCard.offsetWidth;
+                newWordCard.style.opacity = '1';
+                newWordCard.style.transform = 'translateY(0)';
+              }
+
+              setTimeout(() => {
+                this.isAnimating = false;
+              }, 500);
+            });
+          }, 300);
+        },
+        // 检查TTS服务是否可用
+        async checkTTSService() {
+          try {
+            const response = await fetch('http://nas.shmiluyu.xyz:5030/ai/tts/voices');
+            console.log(response);
+
+            if (response.ok) {
+              this.ttsAvailable = true;
+            }
+          } catch (error) {
+            console.error('TTS service check failed:', error);
+            this.ttsAvailable = false;
+          }
+        },
+
+        // TTS请求
+        async ttsSpeak(text, isEnglish = true, speed = null) {
+          const params = new URLSearchParams({
+            text,
+            speed: speed || this.TTS_CONFIG.speed,  // 如果传入speed则使用传入的值
+            volume: this.TTS_CONFIG.volume,
+            pitch: this.TTS_CONFIG.pitch,
+            voice: isEnglish ? this.TTS_CONFIG.enVoice : this.TTS_CONFIG.zhVoice
+          });
+
+          try {
+            const response = await fetch(`http://nas.shmiluyu.xyz:5030/ai/tts/forward?${params}`);
+            if (!response.ok) {
+              throw new Error('TTS request failed');
+            }
+
+            // 获取音频blob
+            const audioBlob = await response.blob();
+            // 创建blob URL
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            // 创建音频对象
+            const audio = new Audio(audioUrl);
+
+            // 返回一个Promise，在音频播放完成后resolve
+            return new Promise((resolve, reject) => {
+              audio.onended = () => {
+                URL.revokeObjectURL(audioUrl); // 清理blob URL
+                resolve(true);
+              };
+              audio.onerror = (error) => {
+                URL.revokeObjectURL(audioUrl);
+                reject(error);
+              };
+              audio.play();
+            });
+          } catch (error) {
+            console.error('TTS request failed:', error);
+            return false;
+          }
+        },
+
+        // 开始自动朗读
+        startAutoReading() {
+          if (this.isAutoReading) return;
+
+          this.isAutoReading = true;
+          this.autoReadingIndex = 0;
+          // 打乱数据
+          this.shuffledData = [...this.vocabData].sort(() => Math.random() - 0.5);
+          this.readNext();
+        },
+
+
+        // 停止自动朗读
+        stopAutoReading() {
+          this.isAutoReading = false;
+          this.autoReadingIndex = 0;
+        },
+
+        // 读取下一个单词
+        async readNext() {
+          if (!this.isAutoReading || this.autoReadingIndex >= this.shuffledData.length) {
+            this.stopAutoReading();
+            return;
+          }
+
+          const vd = this.shuffledData[this.autoReadingIndex];
+          // 更新当前显示的单词卡片
+          this.currentWord = vd;
+
+          // 读取英文
+          if (!this.isAutoReading) return;
+          await this.ttsSpeak(vd.en, true, 20);
+
+          // 读取中文 读取场景
+          if (!this.isAutoReading) return;
+          await this.ttsSpeak(`中文释义:${vd.zh},使用场景:${vd.scene}`, false, 30);
+
+          // 读取例句
+          for (const example of vd.examples) {
+            // 先读中文
+            if (!this.isAutoReading) return;
+            await this.ttsSpeak(`例句:${example.zh}`, false, 30);
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            const speeds = [10, 10, 20];
+            for (const speed of speeds) {
+              if (!this.isAutoReading) return;
+              await this.ttsSpeak(example.en, true, speed);
+              await new Promise(resolve => setTimeout(resolve, 2000));
+            }
+          }
+
+          this.autoReadingIndex++;
+          this.readNext();
+        }
+      },
+      mounted() {
+        this.getRandomWord();
+        this.checkTTSService();  // 检查TTS服务
+      }
+    });
+
+    app.mount('#app');
+  </script>
+
+
+</body>
+
+</html>
